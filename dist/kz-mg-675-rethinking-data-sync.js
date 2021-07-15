@@ -63149,7 +63149,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./browser.js ***!
         \********************/
 
-      /*! exports provided: browser, constants, readRelease, unarchiveRelease, archiveRelease, deleteRelease, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, createNode, createAndReturnNode, readNode, getNode, updateNode, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, deleteBranch, waitForJobsToFinish, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, queryDefinitions, getAssociations, queryVaults, deployModule, getContext, getMapFromArray, getQNameComponents, convertQNameForRef, getRefFromQName, getQName, isInternalType */
+      /*! exports provided: browser, constants, readRelease, unarchiveRelease, archiveRelease, deleteRelease, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, createNode, createAndReturnNode, readNode, getNode, updateNode, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, deleteBranch, getEnvFromBranch, waitForJobsToFinish, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, queryDefinitions, getAssociations, queryVaults, deployModule, getContext, getMapFromArray, getQNameComponents, convertQNameForRef, getRefFromQName, getQName, isInternalType */
 
       /***/
       function browserJs(module, __webpack_exports__, __webpack_require__) {
@@ -63399,6 +63399,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         /* harmony reexport (safe) */
 
 
+        __webpack_require__.d(__webpack_exports__, "getEnvFromBranch", function () {
+          return _common__WEBPACK_IMPORTED_MODULE_1__["getEnvFromBranch"];
+        });
+        /* harmony reexport (safe) */
+
+
         __webpack_require__.d(__webpack_exports__, "waitForJobsToFinish", function () {
           return _common__WEBPACK_IMPORTED_MODULE_1__["waitForJobsToFinish"];
         });
@@ -63514,7 +63520,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./common.js ***!
         \*******************/
 
-      /*! exports provided: constants, readRelease, unarchiveRelease, archiveRelease, deleteRelease, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, createNode, createAndReturnNode, readNode, getNode, updateNode, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, deleteBranch, waitForJobsToFinish, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, queryDefinitions, getAssociations, queryVaults, deployModule, getContext, getMapFromArray, getQNameComponents, convertQNameForRef, getRefFromQName, getQName, isInternalType */
+      /*! exports provided: constants, readRelease, unarchiveRelease, archiveRelease, deleteRelease, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, createNode, createAndReturnNode, readNode, getNode, updateNode, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, deleteBranch, getEnvFromBranch, waitForJobsToFinish, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, queryDefinitions, getAssociations, queryVaults, deployModule, getContext, getMapFromArray, getQNameComponents, convertQNameForRef, getRefFromQName, getQName, isInternalType */
 
       /***/
       function commonJs(module, __webpack_exports__, __webpack_require__) {
@@ -63758,6 +63764,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         /* harmony reexport (safe) */
 
 
+        __webpack_require__.d(__webpack_exports__, "getEnvFromBranch", function () {
+          return _src_api__WEBPACK_IMPORTED_MODULE_1__["getEnvFromBranch"];
+        });
+        /* harmony reexport (safe) */
+
+
         __webpack_require__.d(__webpack_exports__, "waitForJobsToFinish", function () {
           return _src_api__WEBPACK_IMPORTED_MODULE_1__["waitForJobsToFinish"];
         });
@@ -63923,7 +63935,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./src/api/branch.js ***!
         \***************************/
 
-      /*! exports provided: getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, deleteBranch */
+      /*! exports provided: getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, deleteBranch, getEnvFromBranch */
 
       /***/
       function srcApiBranchJs(module, __webpack_exports__, __webpack_require__) {
@@ -63971,6 +63983,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
         __webpack_require__.d(__webpack_exports__, "deleteBranch", function () {
           return deleteBranch;
+        });
+        /* harmony export (binding) */
+
+
+        __webpack_require__.d(__webpack_exports__, "getEnvFromBranch", function () {
+          return getEnvFromBranch;
         });
         /* harmony import */
 
@@ -64151,6 +64169,24 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             }, _callee2);
           }));
           return _deleteBranch.apply(this, arguments);
+        }
+
+        function getEnvFromBranch(branch) {
+          var title = branch.title;
+
+          if (title.startsWith('DEV: ') || title.startsWith('Pre-Production - ')) {
+            return 'preproduction';
+          }
+
+          if (title.startsWith('PR: ')) {
+            return 'prs';
+          }
+
+          if (title.startsWith('STAGING: ')) {
+            return 'staging';
+          }
+
+          return 'production';
         }
         /***/
 
@@ -64542,7 +64578,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./src/api/index.js ***!
         \**************************/
 
-      /*! exports provided: readRelease, unarchiveRelease, archiveRelease, deleteRelease, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, createNode, createAndReturnNode, readNode, getNode, updateNode, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, deleteBranch, waitForJobsToFinish, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, queryDefinitions, getAssociations, queryVaults, deployModule, getContext */
+      /*! exports provided: readRelease, unarchiveRelease, archiveRelease, deleteRelease, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, createNode, createAndReturnNode, readNode, getNode, updateNode, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, deleteBranch, getEnvFromBranch, waitForJobsToFinish, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, queryDefinitions, getAssociations, queryVaults, deployModule, getContext */
 
       /***/
       function srcApiIndexJs(module, __webpack_exports__, __webpack_require__) {
@@ -64882,6 +64918,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
         __webpack_require__.d(__webpack_exports__, "deleteBranch", function () {
           return _branch__WEBPACK_IMPORTED_MODULE_7__["deleteBranch"];
+        });
+        /* harmony reexport (safe) */
+
+
+        __webpack_require__.d(__webpack_exports__, "getEnvFromBranch", function () {
+          return _branch__WEBPACK_IMPORTED_MODULE_7__["getEnvFromBranch"];
         });
         /* harmony import */
 
@@ -65963,7 +66005,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
         function _paginateNodes() {
           _paginateNodes = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7(options) {
-            var query, onNode, branch, limit, _options$updateSkip, updateSkip, hasMore, skip, _yield$queryNodes, rows, totalRows, offset, rowCount, i;
+            var query, onNode, branch, limit, _options$updateSkip, updateSkip, hasMore, skip, _yield$queryNodes, rows, totalRows, offset, rowCount, i, remaining;
 
             return regeneratorRuntime.wrap(function _callee7$(_context7) {
               while (1) {
@@ -65977,7 +66019,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
                   case 3:
                     if (!hasMore) {
-                      _context7.next = 22;
+                      _context7.next = 23;
                       break;
                     }
 
@@ -65998,25 +66040,26 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
                   case 12:
                     if (!(i < rowCount)) {
-                      _context7.next = 18;
+                      _context7.next = 19;
                       break;
                     }
 
-                    _context7.next = 15;
-                    return onNode(rows[i]);
+                    remaining = totalRows - offset - i - 1;
+                    _context7.next = 16;
+                    return onNode(rows[i], remaining);
 
-                  case 15:
+                  case 16:
                     i += 1;
                     _context7.next = 12;
                     break;
 
-                  case 18:
+                  case 19:
                     skip = updateSkip(offset, rowCount);
                     hasMore = skip < totalRows;
                     _context7.next = 3;
                     break;
 
-                  case 22:
+                  case 23:
                   case "end":
                     return _context7.stop();
                 }
@@ -89485,8 +89528,69 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
 
         var app_gadgets_project_document_publishable_hud__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(app_gadgets_project_document_publishable_hud__WEBPACK_IMPORTED_MODULE_1__);
+        /* harmony import */
+
+
+        var _evdy_consumer_cloudcms_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+        /*! @evdy-consumer/cloudcms-common */
+        "@evdy-consumer/cloudcms-common");
+        /* harmony import */
+
+
+        var _evdy_consumer_cloudcms_common__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_evdy_consumer_cloudcms_common__WEBPACK_IMPORTED_MODULE_2__);
+
+        function ownKeys(object, enumerableOnly) {
+          var keys = Object.keys(object);
+
+          if (Object.getOwnPropertySymbols) {
+            var symbols = Object.getOwnPropertySymbols(object);
+            if (enumerableOnly) symbols = symbols.filter(function (sym) {
+              return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+            });
+            keys.push.apply(keys, symbols);
+          }
+
+          return keys;
+        }
+
+        function _objectSpread(target) {
+          for (var i = 1; i < arguments.length; i++) {
+            var source = arguments[i] != null ? arguments[i] : {};
+
+            if (i % 2) {
+              ownKeys(Object(source), true).forEach(function (key) {
+                _defineProperty(target, key, source[key]);
+              });
+            } else if (Object.getOwnPropertyDescriptors) {
+              Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+            } else {
+              ownKeys(Object(source)).forEach(function (key) {
+                Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+              });
+            }
+          }
+
+          return target;
+        }
+
+        function _defineProperty(obj, key, value) {
+          if (key in obj) {
+            Object.defineProperty(obj, key, {
+              value: value,
+              enumerable: true,
+              configurable: true,
+              writable: true
+            });
+          } else {
+            obj[key] = value;
+          }
+
+          return obj;
+        }
         /* globals PAGE_QNAME */
 
+
+        var getBranch = _evdy_consumer_cloudcms_common__WEBPACK_IMPORTED_MODULE_2__["browser"].getBranch;
 
         function isPreviewEnabled(model) {
           if (!model.previewEnabled) {
@@ -89496,6 +89600,34 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
           var document = ratchet_web__WEBPACK_IMPORTED_MODULE_0___default.a.observable('document').get();
           return !!(document && document.getTypeQName() === "ehmodels:page");
         }
+
+        function updateActionsForEnv() {
+          var actions = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+          var branch = getBranch();
+          var env = Object(_evdy_consumer_cloudcms_common__WEBPACK_IMPORTED_MODULE_2__["getEnvFromBranch"])(branch);
+
+          if (env === 'production') {
+            return actions;
+          }
+
+          return actions.map(function (action) {
+            var id = action.id;
+
+            if (id === 'start-workflow-publish') {
+              return _objectSpread(_objectSpread({}, action), {}, {
+                id: 'start-workflow-publish-staging'
+              });
+            }
+
+            if (id === 'start-workflow-unpublish') {
+              return _objectSpread(_objectSpread({}, action), {}, {
+                id: 'start-workflow-unpublish-staging'
+              });
+            }
+
+            return action;
+          });
+        }
         /* harmony default export */
 
 
@@ -89503,6 +89635,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
           prepareModel: function prepareModel(el, model, callback) {
             this.base(el, model, function () {
               model.previewEnabled = isPreviewEnabled(model);
+              model.actions = updateActionsForEnv(model.actions);
               callback();
             });
           }
