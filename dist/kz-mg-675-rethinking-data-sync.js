@@ -89613,15 +89613,15 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
           return actions.map(function (action) {
             var id = action.id;
 
-            if (id === 'start-workflow-publish') {
+            if (/unpublish$/.test(id)) {
               return _objectSpread(_objectSpread({}, action), {}, {
-                id: 'start-workflow-publish-staging'
+                id: id.replace('unpublish', 'unpublish-staging')
               });
             }
 
-            if (id === 'start-workflow-unpublish') {
+            if (/publish$/.test(id)) {
               return _objectSpread(_objectSpread({}, action), {}, {
-                id: 'start-workflow-unpublish-staging'
+                id: id.replace('publish', 'publish-staging')
               });
             }
 
