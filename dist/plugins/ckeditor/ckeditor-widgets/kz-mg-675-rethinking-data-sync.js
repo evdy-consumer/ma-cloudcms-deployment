@@ -28984,23 +28984,17 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { "@babel/helpers - type
         var allowedContent = 'img[!src, !alt]';
 
         function mapData(data) {
-          var _data$data = data.data;
-          _data$data = _data$data === void 0 ? {} : _data$data;
-          var _data$data$image = _data$data.image;
-          _data$data$image = _data$data$image === void 0 ? {} : _data$data$image;
-          var _data$data$image$data = _data$data$image.data;
-          _data$data$image$data = _data$data$image$data === void 0 ? {} : _data$data$image$data;
-          var alt = _data$data$image$data.alt,
-              url = _data$data$image$data.url;
+          var _data$meta = data.meta;
+          _data$meta = _data$meta === void 0 ? {} : _data$meta;
+          var iconUrl = _data$meta.iconUrl;
 
-          if (!url) {
+          if (!iconUrl) {
             return {};
           }
 
-          var src = "".concat(url, "?w=200");
+          var src = "".concat(iconUrl, "?w=200");
           return {
-            src: src,
-            alt: alt
+            src: src
           };
         }
         /***/
