@@ -63149,7 +63149,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./browser.js ***!
         \********************/
 
-      /*! exports provided: browser, constants, readRelease, unarchiveRelease, archiveRelease, deleteRelease, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, createNode, createAndReturnNode, readNode, getNode, updateNode, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, deleteBranch, waitForJobsToFinish, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, queryDefinitions, getAssociations, queryVaults, deployModule, getContext, getMapFromArray, getQNameComponents, convertQNameForRef, getRefFromQName, getQName, isInternalType */
+      /*! exports provided: browser, constants, readRelease, unarchiveRelease, archiveRelease, deleteRelease, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, createNode, createAndReturnNode, readNode, getNode, updateNode, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, deleteBranch, getEnvFromBranch, waitForJobsToFinish, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, queryDefinitions, getAssociations, queryVaults, deployModule, getContext, getMapFromArray, getQNameComponents, convertQNameForRef, getRefFromQName, getQName, isInternalType */
 
       /***/
       function browserJs(module, __webpack_exports__, __webpack_require__) {
@@ -63399,6 +63399,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         /* harmony reexport (safe) */
 
 
+        __webpack_require__.d(__webpack_exports__, "getEnvFromBranch", function () {
+          return _common__WEBPACK_IMPORTED_MODULE_1__["getEnvFromBranch"];
+        });
+        /* harmony reexport (safe) */
+
+
         __webpack_require__.d(__webpack_exports__, "waitForJobsToFinish", function () {
           return _common__WEBPACK_IMPORTED_MODULE_1__["waitForJobsToFinish"];
         });
@@ -63514,7 +63520,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./common.js ***!
         \*******************/
 
-      /*! exports provided: constants, readRelease, unarchiveRelease, archiveRelease, deleteRelease, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, createNode, createAndReturnNode, readNode, getNode, updateNode, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, deleteBranch, waitForJobsToFinish, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, queryDefinitions, getAssociations, queryVaults, deployModule, getContext, getMapFromArray, getQNameComponents, convertQNameForRef, getRefFromQName, getQName, isInternalType */
+      /*! exports provided: constants, readRelease, unarchiveRelease, archiveRelease, deleteRelease, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, createNode, createAndReturnNode, readNode, getNode, updateNode, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, deleteBranch, getEnvFromBranch, waitForJobsToFinish, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, queryDefinitions, getAssociations, queryVaults, deployModule, getContext, getMapFromArray, getQNameComponents, convertQNameForRef, getRefFromQName, getQName, isInternalType */
 
       /***/
       function commonJs(module, __webpack_exports__, __webpack_require__) {
@@ -63758,6 +63764,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         /* harmony reexport (safe) */
 
 
+        __webpack_require__.d(__webpack_exports__, "getEnvFromBranch", function () {
+          return _src_api__WEBPACK_IMPORTED_MODULE_1__["getEnvFromBranch"];
+        });
+        /* harmony reexport (safe) */
+
+
         __webpack_require__.d(__webpack_exports__, "waitForJobsToFinish", function () {
           return _src_api__WEBPACK_IMPORTED_MODULE_1__["waitForJobsToFinish"];
         });
@@ -63923,7 +63935,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./src/api/branch.js ***!
         \***************************/
 
-      /*! exports provided: getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, deleteBranch */
+      /*! exports provided: getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, deleteBranch, getEnvFromBranch */
 
       /***/
       function srcApiBranchJs(module, __webpack_exports__, __webpack_require__) {
@@ -63971,6 +63983,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
         __webpack_require__.d(__webpack_exports__, "deleteBranch", function () {
           return deleteBranch;
+        });
+        /* harmony export (binding) */
+
+
+        __webpack_require__.d(__webpack_exports__, "getEnvFromBranch", function () {
+          return getEnvFromBranch;
         });
         /* harmony import */
 
@@ -64151,6 +64169,24 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             }, _callee2);
           }));
           return _deleteBranch.apply(this, arguments);
+        }
+
+        function getEnvFromBranch(branch) {
+          var title = branch.title;
+
+          if (title.startsWith('DEV: ') || title.startsWith('Pre-Production - ')) {
+            return 'preproduction';
+          }
+
+          if (title.startsWith('PR: ')) {
+            return 'prs';
+          }
+
+          if (title.startsWith('STAGING: ')) {
+            return 'staging';
+          }
+
+          return 'production';
         }
         /***/
 
@@ -64542,7 +64578,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./src/api/index.js ***!
         \**************************/
 
-      /*! exports provided: readRelease, unarchiveRelease, archiveRelease, deleteRelease, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, createNode, createAndReturnNode, readNode, getNode, updateNode, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, deleteBranch, waitForJobsToFinish, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, queryDefinitions, getAssociations, queryVaults, deployModule, getContext */
+      /*! exports provided: readRelease, unarchiveRelease, archiveRelease, deleteRelease, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, createNode, createAndReturnNode, readNode, getNode, updateNode, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, deleteBranch, getEnvFromBranch, waitForJobsToFinish, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, queryDefinitions, getAssociations, queryVaults, deployModule, getContext */
 
       /***/
       function srcApiIndexJs(module, __webpack_exports__, __webpack_require__) {
@@ -64882,6 +64918,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
         __webpack_require__.d(__webpack_exports__, "deleteBranch", function () {
           return _branch__WEBPACK_IMPORTED_MODULE_7__["deleteBranch"];
+        });
+        /* harmony reexport (safe) */
+
+
+        __webpack_require__.d(__webpack_exports__, "getEnvFromBranch", function () {
+          return _branch__WEBPACK_IMPORTED_MODULE_7__["getEnvFromBranch"];
         });
         /* harmony import */
 
@@ -65963,7 +66005,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
         function _paginateNodes() {
           _paginateNodes = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7(options) {
-            var query, onNode, branch, limit, _options$updateSkip, updateSkip, hasMore, skip, _yield$queryNodes, rows, totalRows, offset, rowCount, i;
+            var query, onNode, branch, limit, _options$updateSkip, updateSkip, hasMore, skip, _yield$queryNodes, rows, totalRows, offset, rowCount, i, remaining;
 
             return regeneratorRuntime.wrap(function _callee7$(_context7) {
               while (1) {
@@ -65977,7 +66019,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
                   case 3:
                     if (!hasMore) {
-                      _context7.next = 22;
+                      _context7.next = 23;
                       break;
                     }
 
@@ -65998,25 +66040,26 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
                   case 12:
                     if (!(i < rowCount)) {
-                      _context7.next = 18;
+                      _context7.next = 19;
                       break;
                     }
 
-                    _context7.next = 15;
-                    return onNode(rows[i]);
+                    remaining = totalRows - offset - i - 1;
+                    _context7.next = 16;
+                    return onNode(rows[i], remaining);
 
-                  case 15:
+                  case 16:
                     i += 1;
                     _context7.next = 12;
                     break;
 
-                  case 18:
+                  case 19:
                     skip = updateSkip(offset, rowCount);
                     hasMore = skip < totalRows;
                     _context7.next = 3;
                     break;
 
-                  case 22:
+                  case 23:
                   case "end":
                     return _context7.stop();
                 }
@@ -82409,9 +82452,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             var wysiwygFields = top.getControlsByFieldType('ckeditor-with-externals');
             var idsFromSectionFields = widgetsSectionFields.reduce(function (ids, field) {
               var moreIds = (field.getValue() || []).map(function (data) {
-                var _data$ref = data.ref;
-                _data$ref = _data$ref === void 0 ? {} : _data$ref;
-                var id = _data$ref.id;
+                var id = data.id;
                 return id;
               }).filter(function (x) {
                 return !!x;
@@ -82443,14 +82484,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             return promise.then(function (_ref) {
               var nodes = _ref.rows;
               var refsByQName = nodes.reduce(function (refs, node) {
-                var qname = node._type,
-                    data = node.data;
+                var qname = node._type;
                 var refsForQName = refs[qname] || [];
                 refs[qname] = refsForQName;
-                refsForQName.push({
-                  data: data,
-                  ref: Object(_evdy_consumer_cloudcms_common__WEBPACK_IMPORTED_MODULE_1__["getRefDataForNode"])(node, branch)
-                });
+                refsForQName.push(Object(_evdy_consumer_cloudcms_common__WEBPACK_IMPORTED_MODULE_1__["getRefDataForNode"])(node, branch));
                 return refs;
               }, {});
               var widgetDataFields = top.getControlsByFieldType(_constants__WEBPACK_IMPORTED_MODULE_3__["fieldType"]);
@@ -82973,9 +83010,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
           getDataToAddForSection: function getDataToAddForSection(_ref) {
             var node = _ref.node;
             var branch = getBranch();
-            return {
-              ref: Object(_evdy_consumer_cloudcms_common__WEBPACK_IMPORTED_MODULE_1__["getRefDataForNode"])(node, branch)
-            };
+            return Object(_evdy_consumer_cloudcms_common__WEBPACK_IMPORTED_MODULE_1__["getRefDataForNode"])(node, branch);
           },
           resolveItemSchemaOptions: function resolveItemSchemaOptions(cb) {
             cb(_item_display_schema_json__WEBPACK_IMPORTED_MODULE_5__, {});
@@ -83023,7 +83058,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
             if (this._validateEqualMaxItems()) {
               var branch = getBranch();
-              var id = data.ref.id;
+              var id = data.id;
               return Object(_evdy_consumer_cloudcms_common__WEBPACK_IMPORTED_MODULE_1__["readNode"])(id, branch).then(function (node) {
                 var itemHtml = _this4._renderWidgetHtml(node);
 
@@ -83102,7 +83137,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                 }
 
                 var fieldEl = control.getFieldEl();
-                var id = itemData.ref.id;
+                var id = itemData.id;
 
                 var openModal = function openModal() {
                   return Object(_evdy_consumer_cloudcms_widgets__WEBPACK_IMPORTED_MODULE_2__["openEditWidgetModal"])(id).then(function (node) {
@@ -83161,7 +83196,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
       /***/
       function srcItemDisplaySchemaJson(module) {
-        module.exports = JSON.parse("{\"type\":\"object\",\"properties\":{\"ref\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"string\"},\"qname\":{\"type\":\"string\"},\"ref\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"typeQName\":{\"type\":\"string\"}}}}}");
+        module.exports = JSON.parse("{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"string\"},\"qname\":{\"type\":\"string\"},\"ref\":{\"type\":\"string\"},\"title\":{\"type\":\"string\"},\"typeQName\":{\"type\":\"string\"}}}");
         /***/
       },
 
@@ -89493,8 +89528,69 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
 
         var app_gadgets_project_document_publishable_hud__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(app_gadgets_project_document_publishable_hud__WEBPACK_IMPORTED_MODULE_1__);
+        /* harmony import */
+
+
+        var _evdy_consumer_cloudcms_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+        /*! @evdy-consumer/cloudcms-common */
+        "@evdy-consumer/cloudcms-common");
+        /* harmony import */
+
+
+        var _evdy_consumer_cloudcms_common__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_evdy_consumer_cloudcms_common__WEBPACK_IMPORTED_MODULE_2__);
+
+        function ownKeys(object, enumerableOnly) {
+          var keys = Object.keys(object);
+
+          if (Object.getOwnPropertySymbols) {
+            var symbols = Object.getOwnPropertySymbols(object);
+            if (enumerableOnly) symbols = symbols.filter(function (sym) {
+              return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+            });
+            keys.push.apply(keys, symbols);
+          }
+
+          return keys;
+        }
+
+        function _objectSpread(target) {
+          for (var i = 1; i < arguments.length; i++) {
+            var source = arguments[i] != null ? arguments[i] : {};
+
+            if (i % 2) {
+              ownKeys(Object(source), true).forEach(function (key) {
+                _defineProperty(target, key, source[key]);
+              });
+            } else if (Object.getOwnPropertyDescriptors) {
+              Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+            } else {
+              ownKeys(Object(source)).forEach(function (key) {
+                Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+              });
+            }
+          }
+
+          return target;
+        }
+
+        function _defineProperty(obj, key, value) {
+          if (key in obj) {
+            Object.defineProperty(obj, key, {
+              value: value,
+              enumerable: true,
+              configurable: true,
+              writable: true
+            });
+          } else {
+            obj[key] = value;
+          }
+
+          return obj;
+        }
         /* globals PAGE_QNAME */
 
+
+        var getBranch = _evdy_consumer_cloudcms_common__WEBPACK_IMPORTED_MODULE_2__["browser"].getBranch;
 
         function isPreviewEnabled(model) {
           if (!model.previewEnabled) {
@@ -89504,6 +89600,34 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
           var document = ratchet_web__WEBPACK_IMPORTED_MODULE_0___default.a.observable('document').get();
           return !!(document && document.getTypeQName() === "ehmodels:page");
         }
+
+        function updateActionsForEnv() {
+          var actions = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+          var branch = getBranch();
+          var env = Object(_evdy_consumer_cloudcms_common__WEBPACK_IMPORTED_MODULE_2__["getEnvFromBranch"])(branch);
+
+          if (env === 'production') {
+            return actions;
+          }
+
+          return actions.map(function (action) {
+            var id = action.id;
+
+            if (/unpublish$/.test(id)) {
+              return _objectSpread(_objectSpread({}, action), {}, {
+                id: id.replace('unpublish', 'unpublish-staging')
+              });
+            }
+
+            if (/publish$/.test(id)) {
+              return _objectSpread(_objectSpread({}, action), {}, {
+                id: id.replace('publish', 'publish-staging')
+              });
+            }
+
+            return action;
+          });
+        }
         /* harmony default export */
 
 
@@ -89511,6 +89635,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
           prepareModel: function prepareModel(el, model, callback) {
             this.base(el, model, function () {
               model.previewEnabled = isPreviewEnabled(model);
+              model.actions = updateActionsForEnv(model.actions);
               callback();
             });
           }
@@ -110454,23 +110579,17 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { "@babel/helpers - type
         var allowedContent = 'img[!src, !alt]';
 
         function mapData(data) {
-          var _data$data = data.data;
-          _data$data = _data$data === void 0 ? {} : _data$data;
-          var _data$data$image = _data$data.image;
-          _data$data$image = _data$data$image === void 0 ? {} : _data$data$image;
-          var _data$data$image$data = _data$data$image.data;
-          _data$data$image$data = _data$data$image$data === void 0 ? {} : _data$data$image$data;
-          var alt = _data$data$image$data.alt,
-              url = _data$data$image$data.url;
+          var _data$meta = data.meta;
+          _data$meta = _data$meta === void 0 ? {} : _data$meta;
+          var iconUrl = _data$meta.iconUrl;
 
-          if (!url) {
+          if (!iconUrl) {
             return {};
           }
 
-          var src = "".concat(url, "?w=200");
+          var src = "".concat(iconUrl, "?w=200");
           return {
-            src: src,
-            alt: alt
+            src: src
           };
         }
         /***/
