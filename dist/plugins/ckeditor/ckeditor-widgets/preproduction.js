@@ -21220,7 +21220,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./browser.js ***!
         \********************/
 
-      /*! exports provided: browser, constants, readRelease, unarchiveRelease, archiveRelease, deleteRelease, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, createNode, createAndReturnNode, readNode, getNode, updateNode, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, deleteBranch, getEnvFromBranch, waitForJobsToFinish, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, queryDefinitions, getAssociations, queryVaults, deployModule, getContext, getMapFromArray, getQNameComponents, convertQNameForRef, getRefFromQName, getQName, isInternalType */
+      /*! exports provided: browser, constants, readRelease, unarchiveRelease, archiveRelease, deleteRelease, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, createNode, createAndReturnNode, readNode, getNode, updateNode, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, queryDefinitions, getAssociations, queryVaults, deployModule, getContext, getMapFromArray, getQNameComponents, convertQNameForRef, getRefFromQName, getQName, isInternalType */
 
       /***/
       function browserJs(module, __webpack_exports__, __webpack_require__) {
@@ -21476,8 +21476,32 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         /* harmony reexport (safe) */
 
 
+        __webpack_require__.d(__webpack_exports__, "resyncPublishing", function () {
+          return _common__WEBPACK_IMPORTED_MODULE_1__["resyncPublishing"];
+        });
+        /* harmony reexport (safe) */
+
+
         __webpack_require__.d(__webpack_exports__, "waitForJobsToFinish", function () {
           return _common__WEBPACK_IMPORTED_MODULE_1__["waitForJobsToFinish"];
+        });
+        /* harmony reexport (safe) */
+
+
+        __webpack_require__.d(__webpack_exports__, "getJob", function () {
+          return _common__WEBPACK_IMPORTED_MODULE_1__["getJob"];
+        });
+        /* harmony reexport (safe) */
+
+
+        __webpack_require__.d(__webpack_exports__, "getJobs", function () {
+          return _common__WEBPACK_IMPORTED_MODULE_1__["getJobs"];
+        });
+        /* harmony reexport (safe) */
+
+
+        __webpack_require__.d(__webpack_exports__, "apiHelpers", function () {
+          return _common__WEBPACK_IMPORTED_MODULE_1__["apiHelpers"];
         });
         /* harmony reexport (safe) */
 
@@ -21591,7 +21615,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./common.js ***!
         \*******************/
 
-      /*! exports provided: constants, readRelease, unarchiveRelease, archiveRelease, deleteRelease, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, createNode, createAndReturnNode, readNode, getNode, updateNode, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, deleteBranch, getEnvFromBranch, waitForJobsToFinish, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, queryDefinitions, getAssociations, queryVaults, deployModule, getContext, getMapFromArray, getQNameComponents, convertQNameForRef, getRefFromQName, getQName, isInternalType */
+      /*! exports provided: constants, readRelease, unarchiveRelease, archiveRelease, deleteRelease, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, createNode, createAndReturnNode, readNode, getNode, updateNode, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, queryDefinitions, getAssociations, queryVaults, deployModule, getContext, getMapFromArray, getQNameComponents, convertQNameForRef, getRefFromQName, getQName, isInternalType */
 
       /***/
       function commonJs(module, __webpack_exports__, __webpack_require__) {
@@ -21841,8 +21865,32 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         /* harmony reexport (safe) */
 
 
+        __webpack_require__.d(__webpack_exports__, "resyncPublishing", function () {
+          return _src_api__WEBPACK_IMPORTED_MODULE_1__["resyncPublishing"];
+        });
+        /* harmony reexport (safe) */
+
+
         __webpack_require__.d(__webpack_exports__, "waitForJobsToFinish", function () {
           return _src_api__WEBPACK_IMPORTED_MODULE_1__["waitForJobsToFinish"];
+        });
+        /* harmony reexport (safe) */
+
+
+        __webpack_require__.d(__webpack_exports__, "getJob", function () {
+          return _src_api__WEBPACK_IMPORTED_MODULE_1__["getJob"];
+        });
+        /* harmony reexport (safe) */
+
+
+        __webpack_require__.d(__webpack_exports__, "getJobs", function () {
+          return _src_api__WEBPACK_IMPORTED_MODULE_1__["getJobs"];
+        });
+        /* harmony reexport (safe) */
+
+
+        __webpack_require__.d(__webpack_exports__, "apiHelpers", function () {
+          return _src_api__WEBPACK_IMPORTED_MODULE_1__["apiHelpers"];
         });
         /* harmony reexport (safe) */
 
@@ -22006,7 +22054,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./src/api/branch.js ***!
         \***************************/
 
-      /*! exports provided: getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, deleteBranch, getEnvFromBranch */
+      /*! exports provided: getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, deleteBranch, getEnvFromBranch, resyncPublishing */
 
       /***/
       function srcApiBranchJs(module, __webpack_exports__, __webpack_require__) {
@@ -22060,6 +22108,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
         __webpack_require__.d(__webpack_exports__, "getEnvFromBranch", function () {
           return getEnvFromBranch;
+        });
+        /* harmony export (binding) */
+
+
+        __webpack_require__.d(__webpack_exports__, "resyncPublishing", function () {
+          return resyncPublishing;
         });
         /* harmony import */
 
@@ -22258,6 +22312,42 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
           }
 
           return 'production';
+        }
+
+        function resyncPublishing(_x4, _x5) {
+          return _resyncPublishing.apply(this, arguments);
+        }
+
+        function _resyncPublishing() {
+          _resyncPublishing = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(nodeIds, branch) {
+            var driver, url, _yield$axios$post, jobId;
+
+            return regeneratorRuntime.wrap(function _callee3$(_context3) {
+              while (1) {
+                switch (_context3.prev = _context3.next) {
+                  case 0:
+                    driver = branch.getDriver();
+                    url = "".concat(driver.baseURL).concat(branch.getUri(), "/publishing/resync");
+                    _context3.next = 4;
+                    return _axios_instance__WEBPACK_IMPORTED_MODULE_0__["default"].post(url, {
+                      nodeIds: nodeIds
+                    }, {
+                      headers: Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["getHeadersFromDriver"])(driver)
+                    });
+
+                  case 4:
+                    _yield$axios$post = _context3.sent;
+                    jobId = _yield$axios$post.data._doc;
+                    return _context3.abrupt("return", jobId);
+
+                  case 7:
+                  case "end":
+                    return _context3.stop();
+                }
+              }
+            }, _callee3);
+          }));
+          return _resyncPublishing.apply(this, arguments);
         }
         /***/
 
@@ -22480,7 +22570,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./src/api/helpers.js ***!
         \****************************/
 
-      /*! exports provided: isBrowser, getCookies, getHeadersFromDriver */
+      /*! exports provided: isBrowser, getCookies, getHeadersFromDriver, paginate */
 
       /***/
       function srcApiHelpersJs(module, __webpack_exports__, __webpack_require__) {
@@ -22505,6 +22595,48 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         __webpack_require__.d(__webpack_exports__, "getHeadersFromDriver", function () {
           return getHeadersFromDriver;
         });
+        /* harmony export (binding) */
+
+
+        __webpack_require__.d(__webpack_exports__, "paginate", function () {
+          return paginate;
+        });
+
+        function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+          try {
+            var info = gen[key](arg);
+            var value = info.value;
+          } catch (error) {
+            reject(error);
+            return;
+          }
+
+          if (info.done) {
+            resolve(value);
+          } else {
+            Promise.resolve(value).then(_next, _throw);
+          }
+        }
+
+        function _asyncToGenerator(fn) {
+          return function () {
+            var self = this,
+                args = arguments;
+            return new Promise(function (resolve, reject) {
+              var gen = fn.apply(self, args);
+
+              function _next(value) {
+                asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
+              }
+
+              function _throw(err) {
+                asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+              }
+
+              _next(undefined);
+            });
+          };
+        }
 
         function ownKeys(object, enumerableOnly) {
           var keys = Object.keys(object);
@@ -22639,6 +22771,88 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
           return driver.getHttpHeaders();
         }
+
+        function paginate(_x) {
+          return _paginate.apply(this, arguments);
+        }
+
+        function _paginate() {
+          _paginate = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(options) {
+            var defaultUpdateSkip, execute, query, onItem, branch, limit, _options$updateSkip, updateSkip, _options$pagination, pagination, hasMore, skip, _yield$execute, rows, totalRows, offset, rowCount, i, remaining;
+
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    defaultUpdateSkip = function defaultUpdateSkip(offset, rowCount) {
+                      return offset + rowCount;
+                    };
+
+                    execute = options.execute, query = options.query, onItem = options.onItem, branch = options.branch, limit = options.limit, _options$updateSkip = options.updateSkip, updateSkip = _options$updateSkip === void 0 ? defaultUpdateSkip : _options$updateSkip, _options$pagination = options.pagination, pagination = _options$pagination === void 0 ? {} : _options$pagination;
+                    hasMore = true;
+                    skip = 0;
+
+                  case 4:
+                    if (!hasMore) {
+                      _context.next = 25;
+                      break;
+                    }
+
+                    _context.next = 7;
+                    return execute({
+                      query: query,
+                      pagination: _objectSpread(_objectSpread({
+                        full: true,
+                        limit: limit
+                      }, pagination), {}, {
+                        skip: skip
+                      }),
+                      driverProvider: branch
+                    });
+
+                  case 7:
+                    _yield$execute = _context.sent;
+                    rows = _yield$execute.rows;
+                    totalRows = _yield$execute.totalRows;
+                    offset = _yield$execute.offset;
+                    rowCount = rows.length;
+                    i = 0;
+
+                  case 13:
+                    if (!(i < rowCount)) {
+                      _context.next = 20;
+                      break;
+                    }
+
+                    remaining = totalRows - offset - i - 1;
+                    _context.next = 17;
+                    return onItem(rows[i], remaining);
+
+                  case 17:
+                    i += 1;
+                    _context.next = 13;
+                    break;
+
+                  case 20:
+                    skip = updateSkip(offset, rowCount);
+
+                    if (skip === -1) {
+                      skip = defaultUpdateSkip(offset, rowCount);
+                    }
+
+                    hasMore = skip < totalRows;
+                    _context.next = 4;
+                    break;
+
+                  case 25:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, _callee);
+          }));
+          return _paginate.apply(this, arguments);
+        }
         /***/
 
       },
@@ -22649,7 +22863,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./src/api/index.js ***!
         \**************************/
 
-      /*! exports provided: readRelease, unarchiveRelease, archiveRelease, deleteRelease, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, createNode, createAndReturnNode, readNode, getNode, updateNode, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, deleteBranch, getEnvFromBranch, waitForJobsToFinish, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, queryDefinitions, getAssociations, queryVaults, deployModule, getContext */
+      /*! exports provided: readRelease, unarchiveRelease, archiveRelease, deleteRelease, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, createNode, createAndReturnNode, readNode, getNode, updateNode, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, queryDefinitions, getAssociations, queryVaults, deployModule, getContext */
 
       /***/
       function srcApiIndexJs(module, __webpack_exports__, __webpack_require__) {
@@ -22996,6 +23210,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         __webpack_require__.d(__webpack_exports__, "getEnvFromBranch", function () {
           return _branch__WEBPACK_IMPORTED_MODULE_7__["getEnvFromBranch"];
         });
+        /* harmony reexport (safe) */
+
+
+        __webpack_require__.d(__webpack_exports__, "resyncPublishing", function () {
+          return _branch__WEBPACK_IMPORTED_MODULE_7__["resyncPublishing"];
+        });
         /* harmony import */
 
 
@@ -23007,6 +23227,24 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
         __webpack_require__.d(__webpack_exports__, "waitForJobsToFinish", function () {
           return _jobs__WEBPACK_IMPORTED_MODULE_8__["waitForJobsToFinish"];
+        });
+        /* harmony reexport (safe) */
+
+
+        __webpack_require__.d(__webpack_exports__, "getJob", function () {
+          return _jobs__WEBPACK_IMPORTED_MODULE_8__["getJob"];
+        });
+        /* harmony reexport (safe) */
+
+
+        __webpack_require__.d(__webpack_exports__, "getJobs", function () {
+          return _jobs__WEBPACK_IMPORTED_MODULE_8__["getJobs"];
+        });
+        /* harmony reexport (module object) */
+
+
+        __webpack_require__.d(__webpack_exports__, "apiHelpers", function () {
+          return _helpers__WEBPACK_IMPORTED_MODULE_2__;
         });
 
         function ownKeys(object, enumerableOnly) {
@@ -23315,7 +23553,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./src/api/jobs.js ***!
         \*************************/
 
-      /*! exports provided: waitForJobsToFinish */
+      /*! exports provided: waitForJobsToFinish, getJob, getJobs */
 
       /***/
       function srcApiJobsJs(module, __webpack_exports__, __webpack_require__) {
@@ -23327,6 +23565,18 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
         __webpack_require__.d(__webpack_exports__, "waitForJobsToFinish", function () {
           return waitForJobsToFinish;
+        });
+        /* harmony export (binding) */
+
+
+        __webpack_require__.d(__webpack_exports__, "getJob", function () {
+          return getJob;
+        });
+        /* harmony export (binding) */
+
+
+        __webpack_require__.d(__webpack_exports__, "getJobs", function () {
+          return getJobs;
         });
         /* harmony import */
 
@@ -23350,6 +23600,55 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         var _helpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
         /*! ./helpers */
         "./src/api/helpers.js");
+
+        function ownKeys(object, enumerableOnly) {
+          var keys = Object.keys(object);
+
+          if (Object.getOwnPropertySymbols) {
+            var symbols = Object.getOwnPropertySymbols(object);
+            if (enumerableOnly) symbols = symbols.filter(function (sym) {
+              return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+            });
+            keys.push.apply(keys, symbols);
+          }
+
+          return keys;
+        }
+
+        function _objectSpread(target) {
+          for (var i = 1; i < arguments.length; i++) {
+            var source = arguments[i] != null ? arguments[i] : {};
+
+            if (i % 2) {
+              ownKeys(Object(source), true).forEach(function (key) {
+                _defineProperty(target, key, source[key]);
+              });
+            } else if (Object.getOwnPropertyDescriptors) {
+              Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+            } else {
+              ownKeys(Object(source)).forEach(function (key) {
+                Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+              });
+            }
+          }
+
+          return target;
+        }
+
+        function _defineProperty(obj, key, value) {
+          if (key in obj) {
+            Object.defineProperty(obj, key, {
+              value: value,
+              enumerable: true,
+              configurable: true,
+              writable: true
+            });
+          } else {
+            obj[key] = value;
+          }
+
+          return obj;
+        }
 
         function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
           try {
@@ -23393,17 +23692,15 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
         function _waitForJobsToFinish() {
           _waitForJobsToFinish = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(jobIds, projectId, driverProvider) {
-            var jobs, driver, headers, i, jobId, _yield$axios$post, state;
+            var jobs, i, jobId, _yield$getJob, state, _yield$getJob$log_ent, logEntries;
 
             return regeneratorRuntime.wrap(function _callee$(_context) {
               while (1) {
                 switch (_context.prev = _context.next) {
                   case 0:
                     jobs = jobIds.slice(0);
-                    driver = driverProvider.getDriver();
-                    headers = Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["getHeadersFromDriver"])(driver);
 
-                  case 3:
+                  case 1:
                     if (!(jobs.length > 0)) {
                       _context.next = 22;
                       break;
@@ -23411,33 +23708,28 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
                     i = jobs.length - 1;
 
-                  case 5:
+                  case 3:
                     if (!(i >= 0)) {
                       _context.next = 17;
                       break;
                     }
 
                     jobId = jobs[i];
-                    _context.next = 9;
-                    return _axios_instance__WEBPACK_IMPORTED_MODULE_0__["default"].post("".concat(driver.baseURL, "/oneteam/context"), {
-                      tokens: {
-                        jobId: jobId,
-                        projectId: projectId
-                      }
-                    }, {
-                      headers: headers
-                    });
+                    _context.next = 7;
+                    return getJob(jobId, driverProvider);
 
-                  case 9:
-                    _yield$axios$post = _context.sent;
-                    state = _yield$axios$post.data.job.state;
+                  case 7:
+                    _yield$getJob = _context.sent;
+                    state = _yield$getJob.state;
+                    _yield$getJob$log_ent = _yield$getJob.log_entries;
+                    logEntries = _yield$getJob$log_ent === void 0 ? [] : _yield$getJob$log_ent;
 
                     if (!(state === 'ERROR')) {
                       _context.next = 13;
                       break;
                     }
 
-                    throw new Error("Job ".concat(jobId, " failed"));
+                    throw new Error("Job ".concat(jobId, " failed: ").concat(JSON.stringify(logEntries, null, 2)));
 
                   case 13:
                     if (state === 'FINISHED') {
@@ -23446,7 +23738,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
                   case 14:
                     i -= 1;
-                    _context.next = 5;
+                    _context.next = 3;
                     break;
 
                   case 17:
@@ -23459,7 +23751,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                     return Object(_evdy_consumer_common_helpers_lib_timing__WEBPACK_IMPORTED_MODULE_1__["wait"])(200);
 
                   case 20:
-                    _context.next = 3;
+                    _context.next = 1;
                     break;
 
                   case 22:
@@ -23470,6 +23762,97 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             }, _callee);
           }));
           return _waitForJobsToFinish.apply(this, arguments);
+        }
+
+        function getJob(_x4, _x5) {
+          return _getJob.apply(this, arguments);
+        }
+
+        function _getJob() {
+          _getJob = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(id, driverProvider) {
+            var driver, headers, _yield$axios$get, job;
+
+            return regeneratorRuntime.wrap(function _callee2$(_context2) {
+              while (1) {
+                switch (_context2.prev = _context2.next) {
+                  case 0:
+                    driver = driverProvider.getDriver();
+                    headers = Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["getHeadersFromDriver"])(driver);
+                    _context2.next = 4;
+                    return _axios_instance__WEBPACK_IMPORTED_MODULE_0__["default"].get("".concat(driver.baseURL, "/jobs/").concat(id), {
+                      headers: headers
+                    });
+
+                  case 4:
+                    _yield$axios$get = _context2.sent;
+                    job = _yield$axios$get.data;
+                    return _context2.abrupt("return", job);
+
+                  case 7:
+                  case "end":
+                    return _context2.stop();
+                }
+              }
+            }, _callee2);
+          }));
+          return _getJob.apply(this, arguments);
+        }
+
+        function getJobs(_x6) {
+          return _getJobs.apply(this, arguments);
+        }
+
+        function _getJobs() {
+          _getJobs = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(driverProvider) {
+            var options,
+                driver,
+                headers,
+                _yield$axios$post,
+                _yield$axios$post$dat,
+                rows,
+                offset,
+                totalRows,
+                _args3 = arguments;
+
+            return regeneratorRuntime.wrap(function _callee3$(_context3) {
+              while (1) {
+                switch (_context3.prev = _context3.next) {
+                  case 0:
+                    options = _args3.length > 1 && _args3[1] !== undefined ? _args3[1] : {};
+                    driver = driverProvider.getDriver();
+                    headers = Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["getHeadersFromDriver"])(driver);
+                    _context3.next = 5;
+                    return _axios_instance__WEBPACK_IMPORTED_MODULE_0__["default"].post("".concat(driver.baseURL, "/jobs/query"), {}, {
+                      headers: headers,
+                      params: _objectSpread({
+                        full: true,
+                        limit: 10,
+                        sort: {
+                          'started_timestamp.ms': -1
+                        }
+                      }, options)
+                    });
+
+                  case 5:
+                    _yield$axios$post = _context3.sent;
+                    _yield$axios$post$dat = _yield$axios$post.data;
+                    rows = _yield$axios$post$dat.rows;
+                    offset = _yield$axios$post$dat.offset;
+                    totalRows = _yield$axios$post$dat.total_rows;
+                    return _context3.abrupt("return", {
+                      rows: rows,
+                      offset: offset,
+                      totalRows: totalRows
+                    });
+
+                  case 11:
+                  case "end":
+                    return _context3.stop();
+                }
+              }
+            }, _callee3);
+          }));
+          return _getJobs.apply(this, arguments);
         }
         /***/
 
@@ -23594,6 +23977,42 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         var _helpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
         /*! ./helpers */
         "./src/api/helpers.js");
+
+        function _objectWithoutProperties(source, excluded) {
+          if (source == null) return {};
+
+          var target = _objectWithoutPropertiesLoose(source, excluded);
+
+          var key, i;
+
+          if (Object.getOwnPropertySymbols) {
+            var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+            for (i = 0; i < sourceSymbolKeys.length; i++) {
+              key = sourceSymbolKeys[i];
+              if (excluded.indexOf(key) >= 0) continue;
+              if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+              target[key] = source[key];
+            }
+          }
+
+          return target;
+        }
+
+        function _objectWithoutPropertiesLoose(source, excluded) {
+          if (source == null) return {};
+          var target = {};
+          var sourceKeys = Object.keys(source);
+          var key, i;
+
+          for (i = 0; i < sourceKeys.length; i++) {
+            key = sourceKeys[i];
+            if (excluded.indexOf(key) >= 0) continue;
+            target[key] = source[key];
+          }
+
+          return target;
+        }
 
         function ownKeys(object, enumerableOnly) {
           var keys = Object.keys(object);
@@ -24076,61 +24495,24 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
         function _paginateNodes() {
           _paginateNodes = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7(options) {
-            var query, onNode, branch, limit, _options$updateSkip, updateSkip, hasMore, skip, _yield$queryNodes, rows, totalRows, offset, rowCount, i, remaining;
-
+            var onNode, rest;
             return regeneratorRuntime.wrap(function _callee7$(_context7) {
               while (1) {
                 switch (_context7.prev = _context7.next) {
                   case 0:
-                    query = options.query, onNode = options.onNode, branch = options.branch, limit = options.limit, _options$updateSkip = options.updateSkip, updateSkip = _options$updateSkip === void 0 ? function (offset, rowCount) {
-                      return offset + rowCount;
-                    } : _options$updateSkip;
-                    hasMore = true;
-                    skip = 0;
+                    onNode = options.onNode, rest = _objectWithoutProperties(options, ["onNode"]);
+                    _context7.next = 3;
+                    return Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["paginate"])(_objectSpread({
+                      execute: function execute(_ref) {
+                        var query = _ref.query,
+                            pagination = _ref.pagination,
+                            branch = _ref.driverProvider;
+                        return queryNodes(query, pagination, branch);
+                      },
+                      onItem: onNode
+                    }, rest));
 
                   case 3:
-                    if (!hasMore) {
-                      _context7.next = 23;
-                      break;
-                    }
-
-                    _context7.next = 6;
-                    return queryNodes(query, {
-                      full: true,
-                      skip: skip,
-                      limit: limit
-                    }, branch);
-
-                  case 6:
-                    _yield$queryNodes = _context7.sent;
-                    rows = _yield$queryNodes.rows;
-                    totalRows = _yield$queryNodes.totalRows;
-                    offset = _yield$queryNodes.offset;
-                    rowCount = rows.length;
-                    i = 0;
-
-                  case 12:
-                    if (!(i < rowCount)) {
-                      _context7.next = 19;
-                      break;
-                    }
-
-                    remaining = totalRows - offset - i - 1;
-                    _context7.next = 16;
-                    return onNode(rows[i], remaining);
-
-                  case 16:
-                    i += 1;
-                    _context7.next = 12;
-                    break;
-
-                  case 19:
-                    skip = updateSkip(offset, rowCount);
-                    hasMore = skip < totalRows;
-                    _context7.next = 3;
-                    break;
-
-                  case 23:
                   case "end":
                     return _context7.stop();
                 }
