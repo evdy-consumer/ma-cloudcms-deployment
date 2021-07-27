@@ -69122,16 +69122,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             var _this = this;
 
             this.base();
-            var templateFieldPath = this.options.templateFieldPath;
-            var templateDataPath = getDataPathFromAlpacaPath(templateFieldPath);
-
-            var _this$top = this.top(),
-                data = _this$top.data;
-
-            var _get = Object(lodash__WEBPACK_IMPORTED_MODULE_0__["get"])(data, templateDataPath, {}),
-                templateId = _get.id;
-
-            this.options.hidden = !this.templateMatches(templateId);
             this.on('ready', function () {
               var templateFieldPath = _this.options.templateFieldPath;
 
@@ -69147,6 +69137,26 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                   _this.hide();
                 }
               });
+            });
+          },
+          postRender: function postRender(cb) {
+            var _this2 = this;
+
+            this.base(function () {
+              var templateFieldPath = _this2.options.templateFieldPath;
+              var templateDataPath = getDataPathFromAlpacaPath(templateFieldPath);
+
+              var _this2$top = _this2.top(),
+                  data = _this2$top.data;
+
+              var _get = Object(lodash__WEBPACK_IMPORTED_MODULE_0__["get"])(data, templateDataPath, {}),
+                  templateId = _get.id;
+
+              if (!_this2.templateMatches(templateId)) {
+                _this2.hide();
+              }
+
+              cb();
             });
           }
         });
