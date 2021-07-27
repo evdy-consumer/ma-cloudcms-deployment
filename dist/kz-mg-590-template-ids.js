@@ -69119,6 +69119,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             return templateId === targetTemplateId;
           },
           setup: function setup() {
+            var _this = this;
+
             this.base();
             var templateFieldPath = this.options.templateFieldPath;
             var templateDataPath = getDataPathFromAlpacaPath(templateFieldPath);
@@ -69126,31 +69128,25 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             var _this$top = this.top(),
                 data = _this$top.data;
 
-            var templateId = Object(lodash__WEBPACK_IMPORTED_MODULE_0__["get"])(data, templateDataPath);
+            var _get = Object(lodash__WEBPACK_IMPORTED_MODULE_0__["get"])(data, templateDataPath, {}),
+                templateId = _get.id;
+
             this.options.hidden = !this.templateMatches(templateId);
-          },
-          afterRenderControl: function afterRenderControl(model, callback) {
-            var _this = this;
+            this.on('ready', function () {
+              var templateFieldPath = _this.options.templateFieldPath;
 
-            this.base(model, function () {
-              _this.on('ready', function () {
-                var templateFieldPath = _this.options.templateFieldPath;
+              var templateField = _this.top().getControlByPath(templateFieldPath);
 
-                var templateField = _this.top().getControlByPath(templateFieldPath);
+              templateField.on('change', function () {
+                var _templateField$getVal = templateField.getValue(),
+                    templateId = _templateField$getVal.id;
 
-                templateField.on('change', function () {
-                  var _templateField$getVal = templateField.getValue(),
-                      templateId = _templateField$getVal.id;
-
-                  if (_this.templateMatches(templateId)) {
-                    _this.show();
-                  } else {
-                    _this.hide();
-                  }
-                });
+                if (_this.templateMatches(templateId)) {
+                  _this.show();
+                } else {
+                  _this.hide();
+                }
               });
-
-              callback();
             });
           }
         });
