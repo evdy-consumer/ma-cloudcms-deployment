@@ -68756,6 +68756,465 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
 /***/ }),
 
+/***/ "../cloudcms-field-eh-template/dist/index.js":
+/*!***************************************************!*\
+  !*** ../cloudcms-field-eh-template/dist/index.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! @evdy-consumer/cloudcms-common */ "../cloudcms-common/dist/browser.js"), __webpack_require__(/*! jquery */ "jquery"), __webpack_require__(/*! lodash */ "../../node_modules/lodash/lodash.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function (__WEBPACK_EXTERNAL_MODULE__evdy_consumer_cloudcms_common__, __WEBPACK_EXTERNAL_MODULE_jquery__, __WEBPACK_EXTERNAL_MODULE_lodash__) {
+  return (
+    /******/
+    function (modules) {
+      // webpackBootstrap
+
+      /******/
+      // The module cache
+
+      /******/
+      var installedModules = {};
+      /******/
+
+      /******/
+      // The require function
+
+      /******/
+
+      function __webpack_require__(moduleId) {
+        /******/
+
+        /******/
+        // Check if module is in cache
+
+        /******/
+        if (installedModules[moduleId]) {
+          /******/
+          return installedModules[moduleId].exports;
+          /******/
+        }
+        /******/
+        // Create a new module (and put it into the cache)
+
+        /******/
+
+
+        var module = installedModules[moduleId] = {
+          /******/
+          i: moduleId,
+
+          /******/
+          l: false,
+
+          /******/
+          exports: {}
+          /******/
+
+        };
+        /******/
+
+        /******/
+        // Execute the module function
+
+        /******/
+
+        modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+        /******/
+
+        /******/
+        // Flag the module as loaded
+
+        /******/
+
+        module.l = true;
+        /******/
+
+        /******/
+        // Return the exports of the module
+
+        /******/
+
+        return module.exports;
+        /******/
+      }
+      /******/
+
+      /******/
+
+      /******/
+      // expose the modules object (__webpack_modules__)
+
+      /******/
+
+
+      __webpack_require__.m = modules;
+      /******/
+
+      /******/
+      // expose the module cache
+
+      /******/
+
+      __webpack_require__.c = installedModules;
+      /******/
+
+      /******/
+      // define getter function for harmony exports
+
+      /******/
+
+      __webpack_require__.d = function (exports, name, getter) {
+        /******/
+        if (!__webpack_require__.o(exports, name)) {
+          /******/
+          Object.defineProperty(exports, name, {
+            enumerable: true,
+            get: getter
+          });
+          /******/
+        }
+        /******/
+
+      };
+      /******/
+
+      /******/
+      // define __esModule on exports
+
+      /******/
+
+
+      __webpack_require__.r = function (exports) {
+        /******/
+        if (typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+          /******/
+          Object.defineProperty(exports, Symbol.toStringTag, {
+            value: 'Module'
+          });
+          /******/
+        }
+        /******/
+
+
+        Object.defineProperty(exports, '__esModule', {
+          value: true
+        });
+        /******/
+      };
+      /******/
+
+      /******/
+      // create a fake namespace object
+
+      /******/
+      // mode & 1: value is a module id, require it
+
+      /******/
+      // mode & 2: merge all properties of value into the ns
+
+      /******/
+      // mode & 4: return value when already ns object
+
+      /******/
+      // mode & 8|1: behave like require
+
+      /******/
+
+
+      __webpack_require__.t = function (value, mode) {
+        /******/
+        if (mode & 1) value = __webpack_require__(value);
+        /******/
+
+        if (mode & 8) return value;
+        /******/
+
+        if (mode & 4 && _typeof(value) === 'object' && value && value.__esModule) return value;
+        /******/
+
+        var ns = Object.create(null);
+        /******/
+
+        __webpack_require__.r(ns);
+        /******/
+
+
+        Object.defineProperty(ns, 'default', {
+          enumerable: true,
+          value: value
+        });
+        /******/
+
+        if (mode & 2 && typeof value != 'string') for (var key in value) {
+          __webpack_require__.d(ns, key, function (key) {
+            return value[key];
+          }.bind(null, key));
+        }
+        /******/
+
+        return ns;
+        /******/
+      };
+      /******/
+
+      /******/
+      // getDefaultExport function for compatibility with non-harmony modules
+
+      /******/
+
+
+      __webpack_require__.n = function (module) {
+        /******/
+        var getter = module && module.__esModule ?
+        /******/
+        function getDefault() {
+          return module['default'];
+        } :
+        /******/
+        function getModuleExports() {
+          return module;
+        };
+        /******/
+
+        __webpack_require__.d(getter, 'a', getter);
+        /******/
+
+
+        return getter;
+        /******/
+      };
+      /******/
+
+      /******/
+      // Object.prototype.hasOwnProperty.call
+
+      /******/
+
+
+      __webpack_require__.o = function (object, property) {
+        return Object.prototype.hasOwnProperty.call(object, property);
+      };
+      /******/
+
+      /******/
+      // __webpack_public_path__
+
+      /******/
+
+
+      __webpack_require__.p = "";
+      /******/
+
+      /******/
+
+      /******/
+      // Load entry module and return exports
+
+      /******/
+
+      return __webpack_require__(__webpack_require__.s = "./src/index.js");
+      /******/
+    }(
+    /************************************************************************/
+
+    /******/
+    {
+      /***/
+      "./src/constants.js":
+      /*!**************************!*\
+        !*** ./src/constants.js ***!
+        \**************************/
+
+      /*! exports provided: fieldType */
+
+      /***/
+      function srcConstantsJs(module, __webpack_exports__, __webpack_require__) {
+        "use strict";
+
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony export (binding) */
+
+
+        __webpack_require__.d(__webpack_exports__, "fieldType", function () {
+          return fieldType;
+        });
+
+        var fieldType = 'eh-template';
+        /***/
+      },
+
+      /***/
+      "./src/index.js":
+      /*!**********************!*\
+        !*** ./src/index.js ***!
+        \**********************/
+
+      /*! no exports provided */
+
+      /***/
+      function srcIndexJs(module, __webpack_exports__, __webpack_require__) {
+        "use strict";
+
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony import */
+
+
+        var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+        /*! lodash */
+        "lodash");
+        /* harmony import */
+
+
+        var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+        /* harmony import */
+
+
+        var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+        /*! jquery */
+        "jquery");
+        /* harmony import */
+
+
+        var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
+        /* harmony import */
+
+
+        var _evdy_consumer_cloudcms_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+        /*! @evdy-consumer/cloudcms-common */
+        "@evdy-consumer/cloudcms-common");
+        /* harmony import */
+
+
+        var _evdy_consumer_cloudcms_common__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_evdy_consumer_cloudcms_common__WEBPACK_IMPORTED_MODULE_2__);
+        /* harmony import */
+
+
+        var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+        /*! ./constants */
+        "./src/constants.js");
+
+        var getDataPathFromAlpacaPath = _evdy_consumer_cloudcms_common__WEBPACK_IMPORTED_MODULE_2__["browser"].getDataPathFromAlpacaPath;
+        jquery__WEBPACK_IMPORTED_MODULE_1__["alpaca"].Fields.EHTemplateField = jquery__WEBPACK_IMPORTED_MODULE_1__["alpaca"].Fields.ObjectField.extend({
+          onConstruct: function onConstruct() {
+            this.base();
+            var _this$options = this.options,
+                templateFieldPath = _this$options.templateFieldPath,
+                targetTemplateId = _this$options.targetTemplateId;
+
+            if (!templateFieldPath) {
+              throw new Error('Missing "templateFieldPath" option');
+            }
+
+            if (!targetTemplateId) {
+              throw new Error('Missing "templateId" option');
+            }
+          },
+          getFieldType: function getFieldType() {
+            return _constants__WEBPACK_IMPORTED_MODULE_3__["fieldType"];
+          },
+          templateMatches: function templateMatches(templateId) {
+            var targetTemplateId = this.options.targetTemplateId;
+            return templateId === targetTemplateId;
+          },
+          setup: function setup() {
+            var _this = this;
+
+            this.base();
+            this.on('ready', function () {
+              var templateFieldPath = _this.options.templateFieldPath;
+
+              var templateField = _this.top().getControlByPath(templateFieldPath);
+
+              templateField.on('change', function () {
+                var _templateField$getVal = templateField.getValue(),
+                    templateId = _templateField$getVal.id;
+
+                if (_this.templateMatches(templateId)) {
+                  _this.field.removeClass('hide');
+                } else {
+                  _this.field.addClass('hide');
+                }
+              });
+            });
+          },
+          postRender: function postRender(cb) {
+            var _this2 = this;
+
+            this.base(function () {
+              var templateFieldPath = _this2.options.templateFieldPath;
+              var templateDataPath = getDataPathFromAlpacaPath(templateFieldPath);
+
+              var _this2$top = _this2.top(),
+                  data = _this2$top.data;
+
+              var _get = Object(lodash__WEBPACK_IMPORTED_MODULE_0__["get"])(data, templateDataPath, {}),
+                  templateId = _get.id;
+
+              if (!_this2.templateMatches(templateId)) {
+                _this2.field.addClass('hide');
+              }
+
+              cb();
+            });
+          }
+        });
+        jquery__WEBPACK_IMPORTED_MODULE_1__["alpaca"].registerFieldClass(_constants__WEBPACK_IMPORTED_MODULE_3__["fieldType"], jquery__WEBPACK_IMPORTED_MODULE_1__["alpaca"].Fields.EHTemplateField);
+        /***/
+      },
+
+      /***/
+      "@evdy-consumer/cloudcms-common":
+      /*!*************************************************!*\
+        !*** external "@evdy-consumer/cloudcms-common" ***!
+        \*************************************************/
+
+      /*! no static exports found */
+
+      /***/
+      function evdyConsumerCloudcmsCommon(module, exports) {
+        module.exports = __webpack_require__(/*! @evdy-consumer/cloudcms-common */ "../cloudcms-common/dist/browser.js");
+        /***/
+      },
+
+      /***/
+      "jquery":
+      /*!*************************!*\
+        !*** external "jquery" ***!
+        \*************************/
+
+      /*! no static exports found */
+
+      /***/
+      function jquery(module, exports) {
+        module.exports = __WEBPACK_EXTERNAL_MODULE_jquery__;
+        /***/
+      },
+
+      /***/
+      "lodash":
+      /*!*************************!*\
+        !*** external "lodash" ***!
+        \*************************/
+
+      /*! no static exports found */
+
+      /***/
+      function lodash(module, exports) {
+        module.exports = __webpack_require__(/*! lodash */ "../../node_modules/lodash/lodash.js");
+        /***/
+      }
+      /******/
+
+    })
+  );
+}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+;
+
+/***/ }),
+
 /***/ "../cloudcms-field-evdy-newsletters/dist/index.js":
 /*!********************************************************!*\
   !*** ../cloudcms-field-evdy-newsletters/dist/index.js ***!
@@ -113729,14 +114188,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _evdy_consumer_cloudcms_field_file_upload__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_evdy_consumer_cloudcms_field_file_upload__WEBPACK_IMPORTED_MODULE_10__);
 /* harmony import */ var _evdy_consumer_cloudcms_field_ref__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @evdy-consumer/cloudcms-field-ref */ "../cloudcms-field-ref/dist/index.js");
 /* harmony import */ var _evdy_consumer_cloudcms_field_ref__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_evdy_consumer_cloudcms_field_ref__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var _evdy_consumer_cloudcms_field_iso_datetime__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @evdy-consumer/cloudcms-field-iso-datetime */ "../cloudcms-field-iso-datetime/dist/index.js");
-/* harmony import */ var _evdy_consumer_cloudcms_field_iso_datetime__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_evdy_consumer_cloudcms_field_iso_datetime__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var _evdy_consumer_cloudcms_field_feed_filter__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @evdy-consumer/cloudcms-field-feed-filter */ "../cloudcms-field-feed-filter/dist/index.js");
-/* harmony import */ var _evdy_consumer_cloudcms_field_feed_filter__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_evdy_consumer_cloudcms_field_feed_filter__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var _evdy_consumer_cloudcms_field_hidden_object__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @evdy-consumer/cloudcms-field-hidden-object */ "../cloudcms-field-hidden-object/dist/index.js");
-/* harmony import */ var _evdy_consumer_cloudcms_field_hidden_object__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_evdy_consumer_cloudcms_field_hidden_object__WEBPACK_IMPORTED_MODULE_14__);
-/* harmony import */ var _plugins_ckeditor_ckeditor_widgets_index_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./plugins/ckeditor/ckeditor-widgets/index.js */ "./plugins/ckeditor/ckeditor-widgets/index.js");
-/* harmony import */ var _plugins_ckeditor_ckeditor_widgets_index_js__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_plugins_ckeditor_ckeditor_widgets_index_js__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var _evdy_consumer_cloudcms_field_eh_template__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @evdy-consumer/cloudcms-field-eh-template */ "../cloudcms-field-eh-template/dist/index.js");
+/* harmony import */ var _evdy_consumer_cloudcms_field_eh_template__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_evdy_consumer_cloudcms_field_eh_template__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _evdy_consumer_cloudcms_field_iso_datetime__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @evdy-consumer/cloudcms-field-iso-datetime */ "../cloudcms-field-iso-datetime/dist/index.js");
+/* harmony import */ var _evdy_consumer_cloudcms_field_iso_datetime__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_evdy_consumer_cloudcms_field_iso_datetime__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _evdy_consumer_cloudcms_field_feed_filter__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @evdy-consumer/cloudcms-field-feed-filter */ "../cloudcms-field-feed-filter/dist/index.js");
+/* harmony import */ var _evdy_consumer_cloudcms_field_feed_filter__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_evdy_consumer_cloudcms_field_feed_filter__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var _evdy_consumer_cloudcms_field_hidden_object__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @evdy-consumer/cloudcms-field-hidden-object */ "../cloudcms-field-hidden-object/dist/index.js");
+/* harmony import */ var _evdy_consumer_cloudcms_field_hidden_object__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_evdy_consumer_cloudcms_field_hidden_object__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var _plugins_ckeditor_ckeditor_widgets_index_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./plugins/ckeditor/ckeditor-widgets/index.js */ "./plugins/ckeditor/ckeditor-widgets/index.js");
+/* harmony import */ var _plugins_ckeditor_ckeditor_widgets_index_js__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_plugins_ckeditor_ckeditor_widgets_index_js__WEBPACK_IMPORTED_MODULE_16__);
+
 
 
 
