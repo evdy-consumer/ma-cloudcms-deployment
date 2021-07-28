@@ -69132,9 +69132,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                     templateId = _templateField$getVal.id;
 
                 if (_this.templateMatches(templateId)) {
-                  _this.show();
+                  _this.field.removeClass('hide');
                 } else {
-                  _this.hide();
+                  _this.field.addClass('hide');
                 }
               });
             });
@@ -69153,7 +69153,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                   templateId = _get.id;
 
               if (!_this2.templateMatches(templateId)) {
-                _this2.hide();
+                _this2.field.addClass('hide');
               }
 
               cb();
