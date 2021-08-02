@@ -81149,7 +81149,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             return _constants__WEBPACK_IMPORTED_MODULE_5__["fieldType"];
           },
           setup: function setup() {
-            Object(lodash__WEBPACK_IMPORTED_MODULE_0__["set"])(this.options, 'picker.upload', false);
+            var upload = Object(lodash__WEBPACK_IMPORTED_MODULE_0__["get"])(this.options, 'picker.upload', false);
+            Object(lodash__WEBPACK_IMPORTED_MODULE_0__["set"])(this.options, 'picker.upload', upload);
             this.base();
 
             if (!this.options.picker.typeQName) {
