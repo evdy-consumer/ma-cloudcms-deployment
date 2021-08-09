@@ -83808,6 +83808,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                 $in: ids
               }
             }, {
+              limit: ids.length,
               full: true
             }, branch) : Promise.resolve({
               rows: []
