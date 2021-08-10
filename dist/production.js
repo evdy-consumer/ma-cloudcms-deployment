@@ -83808,6 +83808,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                 $in: ids
               }
             }, {
+              limit: ids.length,
               full: true
             }, branch) : Promise.resolve({
               rows: []
@@ -88349,48 +88350,69 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         }
 
         function replaceTopRefreshValidationState(field) {
+          var path = field.path;
           var top = field.top();
+          var alreadyReplaced = !!top.__highlanderFields__;
+          var highlanderFields = top.__highlanderFields__ || {};
+          top.__highlanderFields__ = highlanderFields;
+          highlanderFields[path] = field;
 
-          if (top.__replacedValidationStateForHighlander__) {
+          if (alreadyReplaced) {
             return;
           }
 
           var refreshValidationState = top.refreshValidationState;
-          top.__replacedValidationStateForHighlander__ = true;
 
           top.refreshValidationState = /*#__PURE__*/function () {
             var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(validateChildren, cb) {
+              var fields, i, l, _field;
+
               return regeneratorRuntime.wrap(function _callee$(_context) {
                 while (1) {
                   switch (_context.prev = _context.next) {
                     case 0:
-                      _context.prev = 0;
-                      _context.next = 3;
-                      return validate(field);
+                      fields = Object.values(highlanderFields);
+                      i = 0, l = fields.length;
 
-                    case 3:
-                      field.validation.custom = _context.sent;
-                      _context.next = 10;
+                    case 2:
+                      if (!(i < l)) {
+                        _context.next = 17;
+                        break;
+                      }
+
+                      _field = fields[i];
+                      _context.prev = 4;
+                      _context.next = 7;
+                      return validate(_field);
+
+                    case 7:
+                      _field.validation.custom = _context.sent;
+                      _context.next = 14;
                       break;
 
-                    case 6:
-                      _context.prev = 6;
-                      _context.t0 = _context["catch"](0);
+                    case 10:
+                      _context.prev = 10;
+                      _context.t0 = _context["catch"](4);
                       console.error('Unable to validate', _context.t0);
-                      field.validation.custom = {
+                      _field.validation.custom = {
                         status: false,
                         message: _constants__WEBPACK_IMPORTED_MODULE_6__["validationMessages"].error
                       };
 
-                    case 10:
+                    case 14:
+                      i += 1;
+                      _context.next = 2;
+                      break;
+
+                    case 17:
                       refreshValidationState.call(top, validateChildren, cb);
 
-                    case 11:
+                    case 18:
                     case "end":
                       return _context.stop();
                   }
                 }
-              }, _callee, null, [[0, 6]]);
+              }, _callee, null, [[4, 10]]);
             }));
 
             return function (_x4, _x5) {
