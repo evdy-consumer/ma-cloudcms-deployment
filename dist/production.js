@@ -90763,7 +90763,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             return getUrl("https://preview.migraineagain.com", pagePath);
           }
 
-          return getUrl("https://prod.migraineagain.com", pagePath);
+          return getUrl("https://www.migraineagain.com", pagePath);
         }
         /* harmony default export */
 
