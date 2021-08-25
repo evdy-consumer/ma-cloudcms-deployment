@@ -24976,6 +24976,12 @@ if (branch) {
   ensureCKEditorInit().then(function () {
     var filePath = getFilePath(branch);
     window.CKEDITOR.plugins.addExternal(_constants__WEBPACK_IMPORTED_MODULE_1__["pluginName"], filePath);
+
+    if (window.CKEDITOR.config.extraPlugins.length > 0) {
+      window.CKEDITOR.config.extraPlugins += ",".concat(_constants__WEBPACK_IMPORTED_MODULE_1__["pluginName"]);
+    } else {
+      window.CKEDITOR.config.extraPlugins = _constants__WEBPACK_IMPORTED_MODULE_1__["pluginName"];
+    }
   })["catch"](console.error);
 }
 
