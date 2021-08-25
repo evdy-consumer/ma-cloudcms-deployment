@@ -24909,19 +24909,13 @@ function wait(delay) {
 /*!**************************!*\
   !*** ./src/constants.js ***!
   \**************************/
-/*! exports provided: pluginName, commands, shortCodeTag */
+/*! exports provided: pluginName */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "pluginName", function() { return pluginName; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "commands", function() { return commands; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "shortCodeTag", function() { return shortCodeTag; });
-var pluginName = 'ckeditor-widgets';
-var commands = {
-  insertShortCode: 'insertShortCode'
-};
-var shortCodeTag = 'SPAN';
+var pluginName = 'indentblock';
 
 /***/ }),
 
