@@ -24961,9 +24961,9 @@ function getEnvFromBranch(branch) {
   return 'production';
 }
 
-function getEnvFromLocalStorage() {
+function getEnvFromSessionStorage() {
   if (typeof Storage !== 'undefined') {
-    return window.localStorage.getItem('moduleEnv');
+    return window.sessionStorage.getItem('moduleEnv');
   }
 
   return null;
@@ -24971,7 +24971,7 @@ function getEnvFromLocalStorage() {
 
 function getFilePath(branch) {
   var modulePath = getModulePath();
-  var env = getEnvFromLocalStorage() || getEnvFromBranch(branch);
+  var env = getEnvFromSessionStorage() || getEnvFromBranch(branch);
   var filePath = "../../../".concat(modulePath, "/plugins/ckeditor/").concat(_constants__WEBPACK_IMPORTED_MODULE_1__["pluginName"], "/").concat(env, ".js").replace(/\/\//g, '/');
   return filePath;
 }
