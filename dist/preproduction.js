@@ -1,4 +1,4 @@
-define(["./plugins/ckeditor/ckeditor-widgets/index.js","./plugins/ckeditor/indentblock/index.js","app/actions/content/create-content","app/actions/content/delete-content","app/actions/document/delete-document","app/actions/documents/upload_document","app/actions/preview/preview-document","app/gadgets/project/document/publishable-hud","gitana","handlebars","jquery","oneteam","ratchet/ratchet","ratchet/web","ui"], function(__WEBPACK_EXTERNAL_MODULE__plugins_ckeditor_ckeditor_widgets_index_js__, __WEBPACK_EXTERNAL_MODULE__plugins_ckeditor_indentblock_index_js__, __WEBPACK_EXTERNAL_MODULE_app_actions_content_create_content__, __WEBPACK_EXTERNAL_MODULE_app_actions_content_delete_content__, __WEBPACK_EXTERNAL_MODULE_app_actions_document_delete_document__, __WEBPACK_EXTERNAL_MODULE_app_actions_documents_upload_document__, __WEBPACK_EXTERNAL_MODULE_app_actions_preview_preview_document__, __WEBPACK_EXTERNAL_MODULE_app_gadgets_project_document_publishable_hud__, __WEBPACK_EXTERNAL_MODULE_gitana__, __WEBPACK_EXTERNAL_MODULE_handlebars__, __WEBPACK_EXTERNAL_MODULE_jquery__, __WEBPACK_EXTERNAL_MODULE_oneteam__, __WEBPACK_EXTERNAL_MODULE_ratchet_ratchet__, __WEBPACK_EXTERNAL_MODULE_ratchet_web__, __WEBPACK_EXTERNAL_MODULE_ui__) { return /******/ (function(modules) { // webpackBootstrap
+define(["./plugins/ckeditor/ckeditor-widgets/index.js","app/actions/content/create-content","app/actions/content/delete-content","app/actions/document/delete-document","app/actions/documents/upload_document","app/actions/preview/preview-document","app/gadgets/project/document/publishable-hud","gitana","handlebars","jquery","oneteam","ratchet/ratchet","ratchet/web","ui"], function(__WEBPACK_EXTERNAL_MODULE__plugins_ckeditor_ckeditor_widgets_index_js__, __WEBPACK_EXTERNAL_MODULE_app_actions_content_create_content__, __WEBPACK_EXTERNAL_MODULE_app_actions_content_delete_content__, __WEBPACK_EXTERNAL_MODULE_app_actions_document_delete_document__, __WEBPACK_EXTERNAL_MODULE_app_actions_documents_upload_document__, __WEBPACK_EXTERNAL_MODULE_app_actions_preview_preview_document__, __WEBPACK_EXTERNAL_MODULE_app_gadgets_project_document_publishable_hud__, __WEBPACK_EXTERNAL_MODULE_gitana__, __WEBPACK_EXTERNAL_MODULE_handlebars__, __WEBPACK_EXTERNAL_MODULE_jquery__, __WEBPACK_EXTERNAL_MODULE_oneteam__, __WEBPACK_EXTERNAL_MODULE_ratchet_ratchet__, __WEBPACK_EXTERNAL_MODULE_ratchet_web__, __WEBPACK_EXTERNAL_MODULE_ui__) { return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -114273,17 +114273,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__plugins_ckeditor_ckeditor_widgets_in
 
 /***/ }),
 
-/***/ "./plugins/ckeditor/indentblock/index.js":
-/*!**********************************************************!*\
-  !*** external "./plugins/ckeditor/indentblock/index.js" ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__plugins_ckeditor_indentblock_index_js__;
-
-/***/ }),
-
 /***/ "./src/env.js":
 /*!********************!*\
   !*** ./src/env.js ***!
@@ -114327,9 +114316,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _evdy_consumer_cloudcms_field_hidden_object__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_evdy_consumer_cloudcms_field_hidden_object__WEBPACK_IMPORTED_MODULE_15__);
 /* harmony import */ var _plugins_ckeditor_ckeditor_widgets_index_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./plugins/ckeditor/ckeditor-widgets/index.js */ "./plugins/ckeditor/ckeditor-widgets/index.js");
 /* harmony import */ var _plugins_ckeditor_ckeditor_widgets_index_js__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_plugins_ckeditor_ckeditor_widgets_index_js__WEBPACK_IMPORTED_MODULE_16__);
-/* harmony import */ var _plugins_ckeditor_indentblock_index_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./plugins/ckeditor/indentblock/index.js */ "./plugins/ckeditor/indentblock/index.js");
-/* harmony import */ var _plugins_ckeditor_indentblock_index_js__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(_plugins_ckeditor_indentblock_index_js__WEBPACK_IMPORTED_MODULE_17__);
-
 
 
 
