@@ -70043,7 +70043,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
         var getBranch = _evdy_consumer_cloudcms_common__WEBPACK_IMPORTED_MODULE_1__["browser"].getBranch;
         var newslettersQuery = Object(graphql_request__WEBPACK_IMPORTED_MODULE_0__["gql"])(_templateObject());
-        var newslettersQueryVariableValue = "{ \"product_id\" : \"305\" }";
+        var NEWSLETTER_ID_CSV = "305,200";
+        var arrNewsletterId = Array.from(NEWSLETTER_ID_CSV.split(','));
+        var newslettersQueryVariableValue = "{ \"product_id\" : ".concat(JSON.stringify(arrNewsletterId), " }");
         var internalNewslettersQuery = {
           _type: 'ehmodels:newsletter'
         };
