@@ -70043,7 +70043,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
         var getBranch = _evdy_consumer_cloudcms_common__WEBPACK_IMPORTED_MODULE_1__["browser"].getBranch;
         var newslettersQuery = Object(graphql_request__WEBPACK_IMPORTED_MODULE_0__["gql"])(_templateObject());
-        var newslettersQueryVariableValue = "{ product_id : \"305\" }}";
+        var newslettersQueryVariableValue = "{ \"product_id\" : \"305\" }}";
         var internalNewslettersQuery = {
           _type: 'ehmodels:newsletter'
         };
