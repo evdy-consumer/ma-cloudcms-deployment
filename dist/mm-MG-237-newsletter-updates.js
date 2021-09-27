@@ -69839,6 +69839,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                         _yield$Promise$all2 = _slicedToArray(_yield$Promise$all, 2);
                         newsletters = _yield$Promise$all2[0];
                         internalNewsletters = _yield$Promise$all2[1];
+                        console.log('THIS MMM');
                         internalNewsletterMap = internalNewsletters.reduce(function (map, newsletter) {
                           var _newsletter$data = newsletter.data;
                           _newsletter$data = _newsletter$data === void 0 ? {} : _newsletter$data;
@@ -69863,6 +69864,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                           var id = _ref2.id;
                           return selectedOptions[id] || !internalNewsletterMap[id];
                         });
+                        console.log({
+                          availableNewsletters: availableNewsletters
+                        });
                         model.selectOptions = availableNewsletters.map(function (_ref3) {
                           var id = _ref3.id,
                               name = _ref3.name;
@@ -69877,23 +69881,23 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                           _this.setValue(model.selectOptions[0]);
                         }
 
-                        _context.next = 18;
+                        _context.next = 20;
                         break;
 
-                      case 15:
-                        _context.prev = 15;
+                      case 17:
+                        _context.prev = 17;
                         _context.t0 = _context["catch"](0);
                         console.error('Error preparing newsletters model', _context.t0);
 
-                      case 18:
+                      case 20:
                         cb(model);
 
-                      case 19:
+                      case 21:
                       case "end":
                         return _context.stop();
                     }
                   }
-                }, _callee, null, [[0, 15]]);
+                }, _callee, null, [[0, 17]]);
               }));
 
               return function (_x) {
