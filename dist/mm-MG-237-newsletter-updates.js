@@ -69923,7 +69923,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./src/newsletter.js ***!
         \***************************/
 
-      /*! exports provided: newslettersQuery, internalNewslettersQuery, getNewsletters, getInternalNewsletters */
+      /*! exports provided: newslettersQuery, newslettersQueryVariableValue, internalNewslettersQuery, getNewsletters, getInternalNewsletters */
 
       /***/
       function srcNewsletterJs(module, __webpack_exports__, __webpack_require__) {
@@ -69935,6 +69935,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
         __webpack_require__.d(__webpack_exports__, "newslettersQuery", function () {
           return newslettersQuery;
+        });
+        /* harmony export (binding) */
+
+
+        __webpack_require__.d(__webpack_exports__, "newslettersQueryVariableValue", function () {
+          return newslettersQueryVariableValue;
         });
         /* harmony export (binding) */
 
@@ -70012,7 +70018,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         }
 
         function _templateObject() {
-          var data = _taggedTemplateLiteral(["\n  {\n    newsletters(where: { product_id : \"305\" } ) {\n      id,\n      name\n    }\n  }\n"]);
+          var data = _taggedTemplateLiteral(["\n  query getNewsletter($where: SequelizeJSON!) {\n    newsletters(where: $where ) {\n      id   \n      name      \n    }\n  }\n"]);
 
           _templateObject = function _templateObject() {
             return data;
@@ -70032,11 +70038,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             }
           }));
         }
-        /* globals NEWSLETTER_API_URL */
+        /* globals NEWSLETTER_API_URL, NEWSLETTER_ID */
 
 
         var getBranch = _evdy_consumer_cloudcms_common__WEBPACK_IMPORTED_MODULE_1__["browser"].getBranch;
         var newslettersQuery = Object(graphql_request__WEBPACK_IMPORTED_MODULE_0__["gql"])(_templateObject());
+        var newslettersQueryVariableValue = "{ product_id : \"".concat(NEWSLETTER_ID, "\" }}");
         var internalNewslettersQuery = {
           _type: 'ehmodels:newsletter'
         };
@@ -70064,7 +70071,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
                   case 3:
                     _context.next = 5;
-                    return Object(graphql_request__WEBPACK_IMPORTED_MODULE_0__["request"])(apiUrl, newslettersQuery);
+                    return Object(graphql_request__WEBPACK_IMPORTED_MODULE_0__["request"])(apiUrl, newslettersQuery, {
+                      where: newslettersQueryVariableValue
+                    });
 
                   case 5:
                     _yield$request = _context.sent;
