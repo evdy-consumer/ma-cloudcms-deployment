@@ -70008,7 +70008,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         }
 
         function _templateObject() {
-          var data = _taggedTemplateLiteral(["\n  {\n    newsletters {\n      id,\n      name\n    }\n  }\n"]);
+          var data = _taggedTemplateLiteral(["\n  query getNewsletter($where: SequelizeJSON!) {\n    newsletters(where: $where ) {\n      id   \n      name      \n    }\n  }\n"]);
 
           _templateObject = function _templateObject() {
             return data;
@@ -70028,7 +70028,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             }
           }));
         }
-        /* globals NEWSLETTER_API_URL */
+        /* globals NEWSLETTER_API_URL, NEWSLETTER_ID_CSV */
 
 
         var getBranch = _evdy_consumer_cloudcms_common__WEBPACK_IMPORTED_MODULE_1__["browser"].getBranch;
@@ -70043,32 +70043,36 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
         function _getNewsletters() {
           _getNewsletters = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-            var apiUrl, _yield$request, _yield$request$newsle, newsletters;
+            var apiUrl, arrNewsletterId, newslettersVariable, _yield$request, _yield$request$newsle, newsletters;
 
             return regeneratorRuntime.wrap(function _callee$(_context) {
               while (1) {
                 switch (_context.prev = _context.next) {
                   case 0:
                     apiUrl = "https://api-staging.everydayhealth.com/newsletter/v1/gql";
+                    arrNewsletterId = Array.from("305".split(','));
+                    newslettersVariable = "{ \"product_id\" : ".concat(JSON.stringify(arrNewsletterId), " }");
 
                     if (apiUrl) {
-                      _context.next = 3;
+                      _context.next = 5;
                       break;
                     }
 
                     throw new Error('Missing api url');
 
-                  case 3:
-                    _context.next = 5;
-                    return Object(graphql_request__WEBPACK_IMPORTED_MODULE_0__["request"])(apiUrl, newslettersQuery);
-
                   case 5:
+                    _context.next = 7;
+                    return Object(graphql_request__WEBPACK_IMPORTED_MODULE_0__["request"])(apiUrl, newslettersQuery, {
+                      where: newslettersVariable
+                    });
+
+                  case 7:
                     _yield$request = _context.sent;
                     _yield$request$newsle = _yield$request.newsletters;
                     newsletters = _yield$request$newsle === void 0 ? [] : _yield$request$newsle;
                     return _context.abrupt("return", newsletters);
 
-                  case 9:
+                  case 11:
                   case "end":
                     return _context.stop();
                 }
