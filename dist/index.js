@@ -179,7 +179,7 @@ function loadEnvScript() {
   var currentProject = ratchet_web__WEBPACK_IMPORTED_MODULE_0___default.a.observable('project').get();
   var currentBranch = ratchet_web__WEBPACK_IMPORTED_MODULE_0___default.a.observable('branch').get();
 
-  if (!(currentProject && currentProject.getId() === "adc1b8c41f72fd5edc33" && currentBranch)) {
+  if (!(currentProject && currentProject.getId() === "670e5a2f23cd025c3d45" && currentBranch)) {
     return;
   }
 
