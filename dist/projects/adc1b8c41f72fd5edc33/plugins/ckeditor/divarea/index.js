@@ -19873,7 +19873,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./browser.js ***!
         \********************/
 
-      /*! exports provided: browser, constants, readRelease, unarchiveRelease, archiveRelease, deleteRelease, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, deploy, getTargetBranchId, createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, queryDefinitions, getAssociations, queryVaults, deployModule, getContext, getMapFromArray, getQNameComponents, convertQNameForRef, getRefFromQName, getQName, isInternalType */
+      /*! exports provided: browser, constants, readRelease, unarchiveRelease, archiveRelease, deleteRelease, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, deploy, getTargetBranchId, createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, buildBranchSearchIndex, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, queryDefinitions, getAssociations, queryVaults, deployModule, getContext, getMapFromArray, getQNameComponents, convertQNameForRef, getRefFromQName, getQName, isInternalType */
 
       /***/
       function browserJs(module, __webpack_exports__, __webpack_require__) {
@@ -20135,6 +20135,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         /* harmony reexport (safe) */
 
 
+        __webpack_require__.d(__webpack_exports__, "buildBranchSearchIndex", function () {
+          return _common__WEBPACK_IMPORTED_MODULE_1__["buildBranchSearchIndex"];
+        });
+        /* harmony reexport (safe) */
+
+
         __webpack_require__.d(__webpack_exports__, "deleteBranch", function () {
           return _common__WEBPACK_IMPORTED_MODULE_1__["deleteBranch"];
         });
@@ -20286,7 +20292,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./common.js ***!
         \*******************/
 
-      /*! exports provided: constants, readRelease, unarchiveRelease, archiveRelease, deleteRelease, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, deploy, getTargetBranchId, createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, queryDefinitions, getAssociations, queryVaults, deployModule, getContext, getMapFromArray, getQNameComponents, convertQNameForRef, getRefFromQName, getQName, isInternalType */
+      /*! exports provided: constants, readRelease, unarchiveRelease, archiveRelease, deleteRelease, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, deploy, getTargetBranchId, createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, buildBranchSearchIndex, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, queryDefinitions, getAssociations, queryVaults, deployModule, getContext, getMapFromArray, getQNameComponents, convertQNameForRef, getRefFromQName, getQName, isInternalType */
 
       /***/
       function commonJs(module, __webpack_exports__, __webpack_require__) {
@@ -20542,6 +20548,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         /* harmony reexport (safe) */
 
 
+        __webpack_require__.d(__webpack_exports__, "buildBranchSearchIndex", function () {
+          return _src_api__WEBPACK_IMPORTED_MODULE_1__["buildBranchSearchIndex"];
+        });
+        /* harmony reexport (safe) */
+
+
         __webpack_require__.d(__webpack_exports__, "deleteBranch", function () {
           return _src_api__WEBPACK_IMPORTED_MODULE_1__["deleteBranch"];
         });
@@ -20743,7 +20755,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./src/api/branch.js ***!
         \***************************/
 
-      /*! exports provided: getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, deleteBranch, getEnvFromBranch, resyncPublishing */
+      /*! exports provided: getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, buildBranchSearchIndex, deleteBranch, getEnvFromBranch, resyncPublishing */
 
       /***/
       function srcApiBranchJs(module, __webpack_exports__, __webpack_require__) {
@@ -20785,6 +20797,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
         __webpack_require__.d(__webpack_exports__, "createBranches", function () {
           return createBranches;
+        });
+        /* harmony export (binding) */
+
+
+        __webpack_require__.d(__webpack_exports__, "buildBranchSearchIndex", function () {
+          return buildBranchSearchIndex;
         });
         /* harmony export (binding) */
 
@@ -20959,31 +20977,40 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
           return _createBranches.apply(this, arguments);
         }
 
-        function deleteBranch(_x2, _x3) {
-          return _deleteBranch.apply(this, arguments);
+        function buildBranchSearchIndex(_x2) {
+          return _buildBranchSearchIndex.apply(this, arguments);
         }
 
-        function _deleteBranch() {
-          _deleteBranch = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(id, repo) {
+        function _buildBranchSearchIndex() {
+          _buildBranchSearchIndex = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(options) {
+            var projectId, repo, branch;
             return regeneratorRuntime.wrap(function _callee3$(_context3) {
               while (1) {
                 switch (_context3.prev = _context3.next) {
                   case 0:
-                    _context3.next = 2;
+                    projectId = options.projectId, repo = options.repo, branch = options.branch;
+                    _context3.next = 3;
                     return Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-                      var driver, url;
+                      var driver, url, _yield$axios$post, data;
+
                       return regeneratorRuntime.wrap(function _callee2$(_context2) {
                         while (1) {
                           switch (_context2.prev = _context2.next) {
                             case 0:
                               driver = repo.getDriver();
-                              url = "".concat(driver.baseURL).concat(repo.getUri(), "/branches/").concat(id);
+                              url = "".concat(driver.baseURL).concat(branch.getUri(), "/search/index/create/start");
                               _context2.next = 4;
-                              return _axios_instance__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"](url, {
+                              return _axios_instance__WEBPACK_IMPORTED_MODULE_0__["default"].post(url, {}, {
                                 headers: Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["getHeadersFromDriver"])(driver)
                               });
 
                             case 4:
+                              _yield$axios$post = _context2.sent;
+                              data = _yield$axios$post.data;
+                              _context2.next = 8;
+                              return Object(_jobs__WEBPACK_IMPORTED_MODULE_2__["waitForJobsToFinish"])([data._doc], projectId, repo);
+
+                            case 8:
                             case "end":
                               return _context2.stop();
                           }
@@ -20991,12 +21018,54 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                       }, _callee2);
                     })), repo);
 
-                  case 2:
+                  case 3:
                   case "end":
                     return _context3.stop();
                 }
               }
             }, _callee3);
+          }));
+          return _buildBranchSearchIndex.apply(this, arguments);
+        }
+
+        function deleteBranch(_x3, _x4) {
+          return _deleteBranch.apply(this, arguments);
+        }
+
+        function _deleteBranch() {
+          _deleteBranch = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(id, repo) {
+            return regeneratorRuntime.wrap(function _callee5$(_context5) {
+              while (1) {
+                switch (_context5.prev = _context5.next) {
+                  case 0:
+                    _context5.next = 2;
+                    return Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+                      var driver, url;
+                      return regeneratorRuntime.wrap(function _callee4$(_context4) {
+                        while (1) {
+                          switch (_context4.prev = _context4.next) {
+                            case 0:
+                              driver = repo.getDriver();
+                              url = "".concat(driver.baseURL).concat(repo.getUri(), "/branches/").concat(id);
+                              _context4.next = 4;
+                              return _axios_instance__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"](url, {
+                                headers: Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["getHeadersFromDriver"])(driver)
+                              });
+
+                            case 4:
+                            case "end":
+                              return _context4.stop();
+                          }
+                        }
+                      }, _callee4);
+                    })), repo);
+
+                  case 2:
+                  case "end":
+                    return _context5.stop();
+                }
+              }
+            }, _callee5);
           }));
           return _deleteBranch.apply(this, arguments);
         }
@@ -21019,26 +21088,26 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
           return 'production';
         }
 
-        function resyncPublishing(_x4, _x5) {
+        function resyncPublishing(_x5, _x6) {
           return _resyncPublishing.apply(this, arguments);
         }
 
         function _resyncPublishing() {
-          _resyncPublishing = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(nodeIds, branch) {
-            return regeneratorRuntime.wrap(function _callee5$(_context5) {
+          _resyncPublishing = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7(nodeIds, branch) {
+            return regeneratorRuntime.wrap(function _callee7$(_context7) {
               while (1) {
-                switch (_context5.prev = _context5.next) {
+                switch (_context7.prev = _context7.next) {
                   case 0:
-                    return _context5.abrupt("return", Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
-                      var driver, url, _yield$axios$post, jobId;
+                    return _context7.abrupt("return", Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+                      var driver, url, _yield$axios$post2, jobId;
 
-                      return regeneratorRuntime.wrap(function _callee4$(_context4) {
+                      return regeneratorRuntime.wrap(function _callee6$(_context6) {
                         while (1) {
-                          switch (_context4.prev = _context4.next) {
+                          switch (_context6.prev = _context6.next) {
                             case 0:
                               driver = branch.getDriver();
                               url = "".concat(driver.baseURL).concat(branch.getUri(), "/publishing/resync");
-                              _context4.next = 4;
+                              _context6.next = 4;
                               return _axios_instance__WEBPACK_IMPORTED_MODULE_0__["default"].post(url, {
                                 nodeIds: nodeIds
                               }, {
@@ -21046,24 +21115,24 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                               });
 
                             case 4:
-                              _yield$axios$post = _context4.sent;
-                              jobId = _yield$axios$post.data._doc;
-                              return _context4.abrupt("return", jobId);
+                              _yield$axios$post2 = _context6.sent;
+                              jobId = _yield$axios$post2.data._doc;
+                              return _context6.abrupt("return", jobId);
 
                             case 7:
                             case "end":
-                              return _context4.stop();
+                              return _context6.stop();
                           }
                         }
-                      }, _callee4);
+                      }, _callee6);
                     })), branch));
 
                   case 1:
                   case "end":
-                    return _context5.stop();
+                    return _context7.stop();
                 }
               }
-            }, _callee5);
+            }, _callee7);
           }));
           return _resyncPublishing.apply(this, arguments);
         }
@@ -21920,7 +21989,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./src/api/index.js ***!
         \**************************/
 
-      /*! exports provided: readRelease, unarchiveRelease, archiveRelease, deleteRelease, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, deploy, getTargetBranchId, createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, queryDefinitions, getAssociations, queryVaults, deployModule, getContext */
+      /*! exports provided: readRelease, unarchiveRelease, archiveRelease, deleteRelease, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, deploy, getTargetBranchId, createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, buildBranchSearchIndex, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, queryDefinitions, getAssociations, queryVaults, deployModule, getContext */
 
       /***/
       function srcApiIndexJs(module, __webpack_exports__, __webpack_require__) {
@@ -22272,6 +22341,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
         __webpack_require__.d(__webpack_exports__, "createBranches", function () {
           return _branch__WEBPACK_IMPORTED_MODULE_7__["createBranches"];
+        });
+        /* harmony reexport (safe) */
+
+
+        __webpack_require__.d(__webpack_exports__, "buildBranchSearchIndex", function () {
+          return _branch__WEBPACK_IMPORTED_MODULE_7__["buildBranchSearchIndex"];
         });
         /* harmony reexport (safe) */
 
