@@ -20879,11 +20879,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
         function getBranchFromPlatform(repoId, branchId, platform) {
           return new Promise(function (resolve, reject) {
-            platform.readRepository(repoId).readBranch(branchId).then(function () {
-              resolve(this.clone());
-            }).trap(function (err) {
+            platform.readRepository(repoId).trap(function (err) {
               reject(err);
               return false;
+            }).readBranch(branchId).then(function () {
+              resolve(this.clone());
             });
           });
         }
