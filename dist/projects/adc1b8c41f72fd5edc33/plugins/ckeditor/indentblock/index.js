@@ -19339,7 +19339,7 @@ module.exports = JSON.parse("{\"name\":\"axios\",\"version\":\"0.21.4\",\"descri
   else {}
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../packages/cloudcms-build/node_modules/webpack/buildin/global.js */ "../cloudcms-build/node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../../packages/cloudcms-build/node_modules/webpack/buildin/module.js */ "../cloudcms-build/node_modules/webpack/buildin/module.js")(module)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "../../node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../webpack/buildin/module.js */ "../../node_modules/webpack/buildin/module.js")(module)))
 
 /***/ }),
 
@@ -19538,10 +19538,10 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
-/***/ "../cloudcms-build/node_modules/webpack/buildin/global.js":
-/*!****************************************************************!*\
-  !*** ../cloudcms-build/node_modules/webpack/buildin/global.js ***!
-  \****************************************************************/
+/***/ "../../node_modules/webpack/buildin/global.js":
+/*!***********************************!*\
+  !*** (webpack)/buildin/global.js ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -19569,10 +19569,10 @@ module.exports = g;
 
 /***/ }),
 
-/***/ "../cloudcms-build/node_modules/webpack/buildin/module.js":
-/*!****************************************************************!*\
-  !*** ../cloudcms-build/node_modules/webpack/buildin/module.js ***!
-  \****************************************************************/
+/***/ "../../node_modules/webpack/buildin/module.js":
+/*!***********************************!*\
+  !*** (webpack)/buildin/module.js ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
