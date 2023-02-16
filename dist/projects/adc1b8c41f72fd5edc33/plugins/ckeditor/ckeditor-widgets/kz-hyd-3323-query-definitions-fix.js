@@ -25475,7 +25475,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
         function _queryDefinitions() {
           _queryDefinitions = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee15(branch, options) {
-            var query, _yield$queryNodes, rows, rest;
+            var query, _yield$queryNodes, rows;
 
             return regeneratorRuntime.wrap(function _callee15$(_context15) {
               while (1) {
@@ -25491,18 +25491,15 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                   case 3:
                     _yield$queryNodes = _context15.sent;
                     rows = _yield$queryNodes.rows;
-                    rest = _objectWithoutProperties(_yield$queryNodes, ["rows"]);
-                    return _context15.abrupt("return", _objectSpread(_objectSpread({}, rest), {}, {
-                      rows: rows.map(function (x) {
-                        return _objectSpread(_objectSpread({}, x), {}, {
-                          getQName: function getQName() {
-                            return x._qname;
-                          }
-                        });
-                      })
+                    return _context15.abrupt("return", rows.map(function (x) {
+                      return _objectSpread(_objectSpread({}, x), {}, {
+                        getQName: function getQName() {
+                          return x._qname;
+                        }
+                      });
                     }));
 
-                  case 7:
+                  case 6:
                   case "end":
                     return _context15.stop();
                 }
