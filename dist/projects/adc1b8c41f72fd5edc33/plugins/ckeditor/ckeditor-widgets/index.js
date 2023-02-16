@@ -87,9 +87,9 @@ define(["gitana","handlebars","jquery","oneteam","ratchet/web"], function(__WEBP
 /******/ ({
 
 /***/ "../../node_modules/axios/index.js":
-/*!****************************************************************************!*\
-  !*** C:/Jenkins/workspace/migraine-again-prod/node_modules/axios/index.js ***!
-  \****************************************************************************/
+/*!***************************************************************************************!*\
+  !*** C:/Jenkins/workspace/migraine-again-cloudcms-module/node_modules/axios/index.js ***!
+  \***************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -98,9 +98,9 @@ module.exports = __webpack_require__(/*! ./lib/axios */ "../../node_modules/axio
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/adapters/xhr.js":
-/*!***************************************************************************************!*\
-  !*** C:/Jenkins/workspace/migraine-again-prod/node_modules/axios/lib/adapters/xhr.js ***!
-  \***************************************************************************************/
+/*!**************************************************************************************************!*\
+  !*** C:/Jenkins/workspace/migraine-again-cloudcms-module/node_modules/axios/lib/adapters/xhr.js ***!
+  \**************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -299,9 +299,9 @@ module.exports = function xhrAdapter(config) {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/axios.js":
-/*!********************************************************************************!*\
-  !*** C:/Jenkins/workspace/migraine-again-prod/node_modules/axios/lib/axios.js ***!
-  \********************************************************************************/
+/*!*******************************************************************************************!*\
+  !*** C:/Jenkins/workspace/migraine-again-cloudcms-module/node_modules/axios/lib/axios.js ***!
+  \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -367,9 +367,9 @@ module.exports.default = axios;
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/cancel/Cancel.js":
-/*!****************************************************************************************!*\
-  !*** C:/Jenkins/workspace/migraine-again-prod/node_modules/axios/lib/cancel/Cancel.js ***!
-  \****************************************************************************************/
+/*!***************************************************************************************************!*\
+  !*** C:/Jenkins/workspace/migraine-again-cloudcms-module/node_modules/axios/lib/cancel/Cancel.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -398,9 +398,9 @@ module.exports = Cancel;
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/cancel/CancelToken.js":
-/*!*********************************************************************************************!*\
-  !*** C:/Jenkins/workspace/migraine-again-prod/node_modules/axios/lib/cancel/CancelToken.js ***!
-  \*********************************************************************************************/
+/*!********************************************************************************************************!*\
+  !*** C:/Jenkins/workspace/migraine-again-cloudcms-module/node_modules/axios/lib/cancel/CancelToken.js ***!
+  \********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -467,9 +467,9 @@ module.exports = CancelToken;
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/cancel/isCancel.js":
-/*!******************************************************************************************!*\
-  !*** C:/Jenkins/workspace/migraine-again-prod/node_modules/axios/lib/cancel/isCancel.js ***!
-  \******************************************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** C:/Jenkins/workspace/migraine-again-cloudcms-module/node_modules/axios/lib/cancel/isCancel.js ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -484,9 +484,9 @@ module.exports = function isCancel(value) {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/core/Axios.js":
-/*!*************************************************************************************!*\
-  !*** C:/Jenkins/workspace/migraine-again-prod/node_modules/axios/lib/core/Axios.js ***!
-  \*************************************************************************************/
+/*!************************************************************************************************!*\
+  !*** C:/Jenkins/workspace/migraine-again-cloudcms-module/node_modules/axios/lib/core/Axios.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -644,9 +644,9 @@ module.exports = Axios;
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/core/InterceptorManager.js":
-/*!**************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/migraine-again-prod/node_modules/axios/lib/core/InterceptorManager.js ***!
-  \**************************************************************************************************/
+/*!*************************************************************************************************************!*\
+  !*** C:/Jenkins/workspace/migraine-again-cloudcms-module/node_modules/axios/lib/core/InterceptorManager.js ***!
+  \*************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -710,9 +710,9 @@ module.exports = InterceptorManager;
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/core/buildFullPath.js":
-/*!*********************************************************************************************!*\
-  !*** C:/Jenkins/workspace/migraine-again-prod/node_modules/axios/lib/core/buildFullPath.js ***!
-  \*********************************************************************************************/
+/*!********************************************************************************************************!*\
+  !*** C:/Jenkins/workspace/migraine-again-cloudcms-module/node_modules/axios/lib/core/buildFullPath.js ***!
+  \********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -742,9 +742,9 @@ module.exports = function buildFullPath(baseURL, requestedURL) {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/core/createError.js":
-/*!*******************************************************************************************!*\
-  !*** C:/Jenkins/workspace/migraine-again-prod/node_modules/axios/lib/core/createError.js ***!
-  \*******************************************************************************************/
+/*!******************************************************************************************************!*\
+  !*** C:/Jenkins/workspace/migraine-again-cloudcms-module/node_modules/axios/lib/core/createError.js ***!
+  \******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -772,9 +772,9 @@ module.exports = function createError(message, config, code, request, response) 
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/core/dispatchRequest.js":
-/*!***********************************************************************************************!*\
-  !*** C:/Jenkins/workspace/migraine-again-prod/node_modules/axios/lib/core/dispatchRequest.js ***!
-  \***********************************************************************************************/
+/*!**********************************************************************************************************!*\
+  !*** C:/Jenkins/workspace/migraine-again-cloudcms-module/node_modules/axios/lib/core/dispatchRequest.js ***!
+  \**********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -866,9 +866,9 @@ module.exports = function dispatchRequest(config) {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/core/enhanceError.js":
-/*!********************************************************************************************!*\
-  !*** C:/Jenkins/workspace/migraine-again-prod/node_modules/axios/lib/core/enhanceError.js ***!
-  \********************************************************************************************/
+/*!*******************************************************************************************************!*\
+  !*** C:/Jenkins/workspace/migraine-again-cloudcms-module/node_modules/axios/lib/core/enhanceError.js ***!
+  \*******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -920,9 +920,9 @@ module.exports = function enhanceError(error, config, code, request, response) {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/core/mergeConfig.js":
-/*!*******************************************************************************************!*\
-  !*** C:/Jenkins/workspace/migraine-again-prod/node_modules/axios/lib/core/mergeConfig.js ***!
-  \*******************************************************************************************/
+/*!******************************************************************************************************!*\
+  !*** C:/Jenkins/workspace/migraine-again-cloudcms-module/node_modules/axios/lib/core/mergeConfig.js ***!
+  \******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1019,9 +1019,9 @@ module.exports = function mergeConfig(config1, config2) {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/core/settle.js":
-/*!**************************************************************************************!*\
-  !*** C:/Jenkins/workspace/migraine-again-prod/node_modules/axios/lib/core/settle.js ***!
-  \**************************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** C:/Jenkins/workspace/migraine-again-cloudcms-module/node_modules/axios/lib/core/settle.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1056,9 +1056,9 @@ module.exports = function settle(resolve, reject, response) {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/core/transformData.js":
-/*!*********************************************************************************************!*\
-  !*** C:/Jenkins/workspace/migraine-again-prod/node_modules/axios/lib/core/transformData.js ***!
-  \*********************************************************************************************/
+/*!********************************************************************************************************!*\
+  !*** C:/Jenkins/workspace/migraine-again-cloudcms-module/node_modules/axios/lib/core/transformData.js ***!
+  \********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1090,9 +1090,9 @@ module.exports = function transformData(data, headers, fns) {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/defaults.js":
-/*!***********************************************************************************!*\
-  !*** C:/Jenkins/workspace/migraine-again-prod/node_modules/axios/lib/defaults.js ***!
-  \***********************************************************************************/
+/*!**********************************************************************************************!*\
+  !*** C:/Jenkins/workspace/migraine-again-cloudcms-module/node_modules/axios/lib/defaults.js ***!
+  \**********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1237,9 +1237,9 @@ module.exports = defaults;
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/helpers/bind.js":
-/*!***************************************************************************************!*\
-  !*** C:/Jenkins/workspace/migraine-again-prod/node_modules/axios/lib/helpers/bind.js ***!
-  \***************************************************************************************/
+/*!**************************************************************************************************!*\
+  !*** C:/Jenkins/workspace/migraine-again-cloudcms-module/node_modules/axios/lib/helpers/bind.js ***!
+  \**************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1260,9 +1260,9 @@ module.exports = function bind(fn, thisArg) {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/helpers/buildURL.js":
-/*!*******************************************************************************************!*\
-  !*** C:/Jenkins/workspace/migraine-again-prod/node_modules/axios/lib/helpers/buildURL.js ***!
-  \*******************************************************************************************/
+/*!******************************************************************************************************!*\
+  !*** C:/Jenkins/workspace/migraine-again-cloudcms-module/node_modules/axios/lib/helpers/buildURL.js ***!
+  \******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1342,9 +1342,9 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/helpers/combineURLs.js":
-/*!**********************************************************************************************!*\
-  !*** C:/Jenkins/workspace/migraine-again-prod/node_modules/axios/lib/helpers/combineURLs.js ***!
-  \**********************************************************************************************/
+/*!*********************************************************************************************************!*\
+  !*** C:/Jenkins/workspace/migraine-again-cloudcms-module/node_modules/axios/lib/helpers/combineURLs.js ***!
+  \*********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1368,9 +1368,9 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/helpers/cookies.js":
-/*!******************************************************************************************!*\
-  !*** C:/Jenkins/workspace/migraine-again-prod/node_modules/axios/lib/helpers/cookies.js ***!
-  \******************************************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** C:/Jenkins/workspace/migraine-again-cloudcms-module/node_modules/axios/lib/helpers/cookies.js ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1433,9 +1433,9 @@ module.exports = (
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/helpers/isAbsoluteURL.js":
-/*!************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/migraine-again-prod/node_modules/axios/lib/helpers/isAbsoluteURL.js ***!
-  \************************************************************************************************/
+/*!***********************************************************************************************************!*\
+  !*** C:/Jenkins/workspace/migraine-again-cloudcms-module/node_modules/axios/lib/helpers/isAbsoluteURL.js ***!
+  \***********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1459,9 +1459,9 @@ module.exports = function isAbsoluteURL(url) {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/helpers/isAxiosError.js":
-/*!***********************************************************************************************!*\
-  !*** C:/Jenkins/workspace/migraine-again-prod/node_modules/axios/lib/helpers/isAxiosError.js ***!
-  \***********************************************************************************************/
+/*!**********************************************************************************************************!*\
+  !*** C:/Jenkins/workspace/migraine-again-cloudcms-module/node_modules/axios/lib/helpers/isAxiosError.js ***!
+  \**********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1482,9 +1482,9 @@ module.exports = function isAxiosError(payload) {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/helpers/isURLSameOrigin.js":
-/*!**************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/migraine-again-prod/node_modules/axios/lib/helpers/isURLSameOrigin.js ***!
-  \**************************************************************************************************/
+/*!*************************************************************************************************************!*\
+  !*** C:/Jenkins/workspace/migraine-again-cloudcms-module/node_modules/axios/lib/helpers/isURLSameOrigin.js ***!
+  \*************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1562,9 +1562,9 @@ module.exports = (
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/helpers/normalizeHeaderName.js":
-/*!******************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/migraine-again-prod/node_modules/axios/lib/helpers/normalizeHeaderName.js ***!
-  \******************************************************************************************************/
+/*!*****************************************************************************************************************!*\
+  !*** C:/Jenkins/workspace/migraine-again-cloudcms-module/node_modules/axios/lib/helpers/normalizeHeaderName.js ***!
+  \*****************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1586,9 +1586,9 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/helpers/parseHeaders.js":
-/*!***********************************************************************************************!*\
-  !*** C:/Jenkins/workspace/migraine-again-prod/node_modules/axios/lib/helpers/parseHeaders.js ***!
-  \***********************************************************************************************/
+/*!**********************************************************************************************************!*\
+  !*** C:/Jenkins/workspace/migraine-again-cloudcms-module/node_modules/axios/lib/helpers/parseHeaders.js ***!
+  \**********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1651,9 +1651,9 @@ module.exports = function parseHeaders(headers) {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/helpers/spread.js":
-/*!*****************************************************************************************!*\
-  !*** C:/Jenkins/workspace/migraine-again-prod/node_modules/axios/lib/helpers/spread.js ***!
-  \*****************************************************************************************/
+/*!****************************************************************************************************!*\
+  !*** C:/Jenkins/workspace/migraine-again-cloudcms-module/node_modules/axios/lib/helpers/spread.js ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1690,9 +1690,9 @@ module.exports = function spread(callback) {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/helpers/validator.js":
-/*!********************************************************************************************!*\
-  !*** C:/Jenkins/workspace/migraine-again-prod/node_modules/axios/lib/helpers/validator.js ***!
-  \********************************************************************************************/
+/*!*******************************************************************************************************!*\
+  !*** C:/Jenkins/workspace/migraine-again-cloudcms-module/node_modules/axios/lib/helpers/validator.js ***!
+  \*******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1807,9 +1807,9 @@ module.exports = {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/utils.js":
-/*!********************************************************************************!*\
-  !*** C:/Jenkins/workspace/migraine-again-prod/node_modules/axios/lib/utils.js ***!
-  \********************************************************************************/
+/*!*******************************************************************************************!*\
+  !*** C:/Jenkins/workspace/migraine-again-cloudcms-module/node_modules/axios/lib/utils.js ***!
+  \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2168,9 +2168,9 @@ module.exports = {
 /***/ }),
 
 /***/ "../../node_modules/axios/package.json":
-/*!********************************************************************************!*\
-  !*** C:/Jenkins/workspace/migraine-again-prod/node_modules/axios/package.json ***!
-  \********************************************************************************/
+/*!*******************************************************************************************!*\
+  !*** C:/Jenkins/workspace/migraine-again-cloudcms-module/node_modules/axios/package.json ***!
+  \*******************************************************************************************/
 /*! exports provided: name, version, description, main, scripts, repository, keywords, author, license, bugs, homepage, devDependencies, browser, jsdelivr, unpkg, typings, dependencies, bundlesize, default */
 /***/ (function(module) {
 
@@ -2179,9 +2179,9 @@ module.exports = JSON.parse("{\"name\":\"axios\",\"version\":\"0.21.4\",\"descri
 /***/ }),
 
 /***/ "../../node_modules/lodash/lodash.js":
-/*!******************************************************************************!*\
-  !*** C:/Jenkins/workspace/migraine-again-prod/node_modules/lodash/lodash.js ***!
-  \******************************************************************************/
+/*!*****************************************************************************************!*\
+  !*** C:/Jenkins/workspace/migraine-again-cloudcms-module/node_modules/lodash/lodash.js ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -19344,9 +19344,9 @@ module.exports = JSON.parse("{\"name\":\"axios\",\"version\":\"0.21.4\",\"descri
 /***/ }),
 
 /***/ "../../node_modules/process/browser.js":
-/*!********************************************************************************!*\
-  !*** C:/Jenkins/workspace/migraine-again-prod/node_modules/process/browser.js ***!
-  \********************************************************************************/
+/*!*******************************************************************************************!*\
+  !*** C:/Jenkins/workspace/migraine-again-cloudcms-module/node_modules/process/browser.js ***!
+  \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -19873,7 +19873,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./browser.js ***!
         \********************/
 
-      /*! exports provided: browser, constants, readRelease, unarchiveRelease, archiveRelease, deleteRelease, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, deploy, getTargetBranchId, createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, buildBranchSearchIndex, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, queryDefinitions, getAssociations, queryVaults, deployModule, getContext, getMapFromArray, getQNameComponents, convertQNameForRef, getRefFromQName, getQName, isInternalType */
+      /*! exports provided: browser, constants, readRelease, unarchiveRelease, archiveRelease, deleteRelease, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, deploy, getTargetBranchId, createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, queryDefinitions, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, buildBranchSearchIndex, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, getAssociations, queryVaults, deployModule, getContext, getMapFromArray, getQNameComponents, convertQNameForRef, getRefFromQName, getQName, isInternalType */
 
       /***/
       function browserJs(module, __webpack_exports__, __webpack_require__) {
@@ -20099,6 +20099,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         /* harmony reexport (safe) */
 
 
+        __webpack_require__.d(__webpack_exports__, "queryDefinitions", function () {
+          return _common__WEBPACK_IMPORTED_MODULE_1__["queryDefinitions"];
+        });
+        /* harmony reexport (safe) */
+
+
         __webpack_require__.d(__webpack_exports__, "getBranchFromPlatform", function () {
           return _common__WEBPACK_IMPORTED_MODULE_1__["getBranchFromPlatform"];
         });
@@ -20219,12 +20225,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         /* harmony reexport (safe) */
 
 
-        __webpack_require__.d(__webpack_exports__, "queryDefinitions", function () {
-          return _common__WEBPACK_IMPORTED_MODULE_1__["queryDefinitions"];
-        });
-        /* harmony reexport (safe) */
-
-
         __webpack_require__.d(__webpack_exports__, "getAssociations", function () {
           return _common__WEBPACK_IMPORTED_MODULE_1__["getAssociations"];
         });
@@ -20292,7 +20292,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./common.js ***!
         \*******************/
 
-      /*! exports provided: constants, readRelease, unarchiveRelease, archiveRelease, deleteRelease, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, deploy, getTargetBranchId, createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, buildBranchSearchIndex, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, queryDefinitions, getAssociations, queryVaults, deployModule, getContext, getMapFromArray, getQNameComponents, convertQNameForRef, getRefFromQName, getQName, isInternalType */
+      /*! exports provided: constants, readRelease, unarchiveRelease, archiveRelease, deleteRelease, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, deploy, getTargetBranchId, createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, queryDefinitions, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, buildBranchSearchIndex, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, getAssociations, queryVaults, deployModule, getContext, getMapFromArray, getQNameComponents, convertQNameForRef, getRefFromQName, getQName, isInternalType */
 
       /***/
       function commonJs(module, __webpack_exports__, __webpack_require__) {
@@ -20512,6 +20512,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         /* harmony reexport (safe) */
 
 
+        __webpack_require__.d(__webpack_exports__, "queryDefinitions", function () {
+          return _src_api__WEBPACK_IMPORTED_MODULE_1__["queryDefinitions"];
+        });
+        /* harmony reexport (safe) */
+
+
         __webpack_require__.d(__webpack_exports__, "getBranchFromPlatform", function () {
           return _src_api__WEBPACK_IMPORTED_MODULE_1__["getBranchFromPlatform"];
         });
@@ -20628,12 +20634,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
         __webpack_require__.d(__webpack_exports__, "listDefinitions", function () {
           return _src_api__WEBPACK_IMPORTED_MODULE_1__["listDefinitions"];
-        });
-        /* harmony reexport (safe) */
-
-
-        __webpack_require__.d(__webpack_exports__, "queryDefinitions", function () {
-          return _src_api__WEBPACK_IMPORTED_MODULE_1__["queryDefinitions"];
         });
         /* harmony reexport (safe) */
 
@@ -21989,7 +21989,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./src/api/index.js ***!
         \**************************/
 
-      /*! exports provided: readRelease, unarchiveRelease, archiveRelease, deleteRelease, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, deploy, getTargetBranchId, createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, buildBranchSearchIndex, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, queryDefinitions, getAssociations, queryVaults, deployModule, getContext */
+      /*! exports provided: readRelease, unarchiveRelease, archiveRelease, deleteRelease, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, deploy, getTargetBranchId, createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, queryDefinitions, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, buildBranchSearchIndex, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, getAssociations, queryVaults, deployModule, getContext */
 
       /***/
       function srcApiIndexJs(module, __webpack_exports__, __webpack_require__) {
@@ -22031,12 +22031,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
         __webpack_require__.d(__webpack_exports__, "listDefinitions", function () {
           return listDefinitions;
-        });
-        /* harmony export (binding) */
-
-
-        __webpack_require__.d(__webpack_exports__, "queryDefinitions", function () {
-          return queryDefinitions;
         });
         /* harmony export (binding) */
 
@@ -22300,6 +22294,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         __webpack_require__.d(__webpack_exports__, "paginateNodes", function () {
           return _nodes__WEBPACK_IMPORTED_MODULE_6__["paginateNodes"];
         });
+        /* harmony reexport (safe) */
+
+
+        __webpack_require__.d(__webpack_exports__, "queryDefinitions", function () {
+          return _nodes__WEBPACK_IMPORTED_MODULE_6__["queryDefinitions"];
+        });
         /* harmony import */
 
 
@@ -22551,19 +22551,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             }).trap(function (err) {
               reject(err);
               return false;
-            });
-          });
-        }
-
-        function queryDefinitions(branch, query) {
-          return new Promise(function (resolve, reject) {
-            branch.queryDefinitions(query, {
-              limit: 9999
-            }).then(function () {
-              resolve(this.asArray());
-            }).trap(function (err) {
-              reject(err);
-              return;
             });
           });
         }
@@ -23104,7 +23091,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./src/api/nodes.js ***!
         \**************************/
 
-      /*! exports provided: createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes */
+      /*! exports provided: createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, queryDefinitions */
 
       /***/
       function srcApiNodesJs(module, __webpack_exports__, __webpack_require__) {
@@ -23200,6 +23187,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
         __webpack_require__.d(__webpack_exports__, "paginateNodes", function () {
           return paginateNodes;
+        });
+        /* harmony export (binding) */
+
+
+        __webpack_require__.d(__webpack_exports__, "queryDefinitions", function () {
+          return queryDefinitions;
         });
         /* harmony import */
 
@@ -23869,6 +23862,49 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             }, _callee14);
           }));
           return _paginateNodes.apply(this, arguments);
+        }
+
+        function queryDefinitions(_x16, _x17) {
+          return _queryDefinitions.apply(this, arguments);
+        }
+
+        function _queryDefinitions() {
+          _queryDefinitions = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee15(branch, options) {
+            var query, _yield$queryNodes, rows, rest;
+
+            return regeneratorRuntime.wrap(function _callee15$(_context15) {
+              while (1) {
+                switch (_context15.prev = _context15.next) {
+                  case 0:
+                    query = options.query;
+                    _context15.next = 3;
+                    return queryNodes(query, {
+                      full: true,
+                      limit: 9999
+                    }, branch);
+
+                  case 3:
+                    _yield$queryNodes = _context15.sent;
+                    rows = _yield$queryNodes.rows;
+                    rest = _objectWithoutProperties(_yield$queryNodes, ["rows"]);
+                    return _context15.abrupt("return", _objectSpread(_objectSpread({}, rest), {}, {
+                      rows: rows.map(function (x) {
+                        return _objectSpread(_objectSpread({}, x), {}, {
+                          getQName: function getQName() {
+                            return x._qname;
+                          }
+                        });
+                      })
+                    }));
+
+                  case 7:
+                  case "end":
+                    return _context15.stop();
+                }
+              }
+            }, _callee15);
+          }));
+          return _queryDefinitions.apply(this, arguments);
         }
         /***/
 
