@@ -29525,6 +29525,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { "@babel/helpers - type
           "./inline-tags/index.js": "./src/widgets/inline-tags/index.js",
           "./latest-feed/index.js": "./src/widgets/latest-feed/index.js",
           "./newsletter/index.js": "./src/widgets/newsletter/index.js",
+          "./price/index.js": "./src/widgets/price/index.js",
           "./section-blocks/index.js": "./src/widgets/section-blocks/index.js",
           "./sidebar-divider/index.js": "./src/widgets/sidebar-divider/index.js",
           "./testimonial/index.js": "./src/widgets/testimonial/index.js",
@@ -31418,6 +31419,61 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { "@babel/helpers - type
         });
 
         var qname = 'ehwidgets:newsletter';
+
+        function mapData() {
+          return {
+            type: qname
+          };
+        }
+        /***/
+
+      },
+
+      /***/
+      "./src/widgets/price/index.js":
+      /*!************************************!*\
+        !*** ./src/widgets/price/index.js ***!
+        \************************************/
+
+      /*! exports provided: qname, template, allowedContent, mapData */
+
+      /***/
+      function srcWidgetsPriceIndexJs(module, __webpack_exports__, __webpack_require__) {
+        "use strict";
+
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony export (binding) */
+
+
+        __webpack_require__.d(__webpack_exports__, "qname", function () {
+          return qname;
+        });
+        /* harmony export (binding) */
+
+
+        __webpack_require__.d(__webpack_exports__, "mapData", function () {
+          return mapData;
+        });
+        /* harmony import */
+
+
+        var _placeholder__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+        /*! ../../placeholder */
+        "./src/placeholder/index.js");
+        /* harmony reexport (safe) */
+
+
+        __webpack_require__.d(__webpack_exports__, "template", function () {
+          return _placeholder__WEBPACK_IMPORTED_MODULE_0__["template"];
+        });
+        /* harmony reexport (safe) */
+
+
+        __webpack_require__.d(__webpack_exports__, "allowedContent", function () {
+          return _placeholder__WEBPACK_IMPORTED_MODULE_0__["allowedContent"];
+        });
+
+        var qname = 'ehwidgets:price';
 
         function mapData() {
           return {
