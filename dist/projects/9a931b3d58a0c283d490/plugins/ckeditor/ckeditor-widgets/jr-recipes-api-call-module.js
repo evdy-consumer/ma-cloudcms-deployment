@@ -33951,6 +33951,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         }
 
         function openRecipeSelectorModal() {
+          var branch = getBranch();
+
           var onSubmit = function onSubmit(data) {
             console.log('\n----data selected---\n', {
               data: data
@@ -33958,7 +33960,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             return data;
           };
 
-          var dashletConfigHelper = new _dashlet_config__WEBPACK_IMPORTED_MODULE_3__["SelectRecipeDashletConfigHelper"]();
+          var dashletConfigHelper = new _dashlet_config__WEBPACK_IMPORTED_MODULE_3__["SelectRecipeDashletConfigHelper"]({
+            branch: branch
+          });
           return Object(_dashlet__WEBPACK_IMPORTED_MODULE_2__["getDashletConfig"])(dashletConfigHelper, ratchet_web__WEBPACK_IMPORTED_MODULE_0___default.a).then(function (dashletConfig) {
             return openModal(dashletConfig);
           }).then(function (data) {
