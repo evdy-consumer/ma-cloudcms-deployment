@@ -32953,10 +32953,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                               type: 'select',
                               dataSource: function dataSource(cb) {
                                 var searchTerm = this.observable('/searchTerm').get();
-                                console.log('--------datasource refresh', {
-                                  searchTerm: searchTerm,
-                                  fetch: fetch
-                                });
                                 fetch('https://api-recipes.everydayhealth.com/cms/v1/proxy/search?limit=10', {
                                   method: 'POST',
                                   headers: {
@@ -32987,25 +32983,30 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                                     }
                                   })
                                 }).then(function (result) {
-                                  return result.json();
-                                }).then(function (data) {
-                                  var _data$rows;
+                                  result.json().then(function (data) {
+                                    var _data$rows;
 
-                                  if (data !== null && data !== void 0 && (_data$rows = data.rows) !== null && _data$rows !== void 0 && _data$rows.length) {
-                                    var recipeSelectorDataSource = data.rows.reduce(function (ds, _ref) {
-                                      var title = _ref.title,
-                                          recipeId = _ref._doc;
-                                      ds[title] = JSON.stringify({
-                                        title: title,
-                                        recipeId: recipeId
-                                      });
-                                    }, {});
-                                    cb(recipeSelectorDataSource);
-                                  } else {
-                                    cb([]);
-                                  }
+                                    console.log('-------fetch result--------', {
+                                      data: data
+                                    });
+
+                                    if (data !== null && data !== void 0 && (_data$rows = data.rows) !== null && _data$rows !== void 0 && _data$rows.length) {
+                                      var recipeSelectorDataSource = data.rows.reduce(function (ds, _ref) {
+                                        var title = _ref.title,
+                                            recipeId = _ref._doc;
+                                        ds[title] = JSON.stringify({
+                                          title: title,
+                                          recipeId: recipeId
+                                        });
+                                      }, {});
+                                      cb(recipeSelectorDataSource);
+                                    } else {
+                                      cb([]);
+                                    }
+                                  });
                                 })["catch"](function (error) {
                                   alert('There was an error while requesting Recipes from CloudCMS', error.message);
+                                  cb([]);
                                 });
                               }
                             }
