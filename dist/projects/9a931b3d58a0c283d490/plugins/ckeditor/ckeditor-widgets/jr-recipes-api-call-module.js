@@ -32766,21 +32766,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
           return _typeof(obj);
         }
 
-        function _defineProperty(obj, key, value) {
-          if (key in obj) {
-            Object.defineProperty(obj, key, {
-              value: value,
-              enumerable: true,
-              configurable: true,
-              writable: true
-            });
-          } else {
-            obj[key] = value;
-          }
-
-          return obj;
-        }
-
         function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
           try {
             var info = gen[key](arg);
@@ -32967,14 +32952,61 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                             recipe: {
                               type: 'select',
                               dataSource: function dataSource(cb) {
-                                var _cb;
-
                                 var searchTerm = this.observable('/searchTerm').get();
                                 console.log('--------datasource refresh', {
                                   searchTerm: searchTerm,
                                   fetch: fetch
                                 });
-                                cb((_cb = {}, _defineProperty(_cb, "rambo_id-".concat(searchTerm), "John Rambo-".concat(searchTerm)), _defineProperty(_cb, "norris_id-".concat(searchTerm), "Chuck Norris-".concat(searchTerm)), _defineProperty(_cb, "arnold_id-".concat(searchTerm), "Arnold Schwarzenegger-".concat(searchTerm)), _cb));
+                                fetch('https://api-recipes.everydayhealth.com/cms/v1/proxy/search?limit=10', {
+                                  method: 'POST',
+                                  headers: {
+                                    'Content-Type': 'application/json'
+                                  },
+                                  body: JSON.stringify({
+                                    search: {
+                                      query: {
+                                        bool: {
+                                          must: [{
+                                            query_string: {
+                                              fields: ['title'],
+                                              query: "".concat(searchTerm),
+                                              fuzziness: 2,
+                                              default_operator: 'AND'
+                                            }
+                                          }, {
+                                            match: {
+                                              _type: 'ehmodels:recipe'
+                                            }
+                                          }]
+                                        }
+                                      }
+                                    },
+                                    _fields: {
+                                      title: 1,
+                                      _doc: 1
+                                    }
+                                  })
+                                }).then(function (result) {
+                                  return result.json();
+                                }).then(function (data) {
+                                  var _data$rows;
+
+                                  if (data !== null && data !== void 0 && (_data$rows = data.rows) !== null && _data$rows !== void 0 && _data$rows.length) {
+                                    var recipeSelectorDataSource = data.rows.reduce(function (ds, _ref) {
+                                      var title = _ref.title,
+                                          recipeId = _ref._doc;
+                                      ds[title] = JSON.stringify({
+                                        title: title,
+                                        recipeId: recipeId
+                                      });
+                                    }, {});
+                                    cb(recipeSelectorDataSource);
+                                  } else {
+                                    cb([]);
+                                  }
+                                })["catch"](function (error) {
+                                  alert('There was an error while requesting Recipes from CloudCMS', error.message);
+                                });
                               }
                             }
                           }
@@ -33977,9 +34009,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
           });
           return Object(_dashlet__WEBPACK_IMPORTED_MODULE_2__["getDashletConfig"])(dashletConfigHelper, ratchet_web__WEBPACK_IMPORTED_MODULE_0___default.a).then(function (dashletConfig) {
             var postRenderCallback = function postRenderCallback(control) {
-              console.log('-----this is the postrender in modal definition in widgets---------');
-              var searchTerm = control.childrenByPropertyId['searchTearm'];
+              var searchTerm = control.childrenByPropertyId['searchTerm'];
               var recipe = control.childrenByPropertyId['recipe'];
+              console.log('-----this is the postrender in modal definition in widgets---------', {
+                control: control,
+                searchTerm: searchTerm,
+                recipe: recipe
+              });
               searchTerm.on('change', function () {
                 console.log('----event---', {
                   searchTerm: searchTerm,
