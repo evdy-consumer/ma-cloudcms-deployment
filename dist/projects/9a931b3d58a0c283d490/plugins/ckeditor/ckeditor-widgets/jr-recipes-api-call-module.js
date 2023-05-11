@@ -33977,9 +33977,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             };
 
             console.log('\n----dashlet config---\n', {
-              dashletConfig: JSON.stringify(_objectSpread(_objectSpread({}, dashletConfig), {}, {
+              dashletConfig: JSON.stringify({
                 postRender: postRender
-              }))
+              })
             });
             return openModal(_objectSpread(_objectSpread({}, dashletConfig), {}, {
               postRender: postRender
