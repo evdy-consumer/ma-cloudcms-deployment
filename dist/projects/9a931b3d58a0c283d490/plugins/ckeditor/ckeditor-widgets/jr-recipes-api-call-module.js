@@ -32997,10 +32997,15 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                                     var recipeSelectorDataSource = result.data.rows.reduce(function (ds, _ref) {
                                       var title = _ref.title,
                                           recipeId = _ref._doc;
+                                      console.log('inside reduce', {
+                                        title: title,
+                                        recipeId: recipeId
+                                      });
                                       ds[title] = JSON.stringify({
                                         title: title,
                                         recipeId: recipeId
                                       });
+                                      return ds;
                                     }, {});
                                     console.log('--------reduce result', {
                                       recipeSelectorDataSource: recipeSelectorDataSource
@@ -33010,6 +33015,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                                     cb([]);
                                   }
                                 })["catch"](function (error) {
+                                  console.log(error);
                                   alert('There was an error while requesting Recipes from CloudCMS', error.message);
                                 });
                               }
