@@ -32918,7 +32918,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                     type: 'string'
                   },
                   recipe: {
-                    type: 'string'
+                    type: 'string',
+                    "enum": []
                   }
                 },
                 dependencies: {}
@@ -33955,7 +33956,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
           var onSubmit = function onSubmit(data) {
             console.log('\n----data selected---\n', {
-              data: data
+              data: JSON.stringify(data)
             });
             return data;
           };
@@ -33964,6 +33965,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             branch: branch
           });
           return Object(_dashlet__WEBPACK_IMPORTED_MODULE_2__["getDashletConfig"])(dashletConfigHelper, ratchet_web__WEBPACK_IMPORTED_MODULE_0___default.a).then(function (dashletConfig) {
+            console.log('\n----dashlet config---\n', {
+              dashletConfig: JSON.stringify(dashletConfig)
+            });
             return openModal(dashletConfig);
           }).then(function (data) {
             return blockUI({
