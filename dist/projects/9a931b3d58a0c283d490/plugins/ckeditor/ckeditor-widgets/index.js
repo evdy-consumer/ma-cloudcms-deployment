@@ -25041,7 +25041,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                 options: options,
                 data: data,
                 postRender: function postRender(control) {
-                  console.log('-----checking postrender in bowser method alpaca modal');
+                  console.log('-----checking postrender in bowser method alpaca modal', {
+                    postRenderCallback: postRenderCallback,
+                    child: [control.childrenByPropertyId['searchTerm'], control.childrenByPropertyId['recipe'], control.children],
+                    control: control
+                  });
                   postRenderCallback(control);
                   $done.on('click', function () {
                     control.refreshValidationState(true, function () {
