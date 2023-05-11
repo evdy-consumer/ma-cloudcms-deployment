@@ -32758,6 +32758,21 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
           return _typeof(obj);
         }
 
+        function _defineProperty(obj, key, value) {
+          if (key in obj) {
+            Object.defineProperty(obj, key, {
+              value: value,
+              enumerable: true,
+              configurable: true,
+              writable: true
+            });
+          } else {
+            obj[key] = value;
+          }
+
+          return obj;
+        }
+
         function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
           try {
             var info = gen[key](arg);
@@ -32918,8 +32933,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                     type: 'string'
                   },
                   recipe: {
-                    type: 'string',
-                    "enum": []
+                    type: 'string'
                   }
                 },
                 dependencies: {}
@@ -32945,25 +32959,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                             recipe: {
                               type: 'select',
                               dataSource: function dataSource(cb) {
-                                cb([{
-                                  value: {
-                                    id: 'rambo_id',
-                                    title: 'rambo_title'
-                                  },
-                                  text: 'John Rambo'
-                                }, {
-                                  value: {
-                                    id: 'norris_id',
-                                    title: 'norris_title'
-                                  },
-                                  text: 'Chuck Norris'
-                                }, {
-                                  value: {
-                                    id: 'arnold_id',
-                                    title: 'arnold_title'
-                                  },
-                                  text: 'Arnold Schwarzenegger'
-                                }]);
+                                var _cb;
+
+                                var searchTerm = this.observable('/searchTerm').get();
+                                console.log('--------datasource refresh', {
+                                  searchTerm: searchTerm
+                                });
+                                cb((_cb = {}, _defineProperty(_cb, "rambo_id-".concat(searchTerm), "John Rambo-".concat(searchTerm)), _defineProperty(_cb, "norris_id-".concat(searchTerm), "Chuck Norris-".concat(searchTerm)), _defineProperty(_cb, "arnold_id-".concat(searchTerm), "Arnold Schwarzenegger-".concat(searchTerm)), _cb));
                               }
                             }
                           }
@@ -33965,6 +33967,14 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             branch: branch
           });
           return Object(_dashlet__WEBPACK_IMPORTED_MODULE_2__["getDashletConfig"])(dashletConfigHelper, ratchet_web__WEBPACK_IMPORTED_MODULE_0___default.a).then(function (dashletConfig) {
+            dashletConfig.postRender = function (control) {
+              var searchTerm = control.childrenByPropertyId['searchTearm'];
+              var recipe = control.childrenByPropertyId['recipe'];
+              searchTerm.on('change', function () {
+                recipe.refresh();
+              });
+            };
+
             console.log('\n----dashlet config---\n', {
               dashletConfig: JSON.stringify(dashletConfig)
             });
