@@ -32983,7 +32983,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                                     }
                                   })
                                 }).then(function (result) {
-                                  result.json();
+                                  return result.json();
                                 }).then(function (result) {
                                   var _result$data, _result$data$rows, _result$data2, _result$data3, _result$data3$rows;
 
