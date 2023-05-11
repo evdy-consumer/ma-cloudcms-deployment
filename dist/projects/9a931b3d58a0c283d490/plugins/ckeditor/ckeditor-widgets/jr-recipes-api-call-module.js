@@ -33972,7 +33972,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             branch: branch
           });
           return Object(_dashlet__WEBPACK_IMPORTED_MODULE_2__["getDashletConfig"])(dashletConfigHelper, ratchet_web__WEBPACK_IMPORTED_MODULE_0___default.a).then(function (dashletConfig) {
-            var postRender = function postRender(control) {
+            var postRenderCallback = function postRenderCallback(control) {
               console.log('-----this is the postrender in modal definition in widgets---------');
               var searchTerm = control.childrenByPropertyId['searchTearm'];
               var recipe = control.childrenByPropertyId['recipe'];
@@ -33987,11 +33987,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
             console.log('\n----dashlet config---\n', {
               dashletConfig: _objectSpread(_objectSpread({}, dashletConfig), {}, {
-                postRender: postRender
+                postRenderCallback: postRenderCallback
               })
             });
             return openModal(_objectSpread(_objectSpread({}, dashletConfig), {}, {
-              postRender: postRender
+              postRenderCallback: postRenderCallback
             }));
           }).then(function (data) {
             return blockUI({
