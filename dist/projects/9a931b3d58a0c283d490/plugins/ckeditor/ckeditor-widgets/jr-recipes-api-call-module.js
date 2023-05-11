@@ -32994,7 +32994,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                                   });
 
                                   if (result !== null && result !== void 0 && (_result$data3 = result.data) !== null && _result$data3 !== void 0 && (_result$data3$rows = _result$data3.rows) !== null && _result$data3$rows !== void 0 && _result$data3$rows.length) {
-                                    var recipeSelectorDataSource = data.rows.reduce(function (ds, _ref) {
+                                    var recipeSelectorDataSource = result.data.rows.reduce(function (ds, _ref) {
                                       var title = _ref.title,
                                           recipeId = _ref._doc;
                                       ds[title] = JSON.stringify({
@@ -33002,6 +33002,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                                         recipeId: recipeId
                                       });
                                     }, {});
+                                    console.log('--------reduce result', {
+                                      recipeSelectorDataSource: recipeSelectorDataSource
+                                    });
                                     cb(recipeSelectorDataSource);
                                   } else {
                                     cb([]);
