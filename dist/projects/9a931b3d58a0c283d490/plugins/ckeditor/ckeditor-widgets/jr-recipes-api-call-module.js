@@ -32998,6 +32998,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                                           title: title,
                                           recipeId: recipeId
                                         });
+                                        '-------datasource result--------', {
+                                          ds: ds
+                                        };
+                                        return ds;
                                       }, {});
                                       cb(recipeSelectorDataSource);
                                     } else {
