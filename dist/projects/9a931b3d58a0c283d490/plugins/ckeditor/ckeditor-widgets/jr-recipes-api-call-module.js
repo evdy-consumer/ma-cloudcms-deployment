@@ -26646,6 +26646,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                 options: options,
                 data: data,
                 postRender: function postRender(control) {
+                  console.log('-----checking postrender in bowser method alpaca modal');
                   postRenderCallback(control);
                   $done.on('click', function () {
                     control.refreshValidationState(true, function () {
@@ -33972,9 +33973,14 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
           });
           return Object(_dashlet__WEBPACK_IMPORTED_MODULE_2__["getDashletConfig"])(dashletConfigHelper, ratchet_web__WEBPACK_IMPORTED_MODULE_0___default.a).then(function (dashletConfig) {
             var postRender = function postRender(control) {
+              console.log('-----this is the postrender in modal definition in widgets---------');
               var searchTerm = control.childrenByPropertyId['searchTearm'];
               var recipe = control.childrenByPropertyId['recipe'];
               searchTerm.on('change', function () {
+                console.log('----event---', {
+                  searchTerm: searchTerm,
+                  recipe: recipe
+                });
                 recipe.refresh();
               });
             };
