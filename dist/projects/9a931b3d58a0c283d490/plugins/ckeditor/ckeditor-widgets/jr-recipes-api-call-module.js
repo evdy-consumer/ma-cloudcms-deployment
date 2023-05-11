@@ -32963,7 +32963,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
                                 var searchTerm = this.observable('/searchTerm').get();
                                 console.log('--------datasource refresh', {
-                                  searchTerm: searchTerm
+                                  searchTerm: searchTerm,
+                                  fetch: fetch
                                 });
                                 cb((_cb = {}, _defineProperty(_cb, "rambo_id-".concat(searchTerm), "John Rambo-".concat(searchTerm)), _defineProperty(_cb, "norris_id-".concat(searchTerm), "Chuck Norris-".concat(searchTerm)), _defineProperty(_cb, "arnold_id-".concat(searchTerm), "Arnold Schwarzenegger-".concat(searchTerm)), _cb));
                               }
@@ -33967,7 +33968,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             branch: branch
           });
           return Object(_dashlet__WEBPACK_IMPORTED_MODULE_2__["getDashletConfig"])(dashletConfigHelper, ratchet_web__WEBPACK_IMPORTED_MODULE_0___default.a).then(function (dashletConfig) {
-            dashletConfig.postRender = function (control) {
+            var postRender = function postRender(control) {
               var searchTerm = control.childrenByPropertyId['searchTearm'];
               var recipe = control.childrenByPropertyId['recipe'];
               searchTerm.on('change', function () {
@@ -33976,9 +33977,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             };
 
             console.log('\n----dashlet config---\n', {
-              dashletConfig: JSON.stringify(dashletConfig)
+              dashletConfig: JSON.stringify(_objectSpread(_objectSpread({}, dashletConfig), {}, {
+                postRender: postRender
+              }))
             });
-            return openModal(dashletConfig);
+            return openModal(_objectSpread(_objectSpread({}, dashletConfig), {}, {
+              postRender: postRender
+            }));
           }).then(function (data) {
             return blockUI({
               title: 'Saving',
