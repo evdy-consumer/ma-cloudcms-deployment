@@ -32983,34 +32983,31 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                                     }
                                   })
                                 }).then(function (result) {
-                                  result.json().then(function (data) {
-                                    var _data$rows;
+                                  result.json();
+                                }).then(function (result) {
+                                  var _result$data, _result$data$rows, _result$data2, _result$data3, _result$data3$rows;
 
-                                    console.log('-------fetch result--------', {
-                                      data: data
-                                    });
-
-                                    if (data !== null && data !== void 0 && (_data$rows = data.rows) !== null && _data$rows !== void 0 && _data$rows.length) {
-                                      var recipeSelectorDataSource = data.rows.reduce(function (ds, _ref) {
-                                        var title = _ref.title,
-                                            recipeId = _ref._doc;
-                                        ds[title] = JSON.stringify({
-                                          title: title,
-                                          recipeId: recipeId
-                                        });
-                                        '-------datasource result--------', {
-                                          ds: ds
-                                        };
-                                        return ds;
-                                      }, {});
-                                      cb(recipeSelectorDataSource);
-                                    } else {
-                                      cb([]);
-                                    }
+                                  console.log('--------fetch result', {
+                                    result_length: result === null || result === void 0 ? void 0 : (_result$data = result.data) === null || _result$data === void 0 ? void 0 : (_result$data$rows = _result$data.rows) === null || _result$data$rows === void 0 ? void 0 : _result$data$rows.length,
+                                    result: result,
+                                    rows: result === null || result === void 0 ? void 0 : (_result$data2 = result.data) === null || _result$data2 === void 0 ? void 0 : _result$data2.rows
                                   });
+
+                                  if (result !== null && result !== void 0 && (_result$data3 = result.data) !== null && _result$data3 !== void 0 && (_result$data3$rows = _result$data3.rows) !== null && _result$data3$rows !== void 0 && _result$data3$rows.length) {
+                                    var recipeSelectorDataSource = data.rows.reduce(function (ds, _ref) {
+                                      var title = _ref.title,
+                                          recipeId = _ref._doc;
+                                      ds[title] = JSON.stringify({
+                                        title: title,
+                                        recipeId: recipeId
+                                      });
+                                    }, {});
+                                    cb(recipeSelectorDataSource);
+                                  } else {
+                                    cb([]);
+                                  }
                                 })["catch"](function (error) {
                                   alert('There was an error while requesting Recipes from CloudCMS', error.message);
-                                  cb([]);
                                 });
                               }
                             }
