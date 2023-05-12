@@ -32952,6 +32952,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                             },
                             recipe: {
                               type: 'select',
+                              hideNone: false,
+                              useDataSourceAsEnum: false,
+                              validate: false,
                               dataSource: function dataSource(cb) {
                                 var searchTerm = this.observable('/searchTerm').get();
                                 fetch('https://api-recipes.everydayhealth.com/cms/v1/proxy/search?limit=10', {
