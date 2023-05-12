@@ -33005,10 +33005,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                                         title: title,
                                         recipeId: recipeId
                                       });
-                                      var value = JSON.stringify({
-                                        title: title,
-                                        recipeId: recipeId
-                                      });
+                                      var value = JSON.stringify([title, recipeId]);
                                       return {
                                         value: value,
                                         text: title
