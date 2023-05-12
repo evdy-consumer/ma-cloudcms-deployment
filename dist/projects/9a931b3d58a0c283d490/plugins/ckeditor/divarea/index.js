@@ -25056,11 +25056,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
                       $div.off('hidden.bs.modal');
                       $div.on('hidden.bs.modal', function () {
-                        console.log('-----checking postrender in bowser method alpaca modal', {
-                          child: [control.childrenByPropertyId['searchTerm'], control.childrenByPropertyId['recipe'], control.children],
-                          control: control,
-                          valuePassed: control.getValue()
-                        });
                         resolve(control.getValue());
                       });
                       $div.modal('hide');

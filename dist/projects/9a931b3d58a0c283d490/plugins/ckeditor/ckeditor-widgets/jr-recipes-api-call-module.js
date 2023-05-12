@@ -26661,11 +26661,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
                       $div.off('hidden.bs.modal');
                       $div.on('hidden.bs.modal', function () {
-                        console.log('-----checking postrender in bowser method alpaca modal', {
-                          child: [control.childrenByPropertyId['searchTerm'], control.childrenByPropertyId['recipe'], control.children],
-                          control: control,
-                          valuePassed: control.getValue()
-                        });
                         resolve(control.getValue());
                       });
                       $div.modal('hide');
@@ -33005,14 +33000,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                                   if (result !== null && result !== void 0 && (_result$data3 = result.data) !== null && _result$data3 !== void 0 && (_result$data3$rows = _result$data3.rows) !== null && _result$data3$rows !== void 0 && _result$data3$rows.length) {
                                     var recipeSelectorDataSource = result.data.rows.map(function (_ref) {
                                       var title = _ref.title,
-                                          recipeId = _ref._doc;
-                                      console.log('inside reduce', {
-                                        title: title,
-                                        recipeId: recipeId
-                                      });
-                                      var value = JSON.stringify([title, recipeId]);
+                                          _doc = _ref._doc;
                                       return {
-                                        value: value,
+                                        value: "".concat(title, "_____").concat(_doc),
                                         text: title
                                       };
                                     });
