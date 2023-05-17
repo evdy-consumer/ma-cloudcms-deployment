@@ -32906,13 +32906,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                   must: [{
                     query_string: {
                       fields: ['title'],
-                      query: "".concat(searchTerm),
+                      query: "".concat(searchTerm || ''),
                       fuzziness: 2,
                       default_operator: 'AND'
                     }
                   }, {
                     match: {
-                      _type: contentType
+                      _type: contentType || ''
                     }
                   }]
                 }
@@ -32936,9 +32936,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             _classCallCheck(this, CloudCmsApiProxySelectionDashletConfigHelper);
 
             _this = _super.call(this, options);
+            console.log('constructor', {
+              options: options
+            });
             _this.modalTitle = options.modalTitle || 'CloudCMS Api Proxy Selector';
             _this.apiUrl = options.apiUrl;
-            _this.contentType = options.contentType || '';
+            _this.contentType = options.contentType;
             return _this;
           }
 
@@ -32970,6 +32973,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                   while (1) {
                     switch (_context.prev = _context.next) {
                       case 0:
+                        console.log('CloudCmsApiProxySelectionDashletConfigHelper', {
+                          modalTitle: this.modalTitle,
+                          apiUrl: this.apiUrl,
+                          contentType: this.contentType
+                        });
                         cfg = {
                           fields: {
                             searchTerm: {
@@ -32978,8 +32986,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                               helper: 'Enter a search term and press Enter'
                             },
                             result: {
-                              type: 'select',
-                              hideNone: false,
+                              type: 'radio',
+                              removeDefaultNone: true,
                               useDataSourceAsEnum: false,
                               validate: false,
                               dataSource: function dataSource(cb) {
@@ -32996,7 +33004,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                                   var _result$data, _result$data$rows;
 
                                   if (result !== null && result !== void 0 && (_result$data = result.data) !== null && _result$data !== void 0 && (_result$data$rows = _result$data.rows) !== null && _result$data$rows !== void 0 && _result$data$rows.length) {
-                                    var recipeSelectorDataSource = result.data.rows.map(function (_ref) {
+                                    var resultSelectorDataSource = result.data.rows.map(function (_ref) {
                                       var title = _ref.title,
                                           _doc = _ref._doc;
                                       return {
@@ -33004,7 +33012,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                                         text: title
                                       };
                                     });
-                                    cb(recipeSelectorDataSource);
+                                    cb(resultSelectorDataSource);
                                   } else {
                                     cb([]);
                                   }
@@ -33018,12 +33026,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                         };
                         return _context.abrupt("return", cfg);
 
-                      case 2:
+                      case 3:
                       case "end":
                         return _context.stop();
                     }
                   }
-                }, _callee);
+                }, _callee, this);
               }));
 
               function getFormOptions() {
@@ -34006,6 +34014,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             return data;
           };
 
+          console.log('openApiSearchSelectorModal', {
+            modalTitle: modalTitle,
+            apiUrl: apiUrl,
+            contentType: contentType
+          });
           var dashletConfigHelper = new _dashlet_config__WEBPACK_IMPORTED_MODULE_3__["CloudCmsApiProxySelectionDashletConfigHelper"]({
             branch: branch,
             modalTitle: modalTitle,
