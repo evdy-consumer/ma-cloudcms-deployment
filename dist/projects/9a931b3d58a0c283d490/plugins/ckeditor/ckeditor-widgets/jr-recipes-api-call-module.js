@@ -32968,11 +32968,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             key: "getFormOptions",
             value: function () {
               var _getFormOptions = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-                var cfg;
+                var self, cfg;
                 return regeneratorRuntime.wrap(function _callee$(_context) {
                   while (1) {
                     switch (_context.prev = _context.next) {
                       case 0:
+                        self = this;
                         console.log('CloudCmsApiProxySelectionDashletConfigHelper', {
                           modalTitle: this.modalTitle,
                           apiUrl: this.apiUrl,
@@ -32991,13 +32992,18 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                               useDataSourceAsEnum: false,
                               validate: false,
                               dataSource: function dataSource(cb) {
-                                var searchTerm = this.observable('/searchTerm').get();
-                                fetch(this.apiUrl, {
+                                console.log('fetch', {
+                                  modalTitle: self.modalTitle,
+                                  apiUrl: self.apiUrl,
+                                  contentType: self.contentType
+                                });
+                                var searchTerm = self.observable('/searchTerm').get();
+                                fetch(self.apiUrl, {
                                   method: 'POST',
                                   headers: {
                                     'Content-Type': 'application/json'
                                   },
-                                  body: bodyGenerator(searchTerm, this.contentType)
+                                  body: bodyGenerator(searchTerm, self.contentType)
                                 }).then(function (result) {
                                   return result.json();
                                 }).then(function (result) {
@@ -33026,7 +33032,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                         };
                         return _context.abrupt("return", cfg);
 
-                      case 3:
+                      case 4:
                       case "end":
                         return _context.stop();
                     }
