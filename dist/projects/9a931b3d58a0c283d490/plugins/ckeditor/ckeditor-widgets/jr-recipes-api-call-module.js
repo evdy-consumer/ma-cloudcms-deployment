@@ -26646,11 +26646,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                 options: options,
                 data: data,
                 postRender: function postRender(control) {
-                  console.log('-----checking postrender in bowser method alpaca modal', {
-                    postRenderCallback: postRenderCallback,
-                    child: [control.childrenByPropertyId['searchTerm'], control.childrenByPropertyId['recipe'], control.children],
-                    control: control
-                  });
                   postRenderCallback(control);
                   $done.on('click', function () {
                     control.refreshValidationState(true, function () {
@@ -32683,7 +32678,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./src/helpers/dashlet-config/index.js ***!
         \*********************************************/
 
-      /*! exports provided: SelectWidgetDashletConfigHelper, SelectRecipeDashletConfigHelper, EditWidgetDashletConfigHelper */
+      /*! exports provided: SelectWidgetDashletConfigHelper, CloudCmsApiProxySelectionDashletConfigHelper, EditWidgetDashletConfigHelper */
 
       /***/
       function srcHelpersDashletConfigIndexJs(module, __webpack_exports__, __webpack_require__) {
@@ -32705,14 +32700,14 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         /* harmony import */
 
 
-        var _select_recipe__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-        /*! ./select-recipe */
-        "./src/helpers/dashlet-config/select-recipe.js");
+        var _select_cloudcms_api_proxy__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+        /*! ./select-cloudcms-api-proxy */
+        "./src/helpers/dashlet-config/select-cloudcms-api-proxy.js");
         /* harmony reexport (safe) */
 
 
-        __webpack_require__.d(__webpack_exports__, "SelectRecipeDashletConfigHelper", function () {
-          return _select_recipe__WEBPACK_IMPORTED_MODULE_1__["default"];
+        __webpack_require__.d(__webpack_exports__, "CloudCmsApiProxySelectionDashletConfigHelper", function () {
+          return _select_cloudcms_api_proxy__WEBPACK_IMPORTED_MODULE_1__["default"];
         });
         /* harmony import */
 
@@ -32731,15 +32726,15 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
       },
 
       /***/
-      "./src/helpers/dashlet-config/select-recipe.js":
-      /*!*****************************************************!*\
-        !*** ./src/helpers/dashlet-config/select-recipe.js ***!
-        \*****************************************************/
+      "./src/helpers/dashlet-config/select-cloudcms-api-proxy.js":
+      /*!*****************************************************************!*\
+        !*** ./src/helpers/dashlet-config/select-cloudcms-api-proxy.js ***!
+        \*****************************************************************/
 
       /*! exports provided: default */
 
       /***/
-      function srcHelpersDashletConfigSelectRecipeJs(module, __webpack_exports__, __webpack_require__) {
+      function srcHelpersDashletConfigSelectCloudcmsApiProxyJs(module, __webpack_exports__, __webpack_require__) {
         "use strict";
 
         __webpack_require__.r(__webpack_exports__);
@@ -32903,34 +32898,66 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
           return _getPrototypeOf(o);
         }
 
-        var RecipeSelectionDashletConfigHelper = /*#__PURE__*/function (_BaseDashletConfigHel) {
-          _inherits(RecipeSelectionDashletConfigHelper, _BaseDashletConfigHel);
+        var bodyGenerator = function bodyGenerator(searchTerm, contentType) {
+          return JSON.stringify({
+            search: {
+              query: {
+                bool: {
+                  must: [{
+                    query_string: {
+                      fields: ['title'],
+                      query: "".concat(searchTerm),
+                      fuzziness: 2,
+                      default_operator: 'AND'
+                    }
+                  }, {
+                    match: {
+                      _type: contentType
+                    }
+                  }]
+                }
+              }
+            },
+            _fields: {
+              title: 1,
+              _doc: 1
+            }
+          });
+        };
 
-          var _super = _createSuper(RecipeSelectionDashletConfigHelper);
+        var CloudCmsApiProxySelectionDashletConfigHelper = /*#__PURE__*/function (_BaseDashletConfigHel) {
+          _inherits(CloudCmsApiProxySelectionDashletConfigHelper, _BaseDashletConfigHel);
 
-          function RecipeSelectionDashletConfigHelper(options) {
-            _classCallCheck(this, RecipeSelectionDashletConfigHelper);
+          var _super = _createSuper(CloudCmsApiProxySelectionDashletConfigHelper);
 
-            return _super.call(this, options);
+          function CloudCmsApiProxySelectionDashletConfigHelper(options) {
+            var _this;
+
+            _classCallCheck(this, CloudCmsApiProxySelectionDashletConfigHelper);
+
+            _this = _super.call(this, options);
+            _this.modalTitle = options.modalTitle || 'CloudCMS Api Proxy Selector';
+            _this.apiUrl = options.apiUrl;
+            _this.contentType = options.contentType || '';
+            return _this;
           }
 
-          _createClass(RecipeSelectionDashletConfigHelper, [{
+          _createClass(CloudCmsApiProxySelectionDashletConfigHelper, [{
             key: "getSchema",
             value: function getSchema() {
               var schema = {
-                title: 'Recipe Selector',
+                title: this.modalTitle,
                 type: 'object',
-                required: ['recipe'],
+                required: ['result'],
                 properties: {
                   searchTerm: {
                     type: 'string'
                   },
-                  recipe: {
-                    title: 'Recipe Results',
+                  result: {
+                    title: 'Api Results',
                     type: 'string'
                   }
-                },
-                dependencies: {}
+                }
               };
               return schema;
             }
@@ -32948,56 +32975,27 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                             searchTerm: {
                               label: 'Search',
                               type: 'text',
-                              helper: 'Enter a search term for getting recipes and press Enter'
+                              helper: 'Enter a search term and press Enter'
                             },
-                            recipe: {
+                            result: {
                               type: 'select',
                               hideNone: false,
                               useDataSourceAsEnum: false,
                               validate: false,
                               dataSource: function dataSource(cb) {
                                 var searchTerm = this.observable('/searchTerm').get();
-                                fetch('https://api-recipes.everydayhealth.com/cms/v1/proxy/search?limit=10', {
+                                fetch(this.apiUrl, {
                                   method: 'POST',
                                   headers: {
                                     'Content-Type': 'application/json'
                                   },
-                                  body: JSON.stringify({
-                                    search: {
-                                      query: {
-                                        bool: {
-                                          must: [{
-                                            query_string: {
-                                              fields: ['title'],
-                                              query: "".concat(searchTerm),
-                                              fuzziness: 2,
-                                              default_operator: 'AND'
-                                            }
-                                          }, {
-                                            match: {
-                                              _type: 'ehmodels:recipe'
-                                            }
-                                          }]
-                                        }
-                                      }
-                                    },
-                                    _fields: {
-                                      title: 1,
-                                      _doc: 1
-                                    }
-                                  })
+                                  body: bodyGenerator(searchTerm, this.contentType)
                                 }).then(function (result) {
                                   return result.json();
                                 }).then(function (result) {
-                                  var _result$data, _result$data$rows, _result$data2, _result$data3, _result$data3$rows;
+                                  var _result$data, _result$data$rows;
 
-                                  console.log('--------fetch result', {
-                                    result_length: result === null || result === void 0 ? void 0 : (_result$data = result.data) === null || _result$data === void 0 ? void 0 : (_result$data$rows = _result$data.rows) === null || _result$data$rows === void 0 ? void 0 : _result$data$rows.length,
-                                    result: result,
-                                    rows: result === null || result === void 0 ? void 0 : (_result$data2 = result.data) === null || _result$data2 === void 0 ? void 0 : _result$data2.rows
-                                  });
-
-                                  if (result !== null && result !== void 0 && (_result$data3 = result.data) !== null && _result$data3 !== void 0 && (_result$data3$rows = _result$data3.rows) !== null && _result$data3$rows !== void 0 && _result$data3$rows.length) {
+                                  if (result !== null && result !== void 0 && (_result$data = result.data) !== null && _result$data !== void 0 && (_result$data$rows = _result$data.rows) !== null && _result$data$rows !== void 0 && _result$data$rows.length) {
                                     var recipeSelectorDataSource = result.data.rows.map(function (_ref) {
                                       var title = _ref.title,
                                           _doc = _ref._doc;
@@ -33006,16 +33004,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                                         text: title
                                       };
                                     });
-                                    console.log('--------reduce result', {
-                                      recipeSelectorDataSource: recipeSelectorDataSource
-                                    });
                                     cb(recipeSelectorDataSource);
                                   } else {
                                     cb([]);
                                   }
                                 })["catch"](function (error) {
-                                  console.log(error);
-                                  alert('There was an error while requesting Recipes from CloudCMS', error.message);
+                                  console.error(error);
+                                  alert('There was an error while requesting Data from CloudCMS Api Proxy', error.message);
                                 });
                               }
                             }
@@ -33039,12 +33034,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             }()
           }]);
 
-          return RecipeSelectionDashletConfigHelper;
+          return CloudCmsApiProxySelectionDashletConfigHelper;
         }(_base__WEBPACK_IMPORTED_MODULE_0__["default"]);
         /* harmony default export */
 
 
-        __webpack_exports__["default"] = RecipeSelectionDashletConfigHelper;
+        __webpack_exports__["default"] = CloudCmsApiProxySelectionDashletConfigHelper;
         /***/
       },
 
@@ -33765,7 +33760,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./src/helpers/modal.js ***!
         \******************************/
 
-      /*! exports provided: openModal, openWidgetSelectionModal, openEditWidgetModal, openRecipeSelectorModal */
+      /*! exports provided: openModal, openWidgetSelectionModal, openEditWidgetModal, openApiSearchSelectorModal */
 
       /***/
       function srcHelpersModalJs(module, __webpack_exports__, __webpack_require__) {
@@ -33793,8 +33788,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         /* harmony export (binding) */
 
 
-        __webpack_require__.d(__webpack_exports__, "openRecipeSelectorModal", function () {
-          return openRecipeSelectorModal;
+        __webpack_require__.d(__webpack_exports__, "openApiSearchSelectorModal", function () {
+          return openApiSearchSelectorModal;
         });
         /* harmony import */
 
@@ -34004,42 +33999,28 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
           })["catch"](console.error);
         }
 
-        function openRecipeSelectorModal() {
+        function openApiSearchSelectorModal(modalTitle, apiUrl, contentType) {
           var branch = getBranch();
 
           var onSubmit = function onSubmit(data) {
-            console.log('\n----data selected---\n', {
-              data: JSON.stringify(data)
-            });
             return data;
           };
 
-          var dashletConfigHelper = new _dashlet_config__WEBPACK_IMPORTED_MODULE_3__["SelectRecipeDashletConfigHelper"]({
-            branch: branch
+          var dashletConfigHelper = new _dashlet_config__WEBPACK_IMPORTED_MODULE_3__["CloudCmsApiProxySelectionDashletConfigHelper"]({
+            branch: branch,
+            modalTitle: modalTitle,
+            apiUrl: apiUrl,
+            contentType: contentType
           });
           return Object(_dashlet__WEBPACK_IMPORTED_MODULE_2__["getDashletConfig"])(dashletConfigHelper, ratchet_web__WEBPACK_IMPORTED_MODULE_0___default.a).then(function (dashletConfig) {
             var postRenderCallback = function postRenderCallback(control) {
               var searchTerm = control.childrenByPropertyId['searchTerm'];
-              var recipe = control.childrenByPropertyId['recipe'];
-              console.log('-----this is the postrender in modal definition in widgets---------', {
-                control: control,
-                searchTerm: searchTerm,
-                recipe: recipe
-              });
+              var recipe = control.childrenByPropertyId['result'];
               searchTerm.on('change', function () {
-                console.log('----event---', {
-                  searchTerm: searchTerm,
-                  recipe: recipe
-                });
                 recipe.refresh();
               });
             };
 
-            console.log('\n----dashlet config---\n', {
-              dashletConfig: _objectSpread(_objectSpread({}, dashletConfig), {}, {
-                postRenderCallback: postRenderCallback
-              })
-            });
             return openModal(_objectSpread(_objectSpread({}, dashletConfig), {}, {
               postRenderCallback: postRenderCallback
             }));
@@ -34063,7 +34044,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./src/index.js ***!
         \**********************/
 
-      /*! exports provided: constants, getWidgetData, getDashletConfig, getWidgetContentTypes, openModal, openWidgetSelectionModal, openEditWidgetModal, openRecipeSelectorModal */
+      /*! exports provided: constants, getWidgetData, getDashletConfig, getWidgetContentTypes, openModal, openWidgetSelectionModal, openEditWidgetModal, openApiSearchSelectorModal */
 
       /***/
       function srcIndexJs(module, __webpack_exports__, __webpack_require__) {
@@ -34139,8 +34120,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         /* harmony reexport (safe) */
 
 
-        __webpack_require__.d(__webpack_exports__, "openRecipeSelectorModal", function () {
-          return _helpers_modal__WEBPACK_IMPORTED_MODULE_3__["openRecipeSelectorModal"];
+        __webpack_require__.d(__webpack_exports__, "openApiSearchSelectorModal", function () {
+          return _helpers_modal__WEBPACK_IMPORTED_MODULE_3__["openApiSearchSelectorModal"];
         });
         /***/
 
