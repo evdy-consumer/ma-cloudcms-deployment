@@ -34004,14 +34004,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
           var branch = getBranch();
 
           var onSubmit = function onSubmit(data) {
+            console.log('openApiSearchSelectorModal', {
+              data: data
+            });
             return data;
           };
 
-          console.log('openApiSearchSelectorModal', {
-            modalTitle: modalTitle,
-            apiUrl: apiUrl,
-            contentType: contentType
-          });
           var dashletConfigHelper = new _dashlet_config__WEBPACK_IMPORTED_MODULE_3__["CloudCmsApiProxySelectionDashletConfigHelper"]({
             branch: branch,
             modalTitle: modalTitle,
