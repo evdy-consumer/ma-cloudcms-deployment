@@ -32936,9 +32936,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             _classCallCheck(this, CloudCmsApiProxySelectionDashletConfigHelper);
 
             _this = _super.call(this, options);
-            console.log('constructor', {
-              options: options
-            });
             _this.modalTitle = options.modalTitle || 'CloudCMS Api Proxy Selector';
             _this.apiUrl = options.apiUrl;
             _this.contentType = options.contentType;
@@ -32974,11 +32971,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                     switch (_context.prev = _context.next) {
                       case 0:
                         self = this;
-                        console.log('CloudCmsApiProxySelectionDashletConfigHelper', {
-                          modalTitle: this.modalTitle,
-                          apiUrl: this.apiUrl,
-                          contentType: this.contentType
-                        });
                         cfg = {
                           fields: {
                             searchTerm: {
@@ -32992,12 +32984,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                               useDataSourceAsEnum: false,
                               validate: false,
                               dataSource: function dataSource(cb) {
-                                console.log('fetch', {
-                                  modalTitle: self.modalTitle,
-                                  apiUrl: self.apiUrl,
-                                  contentType: self.contentType
-                                });
-                                var searchTerm = self.observable('/searchTerm').get();
+                                var searchTerm = this.observable('/searchTerm').get();
                                 fetch(self.apiUrl, {
                                   method: 'POST',
                                   headers: {
@@ -33032,7 +33019,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                         };
                         return _context.abrupt("return", cfg);
 
-                      case 4:
+                      case 3:
                       case "end":
                         return _context.stop();
                     }
