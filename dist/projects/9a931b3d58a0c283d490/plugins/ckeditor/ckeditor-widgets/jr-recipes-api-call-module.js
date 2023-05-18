@@ -34004,9 +34004,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
           var branch = getBranch();
 
           var onSubmit = function onSubmit(data) {
-            console.log('openApiSearchSelectorModal', {
-              data: data
-            });
             return data;
           };
 
