@@ -32898,33 +32898,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
           return _getPrototypeOf(o);
         }
 
-        var bodyGenerator = function bodyGenerator(searchTerm, contentType) {
-          return JSON.stringify({
-            search: {
-              query: {
-                bool: {
-                  must: [{
-                    query_string: {
-                      fields: ['title'],
-                      query: "".concat(searchTerm || ''),
-                      fuzziness: 2,
-                      default_operator: 'AND'
-                    }
-                  }, {
-                    match: {
-                      _type: contentType || ''
-                    }
-                  }]
-                }
-              }
-            },
-            _fields: {
-              title: 1,
-              _doc: 1
-            }
-          });
-        };
-
         var CloudCmsApiProxySelectionDashletConfigHelper = /*#__PURE__*/function (_BaseDashletConfigHel) {
           _inherits(CloudCmsApiProxySelectionDashletConfigHelper, _BaseDashletConfigHel);
 
@@ -32937,8 +32910,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
             _this = _super.call(this, options);
             _this.modalTitle = options.modalTitle || 'CloudCMS Api Proxy Selector';
-            _this.apiUrl = options.apiUrl;
-            _this.contentType = options.contentType;
             return _this;
           }
 
@@ -32953,9 +32924,14 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                   searchTerm: {
                     type: 'string'
                   },
+                  page: {
+                    type: 'string',
+                    "enum": [1]
+                  },
                   result: {
                     title: 'Api Results',
-                    type: 'string'
+                    type: 'string',
+                    "enum": []
                   }
                 }
               };
@@ -32965,12 +32941,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             key: "getFormOptions",
             value: function () {
               var _getFormOptions = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-                var self, cfg;
+                var cfg;
                 return regeneratorRuntime.wrap(function _callee$(_context) {
                   while (1) {
                     switch (_context.prev = _context.next) {
                       case 0:
-                        self = this;
                         cfg = {
                           fields: {
                             searchTerm: {
@@ -32978,53 +32953,27 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                               type: 'text',
                               helper: 'Enter a search term and press Enter'
                             },
+                            page: {
+                              type: 'select',
+                              emptySelectFirst: true,
+                              removeDefaultNone: true
+                            },
                             result: {
                               type: 'radio',
                               removeDefaultNone: true,
                               useDataSourceAsEnum: false,
-                              validate: false,
-                              dataSource: function dataSource(cb) {
-                                var searchTerm = this.observable('/searchTerm').get();
-                                fetch(self.apiUrl, {
-                                  method: 'POST',
-                                  headers: {
-                                    'Content-Type': 'application/json'
-                                  },
-                                  body: bodyGenerator(searchTerm, self.contentType)
-                                }).then(function (result) {
-                                  return result.json();
-                                }).then(function (result) {
-                                  var _result$data, _result$data$rows;
-
-                                  if (result !== null && result !== void 0 && (_result$data = result.data) !== null && _result$data !== void 0 && (_result$data$rows = _result$data.rows) !== null && _result$data$rows !== void 0 && _result$data$rows.length) {
-                                    var resultSelectorDataSource = result.data.rows.map(function (_ref) {
-                                      var title = _ref.title,
-                                          _doc = _ref._doc;
-                                      return {
-                                        value: "".concat(title, "_____").concat(_doc),
-                                        text: title
-                                      };
-                                    });
-                                    cb(resultSelectorDataSource);
-                                  } else {
-                                    cb([]);
-                                  }
-                                })["catch"](function (error) {
-                                  console.error(error);
-                                  alert('There was an error while requesting Data from CloudCMS Api Proxy', error.message);
-                                });
-                              }
+                              validate: false
                             }
                           }
                         };
                         return _context.abrupt("return", cfg);
 
-                      case 3:
+                      case 2:
                       case "end":
                         return _context.stop();
                     }
                   }
-                }, _callee, this);
+                }, _callee);
               }));
 
               function getFormOptions() {
@@ -33821,13 +33770,19 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         /* harmony import */
 
 
-        var _dashlet_config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+        var _recipe_api_proxy_search__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+        /*! ./recipe-api-proxy-search */
+        "./src/helpers/recipe-api-proxy-search.js");
+        /* harmony import */
+
+
+        var _dashlet_config__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
         /*! ./dashlet-config */
         "./src/helpers/dashlet-config/index.js");
         /* harmony import */
 
 
-        var _filter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+        var _filter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
         /*! ./filter */
         "./src/helpers/filter.js");
 
@@ -33909,7 +33864,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
           if (widgetContentTypes) {
             contentTypesPromise = Promise.resolve(widgetContentTypes);
           } else {
-            contentTypesPromise = Object(_filter__WEBPACK_IMPORTED_MODULE_4__["getWidgetContentTypes"])(widgetTypeQuery);
+            contentTypesPromise = Object(_filter__WEBPACK_IMPORTED_MODULE_5__["getWidgetContentTypes"])(widgetTypeQuery);
           }
 
           var branch = getBranch();
@@ -33947,7 +33902,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
           };
 
           return contentTypesPromise.then(function (widgetContentTypes) {
-            dashletConfigHelper = new _dashlet_config__WEBPACK_IMPORTED_MODULE_3__["SelectWidgetDashletConfigHelper"]({
+            dashletConfigHelper = new _dashlet_config__WEBPACK_IMPORTED_MODULE_4__["SelectWidgetDashletConfigHelper"]({
               widgetContentTypes: widgetContentTypes,
               branch: branch
             });
@@ -33982,7 +33937,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
           return Object(_evdy_consumer_cloudcms_common__WEBPACK_IMPORTED_MODULE_1__["readNode"])(id, branch).then(function (node) {
             var qname = node.getTypeQName();
-            var dashletConfigHelper = new _dashlet_config__WEBPACK_IMPORTED_MODULE_3__["EditWidgetDashletConfigHelper"]({
+            var dashletConfigHelper = new _dashlet_config__WEBPACK_IMPORTED_MODULE_4__["EditWidgetDashletConfigHelper"]({
               qname: qname,
               branch: branch
             });
@@ -34000,25 +33955,90 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
           })["catch"](console.error);
         }
 
-        function openApiSearchSelectorModal(modalTitle, apiUrl, contentType) {
+        function openApiSearchSelectorModal(modalTitle, apiUrl, contentType, size) {
           var branch = getBranch();
 
           var onSubmit = function onSubmit(data) {
             return data;
           };
 
-          var dashletConfigHelper = new _dashlet_config__WEBPACK_IMPORTED_MODULE_3__["CloudCmsApiProxySelectionDashletConfigHelper"]({
+          var dashletConfigHelper = new _dashlet_config__WEBPACK_IMPORTED_MODULE_4__["CloudCmsApiProxySelectionDashletConfigHelper"]({
             branch: branch,
-            modalTitle: modalTitle,
-            apiUrl: apiUrl,
-            contentType: contentType
+            modalTitle: modalTitle
           });
           return Object(_dashlet__WEBPACK_IMPORTED_MODULE_2__["getDashletConfig"])(dashletConfigHelper, ratchet_web__WEBPACK_IMPORTED_MODULE_0___default.a).then(function (dashletConfig) {
             var postRenderCallback = function postRenderCallback(control) {
               var searchTerm = control.childrenByPropertyId['searchTerm'];
-              var recipe = control.childrenByPropertyId['result'];
+              var recipes = control.childrenByPropertyId['result'];
+              var page = control.childrenByPropertyId['page'];
               searchTerm.on('change', function () {
-                recipe.refresh();
+                var searchTermValue = searchTerm.getValue();
+                Object(_recipe_api_proxy_search__WEBPACK_IMPORTED_MODULE_3__["fetchRecipes"])({
+                  apiUrl: apiUrl,
+                  contentType: contentType,
+                  size: size,
+                  searchTerm: searchTermValue,
+                  page: 1
+                }).then(function (result) {
+                  var _result$data, _result$data2, _result$data3;
+
+                  var pages = Math.ceil(+(result === null || result === void 0 ? void 0 : (_result$data = result.data) === null || _result$data === void 0 ? void 0 : _result$data.totalRows) / 10 || 1);
+                  var values = [];
+                  var labels = [];
+                  page.schema["enum"] = page.options.optionLabels = Array.from({
+                    length: pages
+                  }, function (value, index) {
+                    return index + 1;
+                  });
+                  page.options.helpers = ["of ".concat(pages, " pages"), "Total Recipe Results: ".concat(result === null || result === void 0 ? void 0 : (_result$data2 = result.data) === null || _result$data2 === void 0 ? void 0 : _result$data2.totalRows)];
+                  ((result === null || result === void 0 ? void 0 : (_result$data3 = result.data) === null || _result$data3 === void 0 ? void 0 : _result$data3.rows) || []).forEach(function (_ref2) {
+                    var title = _ref2.title,
+                        _doc = _ref2._doc;
+                    values.push("".concat(title, "_____").concat(_doc));
+                    labels.push(title);
+                  });
+                  recipes.schema["enum"] = values;
+                  recipes.options.optionLabels = labels;
+                })["catch"](function (error) {
+                  console.error(error);
+                  page.schema["enum"] = page.options.optionLabels = [1];
+                  recipes.schema["enum"] = recipes.options.optionLabels = [];
+                  alert('There was an error while requesting Data from CloudCMS Api Proxy', error.message);
+                })["finally"](function () {
+                  page.setValue(1);
+                  page.refresh();
+                  recipes.refresh();
+                });
+              });
+              page.on('change', function () {
+                var searchTermValue = searchTerm.getValue();
+                var pageValue = page.getValue();
+                Object(_recipe_api_proxy_search__WEBPACK_IMPORTED_MODULE_3__["fetchRecipes"])({
+                  apiUrl: apiUrl,
+                  contentType: contentType,
+                  size: size,
+                  searchTerm: searchTermValue,
+                  page: pageValue
+                }).then(function (result) {
+                  var _result$data4;
+
+                  var values = [];
+                  var labels = [];
+                  ((result === null || result === void 0 ? void 0 : (_result$data4 = result.data) === null || _result$data4 === void 0 ? void 0 : _result$data4.rows) || []).forEach(function (_ref3) {
+                    var title = _ref3.title,
+                        _doc = _ref3._doc;
+                    values.push("".concat(title, "_____").concat(_doc));
+                    labels.push(title);
+                  });
+                  recipes.schema["enum"] = values;
+                  recipes.options.optionLabels = labels;
+                })["catch"](function (error) {
+                  console.error(error);
+                  recipes.schema["enum"] = recipes.options.optionLabels = [];
+                  alert('There was an error while requesting Data from CloudCMS Api Proxy', error.message);
+                })["finally"](function () {
+                  recipes.refresh();
+                });
               });
             };
 
@@ -34035,6 +34055,71 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             });
           })["catch"](console.error);
         }
+        /***/
+
+      },
+
+      /***/
+      "./src/helpers/recipe-api-proxy-search.js":
+      /*!************************************************!*\
+        !*** ./src/helpers/recipe-api-proxy-search.js ***!
+        \************************************************/
+
+      /*! exports provided: fetchRecipes */
+
+      /***/
+      function srcHelpersRecipeApiProxySearchJs(module, __webpack_exports__, __webpack_require__) {
+        "use strict";
+
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony export (binding) */
+
+
+        __webpack_require__.d(__webpack_exports__, "fetchRecipes", function () {
+          return fetchRecipes;
+        });
+
+        var fetchRecipes = function fetchRecipes(_ref) {
+          var apiUrl = _ref.apiUrl,
+              contentType = _ref.contentType,
+              size = _ref.size,
+              _ref$searchTerm = _ref.searchTerm,
+              searchTerm = _ref$searchTerm === void 0 ? '' : _ref$searchTerm,
+              _ref$page = _ref.page,
+              page = _ref$page === void 0 ? 1 : _ref$page;
+          return fetch("".concat(apiUrl, "?limit=").concat(size, "&skip=").concat((page - 1) * size), {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              search: {
+                query: {
+                  bool: {
+                    must: [{
+                      query_string: {
+                        fields: ['title'],
+                        query: "".concat(searchTerm),
+                        fuzziness: 2,
+                        default_operator: 'AND'
+                      }
+                    }, {
+                      match: {
+                        _type: contentType
+                      }
+                    }]
+                  }
+                }
+              },
+              _fields: {
+                title: 1,
+                _doc: 1
+              }
+            })
+          }).then(function (result) {
+            return result.json();
+          });
+        };
         /***/
 
       },
