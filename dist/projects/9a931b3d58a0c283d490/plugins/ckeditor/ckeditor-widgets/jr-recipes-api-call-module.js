@@ -34106,7 +34106,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                         fields: ['title'],
                         query: "".concat(searchTerm.split(' ').map(function (term) {
                           return "".concat(term, "~2");
-                        }).joint(' ')),
+                        }).join(' ')),
                         fuzziness: 2,
                         default_operator: 'AND'
                       }
