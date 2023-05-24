@@ -34092,7 +34092,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
               searchTerm = _ref$searchTerm === void 0 ? '' : _ref$searchTerm,
               _ref$page = _ref.page,
               page = _ref$page === void 0 ? 1 : _ref$page;
-          return fetch("".concat(apiUrl, "?limit=").concat(size, "&skip=").concat((page - 1) * size), {
+          return fetch("".concat(apiUrl, "?limit=").concat(size, "&skip=").concat((page - 1) * size, "&sort=").concat(encodeURIComponent('{title:1}')), {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -34104,7 +34104,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                     must: [{
                       query_string: {
                         fields: ['title'],
-                        query: "".concat(searchTerm),
+                        query: "".concat(searchTerm.split(' ').map(function (term) {
+                          return "".concat(term, "~2");
+                        }).joint(' ')),
                         fuzziness: 2,
                         default_operator: 'AND'
                       }
