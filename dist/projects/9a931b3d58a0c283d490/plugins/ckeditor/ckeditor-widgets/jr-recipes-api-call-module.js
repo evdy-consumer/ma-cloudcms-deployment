@@ -33987,7 +33987,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                 }).then(function (result) {
                   var _result$data, _result$data2, _result$data3;
 
-                  var pages = Math.ceil(+(result === null || result === void 0 ? void 0 : (_result$data = result.data) === null || _result$data === void 0 ? void 0 : _result$data.totalRows) / 10 || 1);
+                  var pages = Math.ceil(+(result === null || result === void 0 ? void 0 : (_result$data = result.data) === null || _result$data === void 0 ? void 0 : _result$data.totalRows) / size || 1);
                   var values = [];
                   var labels = [];
                   page.schema["enum"] = page.options.optionLabels = Array.from({
