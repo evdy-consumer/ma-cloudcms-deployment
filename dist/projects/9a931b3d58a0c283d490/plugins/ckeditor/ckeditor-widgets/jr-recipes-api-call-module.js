@@ -32929,7 +32929,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                     "enum": [1]
                   },
                   result: {
-                    title: 'Api Results',
+                    title: 'Results',
                     type: 'string',
                     "enum": []
                   }
@@ -32954,15 +32954,20 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                               helper: 'Enter a search term and press Enter'
                             },
                             page: {
+                              label: 'Page',
                               type: 'select',
                               emptySelectFirst: true,
-                              removeDefaultNone: true
+                              removeDefaultNone: true,
+                              useDataSourceAsEnum: false,
+                              validate: false,
+                              hideInitValidationError: true
                             },
                             result: {
                               type: 'radio',
                               removeDefaultNone: true,
                               useDataSourceAsEnum: false,
-                              validate: false
+                              validate: false,
+                              hideInitValidationError: true
                             }
                           }
                         };
