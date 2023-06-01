@@ -25019,9 +25019,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                 schema = config.schema,
                 options = config.options,
                 data = config.data,
-                observableHolder = config.observableHolder,
-                _config$postRenderCal = config.postRenderCallback,
-                postRenderCallback = _config$postRenderCal === void 0 ? function () {} : _config$postRenderCal;
+                observableHolder = config.observableHolder;
 
             if (!title) {
               reject(new Error('Missing title'));
@@ -25041,7 +25039,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                 options: options,
                 data: data,
                 postRender: function postRender(control) {
-                  postRenderCallback(control);
                   $done.on('click', function () {
                     control.refreshValidationState(true, function () {
                       if (!control.isValid(true)) {
