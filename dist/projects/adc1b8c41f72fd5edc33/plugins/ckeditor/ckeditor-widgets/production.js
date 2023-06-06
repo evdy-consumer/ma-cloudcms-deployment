@@ -29526,6 +29526,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { "@babel/helpers - type
           "./latest-feed/index.js": "./src/widgets/latest-feed/index.js",
           "./newsletter/index.js": "./src/widgets/newsletter/index.js",
           "./price/index.js": "./src/widgets/price/index.js",
+          "./recipe/index.js": "./src/widgets/recipe/index.js",
           "./section-blocks/index.js": "./src/widgets/section-blocks/index.js",
           "./sidebar-divider/index.js": "./src/widgets/sidebar-divider/index.js",
           "./testimonial/index.js": "./src/widgets/testimonial/index.js",
@@ -31482,6 +31483,118 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { "@babel/helpers - type
         }
         /***/
 
+      },
+
+      /***/
+      "./src/widgets/recipe/index.js":
+      /*!*************************************!*\
+        !*** ./src/widgets/recipe/index.js ***!
+        \*************************************/
+
+      /*! exports provided: qname, template, allowedContent, mapData */
+
+      /***/
+      function srcWidgetsRecipeIndexJs(module, __webpack_exports__, __webpack_require__) {
+        "use strict";
+
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony export (binding) */
+
+
+        __webpack_require__.d(__webpack_exports__, "qname", function () {
+          return qname;
+        });
+        /* harmony export (binding) */
+
+
+        __webpack_require__.d(__webpack_exports__, "allowedContent", function () {
+          return allowedContent;
+        });
+        /* harmony export (binding) */
+
+
+        __webpack_require__.d(__webpack_exports__, "mapData", function () {
+          return mapData;
+        });
+        /* harmony import */
+
+
+        var _template_hbs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+        /*! ./template.hbs */
+        "./src/widgets/recipe/template.hbs");
+        /* harmony import */
+
+
+        var _template_hbs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_template_hbs__WEBPACK_IMPORTED_MODULE_0__);
+        /* harmony reexport (default from non-harmony) */
+
+
+        __webpack_require__.d(__webpack_exports__, "template", function () {
+          return _template_hbs__WEBPACK_IMPORTED_MODULE_0___default.a;
+        });
+
+        var qname = 'ehwidgets:recipe';
+        var allowedContent = 'span';
+
+        function mapData(data) {
+          var title = data.title;
+          return {
+            title: title
+          };
+        }
+        /***/
+
+      },
+
+      /***/
+      "./src/widgets/recipe/template.hbs":
+      /*!*****************************************!*\
+        !*** ./src/widgets/recipe/template.hbs ***!
+        \*****************************************/
+
+      /*! no static exports found */
+
+      /***/
+      function srcWidgetsRecipeTemplateHbs(module, exports, __webpack_require__) {
+        var Handlebars = __webpack_require__(
+        /*! ../../../../../node_modules/handlebars/runtime.js */
+        "../../node_modules/handlebars/runtime.js");
+
+        function __default(obj) {
+          return obj && (obj.__esModule ? obj["default"] : obj);
+        }
+
+        module.exports = (Handlebars["default"] || Handlebars).template({
+          "compiler": [8, ">= 4.3.0"],
+          "main": function main(container, depth0, helpers, partials, data) {
+            var helper,
+                lookupProperty = container.lookupProperty || function (parent, propertyName) {
+              if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+                return parent[propertyName];
+              }
+
+              return undefined;
+            };
+
+            return "<span>" + container.escapeExpression((helper = (helper = lookupProperty(helpers, "title") || (depth0 != null ? lookupProperty(depth0, "title") : depth0)) != null ? helper : container.hooks.helperMissing, typeof helper === "function" ? helper.call(depth0 != null ? depth0 : container.nullContext || {}, {
+              "name": "title",
+              "hash": {},
+              "data": data,
+              "loc": {
+                "start": {
+                  "line": 1,
+                  "column": 6
+                },
+                "end": {
+                  "line": 1,
+                  "column": 15
+                }
+              }
+            }) : helper)) + "</span>";
+          },
+          "useData": true
+        });
+        /***/
       },
 
       /***/
