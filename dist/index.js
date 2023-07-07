@@ -147,7 +147,7 @@ function getEnvFromBranch(branch) {
     return 'prs';
   }
 
-  if (title.startsWith('STAGING: ')) {
+  if (title.startsWith('STAGING: ') || title.startsWith('STAGING - ')) {
     return 'staging';
   }
 
