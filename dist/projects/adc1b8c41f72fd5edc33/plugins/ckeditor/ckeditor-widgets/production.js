@@ -26624,7 +26624,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                 schema = config.schema,
                 options = config.options,
                 data = config.data,
-                observableHolder = config.observableHolder;
+                observableHolder = config.observableHolder,
+                _config$postRenderCal = config.postRenderCallback,
+                postRenderCallback = _config$postRenderCal === void 0 ? function () {} : _config$postRenderCal;
 
             if (!title) {
               reject(new Error('Missing title'));
@@ -26644,6 +26646,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                 options: options,
                 data: data,
                 postRender: function postRender(control) {
+                  postRenderCallback(control);
                   $done.on('click', function () {
                     control.refreshValidationState(true, function () {
                       if (!control.isValid(true)) {
@@ -29524,14 +29527,17 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { "@babel/helpers - type
           "./inline-recirc-cards/index.js": "./src/widgets/inline-recirc-cards/index.js",
           "./inline-tags/index.js": "./src/widgets/inline-tags/index.js",
           "./latest-feed/index.js": "./src/widgets/latest-feed/index.js",
+          "./meal-plan/index.js": "./src/widgets/meal-plan/index.js",
           "./newsletter/index.js": "./src/widgets/newsletter/index.js",
           "./price/index.js": "./src/widgets/price/index.js",
           "./recipe/index.js": "./src/widgets/recipe/index.js",
           "./section-blocks/index.js": "./src/widgets/section-blocks/index.js",
           "./sidebar-divider/index.js": "./src/widgets/sidebar-divider/index.js",
+          "./stats/index.js": "./src/widgets/stats/index.js",
           "./testimonial/index.js": "./src/widgets/testimonial/index.js",
           "./text-carousel/index.js": "./src/widgets/text-carousel/index.js",
           "./video/index.js": "./src/widgets/video/index.js",
+          "./workout-plan/index.js": "./src/widgets/workout-plan/index.js",
           "./wysiwyg/index.js": "./src/widgets/wysiwyg/index.js"
         };
 
@@ -31376,6 +31382,118 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { "@babel/helpers - type
       },
 
       /***/
+      "./src/widgets/meal-plan/index.js":
+      /*!****************************************!*\
+        !*** ./src/widgets/meal-plan/index.js ***!
+        \****************************************/
+
+      /*! exports provided: template, qname, allowedContent, mapData */
+
+      /***/
+      function srcWidgetsMealPlanIndexJs(module, __webpack_exports__, __webpack_require__) {
+        "use strict";
+
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony export (binding) */
+
+
+        __webpack_require__.d(__webpack_exports__, "qname", function () {
+          return qname;
+        });
+        /* harmony export (binding) */
+
+
+        __webpack_require__.d(__webpack_exports__, "allowedContent", function () {
+          return allowedContent;
+        });
+        /* harmony export (binding) */
+
+
+        __webpack_require__.d(__webpack_exports__, "mapData", function () {
+          return mapData;
+        });
+        /* harmony import */
+
+
+        var _template_hbs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+        /*! ./template.hbs */
+        "./src/widgets/meal-plan/template.hbs");
+        /* harmony import */
+
+
+        var _template_hbs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_template_hbs__WEBPACK_IMPORTED_MODULE_0__);
+        /* harmony reexport (default from non-harmony) */
+
+
+        __webpack_require__.d(__webpack_exports__, "template", function () {
+          return _template_hbs__WEBPACK_IMPORTED_MODULE_0___default.a;
+        });
+
+        var qname = 'ehwidgets:mealPlan';
+        var allowedContent = 'span';
+
+        function mapData(data) {
+          var title = data.title;
+          return {
+            title: title
+          };
+        }
+        /***/
+
+      },
+
+      /***/
+      "./src/widgets/meal-plan/template.hbs":
+      /*!********************************************!*\
+        !*** ./src/widgets/meal-plan/template.hbs ***!
+        \********************************************/
+
+      /*! no static exports found */
+
+      /***/
+      function srcWidgetsMealPlanTemplateHbs(module, exports, __webpack_require__) {
+        var Handlebars = __webpack_require__(
+        /*! ../../../../../node_modules/handlebars/runtime.js */
+        "../../node_modules/handlebars/runtime.js");
+
+        function __default(obj) {
+          return obj && (obj.__esModule ? obj["default"] : obj);
+        }
+
+        module.exports = (Handlebars["default"] || Handlebars).template({
+          "compiler": [8, ">= 4.3.0"],
+          "main": function main(container, depth0, helpers, partials, data) {
+            var helper,
+                lookupProperty = container.lookupProperty || function (parent, propertyName) {
+              if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+                return parent[propertyName];
+              }
+
+              return undefined;
+            };
+
+            return "<span>" + container.escapeExpression((helper = (helper = lookupProperty(helpers, "title") || (depth0 != null ? lookupProperty(depth0, "title") : depth0)) != null ? helper : container.hooks.helperMissing, typeof helper === "function" ? helper.call(depth0 != null ? depth0 : container.nullContext || {}, {
+              "name": "title",
+              "hash": {},
+              "data": data,
+              "loc": {
+                "start": {
+                  "line": 1,
+                  "column": 6
+                },
+                "end": {
+                  "line": 1,
+                  "column": 15
+                }
+              }
+            }) : helper)) + "</span>";
+          },
+          "useData": true
+        });
+        /***/
+      },
+
+      /***/
       "./src/widgets/newsletter/index.js":
       /*!*****************************************!*\
         !*** ./src/widgets/newsletter/index.js ***!
@@ -31708,6 +31826,118 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { "@babel/helpers - type
       },
 
       /***/
+      "./src/widgets/stats/index.js":
+      /*!************************************!*\
+        !*** ./src/widgets/stats/index.js ***!
+        \************************************/
+
+      /*! exports provided: qname, template, allowedContent, mapData */
+
+      /***/
+      function srcWidgetsStatsIndexJs(module, __webpack_exports__, __webpack_require__) {
+        "use strict";
+
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony export (binding) */
+
+
+        __webpack_require__.d(__webpack_exports__, "qname", function () {
+          return qname;
+        });
+        /* harmony export (binding) */
+
+
+        __webpack_require__.d(__webpack_exports__, "allowedContent", function () {
+          return allowedContent;
+        });
+        /* harmony export (binding) */
+
+
+        __webpack_require__.d(__webpack_exports__, "mapData", function () {
+          return mapData;
+        });
+        /* harmony import */
+
+
+        var _template_hbs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+        /*! ./template.hbs */
+        "./src/widgets/stats/template.hbs");
+        /* harmony import */
+
+
+        var _template_hbs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_template_hbs__WEBPACK_IMPORTED_MODULE_0__);
+        /* harmony reexport (default from non-harmony) */
+
+
+        __webpack_require__.d(__webpack_exports__, "template", function () {
+          return _template_hbs__WEBPACK_IMPORTED_MODULE_0___default.a;
+        });
+
+        var qname = 'ehwidgets:stats';
+        var allowedContent = 'span';
+
+        function mapData(data) {
+          var title = data.title;
+          return {
+            title: title
+          };
+        }
+        /***/
+
+      },
+
+      /***/
+      "./src/widgets/stats/template.hbs":
+      /*!****************************************!*\
+        !*** ./src/widgets/stats/template.hbs ***!
+        \****************************************/
+
+      /*! no static exports found */
+
+      /***/
+      function srcWidgetsStatsTemplateHbs(module, exports, __webpack_require__) {
+        var Handlebars = __webpack_require__(
+        /*! ../../../../../node_modules/handlebars/runtime.js */
+        "../../node_modules/handlebars/runtime.js");
+
+        function __default(obj) {
+          return obj && (obj.__esModule ? obj["default"] : obj);
+        }
+
+        module.exports = (Handlebars["default"] || Handlebars).template({
+          "compiler": [8, ">= 4.3.0"],
+          "main": function main(container, depth0, helpers, partials, data) {
+            var helper,
+                lookupProperty = container.lookupProperty || function (parent, propertyName) {
+              if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+                return parent[propertyName];
+              }
+
+              return undefined;
+            };
+
+            return "<span>" + container.escapeExpression((helper = (helper = lookupProperty(helpers, "title") || (depth0 != null ? lookupProperty(depth0, "title") : depth0)) != null ? helper : container.hooks.helperMissing, typeof helper === "function" ? helper.call(depth0 != null ? depth0 : container.nullContext || {}, {
+              "name": "title",
+              "hash": {},
+              "data": data,
+              "loc": {
+                "start": {
+                  "line": 1,
+                  "column": 6
+                },
+                "end": {
+                  "line": 1,
+                  "column": 15
+                }
+              }
+            }) : helper)) + "</span>";
+          },
+          "useData": true
+        });
+        /***/
+      },
+
+      /***/
       "./src/widgets/testimonial/index.js":
       /*!******************************************!*\
         !*** ./src/widgets/testimonial/index.js ***!
@@ -31870,6 +32100,118 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { "@babel/helpers - type
         }
         /***/
 
+      },
+
+      /***/
+      "./src/widgets/workout-plan/index.js":
+      /*!*******************************************!*\
+        !*** ./src/widgets/workout-plan/index.js ***!
+        \*******************************************/
+
+      /*! exports provided: qname, template, allowedContent, mapData */
+
+      /***/
+      function srcWidgetsWorkoutPlanIndexJs(module, __webpack_exports__, __webpack_require__) {
+        "use strict";
+
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony export (binding) */
+
+
+        __webpack_require__.d(__webpack_exports__, "qname", function () {
+          return qname;
+        });
+        /* harmony export (binding) */
+
+
+        __webpack_require__.d(__webpack_exports__, "allowedContent", function () {
+          return allowedContent;
+        });
+        /* harmony export (binding) */
+
+
+        __webpack_require__.d(__webpack_exports__, "mapData", function () {
+          return mapData;
+        });
+        /* harmony import */
+
+
+        var _template_hbs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+        /*! ./template.hbs */
+        "./src/widgets/workout-plan/template.hbs");
+        /* harmony import */
+
+
+        var _template_hbs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_template_hbs__WEBPACK_IMPORTED_MODULE_0__);
+        /* harmony reexport (default from non-harmony) */
+
+
+        __webpack_require__.d(__webpack_exports__, "template", function () {
+          return _template_hbs__WEBPACK_IMPORTED_MODULE_0___default.a;
+        });
+
+        var qname = 'ehwidgets:workoutPlan';
+        var allowedContent = 'span';
+
+        function mapData(data) {
+          var title = data.title;
+          return {
+            title: title
+          };
+        }
+        /***/
+
+      },
+
+      /***/
+      "./src/widgets/workout-plan/template.hbs":
+      /*!***********************************************!*\
+        !*** ./src/widgets/workout-plan/template.hbs ***!
+        \***********************************************/
+
+      /*! no static exports found */
+
+      /***/
+      function srcWidgetsWorkoutPlanTemplateHbs(module, exports, __webpack_require__) {
+        var Handlebars = __webpack_require__(
+        /*! ../../../../../node_modules/handlebars/runtime.js */
+        "../../node_modules/handlebars/runtime.js");
+
+        function __default(obj) {
+          return obj && (obj.__esModule ? obj["default"] : obj);
+        }
+
+        module.exports = (Handlebars["default"] || Handlebars).template({
+          "compiler": [8, ">= 4.3.0"],
+          "main": function main(container, depth0, helpers, partials, data) {
+            var helper,
+                lookupProperty = container.lookupProperty || function (parent, propertyName) {
+              if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+                return parent[propertyName];
+              }
+
+              return undefined;
+            };
+
+            return "<span>" + container.escapeExpression((helper = (helper = lookupProperty(helpers, "title") || (depth0 != null ? lookupProperty(depth0, "title") : depth0)) != null ? helper : container.hooks.helperMissing, typeof helper === "function" ? helper.call(depth0 != null ? depth0 : container.nullContext || {}, {
+              "name": "title",
+              "hash": {},
+              "data": data,
+              "loc": {
+                "start": {
+                  "line": 1,
+                  "column": 6
+                },
+                "end": {
+                  "line": 1,
+                  "column": 15
+                }
+              }
+            }) : helper)) + "</span>";
+          },
+          "useData": true
+        });
+        /***/
       },
 
       /***/
@@ -32246,6 +32588,75 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
           removeWidget: "".concat(widgetNamespace, ":remove")
         };
         /***/
+      },
+
+      /***/
+      "./src/helpers/api-proxy-search.js":
+      /*!*****************************************!*\
+        !*** ./src/helpers/api-proxy-search.js ***!
+        \*****************************************/
+
+      /*! exports provided: apiProxyRequest */
+
+      /***/
+      function srcHelpersApiProxySearchJs(module, __webpack_exports__, __webpack_require__) {
+        "use strict";
+
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony export (binding) */
+
+
+        __webpack_require__.d(__webpack_exports__, "apiProxyRequest", function () {
+          return apiProxyRequest;
+        });
+
+        var apiProxyRequest = function apiProxyRequest(_ref) {
+          var apiUrl = _ref.apiUrl,
+              contentType = _ref.contentType,
+              size = _ref.size,
+              _ref$searchTerm = _ref.searchTerm,
+              searchTerm = _ref$searchTerm === void 0 ? '' : _ref$searchTerm,
+              _ref$page = _ref.page,
+              page = _ref$page === void 0 ? 1 : _ref$page,
+              _ref$sort = _ref.sort,
+              sort = _ref$sort === void 0 ? '{"title": 1}' : _ref$sort;
+          return fetch("".concat(apiUrl, "?limit=").concat(size, "&skip=").concat((page - 1) * size, "&sort=").concat(sort), {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              search: {
+                query: {
+                  bool: {
+                    must: [{
+                      query_string: {
+                        fields: ['title'],
+                        query: "".concat(searchTerm.split(' ').map(function (term) {
+                          return "".concat(term, "~2");
+                        }).join(' ')),
+                        fuzziness: 2,
+                        default_operator: 'AND'
+                      }
+                    }, {
+                      match: {
+                        _type: contentType
+                      }
+                    }]
+                  }
+                }
+              },
+              _fields: {
+                title: 1,
+                _doc: 1
+              }
+            })
+          }).then(function (result) {
+            return result.json();
+          });
+        };
+        /***/
+
       },
 
       /***/
@@ -32675,7 +33086,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./src/helpers/dashlet-config/index.js ***!
         \*********************************************/
 
-      /*! exports provided: SelectWidgetDashletConfigHelper, EditWidgetDashletConfigHelper */
+      /*! exports provided: SelectWidgetDashletConfigHelper, CloudCmsApiProxySelectionDashletConfigHelper, EditWidgetDashletConfigHelper */
 
       /***/
       function srcHelpersDashletConfigIndexJs(module, __webpack_exports__, __webpack_require__) {
@@ -32697,17 +33108,302 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         /* harmony import */
 
 
-        var _edit_widget__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+        var _select_cloudcms_api_proxy__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+        /*! ./select-cloudcms-api-proxy */
+        "./src/helpers/dashlet-config/select-cloudcms-api-proxy.js");
+        /* harmony reexport (safe) */
+
+
+        __webpack_require__.d(__webpack_exports__, "CloudCmsApiProxySelectionDashletConfigHelper", function () {
+          return _select_cloudcms_api_proxy__WEBPACK_IMPORTED_MODULE_1__["default"];
+        });
+        /* harmony import */
+
+
+        var _edit_widget__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
         /*! ./edit-widget */
         "./src/helpers/dashlet-config/edit-widget.js");
         /* harmony reexport (safe) */
 
 
         __webpack_require__.d(__webpack_exports__, "EditWidgetDashletConfigHelper", function () {
-          return _edit_widget__WEBPACK_IMPORTED_MODULE_1__["default"];
+          return _edit_widget__WEBPACK_IMPORTED_MODULE_2__["default"];
         });
         /***/
 
+      },
+
+      /***/
+      "./src/helpers/dashlet-config/select-cloudcms-api-proxy.js":
+      /*!*****************************************************************!*\
+        !*** ./src/helpers/dashlet-config/select-cloudcms-api-proxy.js ***!
+        \*****************************************************************/
+
+      /*! exports provided: default */
+
+      /***/
+      function srcHelpersDashletConfigSelectCloudcmsApiProxyJs(module, __webpack_exports__, __webpack_require__) {
+        "use strict";
+
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony import */
+
+
+        var _base__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+        /*! ./base */
+        "./src/helpers/dashlet-config/base.js");
+
+        function _typeof(obj) {
+          "@babel/helpers - typeof";
+
+          if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+            _typeof = function _typeof(obj) {
+              return typeof obj;
+            };
+          } else {
+            _typeof = function _typeof(obj) {
+              return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+            };
+          }
+
+          return _typeof(obj);
+        }
+
+        function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+          try {
+            var info = gen[key](arg);
+            var value = info.value;
+          } catch (error) {
+            reject(error);
+            return;
+          }
+
+          if (info.done) {
+            resolve(value);
+          } else {
+            Promise.resolve(value).then(_next, _throw);
+          }
+        }
+
+        function _asyncToGenerator(fn) {
+          return function () {
+            var self = this,
+                args = arguments;
+            return new Promise(function (resolve, reject) {
+              var gen = fn.apply(self, args);
+
+              function _next(value) {
+                asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
+              }
+
+              function _throw(err) {
+                asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+              }
+
+              _next(undefined);
+            });
+          };
+        }
+
+        function _classCallCheck(instance, Constructor) {
+          if (!(instance instanceof Constructor)) {
+            throw new TypeError("Cannot call a class as a function");
+          }
+        }
+
+        function _defineProperties(target, props) {
+          for (var i = 0; i < props.length; i++) {
+            var descriptor = props[i];
+            descriptor.enumerable = descriptor.enumerable || false;
+            descriptor.configurable = true;
+            if ("value" in descriptor) descriptor.writable = true;
+            Object.defineProperty(target, descriptor.key, descriptor);
+          }
+        }
+
+        function _createClass(Constructor, protoProps, staticProps) {
+          if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+          if (staticProps) _defineProperties(Constructor, staticProps);
+          return Constructor;
+        }
+
+        function _inherits(subClass, superClass) {
+          if (typeof superClass !== "function" && superClass !== null) {
+            throw new TypeError("Super expression must either be null or a function");
+          }
+
+          subClass.prototype = Object.create(superClass && superClass.prototype, {
+            constructor: {
+              value: subClass,
+              writable: true,
+              configurable: true
+            }
+          });
+          if (superClass) _setPrototypeOf(subClass, superClass);
+        }
+
+        function _setPrototypeOf(o, p) {
+          _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+            o.__proto__ = p;
+            return o;
+          };
+
+          return _setPrototypeOf(o, p);
+        }
+
+        function _createSuper(Derived) {
+          var hasNativeReflectConstruct = _isNativeReflectConstruct();
+
+          return function _createSuperInternal() {
+            var Super = _getPrototypeOf(Derived),
+                result;
+
+            if (hasNativeReflectConstruct) {
+              var NewTarget = _getPrototypeOf(this).constructor;
+
+              result = Reflect.construct(Super, arguments, NewTarget);
+            } else {
+              result = Super.apply(this, arguments);
+            }
+
+            return _possibleConstructorReturn(this, result);
+          };
+        }
+
+        function _possibleConstructorReturn(self, call) {
+          if (call && (_typeof(call) === "object" || typeof call === "function")) {
+            return call;
+          }
+
+          return _assertThisInitialized(self);
+        }
+
+        function _assertThisInitialized(self) {
+          if (self === void 0) {
+            throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+          }
+
+          return self;
+        }
+
+        function _isNativeReflectConstruct() {
+          if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+          if (Reflect.construct.sham) return false;
+          if (typeof Proxy === "function") return true;
+
+          try {
+            Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
+            return true;
+          } catch (e) {
+            return false;
+          }
+        }
+
+        function _getPrototypeOf(o) {
+          _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+            return o.__proto__ || Object.getPrototypeOf(o);
+          };
+          return _getPrototypeOf(o);
+        }
+
+        var CloudCmsApiProxySelectionDashletConfigHelper = /*#__PURE__*/function (_BaseDashletConfigHel) {
+          _inherits(CloudCmsApiProxySelectionDashletConfigHelper, _BaseDashletConfigHel);
+
+          var _super = _createSuper(CloudCmsApiProxySelectionDashletConfigHelper);
+
+          function CloudCmsApiProxySelectionDashletConfigHelper(options) {
+            var _this;
+
+            _classCallCheck(this, CloudCmsApiProxySelectionDashletConfigHelper);
+
+            _this = _super.call(this, options);
+            _this.modalTitle = options.modalTitle || 'CloudCMS Api Proxy Selector';
+            return _this;
+          }
+
+          _createClass(CloudCmsApiProxySelectionDashletConfigHelper, [{
+            key: "getSchema",
+            value: function getSchema() {
+              var schema = {
+                title: this.modalTitle,
+                type: 'object',
+                required: ['result'],
+                properties: {
+                  searchTerm: {
+                    type: 'string'
+                  },
+                  page: {
+                    type: 'string',
+                    "enum": [1]
+                  },
+                  result: {
+                    title: 'Results',
+                    type: 'string',
+                    "enum": []
+                  }
+                }
+              };
+              return schema;
+            }
+          }, {
+            key: "getFormOptions",
+            value: function () {
+              var _getFormOptions = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+                var cfg;
+                return regeneratorRuntime.wrap(function _callee$(_context) {
+                  while (1) {
+                    switch (_context.prev = _context.next) {
+                      case 0:
+                        cfg = {
+                          fields: {
+                            searchTerm: {
+                              label: 'Search',
+                              type: 'text',
+                              helper: 'Enter a search term and press Enter'
+                            },
+                            page: {
+                              label: 'Page',
+                              type: 'select',
+                              emptySelectFirst: true,
+                              removeDefaultNone: true,
+                              useDataSourceAsEnum: false,
+                              validate: false,
+                              hideInitValidationError: true
+                            },
+                            result: {
+                              type: 'radio',
+                              removeDefaultNone: true,
+                              useDataSourceAsEnum: false,
+                              validate: false,
+                              hideInitValidationError: true
+                            }
+                          }
+                        };
+                        return _context.abrupt("return", cfg);
+
+                      case 2:
+                      case "end":
+                        return _context.stop();
+                    }
+                  }
+                }, _callee);
+              }));
+
+              function getFormOptions() {
+                return _getFormOptions.apply(this, arguments);
+              }
+
+              return getFormOptions;
+            }()
+          }]);
+
+          return CloudCmsApiProxySelectionDashletConfigHelper;
+        }(_base__WEBPACK_IMPORTED_MODULE_0__["default"]);
+        /* harmony default export */
+
+
+        __webpack_exports__["default"] = CloudCmsApiProxySelectionDashletConfigHelper;
+        /***/
       },
 
       /***/
@@ -33427,7 +34123,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./src/helpers/modal.js ***!
         \******************************/
 
-      /*! exports provided: openModal, openWidgetSelectionModal, openEditWidgetModal */
+      /*! exports provided: openModal, openWidgetSelectionModal, openEditWidgetModal, openApiSearchSelectorModal */
 
       /***/
       function srcHelpersModalJs(module, __webpack_exports__, __webpack_require__) {
@@ -33451,6 +34147,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
         __webpack_require__.d(__webpack_exports__, "openEditWidgetModal", function () {
           return openEditWidgetModal;
+        });
+        /* harmony export (binding) */
+
+
+        __webpack_require__.d(__webpack_exports__, "openApiSearchSelectorModal", function () {
+          return openApiSearchSelectorModal;
         });
         /* harmony import */
 
@@ -33481,13 +34183,19 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         /* harmony import */
 
 
-        var _dashlet_config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+        var _api_proxy_search__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+        /*! ./api-proxy-search */
+        "./src/helpers/api-proxy-search.js");
+        /* harmony import */
+
+
+        var _dashlet_config__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
         /*! ./dashlet-config */
         "./src/helpers/dashlet-config/index.js");
         /* harmony import */
 
 
-        var _filter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+        var _filter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
         /*! ./filter */
         "./src/helpers/filter.js");
 
@@ -33569,7 +34277,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
           if (widgetContentTypes) {
             contentTypesPromise = Promise.resolve(widgetContentTypes);
           } else {
-            contentTypesPromise = Object(_filter__WEBPACK_IMPORTED_MODULE_4__["getWidgetContentTypes"])(widgetTypeQuery);
+            contentTypesPromise = Object(_filter__WEBPACK_IMPORTED_MODULE_5__["getWidgetContentTypes"])(widgetTypeQuery);
           }
 
           var branch = getBranch();
@@ -33607,7 +34315,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
           };
 
           return contentTypesPromise.then(function (widgetContentTypes) {
-            dashletConfigHelper = new _dashlet_config__WEBPACK_IMPORTED_MODULE_3__["SelectWidgetDashletConfigHelper"]({
+            dashletConfigHelper = new _dashlet_config__WEBPACK_IMPORTED_MODULE_4__["SelectWidgetDashletConfigHelper"]({
               widgetContentTypes: widgetContentTypes,
               branch: branch
             });
@@ -33642,13 +34350,114 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
           return Object(_evdy_consumer_cloudcms_common__WEBPACK_IMPORTED_MODULE_1__["readNode"])(id, branch).then(function (node) {
             var qname = node.getTypeQName();
-            var dashletConfigHelper = new _dashlet_config__WEBPACK_IMPORTED_MODULE_3__["EditWidgetDashletConfigHelper"]({
+            var dashletConfigHelper = new _dashlet_config__WEBPACK_IMPORTED_MODULE_4__["EditWidgetDashletConfigHelper"]({
               qname: qname,
               branch: branch
             });
             return Object(_dashlet__WEBPACK_IMPORTED_MODULE_2__["getDashletConfig"])(dashletConfigHelper, ratchet_web__WEBPACK_IMPORTED_MODULE_0___default.a, node.json(), 'Edit');
           }).then(function (dashletConfig) {
             return openModal(dashletConfig);
+          }).then(function (data) {
+            return blockUI({
+              title: 'Saving',
+              message: 'Please wait...',
+              fn: function fn() {
+                return onSubmit(data);
+              }
+            });
+          })["catch"](console.error);
+        }
+
+        function openApiSearchSelectorModal(modalTitle, apiUrl, contentType, size) {
+          var branch = getBranch();
+
+          var onSubmit = function onSubmit(data) {
+            return data;
+          };
+
+          var dashletConfigHelper = new _dashlet_config__WEBPACK_IMPORTED_MODULE_4__["CloudCmsApiProxySelectionDashletConfigHelper"]({
+            branch: branch,
+            modalTitle: modalTitle
+          });
+          return Object(_dashlet__WEBPACK_IMPORTED_MODULE_2__["getDashletConfig"])(dashletConfigHelper, ratchet_web__WEBPACK_IMPORTED_MODULE_0___default.a).then(function (dashletConfig) {
+            var postRenderCallback = function postRenderCallback(control) {
+              var searchTerm = control.childrenByPropertyId['searchTerm'];
+              var recipes = control.childrenByPropertyId['result'];
+              var page = control.childrenByPropertyId['page'];
+              searchTerm.on('change', function () {
+                var searchTermValue = searchTerm.getValue();
+                Object(_api_proxy_search__WEBPACK_IMPORTED_MODULE_3__["apiProxyRequest"])({
+                  apiUrl: apiUrl,
+                  contentType: contentType,
+                  size: size,
+                  searchTerm: searchTermValue,
+                  page: 1
+                }).then(function (result) {
+                  var _result$data, _result$data2, _result$data3;
+
+                  var pages = Math.ceil(+(result === null || result === void 0 ? void 0 : (_result$data = result.data) === null || _result$data === void 0 ? void 0 : _result$data.totalRows) / size || 1);
+                  var values = [];
+                  var labels = [];
+                  page.schema["enum"] = page.options.optionLabels = Array.from({
+                    length: pages
+                  }, function (value, index) {
+                    return index + 1;
+                  });
+                  page.options.helpers = ["of ".concat(pages, " pages"), "Total Recipe Results: ".concat(result === null || result === void 0 ? void 0 : (_result$data2 = result.data) === null || _result$data2 === void 0 ? void 0 : _result$data2.totalRows)];
+                  ((result === null || result === void 0 ? void 0 : (_result$data3 = result.data) === null || _result$data3 === void 0 ? void 0 : _result$data3.rows) || []).forEach(function (_ref2) {
+                    var title = _ref2.title,
+                        _doc = _ref2._doc;
+                    values.push("".concat(title, "_____").concat(_doc));
+                    labels.push(title);
+                  });
+                  recipes.schema["enum"] = values;
+                  recipes.options.optionLabels = labels;
+                })["catch"](function (error) {
+                  console.error(error);
+                  page.schema["enum"] = page.options.optionLabels = [1];
+                  recipes.schema["enum"] = recipes.options.optionLabels = [];
+                  alert('There was an error while requesting Data from CloudCMS Api Proxy', error.message);
+                })["finally"](function () {
+                  page.setValue(1);
+                  page.refresh();
+                  recipes.refresh();
+                });
+              });
+              page.on('change', function () {
+                var searchTermValue = searchTerm.getValue();
+                var pageValue = page.getValue();
+                Object(_api_proxy_search__WEBPACK_IMPORTED_MODULE_3__["apiProxyRequest"])({
+                  apiUrl: apiUrl,
+                  contentType: contentType,
+                  size: size,
+                  searchTerm: searchTermValue,
+                  page: pageValue
+                }).then(function (result) {
+                  var _result$data4;
+
+                  var values = [];
+                  var labels = [];
+                  ((result === null || result === void 0 ? void 0 : (_result$data4 = result.data) === null || _result$data4 === void 0 ? void 0 : _result$data4.rows) || []).forEach(function (_ref3) {
+                    var title = _ref3.title,
+                        _doc = _ref3._doc;
+                    values.push("".concat(title, "_____").concat(_doc));
+                    labels.push(title);
+                  });
+                  recipes.schema["enum"] = values;
+                  recipes.options.optionLabels = labels;
+                })["catch"](function (error) {
+                  console.error(error);
+                  recipes.schema["enum"] = recipes.options.optionLabels = [];
+                  alert('There was an error while requesting Data from CloudCMS Api Proxy', error.message);
+                })["finally"](function () {
+                  recipes.refresh();
+                });
+              });
+            };
+
+            return openModal(_objectSpread(_objectSpread({}, dashletConfig), {}, {
+              postRenderCallback: postRenderCallback
+            }));
           }).then(function (data) {
             return blockUI({
               title: 'Saving',
@@ -33669,7 +34478,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./src/index.js ***!
         \**********************/
 
-      /*! exports provided: constants, getWidgetData, getDashletConfig, getWidgetContentTypes, openModal, openWidgetSelectionModal, openEditWidgetModal */
+      /*! exports provided: constants, getWidgetData, getDashletConfig, getWidgetContentTypes, openModal, openWidgetSelectionModal, openEditWidgetModal, openApiSearchSelectorModal */
 
       /***/
       function srcIndexJs(module, __webpack_exports__, __webpack_require__) {
@@ -33741,6 +34550,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
         __webpack_require__.d(__webpack_exports__, "openEditWidgetModal", function () {
           return _helpers_modal__WEBPACK_IMPORTED_MODULE_3__["openEditWidgetModal"];
+        });
+        /* harmony reexport (safe) */
+
+
+        __webpack_require__.d(__webpack_exports__, "openApiSearchSelectorModal", function () {
+          return _helpers_modal__WEBPACK_IMPORTED_MODULE_3__["openApiSearchSelectorModal"];
         });
         /***/
 
