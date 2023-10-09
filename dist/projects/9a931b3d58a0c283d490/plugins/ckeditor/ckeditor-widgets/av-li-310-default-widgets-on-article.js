@@ -23434,6 +23434,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         }
 
         function getCloudcmsOrigin(origin) {
+          console.log('location origin', origin);
+
           if (origin.includes('eh-consumer')) {
             return 'https://eh-consumer.us1.cloudcms.net';
           }
@@ -23446,6 +23448,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         }
 
         function getHeadersFromDriver(driver) {
+          console.log('isBrowser in getting headers', isBrowser);
+
           if (isBrowser) {
             var cookies = getCookies(document.cookie);
             return {
@@ -24955,6 +24959,18 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
           };
         }
 
+        function getBaseUrl(driver) {
+          var _driver$baseUrl;
+
+          console.log('driver.baseURL', driver.baseURL);
+
+          if (driver !== null && driver !== void 0 && (_driver$baseUrl = driver.baseUrl) !== null && _driver$baseUrl !== void 0 && _driver$baseUrl.includes('api.cloudcms')) {
+            return 'https://api.us1.cloudcms.com';
+          }
+
+          return driver === null || driver === void 0 ? void 0 : driver.baseURL;
+        }
+
         function createNode(branch, node, options) {
           return new Promise(function (resolve, reject) {
             branch.createNode(node, options).then(function () {
@@ -24999,26 +25015,27 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                 switch (_context2.prev = _context2.next) {
                   case 0:
                     return _context2.abrupt("return", Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-                      var driver, url, _yield$axios$get, data;
+                      var driver, baseUrl, url, _yield$axios$get, data;
 
                       return regeneratorRuntime.wrap(function _callee$(_context) {
                         while (1) {
                           switch (_context.prev = _context.next) {
                             case 0:
                               driver = branch.getDriver();
-                              url = "".concat(driver.baseURL).concat(branch.getUri(), "/nodes/").concat(id);
-                              _context.next = 4;
+                              baseUrl = getBaseUrl(driver);
+                              url = "".concat(baseUrl).concat(branch.getUri(), "/nodes/").concat(id);
+                              _context.next = 5;
                               return _axios_instance__WEBPACK_IMPORTED_MODULE_1__["default"].get(url, {
                                 headers: Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["getHeadersFromDriver"])(driver),
                                 params: params || {}
                               });
 
-                            case 4:
+                            case 5:
                               _yield$axios$get = _context.sent;
                               data = _yield$axios$get.data;
                               return _context.abrupt("return", data);
 
-                            case 7:
+                            case 8:
                             case "end":
                               return _context.stop();
                           }
@@ -25045,7 +25062,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
           return Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["withAuthRetry"])(function () {
             var driver = branch.getDriver();
-            var url = "".concat(driver.baseURL).concat(branch.getUri(), "/nodes/").concat(_doc);
+            var baseUrl = getBaseUrl(driver);
+            var url = "".concat(baseUrl).concat(branch.getUri(), "/nodes/").concat(_doc);
             return _axios_instance__WEBPACK_IMPORTED_MODULE_1__["default"].put(url, node, {
               headers: Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["getHeadersFromDriver"])(driver)
             });
@@ -25084,7 +25102,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                   case 5:
                     return _context3.abrupt("return", Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["withAuthRetry"])(function () {
                       var driver = branch.getDriver();
-                      var url = "".concat(driver.baseURL).concat(branch.getUri(), "/nodes/").concat(_doc, "/change_type?type=").concat(type);
+                      var baseUrl = getBaseUrl(driver);
+                      var url = "".concat(baseUrl).concat(branch.getUri(), "/nodes/").concat(_doc, "/change_type?type=").concat(type);
                       return _axios_instance__WEBPACK_IMPORTED_MODULE_1__["default"].post(url, node, {
                         headers: Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["getHeadersFromDriver"])(driver)
                       });
@@ -25150,7 +25169,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                     pagination = _args5.length > 1 && _args5[1] !== undefined ? _args5[1] : {};
                     branch = _args5.length > 2 ? _args5[2] : undefined;
                     return _context5.abrupt("return", Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
-                      var driver, paginationKeys, queryParams, url, _yield$axios$post, _yield$axios$post$dat, rows, totalRows, offset;
+                      var driver, paginationKeys, queryParams, baseUrl, url, _yield$axios$post, _yield$axios$post$dat, rows, totalRows, offset;
 
                       return regeneratorRuntime.wrap(function _callee4$(_context4) {
                         while (1) {
@@ -25166,13 +25185,14 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                                 }).join('&'));
                               }
 
-                              url = "".concat(driver.baseURL).concat(branch.getUri(), "/nodes/query").concat(queryParams);
-                              _context4.next = 7;
+                              baseUrl = getBaseUrl(driver);
+                              url = "".concat(baseUrl).concat(branch.getUri(), "/nodes/query").concat(queryParams);
+                              _context4.next = 8;
                               return _axios_instance__WEBPACK_IMPORTED_MODULE_1__["default"].post(url, query, {
                                 headers: Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["getHeadersFromDriver"])(driver)
                               });
 
-                            case 7:
+                            case 8:
                               _yield$axios$post = _context4.sent;
                               _yield$axios$post$dat = _yield$axios$post.data;
                               _yield$axios$post$dat = _yield$axios$post$dat === void 0 ? {} : _yield$axios$post$dat;
@@ -25183,7 +25203,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                                 offset: offset
                               });
 
-                            case 12:
+                            case 13:
                             case "end":
                               return _context4.stop();
                           }
@@ -25217,7 +25237,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                     pagination = _args7.length > 1 && _args7[1] !== undefined ? _args7[1] : {};
                     branch = _args7.length > 2 ? _args7[2] : undefined;
                     return _context7.abrupt("return", Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
-                      var driver, paginationKeys, queryParams, url, _yield$axios$post2, _yield$axios$post2$da, rows, totalRows, offset;
+                      var driver, paginationKeys, queryParams, baseUrl, url, _yield$axios$post2, _yield$axios$post2$da, rows, totalRows, offset;
 
                       return regeneratorRuntime.wrap(function _callee6$(_context6) {
                         while (1) {
@@ -25233,13 +25253,14 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                                 }).join('&'));
                               }
 
-                              url = "".concat(driver.baseURL).concat(branch.getUri(), "/nodes/search").concat(queryParams);
-                              _context6.next = 7;
+                              baseUrl = getBaseUrl(driver);
+                              url = "".concat(baseUrl).concat(branch.getUri(), "/nodes/search").concat(queryParams);
+                              _context6.next = 8;
                               return _axios_instance__WEBPACK_IMPORTED_MODULE_1__["default"].post(url, query, {
                                 headers: Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["getHeadersFromDriver"])(driver)
                               });
 
-                            case 7:
+                            case 8:
                               _yield$axios$post2 = _context6.sent;
                               _yield$axios$post2$da = _yield$axios$post2.data;
                               _yield$axios$post2$da = _yield$axios$post2$da === void 0 ? {} : _yield$axios$post2$da;
@@ -25250,7 +25271,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                                 offset: offset
                               });
 
-                            case 12:
+                            case 13:
                             case "end":
                               return _context6.stop();
                           }
@@ -25306,21 +25327,22 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                   case 0:
                     params = _args9.length > 2 && _args9[2] !== undefined ? _args9[2] : {};
                     return _context9.abrupt("return", Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
-                      var driver, url, _yield$axios$get2, _yield$axios$get2$dat, rows, totalRows;
+                      var driver, baseUrl, url, _yield$axios$get2, _yield$axios$get2$dat, rows, totalRows;
 
                       return regeneratorRuntime.wrap(function _callee8$(_context8) {
                         while (1) {
                           switch (_context8.prev = _context8.next) {
                             case 0:
                               driver = branch.getDriver();
-                              url = "".concat(driver.baseURL).concat(branch.getUri(), "/nodes/").concat(id, "/associations");
-                              _context8.next = 4;
+                              baseUrl = getBaseUrl(driver);
+                              url = "".concat(baseUrl).concat(branch.getUri(), "/nodes/").concat(id, "/associations");
+                              _context8.next = 5;
                               return _axios_instance__WEBPACK_IMPORTED_MODULE_1__["default"].get(url, {
                                 headers: Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["getHeadersFromDriver"])(driver),
                                 params: params
                               });
 
-                            case 4:
+                            case 5:
                               _yield$axios$get2 = _context8.sent;
                               _yield$axios$get2$dat = _yield$axios$get2.data;
                               rows = _yield$axios$get2$dat.rows;
@@ -25330,7 +25352,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                                 totalRows: totalRows
                               });
 
-                            case 9:
+                            case 10:
                             case "end":
                               return _context8.stop();
                           }
@@ -25360,19 +25382,20 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                   case 0:
                     _context11.next = 2;
                     return Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee10() {
-                      var driver, url;
+                      var driver, baseUrl, url;
                       return regeneratorRuntime.wrap(function _callee10$(_context10) {
                         while (1) {
                           switch (_context10.prev = _context10.next) {
                             case 0:
                               driver = branch.getDriver();
-                              url = "".concat(driver.baseURL).concat(branch.getUri(), "/nodes/").concat(id);
-                              _context10.next = 4;
+                              baseUrl = getBaseUrl(driver);
+                              url = "".concat(baseUrl).concat(branch.getUri(), "/nodes/").concat(id);
+                              _context10.next = 5;
                               return _axios_instance__WEBPACK_IMPORTED_MODULE_1__["default"]["delete"](url, {
                                 headers: Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["getHeadersFromDriver"])(driver)
                               });
 
-                            case 4:
+                            case 5:
                             case "end":
                               return _context10.stop();
                           }
@@ -25406,21 +25429,22 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                     payload = _args13.length > 2 && _args13[2] !== undefined ? _args13[2] : {};
                     params = _args13.length > 3 && _args13[3] !== undefined ? _args13[3] : {};
                     return _context13.abrupt("return", Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee12() {
-                      var driver, url, _yield$axios$post3, _yield$axios$post3$da, rows, totalRows;
+                      var driver, baseUrl, url, _yield$axios$post3, _yield$axios$post3$da, rows, totalRows;
 
                       return regeneratorRuntime.wrap(function _callee12$(_context12) {
                         while (1) {
                           switch (_context12.prev = _context12.next) {
                             case 0:
                               driver = branch.getDriver();
-                              url = "".concat(driver.baseURL).concat(branch.getUri(), "/nodes/").concat(id, "/find");
-                              _context12.next = 4;
+                              baseUrl = getBaseUrl(driver);
+                              url = "".concat(baseUrl).concat(branch.getUri(), "/nodes/").concat(id, "/find");
+                              _context12.next = 5;
                               return _axios_instance__WEBPACK_IMPORTED_MODULE_1__["default"].post(url, payload, {
                                 headers: Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["getHeadersFromDriver"])(driver),
                                 params: params
                               });
 
-                            case 4:
+                            case 5:
                               _yield$axios$post3 = _context12.sent;
                               _yield$axios$post3$da = _yield$axios$post3.data;
                               rows = _yield$axios$post3$da.rows;
@@ -25430,7 +25454,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                                 totalRows: totalRows
                               });
 
-                            case 9:
+                            case 10:
                             case "end":
                               return _context12.stop();
                           }
