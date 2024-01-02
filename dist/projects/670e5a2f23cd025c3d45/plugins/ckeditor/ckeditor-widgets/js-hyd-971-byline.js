@@ -30103,10 +30103,11 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { "@babel/helpers - type
         var qname = 'ehwidgets:byline';
 
         function mapData(data) {
+          console.log(data);
           var title = data.title;
+          console.log(data);
           return {
-            type: qname,
-            title: title
+            type: title
           };
         }
         /***/
