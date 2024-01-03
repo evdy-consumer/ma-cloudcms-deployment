@@ -30078,29 +30078,34 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { "@babel/helpers - type
         /* harmony export (binding) */
 
 
+        __webpack_require__.d(__webpack_exports__, "allowedContent", function () {
+          return allowedContent;
+        });
+        /* harmony export (binding) */
+
+
         __webpack_require__.d(__webpack_exports__, "mapData", function () {
           return mapData;
         });
         /* harmony import */
 
 
-        var _placeholder__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-        /*! ../../placeholder */
-        "./src/placeholder/index.js");
-        /* harmony reexport (safe) */
+        var _template_hbs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+        /*! ./template.hbs */
+        "./src/widgets/byline/template.hbs");
+        /* harmony import */
+
+
+        var _template_hbs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_template_hbs__WEBPACK_IMPORTED_MODULE_0__);
+        /* harmony reexport (default from non-harmony) */
 
 
         __webpack_require__.d(__webpack_exports__, "template", function () {
-          return _placeholder__WEBPACK_IMPORTED_MODULE_0__["template"];
-        });
-        /* harmony reexport (safe) */
-
-
-        __webpack_require__.d(__webpack_exports__, "allowedContent", function () {
-          return _placeholder__WEBPACK_IMPORTED_MODULE_0__["allowedContent"];
+          return _template_hbs__WEBPACK_IMPORTED_MODULE_0___default.a;
         });
 
         var qname = 'ehwidgets:byline';
+        var allowedContent = 'span';
 
         function mapData() {
           console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
@@ -30112,6 +30117,57 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { "@babel/helpers - type
         }
         /***/
 
+      },
+
+      /***/
+      "./src/widgets/byline/template.hbs":
+      /*!*****************************************!*\
+        !*** ./src/widgets/byline/template.hbs ***!
+        \*****************************************/
+
+      /*! no static exports found */
+
+      /***/
+      function srcWidgetsBylineTemplateHbs(module, exports, __webpack_require__) {
+        var Handlebars = __webpack_require__(
+        /*! ../../../../../node_modules/handlebars/runtime.js */
+        "../../node_modules/handlebars/runtime.js");
+
+        function __default(obj) {
+          return obj && (obj.__esModule ? obj["default"] : obj);
+        }
+
+        module.exports = (Handlebars["default"] || Handlebars).template({
+          "compiler": [8, ">= 4.3.0"],
+          "main": function main(container, depth0, helpers, partials, data) {
+            var helper,
+                lookupProperty = container.lookupProperty || function (parent, propertyName) {
+              if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
+                return parent[propertyName];
+              }
+
+              return undefined;
+            };
+
+            return "<span>" + container.escapeExpression((helper = (helper = lookupProperty(helpers, "title") || (depth0 != null ? lookupProperty(depth0, "title") : depth0)) != null ? helper : container.hooks.helperMissing, typeof helper === "function" ? helper.call(depth0 != null ? depth0 : container.nullContext || {}, {
+              "name": "title",
+              "hash": {},
+              "data": data,
+              "loc": {
+                "start": {
+                  "line": 1,
+                  "column": 6
+                },
+                "end": {
+                  "line": 1,
+                  "column": 15
+                }
+              }
+            }) : helper)) + "</span>";
+          },
+          "useData": true
+        });
+        /***/
       },
 
       /***/
