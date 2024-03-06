@@ -21478,7 +21478,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./browser.js ***!
         \********************/
 
-      /*! exports provided: browser, constants, readRelease, unarchiveRelease, archiveRelease, deleteRelease, getWorkflowsByState, deleteWorkflowsById, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, deploy, getTargetBranchId, createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, queryDefinitions, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, buildBranchSearchIndex, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, getAssociations, queryVaults, deployModule, getContext, getMapFromArray, getQNameComponents, convertQNameForRef, getRefFromQName, getQName, isInternalType */
+      /*! exports provided: browser, constants, readRelease, unarchiveRelease, archiveRelease, deleteRelease, getWorkflowsByState, deleteWorkflowsById, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, deploy, getTargetBranchId, createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, queryDefinitions, GetCMSApiUrl, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, buildBranchSearchIndex, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, getAssociations, queryVaults, deployModule, getContext, getMapFromArray, getQNameComponents, convertQNameForRef, getRefFromQName, getQName, isInternalType */
 
       /***/
       function browserJs(module, __webpack_exports__, __webpack_require__) {
@@ -21722,6 +21722,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         /* harmony reexport (safe) */
 
 
+        __webpack_require__.d(__webpack_exports__, "GetCMSApiUrl", function () {
+          return _common__WEBPACK_IMPORTED_MODULE_1__["GetCMSApiUrl"];
+        });
+        /* harmony reexport (safe) */
+
+
         __webpack_require__.d(__webpack_exports__, "getBranchFromPlatform", function () {
           return _common__WEBPACK_IMPORTED_MODULE_1__["getBranchFromPlatform"];
         });
@@ -21909,7 +21915,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./common.js ***!
         \*******************/
 
-      /*! exports provided: constants, readRelease, unarchiveRelease, archiveRelease, deleteRelease, getWorkflowsByState, deleteWorkflowsById, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, deploy, getTargetBranchId, createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, queryDefinitions, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, buildBranchSearchIndex, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, getAssociations, queryVaults, deployModule, getContext, getMapFromArray, getQNameComponents, convertQNameForRef, getRefFromQName, getQName, isInternalType */
+      /*! exports provided: constants, readRelease, unarchiveRelease, archiveRelease, deleteRelease, getWorkflowsByState, deleteWorkflowsById, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, deploy, getTargetBranchId, createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, queryDefinitions, GetCMSApiUrl, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, buildBranchSearchIndex, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, getAssociations, queryVaults, deployModule, getContext, getMapFromArray, getQNameComponents, convertQNameForRef, getRefFromQName, getQName, isInternalType */
 
       /***/
       function commonJs(module, __webpack_exports__, __webpack_require__) {
@@ -22143,6 +22149,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
         __webpack_require__.d(__webpack_exports__, "queryDefinitions", function () {
           return _src_api__WEBPACK_IMPORTED_MODULE_1__["queryDefinitions"];
+        });
+        /* harmony reexport (safe) */
+
+
+        __webpack_require__.d(__webpack_exports__, "GetCMSApiUrl", function () {
+          return _src_api__WEBPACK_IMPORTED_MODULE_1__["GetCMSApiUrl"];
         });
         /* harmony reexport (safe) */
 
@@ -23635,7 +23647,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./src/api/index.js ***!
         \**************************/
 
-      /*! exports provided: readRelease, unarchiveRelease, archiveRelease, deleteRelease, getWorkflowsByState, deleteWorkflowsById, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, deploy, getTargetBranchId, createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, queryDefinitions, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, buildBranchSearchIndex, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, getAssociations, queryVaults, deployModule, getContext */
+      /*! exports provided: readRelease, unarchiveRelease, archiveRelease, deleteRelease, getWorkflowsByState, deleteWorkflowsById, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, deploy, getTargetBranchId, createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, queryDefinitions, GetCMSApiUrl, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, buildBranchSearchIndex, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, getAssociations, queryVaults, deployModule, getContext */
 
       /***/
       function srcApiIndexJs(module, __webpack_exports__, __webpack_require__) {
@@ -23957,6 +23969,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
         __webpack_require__.d(__webpack_exports__, "queryDefinitions", function () {
           return _nodes__WEBPACK_IMPORTED_MODULE_6__["queryDefinitions"];
+        });
+        /* harmony reexport (safe) */
+
+
+        __webpack_require__.d(__webpack_exports__, "GetCMSApiUrl", function () {
+          return _nodes__WEBPACK_IMPORTED_MODULE_6__["GetCMSApiUrl"];
         });
         /* harmony import */
 
@@ -24749,7 +24767,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./src/api/nodes.js ***!
         \**************************/
 
-      /*! exports provided: createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, queryDefinitions */
+      /*! exports provided: createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, queryDefinitions, GetCMSApiUrl */
 
       /***/
       function srcApiNodesJs(module, __webpack_exports__, __webpack_require__) {
@@ -24851,6 +24869,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
         __webpack_require__.d(__webpack_exports__, "queryDefinitions", function () {
           return queryDefinitions;
+        });
+        /* harmony export (binding) */
+
+
+        __webpack_require__.d(__webpack_exports__, "GetCMSApiUrl", function () {
+          return GetCMSApiUrl;
         });
         /* harmony import */
 
@@ -25052,7 +25076,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                 switch (_context2.prev = _context2.next) {
                   case 0:
                     return _context2.abrupt("return", Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-                      var driver, baseUrl, url, _yield$axios$get, data;
+                      var driver, baseUrl, url, finalUrl, _yield$axios$get, data;
 
                       return regeneratorRuntime.wrap(function _callee$(_context) {
                         while (1) {
@@ -25061,18 +25085,19 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                               driver = branch.getDriver();
                               baseUrl = getBaseUrl(driver);
                               url = "".concat(baseUrl).concat(branch.getUri(), "/nodes/").concat(id);
-                              _context.next = 5;
-                              return _axios_instance__WEBPACK_IMPORTED_MODULE_1__["default"].get(url, {
+                              finalUrl = GetCMSApiUrl(url);
+                              _context.next = 6;
+                              return _axios_instance__WEBPACK_IMPORTED_MODULE_1__["default"].get(finalUrl, {
                                 headers: Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["getHeadersFromDriver"])(driver),
                                 params: params || {}
                               });
 
-                            case 5:
+                            case 6:
                               _yield$axios$get = _context.sent;
                               data = _yield$axios$get.data;
                               return _context.abrupt("return", data);
 
-                            case 8:
+                            case 9:
                             case "end":
                               return _context.stop();
                           }
@@ -25101,7 +25126,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             var driver = branch.getDriver();
             var baseUrl = getBaseUrl(driver);
             var url = "".concat(baseUrl).concat(branch.getUri(), "/nodes/").concat(_doc);
-            return _axios_instance__WEBPACK_IMPORTED_MODULE_1__["default"].put(url, node, {
+            var finalUrl = GetCMSApiUrl(url);
+            return _axios_instance__WEBPACK_IMPORTED_MODULE_1__["default"].put(finalUrl, node, {
               headers: Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["getHeadersFromDriver"])(driver)
             });
           }, branch);
@@ -25141,7 +25167,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                       var driver = branch.getDriver();
                       var baseUrl = getBaseUrl(driver);
                       var url = "".concat(baseUrl).concat(branch.getUri(), "/nodes/").concat(_doc, "/change_type?type=").concat(type);
-                      return _axios_instance__WEBPACK_IMPORTED_MODULE_1__["default"].post(url, node, {
+                      var finalUrl = GetCMSApiUrl(url);
+                      return _axios_instance__WEBPACK_IMPORTED_MODULE_1__["default"].post(finalUrl, node, {
                         headers: Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["getHeadersFromDriver"])(driver)
                       });
                     }, branch));
@@ -25224,18 +25251,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
                               baseUrl = getBaseUrl(driver);
                               url = "".concat(baseUrl).concat(branch.getUri(), "/nodes/query").concat(queryParams);
-                              /* HACK SINCE THE URL WAS STILL WITHOUT us1 - #mindboggling */
-
-                              finalUrl = url.includes('api.cloudcms') ? url.replace('api.cloudcms.com', 'api.us1.cloudcms.com') : url;
-                              console.log('previous url', url);
-                              console.log('queryNodes url after update', finalUrl);
-                              console.log('headers', JSON.stringify(Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["getHeadersFromDriver"])(driver)));
-                              _context4.next = 12;
+                              finalUrl = GetCMSApiUrl(url);
+                              _context4.next = 9;
                               return _axios_instance__WEBPACK_IMPORTED_MODULE_1__["default"].post(finalUrl, query, {
                                 headers: Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["getHeadersFromDriver"])(driver)
                               });
 
-                            case 12:
+                            case 9:
                               _yield$axios$post = _context4.sent;
                               _yield$axios$post$dat = _yield$axios$post.data;
                               _yield$axios$post$dat = _yield$axios$post$dat === void 0 ? {} : _yield$axios$post$dat;
@@ -25246,7 +25268,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                                 offset: offset
                               });
 
-                            case 17:
+                            case 14:
                             case "end":
                               return _context4.stop();
                           }
@@ -25280,7 +25302,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                     pagination = _args7.length > 1 && _args7[1] !== undefined ? _args7[1] : {};
                     branch = _args7.length > 2 ? _args7[2] : undefined;
                     return _context7.abrupt("return", Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
-                      var driver, paginationKeys, queryParams, baseUrl, url, _yield$axios$post2, _yield$axios$post2$da, rows, totalRows, offset;
+                      var driver, paginationKeys, queryParams, baseUrl, url, finalUrl, _yield$axios$post2, _yield$axios$post2$da, rows, totalRows, offset;
 
                       return regeneratorRuntime.wrap(function _callee6$(_context6) {
                         while (1) {
@@ -25298,12 +25320,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
                               baseUrl = getBaseUrl(driver);
                               url = "".concat(baseUrl).concat(branch.getUri(), "/nodes/search").concat(queryParams);
-                              _context6.next = 8;
-                              return _axios_instance__WEBPACK_IMPORTED_MODULE_1__["default"].post(url, query, {
+                              finalUrl = GetCMSApiUrl(url);
+                              _context6.next = 9;
+                              return _axios_instance__WEBPACK_IMPORTED_MODULE_1__["default"].post(finalUrl, query, {
                                 headers: Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["getHeadersFromDriver"])(driver)
                               });
 
-                            case 8:
+                            case 9:
                               _yield$axios$post2 = _context6.sent;
                               _yield$axios$post2$da = _yield$axios$post2.data;
                               _yield$axios$post2$da = _yield$axios$post2$da === void 0 ? {} : _yield$axios$post2$da;
@@ -25314,7 +25337,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                                 offset: offset
                               });
 
-                            case 13:
+                            case 14:
                             case "end":
                               return _context6.stop();
                           }
@@ -25370,7 +25393,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                   case 0:
                     params = _args9.length > 2 && _args9[2] !== undefined ? _args9[2] : {};
                     return _context9.abrupt("return", Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
-                      var driver, baseUrl, url, _yield$axios$get2, _yield$axios$get2$dat, rows, totalRows;
+                      var driver, baseUrl, url, finalUrl, _yield$axios$get2, _yield$axios$get2$dat, rows, totalRows;
 
                       return regeneratorRuntime.wrap(function _callee8$(_context8) {
                         while (1) {
@@ -25379,13 +25402,14 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                               driver = branch.getDriver();
                               baseUrl = getBaseUrl(driver);
                               url = "".concat(baseUrl).concat(branch.getUri(), "/nodes/").concat(id, "/associations");
-                              _context8.next = 5;
-                              return _axios_instance__WEBPACK_IMPORTED_MODULE_1__["default"].get(url, {
+                              finalUrl = GetCMSApiUrl(url);
+                              _context8.next = 6;
+                              return _axios_instance__WEBPACK_IMPORTED_MODULE_1__["default"].get(finalUrl, {
                                 headers: Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["getHeadersFromDriver"])(driver),
                                 params: params
                               });
 
-                            case 5:
+                            case 6:
                               _yield$axios$get2 = _context8.sent;
                               _yield$axios$get2$dat = _yield$axios$get2.data;
                               rows = _yield$axios$get2$dat.rows;
@@ -25395,7 +25419,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                                 totalRows: totalRows
                               });
 
-                            case 10:
+                            case 11:
                             case "end":
                               return _context8.stop();
                           }
@@ -25472,7 +25496,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                     payload = _args13.length > 2 && _args13[2] !== undefined ? _args13[2] : {};
                     params = _args13.length > 3 && _args13[3] !== undefined ? _args13[3] : {};
                     return _context13.abrupt("return", Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee12() {
-                      var driver, baseUrl, url, _yield$axios$post3, _yield$axios$post3$da, rows, totalRows;
+                      var driver, baseUrl, url, finalUrl, _yield$axios$post3, _yield$axios$post3$da, rows, totalRows;
 
                       return regeneratorRuntime.wrap(function _callee12$(_context12) {
                         while (1) {
@@ -25481,13 +25505,14 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                               driver = branch.getDriver();
                               baseUrl = getBaseUrl(driver);
                               url = "".concat(baseUrl).concat(branch.getUri(), "/nodes/").concat(id, "/find");
-                              _context12.next = 5;
-                              return _axios_instance__WEBPACK_IMPORTED_MODULE_1__["default"].post(url, payload, {
+                              finalUrl = GetCMSApiUrl(url);
+                              _context12.next = 6;
+                              return _axios_instance__WEBPACK_IMPORTED_MODULE_1__["default"].post(finalUrl, payload, {
                                 headers: Object(_helpers__WEBPACK_IMPORTED_MODULE_2__["getHeadersFromDriver"])(driver),
                                 params: params
                               });
 
-                            case 5:
+                            case 6:
                               _yield$axios$post3 = _context12.sent;
                               _yield$axios$post3$da = _yield$axios$post3.data;
                               rows = _yield$axios$post3$da.rows;
@@ -25497,7 +25522,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                                 totalRows: totalRows
                               });
 
-                            case 10:
+                            case 11:
                             case "end":
                               return _context12.stop();
                           }
@@ -25586,6 +25611,23 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             }, _callee15);
           }));
           return _queryDefinitions.apply(this, arguments);
+        }
+
+        function GetCMSApiUrl(url) {
+          var apiUrlNonUS = 'api.cloudcms';
+          var apiUrlUS1 = 'api.us1.cloudcms';
+
+          if (!url.includes(apiUrlNonUS)) {
+            return url;
+          }
+
+          var finalUrl = url.replace(apiUrlNonUS, apiUrlUS1);
+          console.log('Updated CMS API URL', {
+            previousUrl: url
+          }, {
+            newUrl: finalUrl
+          });
+          return finalUrl;
         }
         /***/
 
@@ -29951,6 +29993,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { "@babel/helpers - type
           "./latest-feed/index.js": "./src/widgets/latest-feed/index.js",
           "./meal-plan/index.js": "./src/widgets/meal-plan/index.js",
           "./newsletter/index.js": "./src/widgets/newsletter/index.js",
+          "./poll/index.js": "./src/widgets/poll/index.js",
           "./price/index.js": "./src/widgets/price/index.js",
           "./recipe-guide/index.js": "./src/widgets/recipe-guide/index.js",
           "./recipe/index.js": "./src/widgets/recipe/index.js",
@@ -32185,6 +32228,61 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { "@babel/helpers - type
         });
 
         var qname = 'ehwidgets:newsletter';
+
+        function mapData() {
+          return {
+            type: qname
+          };
+        }
+        /***/
+
+      },
+
+      /***/
+      "./src/widgets/poll/index.js":
+      /*!***********************************!*\
+        !*** ./src/widgets/poll/index.js ***!
+        \***********************************/
+
+      /*! exports provided: qname, template, allowedContent, mapData */
+
+      /***/
+      function srcWidgetsPollIndexJs(module, __webpack_exports__, __webpack_require__) {
+        "use strict";
+
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony export (binding) */
+
+
+        __webpack_require__.d(__webpack_exports__, "qname", function () {
+          return qname;
+        });
+        /* harmony export (binding) */
+
+
+        __webpack_require__.d(__webpack_exports__, "mapData", function () {
+          return mapData;
+        });
+        /* harmony import */
+
+
+        var _placeholder__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+        /*! ../../placeholder */
+        "./src/placeholder/index.js");
+        /* harmony reexport (safe) */
+
+
+        __webpack_require__.d(__webpack_exports__, "template", function () {
+          return _placeholder__WEBPACK_IMPORTED_MODULE_0__["template"];
+        });
+        /* harmony reexport (safe) */
+
+
+        __webpack_require__.d(__webpack_exports__, "allowedContent", function () {
+          return _placeholder__WEBPACK_IMPORTED_MODULE_0__["allowedContent"];
+        });
+
+        var qname = 'ehwidgets:poll';
 
         function mapData() {
           return {
