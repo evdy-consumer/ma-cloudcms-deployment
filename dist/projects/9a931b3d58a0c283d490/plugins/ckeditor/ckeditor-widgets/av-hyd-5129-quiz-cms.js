@@ -21478,7 +21478,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./browser.js ***!
         \********************/
 
-      /*! exports provided: browser, constants, readRelease, unarchiveRelease, archiveRelease, deleteRelease, getWorkflowsByState, getWorkflowsByDocId, deleteWorkflowsById, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, deploy, getTargetBranchId, createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, queryDefinitions, GetCMSApiUrl, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, buildBranchSearchIndex, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, getAssociations, queryVaults, deployModule, getContext, getMapFromArray, getQNameComponents, convertQNameForRef, getRefFromQName, getQName, isInternalType */
+      /*! exports provided: browser, constants, readRelease, unarchiveRelease, archiveRelease, deleteRelease, getWorkflowsByState, deleteWorkflowsById, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, deploy, getTargetBranchId, createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, queryDefinitions, GetCMSApiUrl, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, buildBranchSearchIndex, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, getAssociations, queryVaults, deployModule, getContext, getMapFromArray, getQNameComponents, convertQNameForRef, getRefFromQName, getQName, isInternalType */
 
       /***/
       function browserJs(module, __webpack_exports__, __webpack_require__) {
@@ -21538,12 +21538,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
         __webpack_require__.d(__webpack_exports__, "getWorkflowsByState", function () {
           return _common__WEBPACK_IMPORTED_MODULE_1__["getWorkflowsByState"];
-        });
-        /* harmony reexport (safe) */
-
-
-        __webpack_require__.d(__webpack_exports__, "getWorkflowsByDocId", function () {
-          return _common__WEBPACK_IMPORTED_MODULE_1__["getWorkflowsByDocId"];
         });
         /* harmony reexport (safe) */
 
@@ -21921,7 +21915,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./common.js ***!
         \*******************/
 
-      /*! exports provided: constants, readRelease, unarchiveRelease, archiveRelease, deleteRelease, getWorkflowsByState, getWorkflowsByDocId, deleteWorkflowsById, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, deploy, getTargetBranchId, createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, queryDefinitions, GetCMSApiUrl, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, buildBranchSearchIndex, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, getAssociations, queryVaults, deployModule, getContext, getMapFromArray, getQNameComponents, convertQNameForRef, getRefFromQName, getQName, isInternalType */
+      /*! exports provided: constants, readRelease, unarchiveRelease, archiveRelease, deleteRelease, getWorkflowsByState, deleteWorkflowsById, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, deploy, getTargetBranchId, createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, queryDefinitions, GetCMSApiUrl, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, buildBranchSearchIndex, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, getAssociations, queryVaults, deployModule, getContext, getMapFromArray, getQNameComponents, convertQNameForRef, getRefFromQName, getQName, isInternalType */
 
       /***/
       function commonJs(module, __webpack_exports__, __webpack_require__) {
@@ -21975,12 +21969,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
         __webpack_require__.d(__webpack_exports__, "getWorkflowsByState", function () {
           return _src_api__WEBPACK_IMPORTED_MODULE_1__["getWorkflowsByState"];
-        });
-        /* harmony reexport (safe) */
-
-
-        __webpack_require__.d(__webpack_exports__, "getWorkflowsByDocId", function () {
-          return _src_api__WEBPACK_IMPORTED_MODULE_1__["getWorkflowsByDocId"];
         });
         /* harmony reexport (safe) */
 
@@ -23496,8 +23484,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         }
 
         function getHeadersFromDriver(driver) {
-          console.log('isBrowser in getting headers', isBrowser);
-
           if (isBrowser) {
             var cookies = getCookies(document.cookie);
             return {
@@ -23507,7 +23493,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             };
           }
 
-          console.log('not browser, getting headers', JSON.stringify(driver.getHttpHeaders()));
           return driver.getHttpHeaders();
         }
 
@@ -23659,7 +23644,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./src/api/index.js ***!
         \**************************/
 
-      /*! exports provided: readRelease, unarchiveRelease, archiveRelease, deleteRelease, getWorkflowsByState, getWorkflowsByDocId, deleteWorkflowsById, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, deploy, getTargetBranchId, createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, queryDefinitions, GetCMSApiUrl, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, buildBranchSearchIndex, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, getAssociations, queryVaults, deployModule, getContext */
+      /*! exports provided: readRelease, unarchiveRelease, archiveRelease, deleteRelease, getWorkflowsByState, deleteWorkflowsById, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, deploy, getTargetBranchId, createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, queryDefinitions, GetCMSApiUrl, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, buildBranchSearchIndex, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, getAssociations, queryVaults, deployModule, getContext */
 
       /***/
       function srcApiIndexJs(module, __webpack_exports__, __webpack_require__) {
@@ -23789,12 +23774,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
         __webpack_require__.d(__webpack_exports__, "getWorkflowsByState", function () {
           return _workflow__WEBPACK_IMPORTED_MODULE_4__["getWorkflowsByState"];
-        });
-        /* harmony reexport (safe) */
-
-
-        __webpack_require__.d(__webpack_exports__, "getWorkflowsByDocId", function () {
-          return _workflow__WEBPACK_IMPORTED_MODULE_4__["getWorkflowsByDocId"];
         });
         /* harmony reexport (safe) */
 
@@ -25041,8 +25020,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         function getBaseUrl(driver) {
           var _driver$baseUrl;
 
-          console.log('driver.baseURL', driver.baseURL);
-
           if (driver !== null && driver !== void 0 && (_driver$baseUrl = driver.baseUrl) !== null && _driver$baseUrl !== void 0 && _driver$baseUrl.includes('api.cloudcms')) {
             return 'https://api.us1.cloudcms.com';
           }
@@ -25640,11 +25617,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
           }
 
           var finalUrl = url.replace(apiUrlNonUS, apiUrlUS1);
-          console.log('Updated CMS API URL', {
-            previousUrl: url
-          }, {
-            newUrl: finalUrl
-          });
           return finalUrl;
         }
         /***/
@@ -25923,7 +25895,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         !*** ./src/api/workflow.js ***!
         \*****************************/
 
-      /*! exports provided: getWorkflowsByState, getWorkflowsByDocId, deleteWorkflowsById, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow */
+      /*! exports provided: getWorkflowsByState, deleteWorkflowsById, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow */
 
       /***/
       function srcApiWorkflowJs(module, __webpack_exports__, __webpack_require__) {
@@ -25935,12 +25907,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
         __webpack_require__.d(__webpack_exports__, "getWorkflowsByState", function () {
           return getWorkflowsByState;
-        });
-        /* harmony export (binding) */
-
-
-        __webpack_require__.d(__webpack_exports__, "getWorkflowsByDocId", function () {
-          return getWorkflowsByDocId;
         });
         /* harmony export (binding) */
 
@@ -26136,6 +26102,23 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         function getWorkflowsByState(_x, _x2, _x3, _x4, _x5) {
           return _getWorkflowsByState.apply(this, arguments);
         }
+        /**
+         * `deleteWorkflowsById` function
+         *
+         * This function is used to delete a list of workflows.
+         *
+         * @param {Object} session - The session object representing the current user session.
+         * @param {Array<string>} arrWorkflowsIdsToDelete - An array of workflow IDs to be deleted.
+         * @returns {Promise<void>} A promise that resolves when all workflows have been deleted.
+         *
+         * @example
+         * deleteWorkflowsById(session, ['workflowId1', 'workflowId2', 'workflowId3'])
+         *   .then(deleted => console.log(`${deleted} workflows deleted`))
+         *   .catch(error => console.error(error));
+         *
+         * @throws Will throw an error if the deletion process fails.
+         */
+
 
         function _getWorkflowsByState() {
           _getWorkflowsByState = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(session, projectId, workflowModelId, lastEditDate, state) {
@@ -26214,107 +26197,20 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
           return _getWorkflowsByState.apply(this, arguments);
         }
 
-        function getWorkflowsByDocId(_x6, _x7, _x8, _x9) {
-          return _getWorkflowsByDocId.apply(this, arguments);
-        }
-        /**
-         * `deleteWorkflowsById` function
-         *
-         * This function is used to delete a list of workflows.
-         *
-         * @param {Object} session - The session object representing the current user session.
-         * @param {Array<string>} arrWorkflowsIdsToDelete - An array of workflow IDs to be deleted.
-         * @returns {Promise<void>} A promise that resolves when all workflows have been deleted.
-         *
-         * @example
-         * deleteWorkflowsById(session, ['workflowId1', 'workflowId2', 'workflowId3'])
-         *   .then(deleted => console.log(`${deleted} workflows deleted`))
-         *   .catch(error => console.error(error));
-         *
-         * @throws Will throw an error if the deletion process fails.
-         */
-
-
-        function _getWorkflowsByDocId() {
-          _getWorkflowsByDocId = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(session, projectId, workflowModelId, docId) {
-            var query, pagination, result, workflows, _iterator2, _step2, _row$payloadData, row;
-
-            return regeneratorRuntime.wrap(function _callee2$(_context2) {
-              while (1) {
-                switch (_context2.prev = _context2.next) {
-                  case 0:
-                    query = {
-                      'context.projectId': projectId,
-                      modelId: workflowModelId,
-                      state: 'RUNNING'
-                    };
-                    pagination = {
-                      limit: 50,
-                      skip: 0,
-                      sort: {
-                        '_system.modified_on.ms': -1
-                      }
-                    };
-                    result = null;
-                    workflows = [];
-
-                  case 4:
-                    _context2.next = 6;
-                    return session.queryWorkflows(query, pagination);
-
-                  case 6:
-                    result = _context2.sent;
-                    _iterator2 = _createForOfIteratorHelper(result.rows);
-
-                    try {
-                      for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-                        row = _step2.value;
-
-                        if (row !== null && row !== void 0 && (_row$payloadData = row.payloadData) !== null && _row$payloadData !== void 0 && _row$payloadData.resources[docId]) {
-                          workflows.push(row._doc);
-                        }
-                      }
-                    } catch (err) {
-                      _iterator2.e(err);
-                    } finally {
-                      _iterator2.f();
-                    }
-
-                    pagination.skip += pagination.limit;
-
-                  case 10:
-                    if (result.size == pagination.limit) {
-                      _context2.next = 4;
-                      break;
-                    }
-
-                  case 11:
-                    return _context2.abrupt("return", workflows);
-
-                  case 12:
-                  case "end":
-                    return _context2.stop();
-                }
-              }
-            }, _callee2);
-          }));
-          return _getWorkflowsByDocId.apply(this, arguments);
-        }
-
-        function deleteWorkflowsById(_x10, _x11) {
+        function deleteWorkflowsById(_x6, _x7) {
           return _deleteWorkflowsById.apply(this, arguments);
         }
 
         function _deleteWorkflowsById() {
-          _deleteWorkflowsById = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(session, arrWorkflowsIdsToDelete) {
+          _deleteWorkflowsById = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(session, arrWorkflowsIdsToDelete) {
             var i, _ret;
 
-            return regeneratorRuntime.wrap(function _callee5$(_context5) {
+            return regeneratorRuntime.wrap(function _callee4$(_context4) {
               while (1) {
-                switch (_context5.prev = _context5.next) {
+                switch (_context4.prev = _context4.next) {
                   case 0:
                     if (!(!Array.isArray(arrWorkflowsIdsToDelete) || arrWorkflowsIdsToDelete.length === 0)) {
-                      _context5.next = 2;
+                      _context4.next = 2;
                       break;
                     }
 
@@ -26322,42 +26218,42 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
                   case 2:
                     if (session) {
-                      _context5.next = 4;
+                      _context4.next = 4;
                       break;
                     }
 
                     throw new Error('session must be initialized');
 
                   case 4:
-                    _context5.prev = 4;
-                    return _context5.delegateYield( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+                    _context4.prev = 4;
+                    return _context4.delegateYield( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
                       var deleted, deleteFn, concurrent, tasks;
-                      return regeneratorRuntime.wrap(function _callee4$(_context4) {
+                      return regeneratorRuntime.wrap(function _callee3$(_context3) {
                         while (1) {
-                          switch (_context4.prev = _context4.next) {
+                          switch (_context3.prev = _context3.next) {
                             case 0:
                               deleted = 0;
 
                               deleteFn = /*#__PURE__*/function () {
-                                var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(id) {
-                                  return regeneratorRuntime.wrap(function _callee3$(_context3) {
+                                var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(id) {
+                                  return regeneratorRuntime.wrap(function _callee2$(_context2) {
                                     while (1) {
-                                      switch (_context3.prev = _context3.next) {
+                                      switch (_context2.prev = _context2.next) {
                                         case 0:
                                           console.log("delete ".concat(id));
                                           deleted += 1;
-                                          _context3.next = 4;
+                                          _context2.next = 4;
                                           return session.deleteWorkflow(id);
 
                                         case 4:
                                         case "end":
-                                          return _context3.stop();
+                                          return _context2.stop();
                                       }
                                     }
-                                  }, _callee3);
+                                  }, _callee2);
                                 }));
 
-                                return function deleteFn(_x24) {
+                                return function deleteFn(_x20) {
                                   return _ref.apply(this, arguments);
                                 };
                               }();
@@ -26367,85 +26263,85 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
                             case 4:
                               if (!(i < arrWorkflowsIdsToDelete.length)) {
-                                _context4.next = 11;
+                                _context3.next = 11;
                                 break;
                               }
 
                               tasks = arrWorkflowsIdsToDelete.slice(i, i + concurrent).map(function (id) {
                                 return deleteFn(id);
                               });
-                              _context4.next = 8;
+                              _context3.next = 8;
                               return Promise.all(tasks);
 
                             case 8:
                               i += concurrent;
-                              _context4.next = 4;
+                              _context3.next = 4;
                               break;
 
                             case 11:
                               console.log("Deleted ".concat(deleted, " workflows"));
-                              return _context4.abrupt("return", {
+                              return _context3.abrupt("return", {
                                 v: deleted
                               });
 
                             case 13:
                             case "end":
-                              return _context4.stop();
+                              return _context3.stop();
                           }
                         }
-                      }, _callee4);
+                      }, _callee3);
                     })(), "t0", 6);
 
                   case 6:
-                    _ret = _context5.t0;
+                    _ret = _context4.t0;
 
                     if (!(_typeof(_ret) === "object")) {
-                      _context5.next = 9;
+                      _context4.next = 9;
                       break;
                     }
 
-                    return _context5.abrupt("return", _ret.v);
+                    return _context4.abrupt("return", _ret.v);
 
                   case 9:
-                    _context5.next = 15;
+                    _context4.next = 15;
                     break;
 
                   case 11:
-                    _context5.prev = 11;
-                    _context5.t1 = _context5["catch"](4);
-                    console.error(_context5.t1);
-                    throw new Error(_context5.t1);
+                    _context4.prev = 11;
+                    _context4.t1 = _context4["catch"](4);
+                    console.error(_context4.t1);
+                    throw new Error(_context4.t1);
 
                   case 15:
                   case "end":
-                    return _context5.stop();
+                    return _context4.stop();
                 }
               }
-            }, _callee5, null, [[4, 11]]);
+            }, _callee4, null, [[4, 11]]);
           }));
           return _deleteWorkflowsById.apply(this, arguments);
         }
 
-        function createWorkflow(_x12, _x13, _x14) {
+        function createWorkflow(_x8, _x9, _x10) {
           return _createWorkflow.apply(this, arguments);
         }
 
         function _createWorkflow() {
-          _createWorkflow = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7(modelId, payload, project) {
-            return regeneratorRuntime.wrap(function _callee7$(_context7) {
+          _createWorkflow = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(modelId, payload, project) {
+            return regeneratorRuntime.wrap(function _callee6$(_context6) {
               while (1) {
-                switch (_context7.prev = _context7.next) {
+                switch (_context6.prev = _context6.next) {
                   case 0:
-                    return _context7.abrupt("return", Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+                    return _context6.abrupt("return", Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
                       var driver, url, _yield$axios$post, id;
 
-                      return regeneratorRuntime.wrap(function _callee6$(_context6) {
+                      return regeneratorRuntime.wrap(function _callee5$(_context5) {
                         while (1) {
-                          switch (_context6.prev = _context6.next) {
+                          switch (_context5.prev = _context5.next) {
                             case 0:
                               driver = project.getDriver();
                               url = "".concat(driver.baseURL).concat(project.getUri(), "/workflow/create");
-                              _context6.next = 4;
+                              _context5.next = 4;
                               return _axios_instance__WEBPACK_IMPORTED_MODULE_0__["default"].post(url, payload, {
                                 headers: Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["getHeadersFromDriver"])(driver),
                                 params: {
@@ -26455,47 +26351,47 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                               });
 
                             case 4:
-                              _yield$axios$post = _context6.sent;
+                              _yield$axios$post = _context5.sent;
                               id = _yield$axios$post.data._doc;
-                              return _context6.abrupt("return", id);
+                              return _context5.abrupt("return", id);
 
                             case 7:
                             case "end":
-                              return _context6.stop();
+                              return _context5.stop();
                           }
                         }
-                      }, _callee6);
+                      }, _callee5);
                     })), project));
 
                   case 1:
                   case "end":
-                    return _context7.stop();
+                    return _context6.stop();
                 }
               }
-            }, _callee7);
+            }, _callee6);
           }));
           return _createWorkflow.apply(this, arguments);
         }
 
-        function getWorkflow(_x15, _x16) {
+        function getWorkflow(_x11, _x12) {
           return _getWorkflow.apply(this, arguments);
         }
 
         function _getWorkflow() {
-          _getWorkflow = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee9(id, project) {
-            return regeneratorRuntime.wrap(function _callee9$(_context9) {
+          _getWorkflow = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8(id, project) {
+            return regeneratorRuntime.wrap(function _callee8$(_context8) {
               while (1) {
-                switch (_context9.prev = _context9.next) {
+                switch (_context8.prev = _context8.next) {
                   case 0:
-                    return _context9.abrupt("return", Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
+                    return _context8.abrupt("return", Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
                       var driver, url, _yield$axios$get, data;
 
-                      return regeneratorRuntime.wrap(function _callee8$(_context8) {
+                      return regeneratorRuntime.wrap(function _callee7$(_context7) {
                         while (1) {
-                          switch (_context8.prev = _context8.next) {
+                          switch (_context7.prev = _context7.next) {
                             case 0:
                               if (id) {
-                                _context8.next = 2;
+                                _context7.next = 2;
                                 break;
                               }
 
@@ -26504,55 +26400,55 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                             case 2:
                               driver = project.getDriver();
                               url = "".concat(driver.baseURL, "/workflow/instances/").concat(id);
-                              _context8.next = 6;
+                              _context7.next = 6;
                               return _axios_instance__WEBPACK_IMPORTED_MODULE_0__["default"].get(url, {
                                 headers: Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["getHeadersFromDriver"])(driver)
                               });
 
                             case 6:
-                              _yield$axios$get = _context8.sent;
+                              _yield$axios$get = _context7.sent;
                               data = _yield$axios$get.data;
-                              return _context8.abrupt("return", data);
+                              return _context7.abrupt("return", data);
 
                             case 9:
                             case "end":
-                              return _context8.stop();
+                              return _context7.stop();
                           }
                         }
-                      }, _callee8);
+                      }, _callee7);
                     })), project));
 
                   case 1:
                   case "end":
-                    return _context9.stop();
+                    return _context8.stop();
                 }
               }
-            }, _callee9);
+            }, _callee8);
           }));
           return _getWorkflow.apply(this, arguments);
         }
 
-        function updateWorkflow(_x17, _x18) {
+        function updateWorkflow(_x13, _x14) {
           return _updateWorkflow.apply(this, arguments);
         }
 
         function _updateWorkflow() {
-          _updateWorkflow = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee11(payload, project) {
-            return regeneratorRuntime.wrap(function _callee11$(_context11) {
+          _updateWorkflow = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee10(payload, project) {
+            return regeneratorRuntime.wrap(function _callee10$(_context10) {
               while (1) {
-                switch (_context11.prev = _context11.next) {
+                switch (_context10.prev = _context10.next) {
                   case 0:
-                    return _context11.abrupt("return", Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee10() {
+                    return _context10.abrupt("return", Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
                       var id, driver, url, _yield$axios$put, data;
 
-                      return regeneratorRuntime.wrap(function _callee10$(_context10) {
+                      return regeneratorRuntime.wrap(function _callee9$(_context9) {
                         while (1) {
-                          switch (_context10.prev = _context10.next) {
+                          switch (_context9.prev = _context9.next) {
                             case 0:
                               id = payload._doc;
 
                               if (id) {
-                                _context10.next = 3;
+                                _context9.next = 3;
                                 break;
                               }
 
@@ -26561,53 +26457,53 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                             case 3:
                               driver = project.getDriver();
                               url = "".concat(driver.baseURL, "/workflow/instances/").concat(id);
-                              _context10.next = 7;
+                              _context9.next = 7;
                               return _axios_instance__WEBPACK_IMPORTED_MODULE_0__["default"].put(url, payload, {
                                 headers: Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["getHeadersFromDriver"])(driver)
                               });
 
                             case 7:
-                              _yield$axios$put = _context10.sent;
+                              _yield$axios$put = _context9.sent;
                               data = _yield$axios$put.data;
-                              return _context10.abrupt("return", data);
+                              return _context9.abrupt("return", data);
 
                             case 10:
                             case "end":
-                              return _context10.stop();
+                              return _context9.stop();
                           }
                         }
-                      }, _callee10);
+                      }, _callee9);
                     })), project));
 
                   case 1:
                   case "end":
-                    return _context11.stop();
+                    return _context10.stop();
                 }
               }
-            }, _callee11);
+            }, _callee10);
           }));
           return _updateWorkflow.apply(this, arguments);
         }
 
-        function addWorkflowReference(_x19, _x20, _x21) {
+        function addWorkflowReference(_x15, _x16, _x17) {
           return _addWorkflowReference.apply(this, arguments);
         }
 
         function _addWorkflowReference() {
-          _addWorkflowReference = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee13(workflowId, ref, project) {
-            return regeneratorRuntime.wrap(function _callee13$(_context13) {
+          _addWorkflowReference = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee12(workflowId, ref, project) {
+            return regeneratorRuntime.wrap(function _callee12$(_context12) {
               while (1) {
-                switch (_context13.prev = _context13.next) {
+                switch (_context12.prev = _context12.next) {
                   case 0:
-                    return _context13.abrupt("return", Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee12() {
+                    return _context12.abrupt("return", Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee11() {
                       var driver, url, _yield$axios$post2, data;
 
-                      return regeneratorRuntime.wrap(function _callee12$(_context12) {
+                      return regeneratorRuntime.wrap(function _callee11$(_context11) {
                         while (1) {
-                          switch (_context12.prev = _context12.next) {
+                          switch (_context11.prev = _context11.next) {
                             case 0:
                               if (workflowId) {
-                                _context12.next = 2;
+                                _context11.next = 2;
                                 break;
                               }
 
@@ -26615,7 +26511,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
 
                             case 2:
                               if (ref) {
-                                _context12.next = 4;
+                                _context11.next = 4;
                                 break;
                               }
 
@@ -26624,7 +26520,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                             case 4:
                               driver = project.getDriver();
                               url = "".concat(driver.baseURL, "/workflow/instances/").concat(workflowId, "/resources/add");
-                              _context12.next = 8;
+                              _context11.next = 8;
                               return _axios_instance__WEBPACK_IMPORTED_MODULE_0__["default"].post(url, {}, {
                                 headers: Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["getHeadersFromDriver"])(driver),
                                 params: {
@@ -26633,47 +26529,47 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                               });
 
                             case 8:
-                              _yield$axios$post2 = _context12.sent;
+                              _yield$axios$post2 = _context11.sent;
                               data = _yield$axios$post2.data;
-                              return _context12.abrupt("return", data);
+                              return _context11.abrupt("return", data);
 
                             case 11:
                             case "end":
-                              return _context12.stop();
+                              return _context11.stop();
                           }
                         }
-                      }, _callee12);
+                      }, _callee11);
                     })), project));
 
                   case 1:
                   case "end":
-                    return _context13.stop();
+                    return _context12.stop();
                 }
               }
-            }, _callee13);
+            }, _callee12);
           }));
           return _addWorkflowReference.apply(this, arguments);
         }
 
-        function startWorkflow(_x22, _x23) {
+        function startWorkflow(_x18, _x19) {
           return _startWorkflow.apply(this, arguments);
         }
 
         function _startWorkflow() {
-          _startWorkflow = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee15(workflowId, project) {
-            return regeneratorRuntime.wrap(function _callee15$(_context15) {
+          _startWorkflow = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee14(workflowId, project) {
+            return regeneratorRuntime.wrap(function _callee14$(_context14) {
               while (1) {
-                switch (_context15.prev = _context15.next) {
+                switch (_context14.prev = _context14.next) {
                   case 0:
-                    return _context15.abrupt("return", Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee14() {
+                    return _context14.abrupt("return", Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee13() {
                       var driver, url, _yield$axios$post3, data;
 
-                      return regeneratorRuntime.wrap(function _callee14$(_context14) {
+                      return regeneratorRuntime.wrap(function _callee13$(_context13) {
                         while (1) {
-                          switch (_context14.prev = _context14.next) {
+                          switch (_context13.prev = _context13.next) {
                             case 0:
                               if (workflowId) {
-                                _context14.next = 2;
+                                _context13.next = 2;
                                 break;
                               }
 
@@ -26682,30 +26578,30 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                             case 2:
                               driver = project.getDriver();
                               url = "".concat(driver.baseURL, "/workflow/instances/").concat(workflowId, "/start");
-                              _context14.next = 6;
+                              _context13.next = 6;
                               return _axios_instance__WEBPACK_IMPORTED_MODULE_0__["default"].post(url, {}, {
                                 headers: Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["getHeadersFromDriver"])(driver)
                               });
 
                             case 6:
-                              _yield$axios$post3 = _context14.sent;
+                              _yield$axios$post3 = _context13.sent;
                               data = _yield$axios$post3.data;
-                              return _context14.abrupt("return", data);
+                              return _context13.abrupt("return", data);
 
                             case 9:
                             case "end":
-                              return _context14.stop();
+                              return _context13.stop();
                           }
                         }
-                      }, _callee14);
+                      }, _callee13);
                     })), project));
 
                   case 1:
                   case "end":
-                    return _context15.stop();
+                    return _context14.stop();
                 }
               }
-            }, _callee15);
+            }, _callee14);
           }));
           return _startWorkflow.apply(this, arguments);
         }
@@ -30087,6 +29983,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { "@babel/helpers - type
           "./latest-feed/index.js": "./src/widgets/latest-feed/index.js",
           "./meal-plan/index.js": "./src/widgets/meal-plan/index.js",
           "./newsletter/index.js": "./src/widgets/newsletter/index.js",
+          "./poll/index.js": "./src/widgets/poll/index.js",
           "./price/index.js": "./src/widgets/price/index.js",
           "./quiz/index.js": "./src/widgets/quiz/index.js",
           "./recipe-guide/index.js": "./src/widgets/recipe-guide/index.js",
@@ -32322,6 +32219,61 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { "@babel/helpers - type
         });
 
         var qname = 'ehwidgets:newsletter';
+
+        function mapData() {
+          return {
+            type: qname
+          };
+        }
+        /***/
+
+      },
+
+      /***/
+      "./src/widgets/poll/index.js":
+      /*!***********************************!*\
+        !*** ./src/widgets/poll/index.js ***!
+        \***********************************/
+
+      /*! exports provided: qname, template, allowedContent, mapData */
+
+      /***/
+      function srcWidgetsPollIndexJs(module, __webpack_exports__, __webpack_require__) {
+        "use strict";
+
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony export (binding) */
+
+
+        __webpack_require__.d(__webpack_exports__, "qname", function () {
+          return qname;
+        });
+        /* harmony export (binding) */
+
+
+        __webpack_require__.d(__webpack_exports__, "mapData", function () {
+          return mapData;
+        });
+        /* harmony import */
+
+
+        var _placeholder__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+        /*! ../../placeholder */
+        "./src/placeholder/index.js");
+        /* harmony reexport (safe) */
+
+
+        __webpack_require__.d(__webpack_exports__, "template", function () {
+          return _placeholder__WEBPACK_IMPORTED_MODULE_0__["template"];
+        });
+        /* harmony reexport (safe) */
+
+
+        __webpack_require__.d(__webpack_exports__, "allowedContent", function () {
+          return _placeholder__WEBPACK_IMPORTED_MODULE_0__["allowedContent"];
+        });
+
+        var qname = 'ehwidgets:poll';
 
         function mapData() {
           return {
