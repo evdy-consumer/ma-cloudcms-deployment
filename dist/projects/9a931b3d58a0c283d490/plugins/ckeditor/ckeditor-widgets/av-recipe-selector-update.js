@@ -21416,7 +21416,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
     /*!********************!*\
       !*** ./browser.js ***!
       \********************/
-    /*! exports provided: browser, constants, readRelease, unarchiveRelease, archiveRelease, deleteRelease, getWorkflowsByState, deleteWorkflowsById, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, deploy, getTargetBranchId, createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, queryDefinitions, GetCMSApiUrl, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, buildBranchSearchIndex, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, getAssociations, queryVaults, deployModule, getContext, getMapFromArray, getQNameComponents, convertQNameForRef, getRefFromQName, getQName, isInternalType */
+    /*! exports provided: browser, constants, readRelease, unarchiveRelease, archiveRelease, deleteRelease, getWorkflowsByState, getWorkflowsByDocId, deleteWorkflowsById, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, deploy, getTargetBranchId, createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, queryDefinitions, GetCMSApiUrl, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, buildBranchSearchIndex, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, getAssociations, queryVaults, deployModule, getContext, getMapFromArray, getQNameComponents, convertQNameForRef, getRefFromQName, getQName, isInternalType */
     /***/
     function browserJs(module, __webpack_exports__, __webpack_require__) {
       "use strict";
@@ -21458,6 +21458,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
       /* harmony reexport (safe) */
       __webpack_require__.d(__webpack_exports__, "getWorkflowsByState", function () {
         return _common__WEBPACK_IMPORTED_MODULE_1__["getWorkflowsByState"];
+      });
+
+      /* harmony reexport (safe) */
+      __webpack_require__.d(__webpack_exports__, "getWorkflowsByDocId", function () {
+        return _common__WEBPACK_IMPORTED_MODULE_1__["getWorkflowsByDocId"];
       });
 
       /* harmony reexport (safe) */
@@ -21771,7 +21776,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
     /*!*******************!*\
       !*** ./common.js ***!
       \*******************/
-    /*! exports provided: constants, readRelease, unarchiveRelease, archiveRelease, deleteRelease, getWorkflowsByState, deleteWorkflowsById, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, deploy, getTargetBranchId, createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, queryDefinitions, GetCMSApiUrl, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, buildBranchSearchIndex, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, getAssociations, queryVaults, deployModule, getContext, getMapFromArray, getQNameComponents, convertQNameForRef, getRefFromQName, getQName, isInternalType */
+    /*! exports provided: constants, readRelease, unarchiveRelease, archiveRelease, deleteRelease, getWorkflowsByState, getWorkflowsByDocId, deleteWorkflowsById, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, deploy, getTargetBranchId, createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, queryDefinitions, GetCMSApiUrl, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, buildBranchSearchIndex, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, getAssociations, queryVaults, deployModule, getContext, getMapFromArray, getQNameComponents, convertQNameForRef, getRefFromQName, getQName, isInternalType */
     /***/
     function commonJs(module, __webpack_exports__, __webpack_require__) {
       "use strict";
@@ -21808,6 +21813,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
       /* harmony reexport (safe) */
       __webpack_require__.d(__webpack_exports__, "getWorkflowsByState", function () {
         return _src_api__WEBPACK_IMPORTED_MODULE_1__["getWorkflowsByState"];
+      });
+
+      /* harmony reexport (safe) */
+      __webpack_require__.d(__webpack_exports__, "getWorkflowsByDocId", function () {
+        return _src_api__WEBPACK_IMPORTED_MODULE_1__["getWorkflowsByDocId"];
       });
 
       /* harmony reexport (safe) */
@@ -24073,7 +24083,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
     /*!**************************!*\
       !*** ./src/api/index.js ***!
       \**************************/
-    /*! exports provided: readRelease, unarchiveRelease, archiveRelease, deleteRelease, getWorkflowsByState, deleteWorkflowsById, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, deploy, getTargetBranchId, createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, queryDefinitions, GetCMSApiUrl, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, buildBranchSearchIndex, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, getAssociations, queryVaults, deployModule, getContext */
+    /*! exports provided: readRelease, unarchiveRelease, archiveRelease, deleteRelease, getWorkflowsByState, getWorkflowsByDocId, deleteWorkflowsById, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow, createDeploymentTarget, queryDeploymentTargets, createDeploymentStrategy, queryDeploymentStrategies, deleteDeploymentStrategy, deleteDeploymentTarget, deploy, getTargetBranchId, createNode, createAndReturnNode, readNode, getNode, updateNode, changeNodeType, getRefDataForNode, associate, queryNodes, searchNodes, queryNodesViaGitana, getAssociationsForNode, deleteNode, findNodes, paginateNodes, queryDefinitions, GetCMSApiUrl, getBranchFromPlatform, getBranchFromRepository, getHeadersFromBranch, queryBranches, startCreateBranch, createBranches, buildBranchSearchIndex, deleteBranch, getEnvFromBranch, resyncPublishing, waitForJobsToFinish, getJob, getJobs, apiHelpers, getPlatform, getRepository, getProject, updateSelf, getContentType, listDefinitions, getAssociations, queryVaults, deployModule, getContext */
     /***/
     function srcApiIndexJs(module, __webpack_exports__, __webpack_require__) {
       "use strict";
@@ -24154,6 +24164,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
       /* harmony reexport (safe) */
       __webpack_require__.d(__webpack_exports__, "getWorkflowsByState", function () {
         return _workflow__WEBPACK_IMPORTED_MODULE_4__["getWorkflowsByState"];
+      });
+
+      /* harmony reexport (safe) */
+      __webpack_require__.d(__webpack_exports__, "getWorkflowsByDocId", function () {
+        return _workflow__WEBPACK_IMPORTED_MODULE_4__["getWorkflowsByDocId"];
       });
 
       /* harmony reexport (safe) */
@@ -27116,7 +27131,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
     /*!*****************************!*\
       !*** ./src/api/workflow.js ***!
       \*****************************/
-    /*! exports provided: getWorkflowsByState, deleteWorkflowsById, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow */
+    /*! exports provided: getWorkflowsByState, getWorkflowsByDocId, deleteWorkflowsById, createWorkflow, getWorkflow, updateWorkflow, addWorkflowReference, startWorkflow */
     /***/
     function srcApiWorkflowJs(module, __webpack_exports__, __webpack_require__) {
       "use strict";
@@ -27125,6 +27140,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
       /* harmony export (binding) */
       __webpack_require__.d(__webpack_exports__, "getWorkflowsByState", function () {
         return getWorkflowsByState;
+      });
+      /* harmony export (binding) */
+      __webpack_require__.d(__webpack_exports__, "getWorkflowsByDocId", function () {
+        return getWorkflowsByDocId;
       });
       /* harmony export (binding) */
       __webpack_require__.d(__webpack_exports__, "deleteWorkflowsById", function () {
@@ -27162,6 +27181,34 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         } : function (o) {
           return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
         }, _typeof(o);
+      }
+      function _defineProperty(obj, key, value) {
+        key = _toPropertyKey(key);
+        if (key in obj) {
+          Object.defineProperty(obj, key, {
+            value: value,
+            enumerable: true,
+            configurable: true,
+            writable: true
+          });
+        } else {
+          obj[key] = value;
+        }
+        return obj;
+      }
+      function _toPropertyKey(t) {
+        var i = _toPrimitive(t, "string");
+        return "symbol" == _typeof(i) ? i : String(i);
+      }
+      function _toPrimitive(t, r) {
+        if ("object" != _typeof(t) || !t) return t;
+        var e = t[Symbol.toPrimitive];
+        if (void 0 !== e) {
+          var i = e.call(t, r || "default");
+          if ("object" != _typeof(i)) return i;
+          throw new TypeError("@@toPrimitive must return a primitive value.");
+        }
+        return ("string" === r ? String : Number)(t);
       }
       function _regeneratorRuntime() {
         "use strict";
@@ -27578,23 +27625,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
       function getWorkflowsByState(_x, _x2, _x3, _x4, _x5) {
         return _getWorkflowsByState.apply(this, arguments);
       }
-
-      /**
-       * `deleteWorkflowsById` function
-       *
-       * This function is used to delete a list of workflows.
-       *
-       * @param {Object} session - The session object representing the current user session.
-       * @param {Array<string>} arrWorkflowsIdsToDelete - An array of workflow IDs to be deleted.
-       * @returns {Promise<void>} A promise that resolves when all workflows have been deleted.
-       *
-       * @example
-       * deleteWorkflowsById(session, ['workflowId1', 'workflowId2', 'workflowId3'])
-       *   .then(deleted => console.log(`${deleted} workflows deleted`))
-       *   .catch(error => console.error(error));
-       *
-       * @throws Will throw an error if the deletion process fails.
-       */
       function _getWorkflowsByState() {
         _getWorkflowsByState = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(session, projectId, workflowModelId, lastEditDate, state) {
           var cutoff, query, pagination, result, workflows, _iterator, _step, row;
@@ -27660,45 +27690,120 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
         }));
         return _getWorkflowsByState.apply(this, arguments);
       }
-      function deleteWorkflowsById(_x6, _x7) {
+      function getWorkflowsByDocId(_x6, _x7, _x8, _x9) {
+        return _getWorkflowsByDocId.apply(this, arguments);
+      }
+
+      /**
+       * `deleteWorkflowsById` function
+       *
+       * This function is used to delete a list of workflows.
+       *
+       * @param {Object} session - The session object representing the current user session.
+       * @param {Array<string>} arrWorkflowsIdsToDelete - An array of workflow IDs to be deleted.
+       * @returns {Promise<void>} A promise that resolves when all workflows have been deleted.
+       *
+       * @example
+       * deleteWorkflowsById(session, ['workflowId1', 'workflowId2', 'workflowId3'])
+       *   .then(deleted => console.log(`${deleted} workflows deleted`))
+       *   .catch(error => console.error(error));
+       *
+       * @throws Will throw an error if the deletion process fails.
+       */
+      function _getWorkflowsByDocId() {
+        _getWorkflowsByDocId = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(session, projectId, workflowModelId, docId) {
+          var query, pagination, result, workflows, _iterator2, _step2, _row$payloadData, row;
+          return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+            while (1) switch (_context2.prev = _context2.next) {
+              case 0:
+                query = _defineProperty(_defineProperty({
+                  'context.projectId': projectId,
+                  modelId: workflowModelId
+                }, "payloadData.resources.".concat(docId), {
+                  '$exists': true
+                }), "state", 'RUNNING');
+                pagination = {
+                  limit: 50,
+                  skip: 0,
+                  sort: {
+                    '_system.modified_on.ms': -1
+                  }
+                };
+                result = null;
+                workflows = [];
+              case 4:
+                _context2.next = 6;
+                return session.queryWorkflows(query, pagination);
+              case 6:
+                result = _context2.sent;
+                _iterator2 = _createForOfIteratorHelper(result.rows);
+                try {
+                  for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+                    row = _step2.value;
+                    if (row !== null && row !== void 0 && (_row$payloadData = row.payloadData) !== null && _row$payloadData !== void 0 && _row$payloadData.resources[docId]) {
+                      workflows.push(row._doc);
+                    }
+                  }
+                } catch (err) {
+                  _iterator2.e(err);
+                } finally {
+                  _iterator2.f();
+                }
+                pagination.skip += pagination.limit;
+              case 10:
+                if (result.size == pagination.limit) {
+                  _context2.next = 4;
+                  break;
+                }
+              case 11:
+                return _context2.abrupt("return", workflows);
+              case 12:
+              case "end":
+                return _context2.stop();
+            }
+          }, _callee2);
+        }));
+        return _getWorkflowsByDocId.apply(this, arguments);
+      }
+      function deleteWorkflowsById(_x10, _x11) {
         return _deleteWorkflowsById.apply(this, arguments);
       }
       function _deleteWorkflowsById() {
-        _deleteWorkflowsById = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(session, arrWorkflowsIdsToDelete) {
+        _deleteWorkflowsById = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(session, arrWorkflowsIdsToDelete) {
           var deleted, deleteFn, concurrent, i, tasks;
-          return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-            while (1) switch (_context3.prev = _context3.next) {
+          return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+            while (1) switch (_context4.prev = _context4.next) {
               case 0:
                 if (!(!Array.isArray(arrWorkflowsIdsToDelete) || arrWorkflowsIdsToDelete.length === 0)) {
-                  _context3.next = 2;
+                  _context4.next = 2;
                   break;
                 }
                 throw new Error('arrWorkflowsIdsToDelete must be a non-empty array');
               case 2:
                 if (session) {
-                  _context3.next = 4;
+                  _context4.next = 4;
                   break;
                 }
                 throw new Error('session must be initialized');
               case 4:
-                _context3.prev = 4;
+                _context4.prev = 4;
                 deleted = 0;
                 deleteFn = /*#__PURE__*/function () {
-                  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(id) {
-                    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-                      while (1) switch (_context2.prev = _context2.next) {
+                  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(id) {
+                    return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+                      while (1) switch (_context3.prev = _context3.next) {
                         case 0:
                           console.log("delete ".concat(id));
                           deleted += 1;
-                          _context2.next = 4;
+                          _context3.next = 4;
                           return session.deleteWorkflow(id);
                         case 4:
                         case "end":
-                          return _context2.stop();
+                          return _context3.stop();
                       }
-                    }, _callee2);
+                    }, _callee3);
                   }));
-                  return function deleteFn(_x20) {
+                  return function deleteFn(_x24) {
                     return _ref.apply(this, arguments);
                   };
                 }();
@@ -27706,50 +27811,50 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                 i = 0;
               case 9:
                 if (!(i < arrWorkflowsIdsToDelete.length)) {
-                  _context3.next = 16;
+                  _context4.next = 16;
                   break;
                 }
                 tasks = arrWorkflowsIdsToDelete.slice(i, i + concurrent).map(function (id) {
                   return deleteFn(id);
                 });
-                _context3.next = 13;
+                _context4.next = 13;
                 return Promise.all(tasks);
               case 13:
                 i += concurrent;
-                _context3.next = 9;
+                _context4.next = 9;
                 break;
               case 16:
                 console.log("Deleted ".concat(deleted, " workflows"));
-                return _context3.abrupt("return", deleted);
+                return _context4.abrupt("return", deleted);
               case 20:
-                _context3.prev = 20;
-                _context3.t0 = _context3["catch"](4);
-                console.error(_context3.t0);
-                throw new Error(_context3.t0);
+                _context4.prev = 20;
+                _context4.t0 = _context4["catch"](4);
+                console.error(_context4.t0);
+                throw new Error(_context4.t0);
               case 24:
               case "end":
-                return _context3.stop();
+                return _context4.stop();
             }
-          }, _callee3, null, [[4, 20]]);
+          }, _callee4, null, [[4, 20]]);
         }));
         return _deleteWorkflowsById.apply(this, arguments);
       }
-      function createWorkflow(_x8, _x9, _x10) {
+      function createWorkflow(_x12, _x13, _x14) {
         return _createWorkflow.apply(this, arguments);
       }
       function _createWorkflow() {
-        _createWorkflow = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(modelId, payload, project) {
-          return _regeneratorRuntime().wrap(function _callee5$(_context5) {
-            while (1) switch (_context5.prev = _context5.next) {
+        _createWorkflow = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6(modelId, payload, project) {
+          return _regeneratorRuntime().wrap(function _callee6$(_context6) {
+            while (1) switch (_context6.prev = _context6.next) {
               case 0:
-                return _context5.abrupt("return", Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+                return _context6.abrupt("return", Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
                   var driver, url, _yield$axios$post, id;
-                  return _regeneratorRuntime().wrap(function _callee4$(_context4) {
-                    while (1) switch (_context4.prev = _context4.next) {
+                  return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+                    while (1) switch (_context5.prev = _context5.next) {
                       case 0:
                         driver = project.getDriver();
                         url = "".concat(driver.baseURL).concat(project.getUri(), "/workflow/create");
-                        _context4.next = 4;
+                        _context5.next = 4;
                         return _axios_instance__WEBPACK_IMPORTED_MODULE_0__["default"].post(url, payload, {
                           headers: Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["getHeadersFromDriver"])(driver),
                           params: {
@@ -27758,138 +27863,138 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                           }
                         });
                       case 4:
-                        _yield$axios$post = _context4.sent;
+                        _yield$axios$post = _context5.sent;
                         id = _yield$axios$post.data._doc;
-                        return _context4.abrupt("return", id);
+                        return _context5.abrupt("return", id);
                       case 7:
                       case "end":
-                        return _context4.stop();
+                        return _context5.stop();
                     }
-                  }, _callee4);
+                  }, _callee5);
                 })), project));
               case 1:
               case "end":
-                return _context5.stop();
+                return _context6.stop();
             }
-          }, _callee5);
+          }, _callee6);
         }));
         return _createWorkflow.apply(this, arguments);
       }
-      function getWorkflow(_x11, _x12) {
+      function getWorkflow(_x15, _x16) {
         return _getWorkflow.apply(this, arguments);
       }
       function _getWorkflow() {
-        _getWorkflow = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7(id, project) {
-          return _regeneratorRuntime().wrap(function _callee7$(_context7) {
-            while (1) switch (_context7.prev = _context7.next) {
+        _getWorkflow = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8(id, project) {
+          return _regeneratorRuntime().wrap(function _callee8$(_context8) {
+            while (1) switch (_context8.prev = _context8.next) {
               case 0:
-                return _context7.abrupt("return", Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
+                return _context8.abrupt("return", Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee7() {
                   var driver, url, _yield$axios$get, data;
-                  return _regeneratorRuntime().wrap(function _callee6$(_context6) {
-                    while (1) switch (_context6.prev = _context6.next) {
+                  return _regeneratorRuntime().wrap(function _callee7$(_context7) {
+                    while (1) switch (_context7.prev = _context7.next) {
                       case 0:
                         if (id) {
-                          _context6.next = 2;
+                          _context7.next = 2;
                           break;
                         }
                         throw new Error('Must provide an id');
                       case 2:
                         driver = project.getDriver();
                         url = "".concat(driver.baseURL, "/workflow/instances/").concat(id);
-                        _context6.next = 6;
+                        _context7.next = 6;
                         return _axios_instance__WEBPACK_IMPORTED_MODULE_0__["default"].get(url, {
                           headers: Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["getHeadersFromDriver"])(driver)
                         });
                       case 6:
-                        _yield$axios$get = _context6.sent;
+                        _yield$axios$get = _context7.sent;
                         data = _yield$axios$get.data;
-                        return _context6.abrupt("return", data);
+                        return _context7.abrupt("return", data);
                       case 9:
                       case "end":
-                        return _context6.stop();
+                        return _context7.stop();
                     }
-                  }, _callee6);
+                  }, _callee7);
                 })), project));
               case 1:
               case "end":
-                return _context7.stop();
+                return _context8.stop();
             }
-          }, _callee7);
+          }, _callee8);
         }));
         return _getWorkflow.apply(this, arguments);
       }
-      function updateWorkflow(_x13, _x14) {
+      function updateWorkflow(_x17, _x18) {
         return _updateWorkflow.apply(this, arguments);
       }
       function _updateWorkflow() {
-        _updateWorkflow = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9(payload, project) {
-          return _regeneratorRuntime().wrap(function _callee9$(_context9) {
-            while (1) switch (_context9.prev = _context9.next) {
+        _updateWorkflow = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10(payload, project) {
+          return _regeneratorRuntime().wrap(function _callee10$(_context10) {
+            while (1) switch (_context10.prev = _context10.next) {
               case 0:
-                return _context9.abrupt("return", Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee8() {
+                return _context10.abrupt("return", Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee9() {
                   var id, driver, url, _yield$axios$put, data;
-                  return _regeneratorRuntime().wrap(function _callee8$(_context8) {
-                    while (1) switch (_context8.prev = _context8.next) {
+                  return _regeneratorRuntime().wrap(function _callee9$(_context9) {
+                    while (1) switch (_context9.prev = _context9.next) {
                       case 0:
                         id = payload._doc;
                         if (id) {
-                          _context8.next = 3;
+                          _context9.next = 3;
                           break;
                         }
                         throw new Error('Workflow does not have _doc set');
                       case 3:
                         driver = project.getDriver();
                         url = "".concat(driver.baseURL, "/workflow/instances/").concat(id);
-                        _context8.next = 7;
+                        _context9.next = 7;
                         return _axios_instance__WEBPACK_IMPORTED_MODULE_0__["default"].put(url, payload, {
                           headers: Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["getHeadersFromDriver"])(driver)
                         });
                       case 7:
-                        _yield$axios$put = _context8.sent;
+                        _yield$axios$put = _context9.sent;
                         data = _yield$axios$put.data;
-                        return _context8.abrupt("return", data);
+                        return _context9.abrupt("return", data);
                       case 10:
                       case "end":
-                        return _context8.stop();
+                        return _context9.stop();
                     }
-                  }, _callee8);
+                  }, _callee9);
                 })), project));
               case 1:
               case "end":
-                return _context9.stop();
+                return _context10.stop();
             }
-          }, _callee9);
+          }, _callee10);
         }));
         return _updateWorkflow.apply(this, arguments);
       }
-      function addWorkflowReference(_x15, _x16, _x17) {
+      function addWorkflowReference(_x19, _x20, _x21) {
         return _addWorkflowReference.apply(this, arguments);
       }
       function _addWorkflowReference() {
-        _addWorkflowReference = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee11(workflowId, ref, project) {
-          return _regeneratorRuntime().wrap(function _callee11$(_context11) {
-            while (1) switch (_context11.prev = _context11.next) {
+        _addWorkflowReference = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12(workflowId, ref, project) {
+          return _regeneratorRuntime().wrap(function _callee12$(_context12) {
+            while (1) switch (_context12.prev = _context12.next) {
               case 0:
-                return _context11.abrupt("return", Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee10() {
+                return _context12.abrupt("return", Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee11() {
                   var driver, url, _yield$axios$post2, data;
-                  return _regeneratorRuntime().wrap(function _callee10$(_context10) {
-                    while (1) switch (_context10.prev = _context10.next) {
+                  return _regeneratorRuntime().wrap(function _callee11$(_context11) {
+                    while (1) switch (_context11.prev = _context11.next) {
                       case 0:
                         if (workflowId) {
-                          _context10.next = 2;
+                          _context11.next = 2;
                           break;
                         }
                         throw new Error('Must provide a workflow id');
                       case 2:
                         if (ref) {
-                          _context10.next = 4;
+                          _context11.next = 4;
                           break;
                         }
                         throw new Error('Must provide a ref');
                       case 4:
                         driver = project.getDriver();
                         url = "".concat(driver.baseURL, "/workflow/instances/").concat(workflowId, "/resources/add");
-                        _context10.next = 8;
+                        _context11.next = 8;
                         return _axios_instance__WEBPACK_IMPORTED_MODULE_0__["default"].post(url, {}, {
                           headers: Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["getHeadersFromDriver"])(driver),
                           params: {
@@ -27897,63 +28002,63 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                           }
                         });
                       case 8:
-                        _yield$axios$post2 = _context10.sent;
+                        _yield$axios$post2 = _context11.sent;
                         data = _yield$axios$post2.data;
-                        return _context10.abrupt("return", data);
+                        return _context11.abrupt("return", data);
                       case 11:
                       case "end":
-                        return _context10.stop();
+                        return _context11.stop();
                     }
-                  }, _callee10);
+                  }, _callee11);
                 })), project));
               case 1:
               case "end":
-                return _context11.stop();
+                return _context12.stop();
             }
-          }, _callee11);
+          }, _callee12);
         }));
         return _addWorkflowReference.apply(this, arguments);
       }
-      function startWorkflow(_x18, _x19) {
+      function startWorkflow(_x22, _x23) {
         return _startWorkflow.apply(this, arguments);
       }
       function _startWorkflow() {
-        _startWorkflow = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee13(workflowId, project) {
-          return _regeneratorRuntime().wrap(function _callee13$(_context13) {
-            while (1) switch (_context13.prev = _context13.next) {
+        _startWorkflow = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee14(workflowId, project) {
+          return _regeneratorRuntime().wrap(function _callee14$(_context14) {
+            while (1) switch (_context14.prev = _context14.next) {
               case 0:
-                return _context13.abrupt("return", Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee12() {
+                return _context14.abrupt("return", Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["withAuthRetry"])( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee13() {
                   var driver, url, _yield$axios$post3, data;
-                  return _regeneratorRuntime().wrap(function _callee12$(_context12) {
-                    while (1) switch (_context12.prev = _context12.next) {
+                  return _regeneratorRuntime().wrap(function _callee13$(_context13) {
+                    while (1) switch (_context13.prev = _context13.next) {
                       case 0:
                         if (workflowId) {
-                          _context12.next = 2;
+                          _context13.next = 2;
                           break;
                         }
                         throw new Error('Must provide a workflow id');
                       case 2:
                         driver = project.getDriver();
                         url = "".concat(driver.baseURL, "/workflow/instances/").concat(workflowId, "/start");
-                        _context12.next = 6;
+                        _context13.next = 6;
                         return _axios_instance__WEBPACK_IMPORTED_MODULE_0__["default"].post(url, {}, {
                           headers: Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["getHeadersFromDriver"])(driver)
                         });
                       case 6:
-                        _yield$axios$post3 = _context12.sent;
+                        _yield$axios$post3 = _context13.sent;
                         data = _yield$axios$post3.data;
-                        return _context12.abrupt("return", data);
+                        return _context13.abrupt("return", data);
                       case 9:
                       case "end":
-                        return _context12.stop();
+                        return _context13.stop();
                     }
-                  }, _callee12);
+                  }, _callee13);
                 })), project));
               case 1:
               case "end":
-                return _context13.stop();
+                return _context14.stop();
             }
-          }, _callee13);
+          }, _callee14);
         }));
         return _startWorkflow.apply(this, arguments);
       }
