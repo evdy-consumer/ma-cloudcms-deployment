@@ -33466,12 +33466,16 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             body: JSON.stringify({
               query: "query($p: String, $q: String) {\n      ehmodels_recipes(p: $p, q: $q) {\n        _doc\n    \t\ttitle       \n\n  }\n}",
               varaibles: {
-                p: "{skip:0, limit: 5}",
-                q: "{'title': {'$regex': ".concat(searchTerm, "}}")
+                p: "{skip:0, limit: 10}",
+                q: "{'title': {'$regex': '".concat(searchTerm, "', '$options' : 'i'}}")
               }
             })
           }).then(function (result) {
-            return result.json();
+            return {
+              data: {
+                rows: result.json().data.ehmodels_recipes
+              }
+            };
           })
         );
       };
