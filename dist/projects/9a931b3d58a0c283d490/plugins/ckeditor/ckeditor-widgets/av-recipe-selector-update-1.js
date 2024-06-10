@@ -33466,14 +33466,15 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             body: JSON.stringify({
               query: "query($p: String, $q: String) {\n      ehmodels_recipes(p: $p, q: $q) {\n        _doc\n    \t\ttitle       \n\n  }\n}",
               varaibles: {
-                p: "{skip:0, limit: 10}",
+                p: "{skip:0, limit: 10, sort: {'title': 1}}",
                 q: "{'title': {'$regex': '".concat(searchTerm, "', '$options' : 'i'}}")
               }
             })
           }).then(function (result) {
+            var data = result.json();
             return {
               data: {
-                rows: result.json().data.ehmodels_recipes
+                rows: data.data.ehmodels_recipes
               }
             };
           })
