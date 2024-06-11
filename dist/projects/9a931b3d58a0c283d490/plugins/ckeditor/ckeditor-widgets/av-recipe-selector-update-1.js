@@ -33472,6 +33472,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             })
           }).then(function (result) {
             var data = result.json();
+            console.log("data =  ", data);
             return {
               data: {
                 rows: data.data.ehmodels_recipes
