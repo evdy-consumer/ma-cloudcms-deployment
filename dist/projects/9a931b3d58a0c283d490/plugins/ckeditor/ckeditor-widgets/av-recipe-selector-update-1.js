@@ -33471,13 +33471,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
               }
             })
           }).then(function (result) {
-            var data = result.json();
-            console.log("data =  ", data);
-            return {
-              data: {
-                rows: data.data.ehmodels_recipes
-              }
-            };
+            return result.json();
           })
         );
       };
@@ -36123,7 +36117,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                   return index + 1;
                 });
                 page.options.helpers = ["of ".concat(pages, " pages"), "Total Recipe Results: ".concat(result === null || result === void 0 || (_result$data2 = result.data) === null || _result$data2 === void 0 ? void 0 : _result$data2.totalRows)];
-                ((result === null || result === void 0 || (_result$data3 = result.data) === null || _result$data3 === void 0 ? void 0 : _result$data3.rows) || []).forEach(function (_ref2) {
+                ((result === null || result === void 0 || (_result$data3 = result.data) === null || _result$data3 === void 0 ? void 0 : _result$data3.ehmodels_recipes) || []).forEach(function (_ref2) {
                   var title = _ref2.title,
                     _doc = _ref2._doc;
                   values.push("".concat(title, "_____").concat(_doc));
