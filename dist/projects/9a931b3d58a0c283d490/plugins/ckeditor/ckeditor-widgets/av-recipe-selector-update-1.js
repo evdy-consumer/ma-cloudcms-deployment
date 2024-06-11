@@ -33456,24 +33456,46 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
           page = _ref$page === void 0 ? 1 : _ref$page,
           _ref$sort = _ref.sort,
           sort = _ref$sort === void 0 ? '{"title": 1}' : _ref$sort;
-        return (
-          // fetch(`${apiUrl}?limit=${size}&skip=${(page - 1) * size}&sort=${encodeURIComponent(sort)}`, {
-          fetch("".concat(apiUrl), {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              query: "query($p: String, $q: String) {\n      ehmodels_recipes(p: $p, q: $q) {\n        _doc\n    \t\ttitle       \n\n  }\n}",
-              varaibles: {
-                p: "{skip:0, limit: 10, sort: {'title': 1}}",
-                q: "{'title': {'$regex': '".concat(searchTerm, "', '$options' : 'i'}}")
+        return fetch("".concat(apiUrl, "?limit=").concat(size, "&skip=").concat((page - 1) * size, "&sort=").concat(encodeURIComponent(sort)), {
+          // fetch(`${apiUrl}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            search: {
+              query: {
+                bool: {
+                  must: [{
+                    query_string: {
+                      fields: ['title'],
+                      query: "".concat(searchTerm.split(' ').map(function (term) {
+                        return "".concat(term, "~2");
+                      }).join(' ')),
+                      fuzziness: 2,
+                      default_operator: 'AND'
+                    }
+                  }, {
+                    match: {
+                      _type: contentType
+                    }
+                  }]
+                }
               }
-            })
-          }).then(function (result) {
-            return result.json();
+            },
+            _fields: {
+              title: 1,
+              _doc: 1
+            }
+            // query: "query($p: String, $q: String) {\n      ehmodels_recipes(p: $p, q: $q) {\n        _doc\n    \t\ttitle       \n\n  }\n}",
+            // varaibles: {
+            //   p: "{skip:0, limit: 10, sort: {'title': 1}}",
+            //   q: `{'title': {'$regex': '${searchTerm}', '$options' : 'i'}}`
+            // }
           })
-        );
+        }).then(function (result) {
+          return result.json();
+        });
       };
 
       /***/
