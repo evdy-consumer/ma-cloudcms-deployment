@@ -33448,14 +33448,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
       });
       var apiProxyRequest = function apiProxyRequest(_ref) {
         var apiUrl = _ref.apiUrl,
-          contentType = _ref.contentType,
-          size = _ref.size,
           _ref$searchTerm = _ref.searchTerm,
-          searchTerm = _ref$searchTerm === void 0 ? '' : _ref$searchTerm,
-          _ref$page = _ref.page,
-          page = _ref$page === void 0 ? 1 : _ref$page,
-          _ref$sort = _ref.sort,
-          sort = _ref$sort === void 0 ? '{"title": 1}' : _ref$sort;
+          searchTerm = _ref$searchTerm === void 0 ? '' : _ref$searchTerm;
         return fetch("".concat(apiUrl), {
           method: 'POST',
           headers: {
@@ -33465,7 +33459,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             "query": "query($p: String, $q: String) {\n      ehmodels_recipes(p: $p, q: $q) {\n        _doc\n    \t\ttitle       \n\n  }\n}",
             "variables": {
               "p": "{skip:0, limit: 25, sort: {'title': 1}}",
-              "q": "{'title': {'$regex': 'recipe test', '$options' : 'i'}}"
+              "q": "{'title': {'$regex': " + "'" + searchTerm + "'" + ", '$options' : 'i'}}"
             }
           })
         }).then(function (result) {
@@ -34634,8 +34628,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                   type: 'string'
                 },
                 page: {
-                  type: 'string',
-                  "enum": [1]
+                  type: 'string'
                 },
                 result: {
                   title: 'Results',
@@ -34662,13 +34655,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                           helper: 'Enter a search term and press Enter'
                         },
                         page: {
-                          label: 'Page',
-                          type: 'select',
-                          emptySelectFirst: true,
-                          removeDefaultNone: true,
-                          useDataSourceAsEnum: false,
-                          validate: false,
-                          hideInitValidationError: true
+                          label: 'Page'
                         },
                         result: {
                           type: 'radio',
@@ -36099,16 +36086,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
               var searchTermValue = searchTerm.getValue();
               Object(_api_proxy_search__WEBPACK_IMPORTED_MODULE_3__["apiProxyRequest"])({
                 apiUrl: apiUrl,
-                contentType: contentType,
-                size: size,
-                searchTerm: searchTermValue,
-                page: 1
+                searchTerm: searchTermValue
               }).then(function (result) {
                 var _result$data, _result$data2;
-                // const pages = Math.ceil(+result?.data?.totalRows / size || 1);
                 var values = [];
                 var labels = [];
-                // page.schema.enum = page.options.optionLabels = Array.from({ length: pages }, (value, index) => (index + 1));
                 page.options.helpers = ["of ".concat(result === null || result === void 0 || (_result$data = result.data) === null || _result$data === void 0 || (_result$data = _result$data.ehmodels_recipes) === null || _result$data === void 0 ? void 0 : _result$data.length, " records"), 'Please continue search to get other records.'];
                 ((result === null || result === void 0 || (_result$data2 = result.data) === null || _result$data2 === void 0 ? void 0 : _result$data2.ehmodels_recipes) || []).forEach(function (_ref2) {
                   var title = _ref2.title,
@@ -36120,43 +36102,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                 recipes.options.optionLabels = labels;
               })["catch"](function (error) {
                 console.error(error);
-                page.schema["enum"] = page.options.optionLabels = [1];
                 recipes.schema["enum"] = recipes.options.optionLabels = [];
                 alert('There was an error while requesting Data from CloudCMS Api Proxy', error.message);
               })["finally"](function () {
-                page.setValue(1);
-                page.refresh();
                 recipes.refresh();
               });
             });
-            // page.on('change', function () {
-            //   const searchTermValue = searchTerm.getValue();
-            //   const pageValue = page.getValue();
-            //   apiProxyRequest({ apiUrl, contentType, size, searchTerm: searchTermValue, page: pageValue })
-            //     .then((result) => {
-            //       const values = [];
-            //       const labels = [];
-            //       (result?.data?.rows || []).forEach(
-            //         ({ title, _doc }) => {
-            //           values.push(`${title}_____${_doc}`);
-            //           labels.push(title);
-            //         }
-            //       );
-            //       recipes.schema.enum = values;
-            //       recipes.options.optionLabels = labels;
-            //     })
-            //     .catch((error) => {
-            //       console.error(error);
-            //       recipes.schema.enum = recipes.options.optionLabels = [];
-            //       alert(
-            //         'There was an error while requesting Data from CloudCMS Api Proxy',
-            //         error.message
-            //       );
-            //     })
-            //     .finally(() => {
-            //       recipes.refresh();
-            //     });
-            // });
           };
           return openModal(_objectSpread(_objectSpread({}, dashletConfig), {}, {
             postRenderCallback: postRenderCallback
