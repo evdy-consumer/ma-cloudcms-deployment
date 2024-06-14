@@ -36081,10 +36081,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                 apiUrl: apiUrl,
                 searchTerm: searchTermValue
               }).then(function (result) {
-                var _result$data, _result$data2;
+                var _searchTerm$options$h, _result$data, _result$data2;
                 var values = [];
                 var labels = [];
-                recipes.options.helpers = ["of ".concat(result === null || result === void 0 || (_result$data = result.data) === null || _result$data === void 0 || (_result$data = _result$data.ehmodels_recipes) === null || _result$data === void 0 ? void 0 : _result$data.length, " records"), 'Please continue search to get other records.'];
+                (_searchTerm$options$h = searchTerm.options.helpers).push.apply(_searchTerm$options$h, ["of ".concat(result === null || result === void 0 || (_result$data = result.data) === null || _result$data === void 0 || (_result$data = _result$data.ehmodels_recipes) === null || _result$data === void 0 ? void 0 : _result$data.length, " records"), 'Please continue search to get other records.']);
                 ((result === null || result === void 0 || (_result$data2 = result.data) === null || _result$data2 === void 0 ? void 0 : _result$data2.ehmodels_recipes) || []).forEach(function (_ref2) {
                   var title = _ref2.title,
                     _doc = _ref2._doc;
