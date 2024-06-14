@@ -36081,11 +36081,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                 apiUrl: apiUrl,
                 searchTerm: searchTermValue
               }).then(function (result) {
-                var _result$data, _result$data2;
+                var _result$data, _result$data2, _result$data3;
                 var values = [];
                 var labels = [];
                 searchTerm.options.helpers = ["of ".concat(result === null || result === void 0 || (_result$data = result.data) === null || _result$data === void 0 || (_result$data = _result$data.ehmodels_recipes) === null || _result$data === void 0 ? void 0 : _result$data.length, " records"), 'Please continue search to get other records.'];
-                ((result === null || result === void 0 || (_result$data2 = result.data) === null || _result$data2 === void 0 ? void 0 : _result$data2.ehmodels_recipes) || []).forEach(function (_ref2) {
+                recipes.options.helpers = ["of ".concat(result === null || result === void 0 || (_result$data2 = result.data) === null || _result$data2 === void 0 || (_result$data2 = _result$data2.ehmodels_recipes) === null || _result$data2 === void 0 ? void 0 : _result$data2.length, " records"), 'Please continue search to get other records.'];
+                ((result === null || result === void 0 || (_result$data3 = result.data) === null || _result$data3 === void 0 ? void 0 : _result$data3.ehmodels_recipes) || []).forEach(function (_ref2) {
                   var title = _ref2.title,
                     _doc = _ref2._doc;
                   values.push("".concat(title, "_____").concat(_doc));
@@ -36098,6 +36099,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                 recipes.schema["enum"] = recipes.options.optionLabels = [];
                 alert('There was an error while requesting Data from CloudCMS Api Proxy', error.message);
               })["finally"](function () {
+                searchTerm.refresh();
                 recipes.refresh();
               });
             });
