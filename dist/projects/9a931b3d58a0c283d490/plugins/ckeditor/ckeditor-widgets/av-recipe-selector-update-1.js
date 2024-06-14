@@ -33462,10 +33462,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            query: "query($p: String, $q: String) {\n      ehmodels_recipes(p: $p, q: $q) {\n        _doc\n    \t\ttitle       \n\n  }\n}",
-            varaibles: {
-              p: "{skip:0, limit: 25, sort: {'title': 1}}",
-              q: "{'title': {'$regex': '".concat(searchTerm, "', '$options' : 'i'}}")
+            "query": "query($p: String, $q: String) {\n      ehmodels_recipes(p: $p, q: $q) {\n        _doc\n    \t\ttitle       \n\n  }\n}",
+            "variables": {
+              "p": "{skip:0, limit: 25, sort: {'title': 1}}",
+              "q": "{'title': {'$regex': 'recipe test', '$options' : 'i'}}"
             }
           })
         }).then(function (result) {
