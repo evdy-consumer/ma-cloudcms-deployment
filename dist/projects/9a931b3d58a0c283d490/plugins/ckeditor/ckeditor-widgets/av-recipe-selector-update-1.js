@@ -34627,9 +34627,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                 searchTerm: {
                   type: 'string'
                 },
-                page: {
-                  type: 'string'
-                },
                 result: {
                   title: 'Results',
                   type: 'string',
@@ -34653,9 +34650,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                           label: 'Search',
                           type: 'text',
                           helper: 'Enter a search term and press Enter'
-                        },
-                        page: {
-                          label: 'Page'
                         },
                         result: {
                           type: 'radio',
@@ -36081,7 +36075,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
           var postRenderCallback = function postRenderCallback(control) {
             var searchTerm = control.childrenByPropertyId['searchTerm'];
             var recipes = control.childrenByPropertyId['result'];
-            var page = control.childrenByPropertyId['page'];
             searchTerm.on('change', function () {
               var searchTermValue = searchTerm.getValue();
               Object(_api_proxy_search__WEBPACK_IMPORTED_MODULE_3__["apiProxyRequest"])({
@@ -36091,7 +36084,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                 var _result$data, _result$data2;
                 var values = [];
                 var labels = [];
-                page.options.helpers = ["of ".concat(result === null || result === void 0 || (_result$data = result.data) === null || _result$data === void 0 || (_result$data = _result$data.ehmodels_recipes) === null || _result$data === void 0 ? void 0 : _result$data.length, " records"), 'Please continue search to get other records.'];
+                recipes.options.helpers = ["of ".concat(result === null || result === void 0 || (_result$data = result.data) === null || _result$data === void 0 || (_result$data = _result$data.ehmodels_recipes) === null || _result$data === void 0 ? void 0 : _result$data.length, " records"), 'Please continue search to get other records.'];
                 ((result === null || result === void 0 || (_result$data2 = result.data) === null || _result$data2 === void 0 ? void 0 : _result$data2.ehmodels_recipes) || []).forEach(function (_ref2) {
                   var title = _ref2.title,
                     _doc = _ref2._doc;
