@@ -33456,42 +33456,17 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
           page = _ref$page === void 0 ? 1 : _ref$page,
           _ref$sort = _ref.sort,
           sort = _ref$sort === void 0 ? '{"title": 1}' : _ref$sort;
-        return fetch("".concat(apiUrl, "?limit=").concat(size, "&skip=").concat((page - 1) * size, "&sort=").concat(encodeURIComponent(sort)), {
-          // fetch(`${apiUrl}`, {
+        return fetch("".concat(apiUrl), {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            search: {
-              query: {
-                bool: {
-                  must: [{
-                    query_string: {
-                      fields: ['title'],
-                      query: "".concat(searchTerm.split(' ').map(function (term) {
-                        return "".concat(term, "~2");
-                      }).join(' ')),
-                      fuzziness: 2,
-                      default_operator: 'AND'
-                    }
-                  }, {
-                    match: {
-                      _type: contentType
-                    }
-                  }]
-                }
-              }
-            },
-            _fields: {
-              title: 1,
-              _doc: 1
+            query: "query($p: String, $q: String) {\n      ehmodels_recipes(p: $p, q: $q) {\n        _doc\n    \t\ttitle       \n\n  }\n}",
+            varaibles: {
+              p: "{skip:0, limit: 25, sort: {'title': 1}}",
+              q: "{'title': {'$regex': '".concat(searchTerm, "', '$options' : 'i'}}")
             }
-            // query: "query($p: String, $q: String) {\n      ehmodels_recipes(p: $p, q: $q) {\n        _doc\n    \t\ttitle       \n\n  }\n}",
-            // varaibles: {
-            //   p: "{skip:0, limit: 10, sort: {'title': 1}}",
-            //   q: `{'title': {'$regex': '${searchTerm}', '$options' : 'i'}}`
-            // }
           })
         }).then(function (result) {
           return result.json();
@@ -36129,17 +36104,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                 searchTerm: searchTermValue,
                 page: 1
               }).then(function (result) {
-                var _result$data, _result$data2, _result$data3;
-                var pages = Math.ceil(+(result === null || result === void 0 || (_result$data = result.data) === null || _result$data === void 0 ? void 0 : _result$data.totalRows) / size || 1);
+                var _result$data, _result$data2;
+                // const pages = Math.ceil(+result?.data?.totalRows / size || 1);
                 var values = [];
                 var labels = [];
-                page.schema["enum"] = page.options.optionLabels = Array.from({
-                  length: pages
-                }, function (value, index) {
-                  return index + 1;
-                });
-                page.options.helpers = ["of ".concat(pages, " pages"), "Total Recipe Results: ".concat(result === null || result === void 0 || (_result$data2 = result.data) === null || _result$data2 === void 0 ? void 0 : _result$data2.totalRows)];
-                ((result === null || result === void 0 || (_result$data3 = result.data) === null || _result$data3 === void 0 ? void 0 : _result$data3.ehmodels_recipes) || []).forEach(function (_ref2) {
+                // page.schema.enum = page.options.optionLabels = Array.from({ length: pages }, (value, index) => (index + 1));
+                page.options.helpers = ["of ".concat(result === null || result === void 0 || (_result$data = result.data) === null || _result$data === void 0 || (_result$data = _result$data.ehmodels_recipes) === null || _result$data === void 0 ? void 0 : _result$data.length, " records"), 'Please continue search to get other records.'];
+                ((result === null || result === void 0 || (_result$data2 = result.data) === null || _result$data2 === void 0 ? void 0 : _result$data2.ehmodels_recipes) || []).forEach(function (_ref2) {
                   var title = _ref2.title,
                     _doc = _ref2._doc;
                   values.push("".concat(title, "_____").concat(_doc));
@@ -36158,35 +36129,34 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                 recipes.refresh();
               });
             });
-            page.on('change', function () {
-              var searchTermValue = searchTerm.getValue();
-              var pageValue = page.getValue();
-              Object(_api_proxy_search__WEBPACK_IMPORTED_MODULE_3__["apiProxyRequest"])({
-                apiUrl: apiUrl,
-                contentType: contentType,
-                size: size,
-                searchTerm: searchTermValue,
-                page: pageValue
-              }).then(function (result) {
-                var _result$data4;
-                var values = [];
-                var labels = [];
-                ((result === null || result === void 0 || (_result$data4 = result.data) === null || _result$data4 === void 0 ? void 0 : _result$data4.rows) || []).forEach(function (_ref3) {
-                  var title = _ref3.title,
-                    _doc = _ref3._doc;
-                  values.push("".concat(title, "_____").concat(_doc));
-                  labels.push(title);
-                });
-                recipes.schema["enum"] = values;
-                recipes.options.optionLabels = labels;
-              })["catch"](function (error) {
-                console.error(error);
-                recipes.schema["enum"] = recipes.options.optionLabels = [];
-                alert('There was an error while requesting Data from CloudCMS Api Proxy', error.message);
-              })["finally"](function () {
-                recipes.refresh();
-              });
-            });
+            // page.on('change', function () {
+            //   const searchTermValue = searchTerm.getValue();
+            //   const pageValue = page.getValue();
+            //   apiProxyRequest({ apiUrl, contentType, size, searchTerm: searchTermValue, page: pageValue })
+            //     .then((result) => {
+            //       const values = [];
+            //       const labels = [];
+            //       (result?.data?.rows || []).forEach(
+            //         ({ title, _doc }) => {
+            //           values.push(`${title}_____${_doc}`);
+            //           labels.push(title);
+            //         }
+            //       );
+            //       recipes.schema.enum = values;
+            //       recipes.options.optionLabels = labels;
+            //     })
+            //     .catch((error) => {
+            //       console.error(error);
+            //       recipes.schema.enum = recipes.options.optionLabels = [];
+            //       alert(
+            //         'There was an error while requesting Data from CloudCMS Api Proxy',
+            //         error.message
+            //       );
+            //     })
+            //     .finally(() => {
+            //       recipes.refresh();
+            //     });
+            // });
           };
           return openModal(_objectSpread(_objectSpread({}, dashletConfig), {}, {
             postRenderCallback: postRenderCallback
