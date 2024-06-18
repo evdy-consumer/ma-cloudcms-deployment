@@ -34649,7 +34649,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
                       fields: {
                         searchTerm: {
                           label: 'Search',
-                          type: 'text'
+                          type: 'text',
+                          helper: 'Enter a search term and press Enter'
                         },
                         result: {
                           type: 'radio',
