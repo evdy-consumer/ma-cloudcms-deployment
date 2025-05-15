@@ -98,7 +98,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "pluginName", function() { return pluginName; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "commands", function() { return commands; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "shortCodeTag", function() { return shortCodeTag; });
-var pluginName = 'ckeditor-apply-color';
+var pluginName = 'ckeditor-color';
 var commands = {
   insertShortCode: 'insertShortCode'
 };
