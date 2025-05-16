@@ -123,9 +123,10 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
   init: function init(editor) {
     var pluginConfig = CKEDITOR.tools.get_plugin_config(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], editor);
     console.log('pluginConfig', pluginConfig);
-    var colors = {
-      'Product Color': '#E96D3C'
-    };
+    var colors = pluginConfig; /* {
+                               'Product Color': '#E96D3C'
+                               }; */
+
     editor.ui.addRichCombo('ApplyColor', {
       label: 'Apply Color',
       toolbar: 'styles',
