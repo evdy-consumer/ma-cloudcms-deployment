@@ -118,17 +118,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./constants */ "./src/constants.js");
 
 var CKEDITOR = window.CKEDITOR;
-/* const {
-  PRODUCT_COLOR
-} = process.env; */
-
 CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
   requires: 'richcombo',
   init: function init(editor) {
+    var pluginConfig = CKEDITOR.tools.get_plugin_config(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], editor);
+    console.log('pluginConfig', pluginConfig);
     var colors = {
-      'Product Color': '#E96D3C' //PRODUCT_COLOR
+      'Product Color': '#E96D3C'
     };
-    editor.ui.addRichCombo('Apply Color', {
+    editor.ui.addRichCombo('ApplyColor', {
       label: 'Apply Color',
       toolbar: 'styles',
       panel: {
