@@ -90,19 +90,13 @@ require([], function() { return /******/ (function(modules) { // webpackBootstra
 /*!**************************!*\
   !*** ./src/constants.js ***!
   \**************************/
-/*! exports provided: pluginName, commands, shortCodeTag */
+/*! exports provided: pluginName */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "pluginName", function() { return pluginName; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "commands", function() { return commands; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "shortCodeTag", function() { return shortCodeTag; });
 var pluginName = 'ckeditor-color';
-var commands = {
-  insertShortCode: 'insertShortCode'
-};
-var shortCodeTag = 'SPAN';
 
 /***/ }),
 
@@ -122,11 +116,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
   requires: 'richcombo',
   init: function init(editor) {
     var pluginConfig = CKEDITOR.tools.get_plugin_config(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], editor);
-    console.log('pluginConfig', pluginConfig);
-    var colors = pluginConfig; /* {
-                               'Product Color': '#E96D3C'
-                               }; */
-
+    var colors = pluginConfig;
     editor.ui.addRichCombo('ApplyColor', {
       label: 'Apply Color',
       toolbar: 'styles',

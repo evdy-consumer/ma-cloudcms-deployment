@@ -87,9 +87,9 @@ require(["gitana","handlebars","jquery","oneteam","ratchet/web"], function(__WEB
 /******/ ({
 
 /***/ "../../node_modules/axios/index.js":
-/*!*******************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/axios/index.js ***!
-  \*******************************************************************************/
+/*!**********************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/axios/index.js ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -98,9 +98,9 @@ module.exports = __webpack_require__(/*! ./lib/axios */ "../../node_modules/axio
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/adapters/xhr.js":
-/*!******************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/adapters/xhr.js ***!
-  \******************************************************************************************/
+/*!*********************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/adapters/xhr.js ***!
+  \*********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -299,9 +299,9 @@ module.exports = function xhrAdapter(config) {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/axios.js":
-/*!***********************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/axios.js ***!
-  \***********************************************************************************/
+/*!**************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/axios.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -367,9 +367,9 @@ module.exports.default = axios;
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/cancel/Cancel.js":
-/*!*******************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/cancel/Cancel.js ***!
-  \*******************************************************************************************/
+/*!**********************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/cancel/Cancel.js ***!
+  \**********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -398,9 +398,9 @@ module.exports = Cancel;
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/cancel/CancelToken.js":
-/*!************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/cancel/CancelToken.js ***!
-  \************************************************************************************************/
+/*!***************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/cancel/CancelToken.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -467,9 +467,9 @@ module.exports = CancelToken;
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/cancel/isCancel.js":
-/*!*********************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/cancel/isCancel.js ***!
-  \*********************************************************************************************/
+/*!************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/cancel/isCancel.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -484,9 +484,9 @@ module.exports = function isCancel(value) {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/core/Axios.js":
-/*!****************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/core/Axios.js ***!
-  \****************************************************************************************/
+/*!*******************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/core/Axios.js ***!
+  \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -644,9 +644,9 @@ module.exports = Axios;
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/core/InterceptorManager.js":
-/*!*****************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/core/InterceptorManager.js ***!
-  \*****************************************************************************************************/
+/*!********************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/core/InterceptorManager.js ***!
+  \********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -710,9 +710,9 @@ module.exports = InterceptorManager;
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/core/buildFullPath.js":
-/*!************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/core/buildFullPath.js ***!
-  \************************************************************************************************/
+/*!***************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/core/buildFullPath.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -742,9 +742,9 @@ module.exports = function buildFullPath(baseURL, requestedURL) {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/core/createError.js":
-/*!**********************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/core/createError.js ***!
-  \**********************************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/core/createError.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -772,9 +772,9 @@ module.exports = function createError(message, config, code, request, response) 
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/core/dispatchRequest.js":
-/*!**************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/core/dispatchRequest.js ***!
-  \**************************************************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/core/dispatchRequest.js ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -866,9 +866,9 @@ module.exports = function dispatchRequest(config) {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/core/enhanceError.js":
-/*!***********************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/core/enhanceError.js ***!
-  \***********************************************************************************************/
+/*!**************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/core/enhanceError.js ***!
+  \**************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -920,9 +920,9 @@ module.exports = function enhanceError(error, config, code, request, response) {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/core/mergeConfig.js":
-/*!**********************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/core/mergeConfig.js ***!
-  \**********************************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/core/mergeConfig.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1019,9 +1019,9 @@ module.exports = function mergeConfig(config1, config2) {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/core/settle.js":
-/*!*****************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/core/settle.js ***!
-  \*****************************************************************************************/
+/*!********************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/core/settle.js ***!
+  \********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1056,9 +1056,9 @@ module.exports = function settle(resolve, reject, response) {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/core/transformData.js":
-/*!************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/core/transformData.js ***!
-  \************************************************************************************************/
+/*!***************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/core/transformData.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1090,9 +1090,9 @@ module.exports = function transformData(data, headers, fns) {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/defaults.js":
-/*!**************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/defaults.js ***!
-  \**************************************************************************************/
+/*!*****************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/defaults.js ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1237,9 +1237,9 @@ module.exports = defaults;
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/helpers/bind.js":
-/*!******************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/helpers/bind.js ***!
-  \******************************************************************************************/
+/*!*********************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/helpers/bind.js ***!
+  \*********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1260,9 +1260,9 @@ module.exports = function bind(fn, thisArg) {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/helpers/buildURL.js":
-/*!**********************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/helpers/buildURL.js ***!
-  \**********************************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/helpers/buildURL.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1342,9 +1342,9 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/helpers/combineURLs.js":
-/*!*************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/helpers/combineURLs.js ***!
-  \*************************************************************************************************/
+/*!****************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/helpers/combineURLs.js ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1368,9 +1368,9 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/helpers/cookies.js":
-/*!*********************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/helpers/cookies.js ***!
-  \*********************************************************************************************/
+/*!************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/helpers/cookies.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1433,9 +1433,9 @@ module.exports = (
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/helpers/isAbsoluteURL.js":
-/*!***************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/helpers/isAbsoluteURL.js ***!
-  \***************************************************************************************************/
+/*!******************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/helpers/isAbsoluteURL.js ***!
+  \******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1459,9 +1459,9 @@ module.exports = function isAbsoluteURL(url) {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/helpers/isAxiosError.js":
-/*!**************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/helpers/isAxiosError.js ***!
-  \**************************************************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/helpers/isAxiosError.js ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1482,9 +1482,9 @@ module.exports = function isAxiosError(payload) {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/helpers/isURLSameOrigin.js":
-/*!*****************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/helpers/isURLSameOrigin.js ***!
-  \*****************************************************************************************************/
+/*!********************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/helpers/isURLSameOrigin.js ***!
+  \********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1562,9 +1562,9 @@ module.exports = (
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/helpers/normalizeHeaderName.js":
-/*!*********************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/helpers/normalizeHeaderName.js ***!
-  \*********************************************************************************************************/
+/*!************************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/helpers/normalizeHeaderName.js ***!
+  \************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1586,9 +1586,9 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/helpers/parseHeaders.js":
-/*!**************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/helpers/parseHeaders.js ***!
-  \**************************************************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/helpers/parseHeaders.js ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1651,9 +1651,9 @@ module.exports = function parseHeaders(headers) {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/helpers/spread.js":
-/*!********************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/helpers/spread.js ***!
-  \********************************************************************************************/
+/*!***********************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/helpers/spread.js ***!
+  \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1690,9 +1690,9 @@ module.exports = function spread(callback) {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/helpers/validator.js":
-/*!***********************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/helpers/validator.js ***!
-  \***********************************************************************************************/
+/*!**************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/helpers/validator.js ***!
+  \**************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1807,9 +1807,9 @@ module.exports = {
 /***/ }),
 
 /***/ "../../node_modules/axios/lib/utils.js":
-/*!***********************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/utils.js ***!
-  \***********************************************************************************/
+/*!**************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/axios/lib/utils.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2168,9 +2168,9 @@ module.exports = {
 /***/ }),
 
 /***/ "../../node_modules/axios/package.json":
-/*!***********************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/axios/package.json ***!
-  \***********************************************************************************/
+/*!**************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/axios/package.json ***!
+  \**************************************************************************************/
 /*! exports provided: name, version, description, main, scripts, repository, keywords, author, license, bugs, homepage, devDependencies, browser, jsdelivr, unpkg, typings, dependencies, bundlesize, default */
 /***/ (function(module) {
 
@@ -2179,9 +2179,9 @@ module.exports = JSON.parse("{\"name\":\"axios\",\"version\":\"0.21.4\",\"descri
 /***/ }),
 
 /***/ "../../node_modules/handlebars/dist/cjs/handlebars.runtime.js":
-/*!**********************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars.runtime.js ***!
-  \**********************************************************************************************************/
+/*!*************************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars.runtime.js ***!
+  \*************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2257,9 +2257,9 @@ module.exports = exports['default'];
 /***/ }),
 
 /***/ "../../node_modules/handlebars/dist/cjs/handlebars/base.js":
-/*!*******************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/base.js ***!
-  \*******************************************************************************************************/
+/*!**********************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/base.js ***!
+  \**********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2385,9 +2385,9 @@ exports.logger = _logger2['default'];
 /***/ }),
 
 /***/ "../../node_modules/handlebars/dist/cjs/handlebars/decorators.js":
-/*!*************************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/decorators.js ***!
-  \*************************************************************************************************************/
+/*!****************************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/decorators.js ***!
+  \****************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2413,9 +2413,9 @@ function registerDefaultDecorators(instance) {
 /***/ }),
 
 /***/ "../../node_modules/handlebars/dist/cjs/handlebars/decorators/inline.js":
-/*!********************************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/decorators/inline.js ***!
-  \********************************************************************************************************************/
+/*!***********************************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/decorators/inline.js ***!
+  \***********************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2454,9 +2454,9 @@ module.exports = exports['default'];
 /***/ }),
 
 /***/ "../../node_modules/handlebars/dist/cjs/handlebars/exception.js":
-/*!************************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/exception.js ***!
-  \************************************************************************************************************/
+/*!***************************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/exception.js ***!
+  \***************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2530,9 +2530,9 @@ module.exports = exports['default'];
 /***/ }),
 
 /***/ "../../node_modules/handlebars/dist/cjs/handlebars/helpers.js":
-/*!**********************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/helpers.js ***!
-  \**********************************************************************************************************/
+/*!*************************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/helpers.js ***!
+  \*************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2598,9 +2598,9 @@ function moveHelperToHooks(instance, helperName, keepHelper) {
 /***/ }),
 
 /***/ "../../node_modules/handlebars/dist/cjs/handlebars/helpers/block-helper-missing.js":
-/*!*******************************************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/helpers/block-helper-missing.js ***!
-  \*******************************************************************************************************************************/
+/*!**********************************************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/helpers/block-helper-missing.js ***!
+  \**********************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2649,9 +2649,9 @@ module.exports = exports['default'];
 /***/ }),
 
 /***/ "../../node_modules/handlebars/dist/cjs/handlebars/helpers/each.js":
-/*!***************************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/helpers/each.js ***!
-  \***************************************************************************************************************/
+/*!******************************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/helpers/each.js ***!
+  \******************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2765,9 +2765,9 @@ module.exports = exports['default'];
 /***/ }),
 
 /***/ "../../node_modules/handlebars/dist/cjs/handlebars/helpers/helper-missing.js":
-/*!*************************************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/helpers/helper-missing.js ***!
-  \*************************************************************************************************************************/
+/*!****************************************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/helpers/helper-missing.js ***!
+  \****************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2802,9 +2802,9 @@ module.exports = exports['default'];
 /***/ }),
 
 /***/ "../../node_modules/handlebars/dist/cjs/handlebars/helpers/if.js":
-/*!*************************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/helpers/if.js ***!
-  \*************************************************************************************************************/
+/*!****************************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/helpers/if.js ***!
+  \****************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2860,9 +2860,9 @@ module.exports = exports['default'];
 /***/ }),
 
 /***/ "../../node_modules/handlebars/dist/cjs/handlebars/helpers/log.js":
-/*!**************************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/helpers/log.js ***!
-  \**************************************************************************************************************/
+/*!*****************************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/helpers/log.js ***!
+  \*****************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2898,9 +2898,9 @@ module.exports = exports['default'];
 /***/ }),
 
 /***/ "../../node_modules/handlebars/dist/cjs/handlebars/helpers/lookup.js":
-/*!*****************************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/helpers/lookup.js ***!
-  \*****************************************************************************************************************/
+/*!********************************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/helpers/lookup.js ***!
+  \********************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2926,9 +2926,9 @@ module.exports = exports['default'];
 /***/ }),
 
 /***/ "../../node_modules/handlebars/dist/cjs/handlebars/helpers/with.js":
-/*!***************************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/helpers/with.js ***!
-  \***************************************************************************************************************/
+/*!******************************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/helpers/with.js ***!
+  \******************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2981,9 +2981,9 @@ module.exports = exports['default'];
 /***/ }),
 
 /***/ "../../node_modules/handlebars/dist/cjs/handlebars/internal/create-new-lookup-object.js":
-/*!************************************************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/internal/create-new-lookup-object.js ***!
-  \************************************************************************************************************************************/
+/*!***************************************************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/internal/create-new-lookup-object.js ***!
+  \***************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3015,9 +3015,9 @@ function createNewLookupObject() {
 /***/ }),
 
 /***/ "../../node_modules/handlebars/dist/cjs/handlebars/internal/proto-access.js":
-/*!************************************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/internal/proto-access.js ***!
-  \************************************************************************************************************************/
+/*!***************************************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/internal/proto-access.js ***!
+  \***************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3100,9 +3100,9 @@ function resetLoggedProperties() {
 /***/ }),
 
 /***/ "../../node_modules/handlebars/dist/cjs/handlebars/internal/wrapHelper.js":
-/*!**********************************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/internal/wrapHelper.js ***!
-  \**********************************************************************************************************************/
+/*!*************************************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/internal/wrapHelper.js ***!
+  \*************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3131,9 +3131,9 @@ function wrapHelper(helper, transformOptionsFn) {
 /***/ }),
 
 /***/ "../../node_modules/handlebars/dist/cjs/handlebars/logger.js":
-/*!*********************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/logger.js ***!
-  \*********************************************************************************************************/
+/*!************************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/logger.js ***!
+  \************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3190,9 +3190,9 @@ module.exports = exports['default'];
 /***/ }),
 
 /***/ "../../node_modules/handlebars/dist/cjs/handlebars/no-conflict.js":
-/*!**************************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/no-conflict.js ***!
-  \**************************************************************************************************************/
+/*!*****************************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/no-conflict.js ***!
+  \*****************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3232,9 +3232,9 @@ module.exports = exports['default'];
 /***/ }),
 
 /***/ "../../node_modules/handlebars/dist/cjs/handlebars/runtime.js":
-/*!**********************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/runtime.js ***!
-  \**********************************************************************************************************/
+/*!*************************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/runtime.js ***!
+  \*************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3616,9 +3616,9 @@ function passLookupPropertyOption(helper, container) {
 /***/ }),
 
 /***/ "../../node_modules/handlebars/dist/cjs/handlebars/safe-string.js":
-/*!**************************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/safe-string.js ***!
-  \**************************************************************************************************************/
+/*!*****************************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/safe-string.js ***!
+  \*****************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3643,9 +3643,9 @@ module.exports = exports['default'];
 /***/ }),
 
 /***/ "../../node_modules/handlebars/dist/cjs/handlebars/utils.js":
-/*!********************************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/utils.js ***!
-  \********************************************************************************************************/
+/*!***********************************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/utils.js ***!
+  \***********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3779,9 +3779,9 @@ function appendContextPath(contextPath, id) {
 /***/ }),
 
 /***/ "../../node_modules/handlebars/runtime.js":
-/*!**************************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/runtime.js ***!
-  \**************************************************************************************/
+/*!*****************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/runtime.js ***!
+  \*****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3793,9 +3793,9 @@ module.exports = __webpack_require__(/*! ./dist/cjs/handlebars.runtime */ "../..
 /***/ }),
 
 /***/ "../../node_modules/lodash/lodash.js":
-/*!*********************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/lodash/lodash.js ***!
-  \*********************************************************************************/
+/*!************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/lodash/lodash.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21006,9 +21006,9 @@ module.exports = __webpack_require__(/*! ./dist/cjs/handlebars.runtime */ "../..
 /***/ }),
 
 /***/ "../../node_modules/process/browser.js":
-/*!***********************************************************************************!*\
-  !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/process/browser.js ***!
-  \***********************************************************************************/
+/*!**************************************************************************************!*\
+  !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/process/browser.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -29353,9 +29353,9 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof2(o) { "@babel/helpers - typeo
   /************************************************************************/
   /******/({
     /***/"../../node_modules/handlebars/dist/cjs/handlebars.runtime.js": (
-    /*!**********************************************************************************************************!*\
-      !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars.runtime.js ***!
-      \**********************************************************************************************************/
+    /*!*************************************************************************************************************!*\
+      !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars.runtime.js ***!
+      \*************************************************************************************************************/
     /*! no static exports found */
     /***/
     function node_modulesHandlebarsDistCjsHandlebarsRuntimeJs(module, exports, __webpack_require__) {
@@ -29427,9 +29427,9 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof2(o) { "@babel/helpers - typeo
       /***/
     }),
     /***/"../../node_modules/handlebars/dist/cjs/handlebars/base.js": (
-    /*!*******************************************************************************************************!*\
-      !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/base.js ***!
-      \*******************************************************************************************************/
+    /*!**********************************************************************************************************!*\
+      !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/base.js ***!
+      \**********************************************************************************************************/
     /*! no static exports found */
     /***/
     function node_modulesHandlebarsDistCjsHandlebarsBaseJs(module, exports, __webpack_require__) {
@@ -29537,9 +29537,9 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof2(o) { "@babel/helpers - typeo
       /***/
     }),
     /***/"../../node_modules/handlebars/dist/cjs/handlebars/decorators.js": (
-    /*!*************************************************************************************************************!*\
-      !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/decorators.js ***!
-      \*************************************************************************************************************/
+    /*!****************************************************************************************************************!*\
+      !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/decorators.js ***!
+      \****************************************************************************************************************/
     /*! no static exports found */
     /***/
     function node_modulesHandlebarsDistCjsHandlebarsDecoratorsJs(module, exports, __webpack_require__) {
@@ -29563,9 +29563,9 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof2(o) { "@babel/helpers - typeo
       /***/
     }),
     /***/"../../node_modules/handlebars/dist/cjs/handlebars/decorators/inline.js": (
-    /*!********************************************************************************************************************!*\
-      !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/decorators/inline.js ***!
-      \********************************************************************************************************************/
+    /*!***********************************************************************************************************************!*\
+      !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/decorators/inline.js ***!
+      \***********************************************************************************************************************/
     /*! no static exports found */
     /***/
     function node_modulesHandlebarsDistCjsHandlebarsDecoratorsInlineJs(module, exports, __webpack_require__) {
@@ -29596,9 +29596,9 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof2(o) { "@babel/helpers - typeo
       /***/
     }),
     /***/"../../node_modules/handlebars/dist/cjs/handlebars/exception.js": (
-    /*!************************************************************************************************************!*\
-      !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/exception.js ***!
-      \************************************************************************************************************/
+    /*!***************************************************************************************************************!*\
+      !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/exception.js ***!
+      \***************************************************************************************************************/
     /*! no static exports found */
     /***/
     function node_modulesHandlebarsDistCjsHandlebarsExceptionJs(module, exports, __webpack_require__) {
@@ -29662,9 +29662,9 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof2(o) { "@babel/helpers - typeo
       /***/
     }),
     /***/"../../node_modules/handlebars/dist/cjs/handlebars/helpers.js": (
-    /*!**********************************************************************************************************!*\
-      !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/helpers.js ***!
-      \**********************************************************************************************************/
+    /*!*************************************************************************************************************!*\
+      !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/helpers.js ***!
+      \*************************************************************************************************************/
     /*! no static exports found */
     /***/
     function node_modulesHandlebarsDistCjsHandlebarsHelpersJs(module, exports, __webpack_require__) {
@@ -29715,9 +29715,9 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof2(o) { "@babel/helpers - typeo
       /***/
     }),
     /***/"../../node_modules/handlebars/dist/cjs/handlebars/helpers/block-helper-missing.js": (
-    /*!*******************************************************************************************************************************!*\
-      !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/helpers/block-helper-missing.js ***!
-      \*******************************************************************************************************************************/
+    /*!**********************************************************************************************************************************!*\
+      !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/helpers/block-helper-missing.js ***!
+      \**********************************************************************************************************************************/
     /*! no static exports found */
     /***/
     function node_modulesHandlebarsDistCjsHandlebarsHelpersBlockHelperMissingJs(module, exports, __webpack_require__) {
@@ -29759,9 +29759,9 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof2(o) { "@babel/helpers - typeo
       /***/
     }),
     /***/"../../node_modules/handlebars/dist/cjs/handlebars/helpers/each.js": (
-    /*!***************************************************************************************************************!*\
-      !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/helpers/each.js ***!
-      \***************************************************************************************************************/
+    /*!******************************************************************************************************************!*\
+      !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/helpers/each.js ***!
+      \******************************************************************************************************************/
     /*! no static exports found */
     /***/
     function node_modulesHandlebarsDistCjsHandlebarsHelpersEachJs(module, exports, __webpack_require__) {
@@ -29860,9 +29860,9 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof2(o) { "@babel/helpers - typeo
       /***/
     }),
     /***/"../../node_modules/handlebars/dist/cjs/handlebars/helpers/helper-missing.js": (
-    /*!*************************************************************************************************************************!*\
-      !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/helpers/helper-missing.js ***!
-      \*************************************************************************************************************************/
+    /*!****************************************************************************************************************************!*\
+      !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/helpers/helper-missing.js ***!
+      \****************************************************************************************************************************/
     /*! no static exports found */
     /***/
     function node_modulesHandlebarsDistCjsHandlebarsHelpersHelperMissingJs(module, exports, __webpack_require__) {
@@ -29894,9 +29894,9 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof2(o) { "@babel/helpers - typeo
       /***/
     }),
     /***/"../../node_modules/handlebars/dist/cjs/handlebars/helpers/if.js": (
-    /*!*************************************************************************************************************!*\
-      !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/helpers/if.js ***!
-      \*************************************************************************************************************/
+    /*!****************************************************************************************************************!*\
+      !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/helpers/if.js ***!
+      \****************************************************************************************************************/
     /*! no static exports found */
     /***/
     function node_modulesHandlebarsDistCjsHandlebarsHelpersIfJs(module, exports, __webpack_require__) {
@@ -29947,9 +29947,9 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof2(o) { "@babel/helpers - typeo
       /***/
     }),
     /***/"../../node_modules/handlebars/dist/cjs/handlebars/helpers/log.js": (
-    /*!**************************************************************************************************************!*\
-      !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/helpers/log.js ***!
-      \**************************************************************************************************************/
+    /*!*****************************************************************************************************************!*\
+      !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/helpers/log.js ***!
+      \*****************************************************************************************************************/
     /*! no static exports found */
     /***/
     function node_modulesHandlebarsDistCjsHandlebarsHelpersLogJs(module, exports, __webpack_require__) {
@@ -29978,9 +29978,9 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof2(o) { "@babel/helpers - typeo
       /***/
     }),
     /***/"../../node_modules/handlebars/dist/cjs/handlebars/helpers/lookup.js": (
-    /*!*****************************************************************************************************************!*\
-      !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/helpers/lookup.js ***!
-      \*****************************************************************************************************************/
+    /*!********************************************************************************************************************!*\
+      !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/helpers/lookup.js ***!
+      \********************************************************************************************************************/
     /*! no static exports found */
     /***/
     function node_modulesHandlebarsDistCjsHandlebarsHelpersLookupJs(module, exports, __webpack_require__) {
@@ -30001,9 +30001,9 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof2(o) { "@babel/helpers - typeo
       /***/
     }),
     /***/"../../node_modules/handlebars/dist/cjs/handlebars/helpers/with.js": (
-    /*!***************************************************************************************************************!*\
-      !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/helpers/with.js ***!
-      \***************************************************************************************************************/
+    /*!******************************************************************************************************************!*\
+      !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/helpers/with.js ***!
+      \******************************************************************************************************************/
     /*! no static exports found */
     /***/
     function node_modulesHandlebarsDistCjsHandlebarsHelpersWithJs(module, exports, __webpack_require__) {
@@ -30049,9 +30049,9 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof2(o) { "@babel/helpers - typeo
       /***/
     }),
     /***/"../../node_modules/handlebars/dist/cjs/handlebars/internal/create-new-lookup-object.js": (
-    /*!************************************************************************************************************************************!*\
-      !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/internal/create-new-lookup-object.js ***!
-      \************************************************************************************************************************************/
+    /*!***************************************************************************************************************************************!*\
+      !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/internal/create-new-lookup-object.js ***!
+      \***************************************************************************************************************************************/
     /*! no static exports found */
     /***/
     function node_modulesHandlebarsDistCjsHandlebarsInternalCreateNewLookupObjectJs(module, exports, __webpack_require__) {
@@ -30078,9 +30078,9 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof2(o) { "@babel/helpers - typeo
       /***/
     }),
     /***/"../../node_modules/handlebars/dist/cjs/handlebars/internal/proto-access.js": (
-    /*!************************************************************************************************************************!*\
-      !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/internal/proto-access.js ***!
-      \************************************************************************************************************************/
+    /*!***************************************************************************************************************************!*\
+      !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/internal/proto-access.js ***!
+      \***************************************************************************************************************************/
     /*! no static exports found */
     /***/
     function node_modulesHandlebarsDistCjsHandlebarsInternalProtoAccessJs(module, exports, __webpack_require__) {
@@ -30153,9 +30153,9 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof2(o) { "@babel/helpers - typeo
       /***/
     }),
     /***/"../../node_modules/handlebars/dist/cjs/handlebars/internal/wrapHelper.js": (
-    /*!**********************************************************************************************************************!*\
-      !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/internal/wrapHelper.js ***!
-      \**********************************************************************************************************************/
+    /*!*************************************************************************************************************************!*\
+      !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/internal/wrapHelper.js ***!
+      \*************************************************************************************************************************/
     /*! no static exports found */
     /***/
     function node_modulesHandlebarsDistCjsHandlebarsInternalWrapHelperJs(module, exports, __webpack_require__) {
@@ -30180,9 +30180,9 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof2(o) { "@babel/helpers - typeo
       /***/
     }),
     /***/"../../node_modules/handlebars/dist/cjs/handlebars/logger.js": (
-    /*!*********************************************************************************************************!*\
-      !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/logger.js ***!
-      \*********************************************************************************************************/
+    /*!************************************************************************************************************!*\
+      !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/logger.js ***!
+      \************************************************************************************************************/
     /*! no static exports found */
     /***/
     function node_modulesHandlebarsDistCjsHandlebarsLoggerJs(module, exports, __webpack_require__) {
@@ -30227,9 +30227,9 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof2(o) { "@babel/helpers - typeo
       /***/
     }),
     /***/"../../node_modules/handlebars/dist/cjs/handlebars/no-conflict.js": (
-    /*!**************************************************************************************************************!*\
-      !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/no-conflict.js ***!
-      \**************************************************************************************************************/
+    /*!*****************************************************************************************************************!*\
+      !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/no-conflict.js ***!
+      \*****************************************************************************************************************/
     /*! no static exports found */
     /***/
     function node_modulesHandlebarsDistCjsHandlebarsNoConflictJs(module, exports, __webpack_require__) {
@@ -30263,9 +30263,9 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof2(o) { "@babel/helpers - typeo
       /***/
     }),
     /***/"../../node_modules/handlebars/dist/cjs/handlebars/runtime.js": (
-    /*!**********************************************************************************************************!*\
-      !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/runtime.js ***!
-      \**********************************************************************************************************/
+    /*!*************************************************************************************************************!*\
+      !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/runtime.js ***!
+      \*************************************************************************************************************/
     /*! no static exports found */
     /***/
     function node_modulesHandlebarsDistCjsHandlebarsRuntimeJs(module, exports, __webpack_require__) {
@@ -30611,9 +30611,9 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof2(o) { "@babel/helpers - typeo
       /***/
     }),
     /***/"../../node_modules/handlebars/dist/cjs/handlebars/safe-string.js": (
-    /*!**************************************************************************************************************!*\
-      !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/safe-string.js ***!
-      \**************************************************************************************************************/
+    /*!*****************************************************************************************************************!*\
+      !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/safe-string.js ***!
+      \*****************************************************************************************************************/
     /*! no static exports found */
     /***/
     function node_modulesHandlebarsDistCjsHandlebarsSafeStringJs(module, exports, __webpack_require__) {
@@ -30633,9 +30633,9 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof2(o) { "@babel/helpers - typeo
       /***/
     }),
     /***/"../../node_modules/handlebars/dist/cjs/handlebars/utils.js": (
-    /*!********************************************************************************************************!*\
-      !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/utils.js ***!
-      \********************************************************************************************************/
+    /*!***********************************************************************************************************!*\
+      !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/dist/cjs/handlebars/utils.js ***!
+      \***********************************************************************************************************/
     /*! no static exports found */
     /***/
     function node_modulesHandlebarsDistCjsHandlebarsUtilsJs(module, exports, __webpack_require__) {
@@ -30753,9 +30753,9 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof2(o) { "@babel/helpers - typeo
       /***/
     }),
     /***/"../../node_modules/handlebars/runtime.js": (
-    /*!**************************************************************************************!*\
-      !*** C:/Jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/runtime.js ***!
-      \**************************************************************************************/
+    /*!*****************************************************************************************!*\
+      !*** /home/jenkins/workspace/loseit-cloudcms-module/node_modules/handlebars/runtime.js ***!
+      \*****************************************************************************************/
     /*! no static exports found */
     /***/
     function node_modulesHandlebarsRuntimeJs(module, exports, __webpack_require__) {
@@ -32183,7 +32183,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof2(o) { "@babel/helpers - typeo
                 "column": 31
               }
             }
-          }) : helper)) + "\" />\r\n";
+          }) : helper)) + "\" />\n";
         },
         "useData": true
       });
@@ -32574,7 +32574,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof2(o) { "@babel/helpers - typeo
                 "column": 15
               }
             }
-          }) : helper)) + "</span>\r\n";
+          }) : helper)) + "</span>\n";
         },
         "useData": true
       });
@@ -32733,7 +32733,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof2(o) { "@babel/helpers - typeo
                 "column": 15
               }
             }
-          }) : helper)) + "</span>\r\n";
+          }) : helper)) + "</span>\n";
         },
         "useData": true
       });
@@ -36339,13 +36339,13 @@ module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[8,"
         return undefined
     };
 
-  return "<span\r\n  class=\"widget\"\r\n  data-id=\""
+  return "<span\n  class=\"widget\"\n  data-id=\""
     + alias4(((helper = (helper = lookupProperty(helpers,"id") || (depth0 != null ? lookupProperty(depth0,"id") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data,"loc":{"start":{"line":3,"column":11},"end":{"line":3,"column":17}}}) : helper)))
-    + "\"\r\n  data-type=\""
+    + "\"\n  data-type=\""
     + alias4(((helper = (helper = lookupProperty(helpers,"qname") || (depth0 != null ? lookupProperty(depth0,"qname") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"qname","hash":{},"data":data,"loc":{"start":{"line":4,"column":13},"end":{"line":4,"column":22}}}) : helper)))
-    + "\"\r\n>\r\n  "
+    + "\"\n>\n  "
     + ((stack1 = ((helper = (helper = lookupProperty(helpers,"innerHtml") || (depth0 != null ? lookupProperty(depth0,"innerHtml") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"innerHtml","hash":{},"data":data,"loc":{"start":{"line":6,"column":2},"end":{"line":6,"column":17}}}) : helper))) != null ? stack1 : "")
-    + "\r\n</span>\r\n";
+    + "\n</span>\n";
 },"useData":true});
 
 /***/ }),
