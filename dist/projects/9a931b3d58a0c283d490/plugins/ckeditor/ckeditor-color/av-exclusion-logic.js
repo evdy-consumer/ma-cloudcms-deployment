@@ -125,11 +125,29 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         multiSelect: false
       },
       init: function init() {
+        this.add('default', 'Remove Color', 'Remove Color'); // Remove color default option
+
         for (var name in colors) {
           this.add(colors[name], name, name);
         }
       },
       onClick: function onClick(value) {
+        editor.focus();
+        if (value === 'default') {
+          var selection = editor.getSelection();
+          var element = selection.getStartElement();
+          var span = element.getAscendant('span', true);
+          if (span && span.getStyle('color')) {
+            var fragment = new CKEDITOR.documentFragment(editor.document);
+            span.copyAttributes(fragment); // In case of other attributes
+
+            while (span.getFirst()) {
+              fragment.append(span.getFirst().remove());
+            }
+            span.replaceWith(fragment);
+          }
+          return;
+        }
         var style = new CKEDITOR.style({
           element: 'span',
           styles: {
