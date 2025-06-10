@@ -138,13 +138,29 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
       onClick: function onClick(value) {
         editor.focus();
         if (value === 'default') {
+          var selection = editor.getSelection();
+          var ranges = selection.getRanges();
+          var element = selection.getStartElement();
+          console.log('Start Element:', element && element.getOuterHtml());
           var styleToRemove = new CKEDITOR.style({
             element: 'span',
             styles: {
-              color: null
-            }
+              color: true
+            } // Important: use `true` to match any color
           });
           editor.removeStyle(styleToRemove);
+
+          // Optional: remove empty <span> tags (that no longer have color)
+          for (var i = 0; i < ranges.length; i++) {
+            var walker = new CKEDITOR.dom.walker(ranges[i]);
+            walker.evaluator = function (node) {
+              return node.type === CKEDITOR.NODE_ELEMENT && node.getName() === 'span' && !node.hasAttributes(); // No remaining styles/attributes
+            };
+            var node = void 0;
+            while (node = walker.next()) {
+              node.remove(true); // Remove empty span
+            }
+          }
           return;
         }
         var style = new CKEDITOR.style({
