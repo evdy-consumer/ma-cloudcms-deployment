@@ -138,16 +138,13 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
       onClick: function onClick(value) {
         editor.focus();
         if (value === 'default') {
-          var selection = editor.getSelection();
-          var element = selection.getStartElement();
-          var span = element.getAscendant('span', true);
-          if (span && span.getStyle('color')) {
-            var fragment = new CKEDITOR.documentFragment(editor.document);
-            while (span.getFirst()) {
-              fragment.append(span.getFirst().remove());
+          var styleToRemove = new CKEDITOR.style({
+            element: 'span',
+            styles: {
+              color: null
             }
-            span.replaceWith(fragment);
-          }
+          });
+          editor.removeStyle(styleToRemove);
           return;
         }
         var style = new CKEDITOR.style({
