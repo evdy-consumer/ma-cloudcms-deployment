@@ -148,6 +148,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
               color: true
             } // Important: use `true` to match any color
           });
+          editor.focus();
           editor.removeStyle(styleToRemove);
 
           // Optional: remove empty <span> tags (that no longer have color)
@@ -161,16 +162,18 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
               node.remove(true); // Remove empty span
             }
           }
+          console.log('End Element:', element && element.getOuterHtml());
           return;
+        } else {
+          var style = new CKEDITOR.style({
+            element: 'span',
+            styles: {
+              color: value
+            }
+          });
+          editor.focus();
+          editor.applyStyle(style);
         }
-        var style = new CKEDITOR.style({
-          element: 'span',
-          styles: {
-            color: value
-          }
-        });
-        editor.focus();
-        editor.applyStyle(style);
       }
     });
   }
