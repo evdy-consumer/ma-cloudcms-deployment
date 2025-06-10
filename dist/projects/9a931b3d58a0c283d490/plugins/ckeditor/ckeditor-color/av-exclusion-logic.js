@@ -126,9 +126,10 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
       },
       init: function init() {
         this.add('default', 'Remove Color', 'Remove Color'); // Remove color default option
-
-        for (var name in colors) {
-          this.add(colors[name], name, name);
+        console.log('colors', colors);
+        for (var label in colors) {
+          var colorValue = colors[label];
+          this.add(colorValue, label, label);
         }
       },
       onRender: function onRender() {
