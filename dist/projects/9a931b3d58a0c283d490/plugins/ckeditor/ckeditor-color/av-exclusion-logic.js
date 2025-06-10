@@ -131,6 +131,9 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
           this.add(colors[name], name, name);
         }
       },
+      onRender: function onRender() {
+        this.setValue(''); // Prevents any item from being auto-selected
+      },
       onClick: function onClick(value) {
         editor.focus();
         if (value === 'default') {
@@ -139,8 +142,6 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
           var span = element.getAscendant('span', true);
           if (span && span.getStyle('color')) {
             var fragment = new CKEDITOR.documentFragment(editor.document);
-            span.copyAttributes(fragment); // In case of other attributes
-
             while (span.getFirst()) {
               fragment.append(span.getFirst().remove());
             }
