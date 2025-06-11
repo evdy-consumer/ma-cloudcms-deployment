@@ -110,6 +110,9 @@ var pluginName = 'ckeditor-color';
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./constants */ "./src/constants.js");
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 
 var CKEDITOR = window.CKEDITOR;
 CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
@@ -137,32 +140,84 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
       },
       onClick: function onClick(value) {
         editor.focus();
-        if (value === 'default') {
-          var selection = editor.getSelection();
-          var ranges = selection.getRanges();
-          var element = selection.getStartElement();
+        /* if (value === 'default') {
+          const selection = editor.getSelection();
+          const ranges = selection.getRanges();
+           const element = selection.getStartElement();
           console.log('Start Element:', element && element.getOuterHtml());
-          var styleToRemove = new CKEDITOR.style({
+            const styleToRemove = new CKEDITOR.style({
             element: 'span',
-            styles: {
-              color: true
-            } // Important: use `true` to match any color
+            styles: { color: true } // Important: use `true` to match any color
           });
-          editor.focus();
           editor.removeStyle(styleToRemove);
-
-          // Optional: remove empty <span> tags (that no longer have color)
-          for (var i = 0; i < ranges.length; i++) {
-            var walker = new CKEDITOR.dom.walker(ranges[i]);
+           // Optional: remove empty <span> tags (that no longer have color)
+          for (let i = 0; i < ranges.length; i++) {
+            const walker = new CKEDITOR.dom.walker(ranges[i]);
             walker.evaluator = function (node) {
-              return node.type === CKEDITOR.NODE_ELEMENT && node.getName() === 'span' && !node.hasAttributes(); // No remaining styles/attributes
+              return node.type === CKEDITOR.NODE_ELEMENT &&
+                node.getName() === 'span' &&
+                !node.hasAttributes(); // No remaining styles/attributes
             };
-            var node = void 0;
-            while (node = walker.next()) {
+             let node;
+            while ((node = walker.next())) {
               node.remove(true); // Remove empty span
             }
           }
           console.log('End Element:', element && element.getOuterHtml());
+          return;
+        } */
+        if (value === 'default') {
+          var selection = editor.getSelection();
+          var ranges = selection.getRanges();
+          console.log('🟡 Selection ranges:', ranges.length);
+          editor.fire('lockSnapshot');
+          ranges.forEach(function (range, index) {
+            console.log("\uD83D\uDFE2 Processing range ".concat(index + 1));
+
+            // Expand range to cover full inline elements
+            range.enlarge(CKEDITOR.ENLARGE_INLINE);
+            var docFragment = range.extractContents();
+            console.log('📦 Extracted fragment:', docFragment.getHtml());
+            var walker = new CKEDITOR.dom.walker(docFragment);
+            walker.evaluator = function (node) {
+              return node.type === CKEDITOR.NODE_ELEMENT && node.getName() === 'span' && node.getStyle('color');
+            };
+            var node;
+            var spanCount = 0;
+            var cleanedCount = 0;
+            var unwrappedCount = 0;
+            while (node = walker.next()) {
+              spanCount++;
+              console.log('🎯 Found span with color:', node.getOuterHtml());
+              node.removeStyle('color');
+              cleanedCount++;
+              if (!node.hasAttributes()) {
+                var children = node.getChildren().toArray();
+                var _iterator = _createForOfIteratorHelper(children),
+                  _step;
+                try {
+                  for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                    var child = _step.value;
+                    child.insertBeforeMe(child.remove());
+                  }
+                } catch (err) {
+                  _iterator.e(err);
+                } finally {
+                  _iterator.f();
+                }
+                node.remove();
+                unwrappedCount++;
+                console.log('🧹 Unwrapped empty span.');
+              }
+            }
+            console.log("\u2705 Processed ".concat(spanCount, " colored spans, removed color from ").concat(cleanedCount, ", unwrapped ").concat(unwrappedCount));
+
+            // Reinsert cleaned fragment into editor
+            range.insertNode(docFragment);
+            console.log('📥 Inserted cleaned fragment back into document.');
+          });
+          editor.fire('unlockSnapshot');
+          console.log('🎉 Done cleaning color from selected text.');
           return;
         } else {
           var style = new CKEDITOR.style({
