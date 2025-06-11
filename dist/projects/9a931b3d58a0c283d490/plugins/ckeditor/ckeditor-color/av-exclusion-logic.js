@@ -173,12 +173,14 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
           editor.fire('lockSnapshot');
           ranges.forEach(function (range, index) {
             console.log("\uD83D\uDFE2 Processing range ".concat(index + 1));
-
-            // Expand range to cover full inline elements
             range.enlarge(CKEDITOR.ENLARGE_INLINE);
             var docFragment = range.extractContents();
             console.log('📦 Extracted fragment:', docFragment.getHtml());
-            var walker = new CKEDITOR.dom.walker(docFragment);
+
+            // Create a temporary container element to walk inside
+            var container = new CKEDITOR.dom.element('div');
+            container.append(docFragment);
+            var walker = new CKEDITOR.dom.walker(container);
             walker.evaluator = function (node) {
               return node.type === CKEDITOR.NODE_ELEMENT && node.getName() === 'span' && node.getStyle('color');
             };
@@ -212,8 +214,13 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
             }
             console.log("\u2705 Processed ".concat(spanCount, " colored spans, removed color from ").concat(cleanedCount, ", unwrapped ").concat(unwrappedCount));
 
-            // Reinsert cleaned fragment into editor
-            range.insertNode(docFragment);
+            // Reinsert cleaned fragment back into document
+            var cleanedFragment = container.extractHtml();
+            var tempFragment = CKEDITOR.dom.document.prototype.createDocumentFragment.call(editor.document);
+            cleanedFragment.getChildren().toArray().forEach(function (child) {
+              return tempFragment.append(child);
+            });
+            range.insertNode(tempFragment);
             console.log('📥 Inserted cleaned fragment back into document.');
           });
           editor.fire('unlockSnapshot');
