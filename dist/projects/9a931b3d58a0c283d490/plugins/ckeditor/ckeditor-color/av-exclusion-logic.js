@@ -173,14 +173,10 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
           editor.fire('lockSnapshot');
           ranges.forEach(function (range, index) {
             console.log("\uD83D\uDFE2 Processing range ".concat(index + 1));
-            range.enlarge(CKEDITOR.ENLARGE_INLINE);
-            var docFragment = range.extractContents();
-            console.log('📦 Extracted fragment:', docFragment.getHtml());
 
-            // Create a temporary container element to walk inside
-            var container = new CKEDITOR.dom.element('div');
-            container.append(docFragment);
-            var walker = new CKEDITOR.dom.walker(container);
+            // Enlarge to inline boundaries so walker sees full elements
+            range.enlarge(CKEDITOR.ENLARGE_INLINE);
+            var walker = new CKEDITOR.dom.walker(range);
             walker.evaluator = function (node) {
               return node.type === CKEDITOR.NODE_ELEMENT && node.getName() === 'span' && node.getStyle('color');
             };
@@ -191,6 +187,18 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
             while (node = walker.next()) {
               spanCount++;
               console.log('🎯 Found span with color:', node.getOuterHtml());
+
+              // Clone range to the current span
+              var spanRange = editor.createRange();
+              spanRange.selectNodeContents(node);
+
+              // Intersect it with original selection
+              var intersectionRange = range.clone();
+              intersectionRange.setStart(Math.max(range.startOffset, spanRange.startOffset));
+              intersectionRange.setEnd(Math.min(range.endOffset, spanRange.endOffset));
+
+              // Split the span at the range boundaries if necessary
+              var splitInfo = CKEDITOR.style.getStyleText(node);
               node.removeStyle('color');
               cleanedCount++;
               if (!node.hasAttributes()) {
@@ -212,16 +220,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
                 console.log('🧹 Unwrapped empty span.');
               }
             }
-            console.log("\u2705 Processed ".concat(spanCount, " colored spans, removed color from ").concat(cleanedCount, ", unwrapped ").concat(unwrappedCount));
-
-            // Reinsert cleaned fragment back into document
-            var cleanedFragment = container.extractHtml();
-            var tempFragment = CKEDITOR.dom.document.prototype.createDocumentFragment.call(editor.document);
-            cleanedFragment.getChildren().toArray().forEach(function (child) {
-              return tempFragment.append(child);
-            });
-            range.insertNode(tempFragment);
-            console.log('📥 Inserted cleaned fragment back into document.');
+            console.log("\u2705 Processed ".concat(spanCount, " spans, removed color from ").concat(cleanedCount, ", unwrapped ").concat(unwrappedCount));
           });
           editor.fire('unlockSnapshot');
           console.log('🎉 Done cleaning color from selected text.');
