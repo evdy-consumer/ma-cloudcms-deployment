@@ -140,98 +140,60 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
       },
       onClick: function onClick(value) {
         editor.focus();
-        /* if (value === 'default') {
-          const selection = editor.getSelection();
-          const ranges = selection.getRanges();
-           const element = selection.getStartElement();
-          console.log('Start Element:', element && element.getOuterHtml());
-            const styleToRemove = new CKEDITOR.style({
-            element: 'span',
-            styles: { color: true } // Important: use `true` to match any color
-          });
-          editor.removeStyle(styleToRemove);
-           // Optional: remove empty <span> tags (that no longer have color)
-          for (let i = 0; i < ranges.length; i++) {
-            const walker = new CKEDITOR.dom.walker(ranges[i]);
-            walker.evaluator = function (node) {
-              return node.type === CKEDITOR.NODE_ELEMENT &&
-                node.getName() === 'span' &&
-                !node.hasAttributes(); // No remaining styles/attributes
-            };
-             let node;
-            while ((node = walker.next())) {
-              node.remove(true); // Remove empty span
-            }
-          }
-          console.log('End Element:', element && element.getOuterHtml());
-          return;
-        } */
         if (value === 'default') {
           var selection = editor.getSelection();
           var ranges = selection.getRanges();
+          var bookmarks = selection.createBookmarks(); // Save cursor
+
           editor.fire('lockSnapshot');
           console.log('🟡 Starting color removal...');
-
-          // Force span splitting by applying and removing a dummy style
-          var dummyStyle = new CKEDITOR.style({
-            element: 'span',
-            styles: {
-              'background-color': '#ffffff'
-            }
-          });
-          editor.applyStyle(dummyStyle);
-          editor.removeStyle(dummyStyle);
           ranges.forEach(function (range, i) {
             console.log("\uD83D\uDFE2 Range ".concat(i + 1, ":"), range);
-            var found = 0;
-            var unwrapped = 0;
-            var tryProcessSpan = function tryProcessSpan(span) {
-              if (span && span.type === CKEDITOR.NODE_ELEMENT && span.getName() === 'span' && span.getStyle('color')) {
-                found++;
-                console.log('🎯 Found span with color:', span.getOuterHtml());
-                span.removeStyle('color');
-                if (!span.hasAttributes()) {
-                  var children = span.getChildren().toArray();
-                  var _iterator = _createForOfIteratorHelper(children),
-                    _step;
-                  try {
-                    for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                      var child = _step.value;
-                      span.insertBeforeMe(child.remove());
-                    }
-                  } catch (err) {
-                    _iterator.e(err);
-                  } finally {
-                    _iterator.f();
-                  }
-                  span.remove();
-                  unwrapped++;
-                  console.log('🧹 Unwrapped span.');
-                }
-              }
-            };
 
-            // 1. Try enclosed node
-            var enclosed = range.getEnclosedNode();
-            tryProcessSpan(enclosed);
+            // Step 1: Extract selected fragment
+            var fragment = range.extractContents();
 
-            // 2. Fallback: walker inside the range
-            var walker = new CKEDITOR.dom.walker(range);
+            // Step 2: Walk the fragment and clean spans
+            var walker = new CKEDITOR.dom.walker(fragment);
             walker.evaluator = function (node) {
               return node.type === CKEDITOR.NODE_ELEMENT && node.getName() === 'span' && node.getStyle('color');
             };
             var node;
+            var found = 0;
+            var unwrapped = 0;
             while (node = walker.next()) {
-              tryProcessSpan(node);
+              found++;
+              console.log('🎯 Found span in fragment:', node.getOuterHtml());
+              node.removeStyle('color');
+              if (!node.hasAttributes()) {
+                var children = node.getChildren().toArray();
+                var _iterator = _createForOfIteratorHelper(children),
+                  _step;
+                try {
+                  for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                    var child = _step.value;
+                    node.insertBeforeMe(child.remove());
+                  }
+                } catch (err) {
+                  _iterator.e(err);
+                } finally {
+                  _iterator.f();
+                }
+                node.remove();
+                unwrapped++;
+                console.log('🧹 Unwrapped span.');
+              }
             }
 
-            // 3. NEW: Also check if startContainer or endContainer is a colored span
-            tryProcessSpan(range.startContainer);
-            tryProcessSpan(range.endContainer);
-            console.log("\u2705 Range ".concat(i + 1, " done: found ").concat(found, ", unwrapped ").concat(unwrapped));
+            // Step 3: Reinsert cleaned fragment
+            range.insertNode(fragment);
+            console.log("\u2705 Range ".concat(i + 1, ": cleaned spans=").concat(found, ", unwrapped=").concat(unwrapped));
           });
+
+          // Step 4: Restore selection and finish
+          selection.selectBookmarks(bookmarks);
           editor.fire('unlockSnapshot');
-          console.log('🎉 Finished removing color from selection.');
+          console.log('🎉 Finished removing color from selected text.');
         } else {
           var style = new CKEDITOR.style({
             element: 'span',
