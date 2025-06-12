@@ -169,58 +169,40 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         if (value === 'default') {
           var selection = editor.getSelection();
           var ranges = selection.getRanges();
-          console.log('🟡 Selection ranges:', ranges.length);
           editor.fire('lockSnapshot');
+          console.log('🟡 Processing selection...');
           ranges.forEach(function (range, index) {
-            console.log("\uD83D\uDFE2 Processing range ".concat(index + 1));
+            console.log("\uD83D\uDFE2 Range ".concat(index + 1, ": splitting..."));
+            range.split(); // Split any enclosing spans so we can target exact selection
 
-            // Enlarge to inline boundaries so walker sees full elements
-            range.enlarge(CKEDITOR.ENLARGE_INLINE);
             var walker = new CKEDITOR.dom.walker(range);
             walker.evaluator = function (node) {
               return node.type === CKEDITOR.NODE_ELEMENT && node.getName() === 'span' && node.getStyle('color');
             };
             var node;
-            var spanCount = 0;
-            var cleanedCount = 0;
-            var unwrappedCount = 0;
+            var affectedSpans = 0;
+            var unwrappedSpans = 0;
             while (node = walker.next()) {
-              spanCount++;
-              console.log('🎯 Found span with color:', node.getOuterHtml());
-
-              // Clone range to the current span
-              var spanRange = editor.createRange();
-              spanRange.selectNodeContents(node);
-
-              // Intersect it with original selection
-              var intersectionRange = range.clone();
-              intersectionRange.setStart(Math.max(range.startOffset, spanRange.startOffset));
-              intersectionRange.setEnd(Math.min(range.endOffset, spanRange.endOffset));
-
-              // Split the span at the range boundaries if necessary
-              var splitInfo = CKEDITOR.style.getStyleText(node);
-              node.removeStyle('color');
-              cleanedCount++;
-              if (!node.hasAttributes()) {
-                var children = node.getChildren().toArray();
-                var _iterator = _createForOfIteratorHelper(children),
-                  _step;
-                try {
-                  for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                    var child = _step.value;
-                    child.insertBeforeMe(child.remove());
-                  }
-                } catch (err) {
-                  _iterator.e(err);
-                } finally {
-                  _iterator.f();
+              affectedSpans++;
+              console.log('🎯 Found span with color inside selection:', node.getOuterHtml());
+              var children = node.getChildren().toArray();
+              var _iterator = _createForOfIteratorHelper(children),
+                _step;
+              try {
+                for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                  var child = _step.value;
+                  node.insertBeforeMe(child.remove());
                 }
-                node.remove();
-                unwrappedCount++;
-                console.log('🧹 Unwrapped empty span.');
+              } catch (err) {
+                _iterator.e(err);
+              } finally {
+                _iterator.f();
               }
+              node.remove();
+              unwrappedSpans++;
+              console.log('🧹 Removed color and unwrapped span.');
             }
-            console.log("\u2705 Processed ".concat(spanCount, " spans, removed color from ").concat(cleanedCount, ", unwrapped ").concat(unwrappedCount));
+            console.log("\u2705 Finished range ".concat(index + 1, ". Found: ").concat(affectedSpans, ", Unwrapped: ").concat(unwrappedSpans));
           });
           editor.fire('unlockSnapshot');
           console.log('🎉 Done cleaning color from selected text.');
