@@ -183,34 +183,62 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
           editor.removeStyle(dummyStyle);
           ranges.forEach(function (range, i) {
             console.log("\uD83D\uDFE2 Range ".concat(i + 1, ":"), range);
-            var walker = new CKEDITOR.dom.walker(range);
-            walker.evaluator = function (node) {
-              return node.type === CKEDITOR.NODE_ELEMENT && node.getName() === 'span' && node.getStyle('color');
-            };
-            var node;
             var found = 0;
             var unwrapped = 0;
-            while (node = walker.next()) {
+
+            // First: check if there's a single node fully enclosed
+            var enclosed = range.getEnclosedNode();
+            if (enclosed && enclosed.type === CKEDITOR.NODE_ELEMENT && enclosed.getName() === 'span' && enclosed.getStyle('color')) {
+              console.log('🎯 Found fully enclosed span:', enclosed.getOuterHtml());
+              enclosed.removeStyle('color');
               found++;
-              console.log('🎯 Found span with color:', node.getOuterHtml());
-              node.removeStyle('color');
-              if (!node.hasAttributes()) {
-                var children = node.getChildren().toArray();
+              if (!enclosed.hasAttributes()) {
+                var children = enclosed.getChildren().toArray();
                 var _iterator = _createForOfIteratorHelper(children),
                   _step;
                 try {
                   for (_iterator.s(); !(_step = _iterator.n()).done;) {
                     var child = _step.value;
-                    node.insertBeforeMe(child.remove());
+                    enclosed.insertBeforeMe(child.remove());
                   }
                 } catch (err) {
                   _iterator.e(err);
                 } finally {
                   _iterator.f();
                 }
-                node.remove();
+                enclosed.remove();
                 unwrapped++;
-                console.log('🧹 Unwrapped empty span.');
+                console.log('🧹 Unwrapped fully selected span.');
+              }
+            } else {
+              // Fallback: walk the common ancestor subtree
+              var walker = new CKEDITOR.dom.walker(range);
+              walker.evaluator = function (node) {
+                return node.type === CKEDITOR.NODE_ELEMENT && node.getName() === 'span' && node.getStyle('color');
+              };
+              var node;
+              while (node = walker.next()) {
+                found++;
+                console.log('🎯 Found span with color inside selection:', node.getOuterHtml());
+                node.removeStyle('color');
+                if (!node.hasAttributes()) {
+                  var _children = node.getChildren().toArray();
+                  var _iterator2 = _createForOfIteratorHelper(_children),
+                    _step2;
+                  try {
+                    for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+                      var _child = _step2.value;
+                      node.insertBeforeMe(_child.remove());
+                    }
+                  } catch (err) {
+                    _iterator2.e(err);
+                  } finally {
+                    _iterator2.f();
+                  }
+                  node.remove();
+                  unwrapped++;
+                  console.log('🧹 Unwrapped span.');
+                }
               }
             }
             console.log("\u2705 Range ".concat(i + 1, " done: found ").concat(found, ", unwrapped ").concat(unwrapped));
