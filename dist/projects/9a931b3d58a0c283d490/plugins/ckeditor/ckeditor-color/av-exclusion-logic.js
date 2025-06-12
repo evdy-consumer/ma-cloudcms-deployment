@@ -222,7 +222,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
           var splitTrick = new CKEDITOR.style({
             element: 'span',
             styles: {
-              backgroundColor: '#ffffff'
+              fontFamily: 'monospace'
             }
           });
           editor.applyStyle(splitTrick);
