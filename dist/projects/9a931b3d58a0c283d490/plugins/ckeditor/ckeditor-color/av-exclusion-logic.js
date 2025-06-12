@@ -185,62 +185,49 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
             console.log("\uD83D\uDFE2 Range ".concat(i + 1, ":"), range);
             var found = 0;
             var unwrapped = 0;
-
-            // First: check if there's a single node fully enclosed
-            var enclosed = range.getEnclosedNode();
-            if (enclosed && enclosed.type === CKEDITOR.NODE_ELEMENT && enclosed.getName() === 'span' && enclosed.getStyle('color')) {
-              console.log('🎯 Found fully enclosed span:', enclosed.getOuterHtml());
-              enclosed.removeStyle('color');
-              found++;
-              if (!enclosed.hasAttributes()) {
-                var children = enclosed.getChildren().toArray();
-                var _iterator = _createForOfIteratorHelper(children),
-                  _step;
-                try {
-                  for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                    var child = _step.value;
-                    enclosed.insertBeforeMe(child.remove());
-                  }
-                } catch (err) {
-                  _iterator.e(err);
-                } finally {
-                  _iterator.f();
-                }
-                enclosed.remove();
-                unwrapped++;
-                console.log('🧹 Unwrapped fully selected span.');
-              }
-            } else {
-              // Fallback: walk the common ancestor subtree
-              var walker = new CKEDITOR.dom.walker(range);
-              walker.evaluator = function (node) {
-                return node.type === CKEDITOR.NODE_ELEMENT && node.getName() === 'span' && node.getStyle('color');
-              };
-              var node;
-              while (node = walker.next()) {
+            var tryProcessSpan = function tryProcessSpan(span) {
+              if (span && span.type === CKEDITOR.NODE_ELEMENT && span.getName() === 'span' && span.getStyle('color')) {
                 found++;
-                console.log('🎯 Found span with color inside selection:', node.getOuterHtml());
-                node.removeStyle('color');
-                if (!node.hasAttributes()) {
-                  var _children = node.getChildren().toArray();
-                  var _iterator2 = _createForOfIteratorHelper(_children),
-                    _step2;
+                console.log('🎯 Found span with color:', span.getOuterHtml());
+                span.removeStyle('color');
+                if (!span.hasAttributes()) {
+                  var children = span.getChildren().toArray();
+                  var _iterator = _createForOfIteratorHelper(children),
+                    _step;
                   try {
-                    for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-                      var _child = _step2.value;
-                      node.insertBeforeMe(_child.remove());
+                    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                      var child = _step.value;
+                      span.insertBeforeMe(child.remove());
                     }
                   } catch (err) {
-                    _iterator2.e(err);
+                    _iterator.e(err);
                   } finally {
-                    _iterator2.f();
+                    _iterator.f();
                   }
-                  node.remove();
+                  span.remove();
                   unwrapped++;
                   console.log('🧹 Unwrapped span.');
                 }
               }
+            };
+
+            // 1. Try enclosed node
+            var enclosed = range.getEnclosedNode();
+            tryProcessSpan(enclosed);
+
+            // 2. Fallback: walker inside the range
+            var walker = new CKEDITOR.dom.walker(range);
+            walker.evaluator = function (node) {
+              return node.type === CKEDITOR.NODE_ELEMENT && node.getName() === 'span' && node.getStyle('color');
+            };
+            var node;
+            while (node = walker.next()) {
+              tryProcessSpan(node);
             }
+
+            // 3. NEW: Also check if startContainer or endContainer is a colored span
+            tryProcessSpan(range.startContainer);
+            tryProcessSpan(range.endContainer);
             console.log("\u2705 Range ".concat(i + 1, " done: found ").concat(found, ", unwrapped ").concat(unwrapped));
           });
           editor.fire('unlockSnapshot');
