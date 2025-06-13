@@ -327,58 +327,54 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
 
             // 🔁 Fallback: try to remove color from nearest span if none found by walker
             if (!foundAny) {
-              var colorSpanStart = range.startContainer.getAscendant('span', true);
-              var colorSpanEnd = range.endContainer.getAscendant('span', true);
-              if (colorSpanStart && colorSpanStart.type === CKEDITOR.NODE_ELEMENT && colorSpanStart.getStyle('color')) {
-                console.log('⚠️ No color spans found in walker, but start is inside a color span — fallback applying split.');
-                var _startRange = new CKEDITOR.dom.range(editor.document);
-                _startRange.setStart(range.startContainer, range.startOffset);
-                _startRange.setEndAfter(colorSpanStart);
-                var _endRange = new CKEDITOR.dom.range(editor.document);
-                _endRange.setStart(range.endContainer, range.endOffset);
-                _endRange.setEndAfter(colorSpanEnd);
-                if (typeof _startRange.split === 'function') {
-                  _startRange.split();
-                } else {
-                  console.warn('startRange.split is not a function');
-                }
-                if (typeof _endRange.split === 'function') {
-                  _endRange.split();
-                } else {
-                  console.warn('endRange.split is not a function');
-                }
-                var _current = colorSpanStart;
-                while (_current) {
-                  if (_current.type === CKEDITOR.NODE_ELEMENT && _current.getName() === 'span' && _current.getStyle('color')) {
-                    _current.removeStyle('color');
-                    if (!_current.hasAttributes()) {
-                      var _children2 = _current.getChildren().toArray();
-                      var _iterator3 = _createForOfIteratorHelper(_children2),
-                        _step3;
-                      try {
-                        for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-                          var _child2 = _step3.value;
-                          _current.insertBeforeMe(_child2.remove());
-                        }
-                      } catch (err) {
-                        _iterator3.e(err);
-                      } finally {
-                        _iterator3.f();
-                      }
-                      var toRemove = _current;
-                      _current = _current.getNext();
-                      toRemove.remove();
-                      unwrappedCount++;
-                      console.log('🧹 Unwrapped fallback span.');
-                    } else {
-                      console.log('🎯 Fallback: removed color, kept other styles:', _current.getAttribute('style'));
-                      _current = _current.getNext();
-                    }
-                  } else {
-                    _current = _current.getNext();
+              var colorSpan = range.startContainer.getAscendant('span', true);
+              if (colorSpan && colorSpan.type === CKEDITOR.NODE_ELEMENT && colorSpan.getStyle('color')) {
+                console.log('⚠️ No color spans found in walker, but selection is inside a colored span — fallback applying manual text splitting.');
+                var startContainer = range.startContainer;
+                var endContainer = range.endContainer;
+
+                // Handle only if both containers are text nodes inside the same span
+                if (startContainer.equals(endContainer) && startContainer.type === CKEDITOR.NODE_TEXT) {
+                  var fullText = startContainer.getText();
+                  var startOffset = range.startOffset;
+                  var endOffset = range.endOffset;
+                  var textBefore = fullText.substring(0, startOffset);
+                  var textSelected = fullText.substring(startOffset, endOffset);
+                  var textAfter = fullText.substring(endOffset);
+                  var parent = startContainer.getParent();
+                  if (textAfter) {
+                    var afterNode = new CKEDITOR.dom.text(textAfter, editor.document);
+                    parent.insertAfter(afterNode, startContainer);
                   }
+                  if (textSelected) {
+                    var selectedNode = new CKEDITOR.dom.text(textSelected, editor.document);
+                    var selectedSpan = new CKEDITOR.dom.element('span');
+                    selectedSpan.append(selectedNode);
+                    parent.insertAfter(selectedSpan, startContainer);
+                    selectedSpan.removeStyle('color');
+                    if (!selectedSpan.hasAttributes()) {
+                      selectedSpan.replace(selectedSpan.getFirst());
+                      console.log('🧹 Fallback unwrapped selected span.');
+                    } else {
+                      console.log('🎯 Fallback: removed color, kept other styles:', selectedSpan.getAttribute('style'));
+                    }
+                  }
+                  if (textBefore) {
+                    var beforeNode = new CKEDITOR.dom.text(textBefore, editor.document);
+                    parent.insertBefore(beforeNode, startContainer);
+                  }
+
+                  // Remove original text node
+                  startContainer.remove();
+
+                  // If parent span is now empty and has no styles, unwrap it
+                  if (!colorSpan.hasAttributes() && colorSpan.getChildCount() === 0) {
+                    colorSpan.remove();
+                    console.log('🧹 Fallback removed empty parent span.');
+                  }
+                } else {
+                  console.warn('⚠️ Fallback not applied: selection spans multiple nodes or is not in a text node.');
                 }
-                cleanedCount++;
               }
             }
             console.log("\u2705 Finished range ".concat(index + 1, ": found=").concat(spanCount, ", cleaned=").concat(cleanedCount, ", unwrapped=").concat(unwrappedCount));
