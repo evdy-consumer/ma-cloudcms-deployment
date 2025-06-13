@@ -212,6 +212,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
                   console.log('🎉 Finished removing color from selection.');
                 } */
         if (value === 'default') {
+          editor.focus();
           var selection = editor.getSelection();
           if (!selection) {
             console.warn('⚠️ No selection found.');
@@ -228,72 +229,52 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
           editor.fire('lockSnapshot');
           console.log('🟡 Starting precise color removal…');
           ranges.forEach(function (range, index) {
-            console.log("\uD83D\uDFE2 Processing range ".concat(index + 1));
-            if (range.collapsed) {
-              console.log("\u23ED Skipping collapsed range ".concat(index + 1));
-              return;
-            }
+            if (range.collapsed) return;
             range.enlarge(CKEDITOR.ENLARGE_INLINE);
             var walker = new CKEDITOR.dom.walker(range);
             walker.evaluator = function (node) {
               return node.type === CKEDITOR.NODE_ELEMENT && node.getName() === 'span' && node.getStyle('color');
             };
             var node;
-            var spanCount = 0,
-              cleanedCount = 0,
-              unwrappedCount = 0;
             var foundAny = false;
             while (node = walker.next()) {
-              if (!node || !node.getStyle('color')) continue;
               foundAny = true;
-              spanCount++;
               var nodeRange = editor.createRange();
               nodeRange.selectNodeContents(node);
-              var startSpan = range.startContainer.getAscendant('span', true);
-              var endSpan = range.endContainer.getAscendant('span', true);
-              var needsSplit = startSpan && endSpan && startSpan.equals(node) && endSpan.equals(node) && !range.equals(nodeRange);
-              if (needsSplit) {
-                console.log('✂️ Splitting span partially covered by selection.');
-                var startRange = editor.createRange();
-                startRange.setStart(range.startContainer, range.startOffset);
-                startRange.setEndAfter(node);
-                startRange.split();
-                var endRange = editor.createRange();
-                endRange.setStart(range.endContainer, range.endOffset);
-                endRange.setEndAfter(node);
-                endRange.split();
-                var current = node.getNext();
-                while (current) {
-                  if (current.type === CKEDITOR.NODE_ELEMENT && current.getName() === 'span' && current.getStyle('color') && current.getPrevious() && current.getPrevious().equals(node)) {
-                    current.removeStyle('color');
-                    if (!current.hasAttributes()) {
-                      var children = current.getChildren().toArray();
+
+              // Check if the selection is partial within this span
+              var fullySelected = range.startContainer.equals(node.getFirst()) && range.endContainer.equals(node.getLast());
+              if (!fullySelected) {
+                // Clone span's content into a fragment
+                var frag = range.extractContents();
+                var fragmentWalker = new CKEDITOR.dom.walker(new CKEDITOR.dom.range(range.document).selectNodeContents(frag));
+                var fragNode = void 0;
+                while (fragNode = fragmentWalker.next()) {
+                  if (fragNode.type === CKEDITOR.NODE_ELEMENT && fragNode.getName() === 'span') {
+                    fragNode.removeStyle('color');
+
+                    // Unwrap if empty span
+                    if (!fragNode.hasAttributes()) {
+                      var children = fragNode.getChildren().toArray();
                       var _iterator = _createForOfIteratorHelper(children),
                         _step;
                       try {
                         for (_iterator.s(); !(_step = _iterator.n()).done;) {
                           var child = _step.value;
-                          current.insertBeforeMe(child.remove());
+                          fragNode.insertBeforeMe(child.remove());
                         }
                       } catch (err) {
                         _iterator.e(err);
                       } finally {
                         _iterator.f();
                       }
-                      current.remove();
-                      unwrappedCount++;
-                      console.log('🧹 Unwrapped empty span after color removal.');
-                    } else {
-                      console.log('🎯 Removed color, kept other styles:', current.getAttribute('style'));
+                      fragNode.remove();
                     }
-                    cleanedCount++;
-                    break;
                   }
-                  current = current.getNext();
                 }
+                range.insertNode(frag);
               } else {
                 node.removeStyle('color');
-                cleanedCount++;
                 if (!node.hasAttributes()) {
                   var _children = node.getChildren().toArray();
                   var _iterator2 = _createForOfIteratorHelper(_children),
@@ -309,63 +290,48 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
                     _iterator2.f();
                   }
                   node.remove();
-                  unwrappedCount++;
-                  console.log('🧹 Unwrapped empty span after color removal.');
-                } else {
-                  console.log('🎯 Removed color, kept other styles:', node.getAttribute('style'));
                 }
               }
             }
 
-            // 🔁 Fallback
+            // 🔁 Fallback for no spans found
             if (!foundAny) {
               var colorSpan = range.startContainer.getAscendant('span', true);
-              if (colorSpan && colorSpan.type === CKEDITOR.NODE_ELEMENT && colorSpan.getStyle('color')) {
-                console.log('⚠️ Fallback: splitting startContainer color span');
-                var _startRange = selection.getRanges()[0].clone();
-                _startRange.setStart(range.startContainer, range.startOffset);
-                _startRange.setEndAfter(colorSpan);
-                _startRange.split();
-                var _endRange = selection.getRanges()[0].clone();
-                _endRange.setStart(range.endContainer, range.endOffset);
-                _endRange.setEndAfter(colorSpan);
-                _endRange.split();
-                var _current = colorSpan.getNext();
-                while (_current) {
-                  if (_current.type === CKEDITOR.NODE_ELEMENT && _current.getName() === 'span' && _current.getStyle('color') && _current.getPrevious() && _current.getPrevious().equals(colorSpan)) {
-                    _current.removeStyle('color');
-                    if (!_current.hasAttributes()) {
-                      var _children2 = _current.getChildren().toArray();
+              if (colorSpan && colorSpan.getStyle('color')) {
+                var _frag = range.extractContents();
+
+                // Remove color from any span inside fragment
+                var fragWalker = new CKEDITOR.dom.walker(new CKEDITOR.dom.range(range.document).selectNodeContents(_frag));
+                var _fragNode;
+                while (_fragNode = fragWalker.next()) {
+                  if (_fragNode.type === CKEDITOR.NODE_ELEMENT && _fragNode.getName() === 'span') {
+                    _fragNode.removeStyle('color');
+                    if (!_fragNode.hasAttributes()) {
+                      var _children2 = _fragNode.getChildren().toArray();
                       var _iterator3 = _createForOfIteratorHelper(_children2),
                         _step3;
                       try {
                         for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
                           var _child2 = _step3.value;
-                          _current.insertBeforeMe(_child2.remove());
+                          _fragNode.insertBeforeMe(_child2.remove());
                         }
                       } catch (err) {
                         _iterator3.e(err);
                       } finally {
                         _iterator3.f();
                       }
-                      _current.remove();
-                      unwrappedCount++;
-                      console.log('🧹 Unwrapped fallback span.');
-                    } else {
-                      console.log('🎯 Fallback: removed color, kept other styles:', _current.getAttribute('style'));
+                      _fragNode.remove();
                     }
-                    cleanedCount++;
-                    break;
                   }
-                  _current = _current.getNext();
                 }
+                range.insertNode(_frag);
               }
             }
-            console.log("\u2705 Finished range ".concat(index + 1, ": found=").concat(spanCount, ", cleaned=").concat(cleanedCount, ", unwrapped=").concat(unwrappedCount));
           });
           selection.selectBookmarks(bookmarks);
           editor.fire('unlockSnapshot');
           console.log('🎉 Color removal complete.');
+          return;
         } else {
           var style = new CKEDITOR.style({
             element: 'span',
