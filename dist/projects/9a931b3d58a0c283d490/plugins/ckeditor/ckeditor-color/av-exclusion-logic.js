@@ -339,49 +339,77 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
             if (!foundAny) {
               var colorSpan = range.startContainer.getAscendant('span', true);
               if (colorSpan && colorSpan.type === CKEDITOR.NODE_ELEMENT && colorSpan.getStyle('color')) {
-                var _startContainer$getPa, _endContainer$getPare;
+                var _startNode$getParent, _endNode$getParent;
+                // Helper to normalize start/end container into text nodes
+                var getTextNodeAndOffset = function getTextNodeAndOffset(container, offset) {
+                  if (container.type === CKEDITOR.NODE_TEXT) {
+                    return {
+                      node: container,
+                      offset: offset
+                    };
+                  }
+                  var walker = new CKEDITOR.dom.walker(container);
+                  walker.evaluator = function (node) {
+                    return node.type === CKEDITOR.NODE_TEXT;
+                  };
+                  var currentOffset = 0;
+                  var node;
+                  while (node = walker.next()) {
+                    if (offset <= currentOffset + node.getLength()) {
+                      return {
+                        node: node,
+                        offset: offset - currentOffset
+                      };
+                    }
+                    currentOffset += node.getLength();
+                  }
+                  return {
+                    node: null,
+                    offset: 0
+                  };
+                };
                 console.log('⚠️ No color spans found in walker, but start is inside a color span — fallback applying split.');
-                var startContainer = range.startContainer;
-                var endContainer = range.endContainer;
-
-                // Ensure both containers are text nodes inside the span
-                var isValidStart = startContainer.type === CKEDITOR.NODE_TEXT && ((_startContainer$getPa = startContainer.getParent()) === null || _startContainer$getPa === void 0 ? void 0 : _startContainer$getPa.equals(colorSpan));
-                var isValidEnd = endContainer.type === CKEDITOR.NODE_TEXT && ((_endContainer$getPare = endContainer.getParent()) === null || _endContainer$getPare === void 0 ? void 0 : _endContainer$getPare.equals(colorSpan));
-                if (isValidStart && isValidEnd) {
-                  var startOffset = range.startOffset;
-                  var endOffset = range.endOffset;
-                  var originalText = startContainer.getText();
+                var _getTextNodeAndOffset = getTextNodeAndOffset(range.startContainer, range.startOffset),
+                  startNode = _getTextNodeAndOffset.node,
+                  startOffset = _getTextNodeAndOffset.offset;
+                var _getTextNodeAndOffset2 = getTextNodeAndOffset(range.endContainer, range.endOffset),
+                  endNode = _getTextNodeAndOffset2.node,
+                  endOffset = _getTextNodeAndOffset2.offset;
+                var isValidStart = startNode && ((_startNode$getParent = startNode.getParent()) === null || _startNode$getParent === void 0 ? void 0 : _startNode$getParent.equals(colorSpan));
+                var isValidEnd = endNode && ((_endNode$getParent = endNode.getParent()) === null || _endNode$getParent === void 0 ? void 0 : _endNode$getParent.equals(colorSpan));
+                if (isValidStart && isValidEnd && startNode.equals(endNode)) {
+                  var originalText = startNode.getText();
                   var before = originalText.slice(0, startOffset);
                   var middle = originalText.slice(startOffset, endOffset);
                   var after = originalText.slice(endOffset);
-                  var parent = startContainer.getParent();
+                  var parent = startNode.getParent();
 
-                  // Create new text nodes
-                  var beforeNode = before ? new CKEDITOR.dom.text(before, editor.document) : null;
-                  var middleNode = new CKEDITOR.dom.text(middle, editor.document);
-                  var afterNode = after ? new CKEDITOR.dom.text(after, editor.document) : null;
+                  // Remove the original text node
+                  startNode.remove();
 
-                  // Replace original text node
-                  startContainer.remove();
-                  if (beforeNode) parent.append(beforeNode);
-                  parent.append(middleNode);
-                  if (afterNode) parent.append(afterNode);
+                  // Insert before text (preserve formatting)
+                  if (before) {
+                    var beforeSpan = colorSpan.clone(false);
+                    beforeSpan.setText(before);
+                    parent.append(beforeSpan);
+                  }
 
-                  // Wrap middleNode in a span that keeps other styles but removes color
-                  var newSpan = new CKEDITOR.dom.element('span');
-                  var oldStyle = colorSpan.getAttribute('style') || '';
-                  var newStyle = oldStyle.split(';').map(function (s) {
-                    return s.trim();
-                  }).filter(function (s) {
-                    return s && !s.startsWith('color');
-                  }).join('; ');
-                  if (newStyle) newSpan.setAttribute('style', newStyle);
-                  parent.insertBefore(newSpan, middleNode);
-                  newSpan.append(middleNode);
-                  console.log('🎯 Removed color from selected part, preserved other styles.');
+                  // Insert middle text (remove color, keep other styles)
+                  var middleSpan = colorSpan.clone(false);
+                  middleSpan.removeStyle('color');
+                  middleSpan.setText(middle);
+                  parent.append(middleSpan);
+
+                  // Insert after text (preserve formatting)
+                  if (after) {
+                    var afterSpan = colorSpan.clone(false);
+                    afterSpan.setText(after);
+                    parent.append(afterSpan);
+                  }
                   cleanedCount++;
+                  console.log('🎯 Removed color from selected part, preserved other styles.');
                 } else {
-                  console.warn('⚠️ Could not split fallback text correctly — selection may not be within a single span.');
+                  console.warn('⚠️ Could not split fallback text correctly — selection may span multiple nodes or is invalid.');
                 }
               }
             }
