@@ -115,6 +115,16 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 
 var CKEDITOR = window.CKEDITOR;
+function getFirstTextNode(element) {
+  var children = element.getChildren();
+  for (var i = 0; i < children.count(); i++) {
+    var child = children.getItem(i);
+    if (child.type === CKEDITOR.NODE_TEXT) {
+      return child;
+    }
+  }
+  return null;
+}
 CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
   requires: 'richcombo',
   init: function init(editor) {
@@ -334,8 +344,8 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
                 var endContainer = range.endContainer;
 
                 // Try to go one level deeper if we're on a span
-                var startTextNode = startContainer.type === CKEDITOR.NODE_ELEMENT ? startContainer.getFirst(CKEDITOR.NODE_TEXT) : startContainer;
-                var endTextNode = endContainer.type === CKEDITOR.NODE_ELEMENT ? endContainer.getFirst(CKEDITOR.NODE_TEXT) : endContainer;
+                var startTextNode = startContainer.type === CKEDITOR.NODE_ELEMENT ? getFirstTextNode(startContainer) : startContainer;
+                var endTextNode = endContainer.type === CKEDITOR.NODE_ELEMENT ? getFirstTextNode(endContainer) : endContainer;
                 if (startTextNode && endTextNode && startTextNode.equals(endTextNode)) {
                   var textNode = startTextNode;
                   var fullText = textNode.getText();
