@@ -298,12 +298,15 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
             if (!foundAny) {
               var colorSpan = range.startContainer.getAscendant('span', true);
               if (colorSpan && colorSpan.getStyle('color')) {
+                // Clone span's content into a fragment
                 var _frag = range.extractContents();
 
                 // Remove color from any span inside fragment
-                var fragWalker = new CKEDITOR.dom.walker(new CKEDITOR.dom.range(range.document).selectNodeContents(_frag));
+                var fragRange = new CKEDITOR.dom.range(editor.document);
+                fragRange.selectNodeContents(_frag);
+                var _fragmentWalker = new CKEDITOR.dom.walker(fragRange);
                 var _fragNode;
-                while (_fragNode = fragWalker.next()) {
+                while (_fragNode = _fragmentWalker.next()) {
                   if (_fragNode.type === CKEDITOR.NODE_ELEMENT && _fragNode.getName() === 'span') {
                     _fragNode.removeStyle('color');
                     if (!_fragNode.hasAttributes()) {
