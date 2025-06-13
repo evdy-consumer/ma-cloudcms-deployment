@@ -243,8 +243,10 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
             var spanCount = 0,
               cleanedCount = 0,
               unwrappedCount = 0;
+            var foundAny = false;
             while (node = walker.next()) {
               if (!node || !node.getStyle('color')) continue;
+              foundAny = true;
               spanCount++;
               var nodeRange = editor.createRange();
               nodeRange.selectNodeContents(node);
@@ -318,6 +320,51 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
                   console.log('🧹 Unwrapped empty span after color removal.');
                 } else {
                   console.log('🎯 Removed color but preserved other styles:', node.getAttribute('style'));
+                }
+              }
+            }
+
+            // Fallback: if walker found nothing, check if commonAncestor is a color span
+            if (!foundAny) {
+              var ancestor = range.getCommonAncestor(true);
+              if (ancestor && ancestor.type === CKEDITOR.NODE_ELEMENT && ancestor.getName() === 'span' && ancestor.getStyle('color')) {
+                console.log('⚠️ No span found in walker, but common ancestor is a color span — splitting manually.');
+
+                // Same splitting logic
+                var _startRange = editor.createRange();
+                _startRange.setStart(range.startContainer, range.startOffset);
+                _startRange.setEndAfter(ancestor);
+                _startRange.split();
+                var _endRange = editor.createRange();
+                _endRange.setStart(range.endContainer, range.endOffset);
+                _endRange.setEndAfter(ancestor);
+                _endRange.split();
+                var middle = ancestor.getNext();
+                while (middle) {
+                  if (middle.type === CKEDITOR.NODE_ELEMENT && middle.getName() === 'span' && middle.getStyle('color') && middle.getPrevious() && middle.getPrevious().equals(ancestor)) {
+                    middle.removeStyle('color');
+                    if (!middle.hasAttributes()) {
+                      var _children2 = middle.getChildren().toArray();
+                      var _iterator3 = _createForOfIteratorHelper(_children2),
+                        _step3;
+                      try {
+                        for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+                          var _child2 = _step3.value;
+                          middle.insertBeforeMe(_child2.remove());
+                        }
+                      } catch (err) {
+                        _iterator3.e(err);
+                      } finally {
+                        _iterator3.f();
+                      }
+                      middle.remove();
+                      console.log('🧹 Unwrapped manually split span.');
+                    } else {
+                      console.log('🎯 Manually cleaned color, preserved other styles:', middle.getAttribute('style'));
+                    }
+                    break;
+                  }
+                  middle = middle.getNext();
                 }
               }
             }
