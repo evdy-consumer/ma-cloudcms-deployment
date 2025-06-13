@@ -339,52 +339,64 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
             if (!foundAny) {
               var colorSpan = range.startContainer.getAscendant('span', true);
               if (colorSpan && colorSpan.type === CKEDITOR.NODE_ELEMENT && colorSpan.getStyle('color')) {
-                console.log('⚠️ No color spans found in walker, but selection is inside a colored span — fallback applying text-level extraction.');
+                var _startContainer$getPa, _endContainer$getPare;
+                console.log('⚠️ No color spans found in walker, but start is inside a color span — fallback applying split.');
                 var startContainer = range.startContainer;
                 var endContainer = range.endContainer;
-
-                // Try to go one level deeper if we're on a span
-                var startTextNode = startContainer.type === CKEDITOR.NODE_ELEMENT ? getFirstTextNode(startContainer) : startContainer;
-                var endTextNode = endContainer.type === CKEDITOR.NODE_ELEMENT ? getFirstTextNode(endContainer) : endContainer;
-                if (startTextNode && endTextNode && startTextNode.equals(endTextNode)) {
-                  var textNode = startTextNode;
-                  var fullText = textNode.getText();
-                  var startOffset = range.startOffset;
-                  var endOffset = range.endOffset;
-                  var textBefore = fullText.substring(0, startOffset);
-                  var textSelected = fullText.substring(startOffset, endOffset);
-                  var textAfter = fullText.substring(endOffset);
-                  var parent = textNode.getParent();
-                  if (textAfter) {
+                if (startContainer.type === CKEDITOR.NODE_TEXT && (_startContainer$getPa = startContainer.getParent()) !== null && _startContainer$getPa !== void 0 && _startContainer$getPa.equals(colorSpan)) {
+                  var text = startContainer.getText();
+                  var offset = range.startOffset;
+                  var textBefore = text.slice(0, offset);
+                  var textAfter = text.slice(offset);
+                  var newNode = new CKEDITOR.dom.text(textBefore, editor.document);
+                  var parent = startContainer.getParent();
+                  startContainer.replaceWith(newNode);
+                  if (textAfter && parent) {
                     var afterNode = new CKEDITOR.dom.text(textAfter, editor.document);
-                    parent.insertAfter(afterNode, textNode);
-                  }
-                  if (textSelected) {
-                    var selectedNode = new CKEDITOR.dom.text(textSelected, editor.document);
-                    var selectedSpan = new CKEDITOR.dom.element('span');
-                    selectedSpan.append(selectedNode);
-                    parent.insertAfter(selectedSpan, textNode);
-                    selectedSpan.removeStyle('color');
-                    if (!selectedSpan.hasAttributes()) {
-                      selectedSpan.replace(selectedSpan.getFirst());
-                      console.log('🧹 Fallback unwrapped selected span.');
-                    } else {
-                      console.log('🎯 Fallback: removed color, kept other styles:', selectedSpan.getAttribute('style'));
+                    if (afterNode && newNode.getParent()) {
+                      parent.insertAfter(afterNode, newNode);
                     }
                   }
-                  if (textBefore) {
-                    var beforeNode = new CKEDITOR.dom.text(textBefore, editor.document);
-                    parent.insertBefore(beforeNode, textNode);
+                }
+                if (endContainer.type === CKEDITOR.NODE_TEXT && (_endContainer$getPare = endContainer.getParent()) !== null && _endContainer$getPare !== void 0 && _endContainer$getPare.equals(colorSpan)) {
+                  var _text = endContainer.getText();
+                  var _offset = range.endOffset;
+                  var _textBefore = _text.slice(0, _offset);
+                  var _textAfter = _text.slice(_offset);
+                  var _newNode = new CKEDITOR.dom.text(_textBefore, editor.document);
+                  var _parent = endContainer.getParent();
+                  endContainer.replaceWith(_newNode);
+                  if (_textAfter && _parent) {
+                    var _afterNode = new CKEDITOR.dom.text(_textAfter, editor.document);
+                    if (_afterNode && _newNode.getParent()) {
+                      _parent.insertAfter(_afterNode, _newNode);
+                    }
                   }
-                  textNode.remove();
+                }
 
-                  // Clean up empty parent span if needed
-                  if (!colorSpan.hasAttributes() && colorSpan.getChildCount() === 0) {
+                // Remove color from parent span if it's still valid
+                if (colorSpan && colorSpan.getStyle('color')) {
+                  colorSpan.removeStyle('color');
+                  if (!colorSpan.hasAttributes()) {
+                    var _children2 = colorSpan.getChildren().toArray();
+                    var _iterator3 = _createForOfIteratorHelper(_children2),
+                      _step3;
+                    try {
+                      for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+                        var _child2 = _step3.value;
+                        colorSpan.insertBeforeMe(_child2.remove());
+                      }
+                    } catch (err) {
+                      _iterator3.e(err);
+                    } finally {
+                      _iterator3.f();
+                    }
                     colorSpan.remove();
-                    console.log('🧹 Fallback removed empty parent span.');
+                    console.log('🧹 Unwrapped fallback span.');
+                  } else {
+                    console.log('🎯 Fallback: removed color, kept other styles:', colorSpan.getAttribute('style'));
                   }
-                } else {
-                  console.warn('⚠️ Fallback not applied: selection spans different nodes or could not find matching text nodes.');
+                  cleanedCount++;
                 }
               }
             }
