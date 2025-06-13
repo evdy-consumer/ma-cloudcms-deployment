@@ -261,14 +261,18 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
               var colorSpan = range.startContainer.getAscendant('span', true);
               if (colorSpan && colorSpan.getStyle('color')) {
                 console.log('⚠️ No color spans found in walker, but start is inside a color span — fallback applying split.');
-                var startRange = editor.createRange();
-                startRange.setStart(range.startContainer, range.startOffset);
-                startRange.setEndAfter(colorSpan);
-                startRange.split();
-                var endRange = editor.createRange();
-                endRange.setStart(range.endContainer, range.endOffset);
-                endRange.setEndAfter(colorSpan);
-                endRange.split();
+                var startContainer = range.startContainer;
+                var endContainer = range.endContainer;
+
+                // Split startContainer if it's a text node
+                if (startContainer.type === CKEDITOR.NODE_TEXT) {
+                  startContainer.split(range.startOffset);
+                }
+
+                // Split endContainer if it's a text node
+                if (endContainer.type === CKEDITOR.NODE_TEXT) {
+                  endContainer.split(range.endOffset);
+                }
                 var current = colorSpan.getNext();
                 while (current) {
                   if (current.type === CKEDITOR.NODE_ELEMENT && current.getName() === 'span' && current.getStyle('color') && current.getPrevious() && current.getPrevious().equals(colorSpan)) {
