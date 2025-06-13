@@ -111,12 +111,8 @@ var pluginName = 'ckeditor-color';
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./constants */ "./src/constants.js");
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var CKEDITOR = window.CKEDITOR;
 CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
@@ -218,16 +214,20 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         if (value === 'default') {
           editor.focus();
           var selection = editor.getSelection();
+          if (!selection) {
+            console.warn('⚠️ No selection found.');
+            return;
+          }
           var bookmarks = selection.createBookmarks();
           var ranges = selection.getRanges();
-          if (!selection || ranges.length === 0 || ranges.every(function (r) {
+          if (!ranges.length || ranges.every(function (r) {
             return r.collapsed;
           })) {
-            console.warn('⚠️ No valid text selected.');
+            console.warn('⚠️ No text selected.');
             return;
           }
           editor.fire('lockSnapshot');
-          console.log('🟡 Starting selective color removal…');
+          console.log('🟡 Starting precise color removal…');
           ranges.forEach(function (range, index) {
             if (range.collapsed) {
               console.log("\u23ED Skipping collapsed range ".concat(index + 1));
@@ -243,77 +243,89 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
             var spanCount = 0,
               cleanedCount = 0,
               unwrappedCount = 0;
-            var _loop = function _loop() {
-              if (!node || !node.getStyle('color')) return 1; // continue
+            while (node = walker.next()) {
+              if (!node || !node.getStyle('color')) continue;
               spanCount++;
               var nodeRange = editor.createRange();
               nodeRange.selectNodeContents(node);
-
-              // If range does not fully cover the node — split it
-              var start = range.startContainer;
-              var end = range.endContainer;
-              var needsSplit = !range.containsRange(nodeRange, true) && node.contains(start) && node.contains(end);
+              var startSpan = range.startContainer.getAscendant('span', true);
+              var endSpan = range.endContainer.getAscendant('span', true);
+              var needsSplit = startSpan && endSpan && startSpan.equals(node) && endSpan.equals(node) && !range.equals(nodeRange);
               if (needsSplit) {
-                var parent = node.getParent();
-                var before = node.clone(true);
-                var after = node.clone(true);
-                before.setHtml(node.getHtml().substring(0, range.startOffset));
-                after.setHtml(node.getHtml().substring(range.endOffset));
-                var cleanedSpan = new CKEDITOR.dom.element('span');
-                cleanedSpan.setHtml(node.getHtml().substring(range.startOffset, range.endOffset));
+                console.log('✂️ Splitting span partially covered by selection.');
 
-                // Copy styles except color
-                var styleText = node.getAttribute('style');
-                if (styleText) {
-                  styleText.split(';').forEach(function (rule) {
-                    var _rule$split = rule.split(':'),
-                      _rule$split2 = _slicedToArray(_rule$split, 2),
-                      key = _rule$split2[0],
-                      val = _rule$split2[1];
-                    if (key && key.trim() !== 'color') {
-                      cleanedSpan.setStyle(key.trim(), val.trim());
+                // Split at start boundary
+                var startRange = editor.createRange();
+                startRange.setStart(range.startContainer, range.startOffset);
+                startRange.setEndAfter(node);
+                startRange.split();
+
+                // Split at end boundary
+                var endRange = editor.createRange();
+                endRange.setStart(range.endContainer, range.endOffset);
+                endRange.setEndAfter(node);
+                endRange.split();
+
+                // Remove color only from the middle split span
+                var current = node.getNext();
+                while (current) {
+                  if (current.type === CKEDITOR.NODE_ELEMENT && current.getName() === 'span' && current.getStyle('color') && current.getPrevious() && current.getPrevious().equals(node)) {
+                    current.removeStyle('color');
+                    if (!current.hasAttributes()) {
+                      var children = current.getChildren().toArray();
+                      var _iterator = _createForOfIteratorHelper(children),
+                        _step;
+                      try {
+                        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                          var child = _step.value;
+                          current.insertBeforeMe(child.remove());
+                        }
+                      } catch (err) {
+                        _iterator.e(err);
+                      } finally {
+                        _iterator.f();
+                      }
+                      current.remove();
+                      unwrappedCount++;
+                      console.log('🧹 Unwrapped empty span after color removal.');
+                    } else {
+                      console.log('🎯 Removed color but preserved other styles:', current.getAttribute('style'));
                     }
-                  });
+                    cleanedCount++;
+                    break;
+                  }
+                  current = current.getNext();
                 }
-                node.insertBeforeMe(before);
-                before.insertAfterMe(cleanedSpan);
-                cleanedSpan.insertAfterMe(after);
-                node.remove();
-                cleanedCount++;
-                console.log('✂️ Span manually split and color removed in middle.');
               } else {
                 node.removeStyle('color');
                 cleanedCount++;
                 if (!node.hasAttributes()) {
-                  var children = node.getChildren().toArray();
-                  var _iterator = _createForOfIteratorHelper(children),
-                    _step;
+                  var _children = node.getChildren().toArray();
+                  var _iterator2 = _createForOfIteratorHelper(_children),
+                    _step2;
                   try {
-                    for (_iterator.s(); !(_step = _iterator.n()).done;) {
-                      var child = _step.value;
-                      node.insertBeforeMe(child.remove());
+                    for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+                      var _child = _step2.value;
+                      node.insertBeforeMe(_child.remove());
                     }
                   } catch (err) {
-                    _iterator.e(err);
+                    _iterator2.e(err);
                   } finally {
-                    _iterator.f();
+                    _iterator2.f();
                   }
                   node.remove();
                   unwrappedCount++;
-                  console.log('🧹 Unwrapped span with no styles.');
+                  console.log('🧹 Unwrapped empty span after color removal.');
                 } else {
-                  console.log('🎯 Cleaned color, kept other styles:', node.getAttribute('style'));
+                  console.log('🎯 Removed color but preserved other styles:', node.getAttribute('style'));
                 }
               }
-            };
-            while (node = walker.next()) {
-              if (_loop()) continue;
             }
-            console.log("\u2705 Done with range ".concat(index + 1, ": found=").concat(spanCount, ", cleaned=").concat(cleanedCount, ", unwrapped=").concat(unwrappedCount));
+            console.log("\u2705 Finished range ".concat(index + 1, ": found=").concat(spanCount, ", cleaned=").concat(cleanedCount, ", unwrapped=").concat(unwrappedCount));
           });
           selection.selectBookmarks(bookmarks);
           editor.fire('unlockSnapshot');
-          console.log('🎉 Color removal complete.');
+          console.log('🎉 Color removal finished.');
           return;
         } else {
           var style = new CKEDITOR.style({
