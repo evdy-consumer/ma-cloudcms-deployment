@@ -212,7 +212,6 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
                   console.log('🎉 Finished removing color from selection.');
                 } */
         if (value === 'default') {
-          editor.focus();
           var selection = editor.getSelection();
           if (!selection) {
             console.warn('⚠️ No selection found.');
@@ -229,11 +228,11 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
           editor.fire('lockSnapshot');
           console.log('🟡 Starting precise color removal…');
           ranges.forEach(function (range, index) {
+            console.log("\uD83D\uDFE2 Processing range ".concat(index + 1));
             if (range.collapsed) {
               console.log("\u23ED Skipping collapsed range ".concat(index + 1));
               return;
             }
-            console.log("\uD83D\uDFE2 Processing range ".concat(index + 1));
             range.enlarge(CKEDITOR.ENLARGE_INLINE);
             var walker = new CKEDITOR.dom.walker(range);
             walker.evaluator = function (node) {
@@ -318,11 +317,11 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
               }
             }
 
-            // 🔁 Fallback: try to remove color from nearest span if none found by walker
+            // 🔁 Fallback
             if (!foundAny) {
               var colorSpan = range.startContainer.getAscendant('span', true);
               if (colorSpan && colorSpan.type === CKEDITOR.NODE_ELEMENT && colorSpan.getStyle('color')) {
-                console.log('⚠️ No color spans found in walker, but start is inside a color span — fallback applying split.');
+                console.log('⚠️ Fallback: splitting startContainer color span');
                 var _startRange = editor.createRange();
                 _startRange.setStart(range.startContainer, range.startOffset);
                 _startRange.setEndAfter(colorSpan);
@@ -367,7 +366,6 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
           selection.selectBookmarks(bookmarks);
           editor.fire('unlockSnapshot');
           console.log('🎉 Color removal complete.');
-          return;
         } else {
           var style = new CKEDITOR.style({
             element: 'span',
