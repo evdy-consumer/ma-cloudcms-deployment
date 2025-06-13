@@ -322,11 +322,11 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
               var colorSpan = range.startContainer.getAscendant('span', true);
               if (colorSpan && colorSpan.type === CKEDITOR.NODE_ELEMENT && colorSpan.getStyle('color')) {
                 console.log('⚠️ Fallback: splitting startContainer color span');
-                var _startRange = editor.createRange();
+                var _startRange = selection.getRanges()[0].clone();
                 _startRange.setStart(range.startContainer, range.startOffset);
                 _startRange.setEndAfter(colorSpan);
                 _startRange.split();
-                var _endRange = editor.createRange();
+                var _endRange = selection.getRanges()[0].clone();
                 _endRange.setStart(range.endContainer, range.endOffset);
                 _endRange.setEndAfter(colorSpan);
                 _endRange.split();
