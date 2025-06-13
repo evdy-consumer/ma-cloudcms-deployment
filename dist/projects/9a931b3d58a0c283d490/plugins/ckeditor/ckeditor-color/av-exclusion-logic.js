@@ -213,10 +213,6 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
                 } */
         if (value === 'default') {
           var selection = editor.getSelection();
-          if (!selection || selection.isCollapsed) {
-            console.warn('⚠️ No text selected — skipping color removal.');
-            return;
-          }
           var bookmarks = selection.createBookmarks();
           var ranges = selection.getRanges();
           editor.fire('lockSnapshot');
@@ -236,6 +232,10 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
 
           // ✅ Now clean spans
           ranges.forEach(function (range, i) {
+            if (range.collapsed) {
+              console.log("\u23ED Skipping collapsed range ".concat(i + 1));
+              return;
+            }
             console.log("\uD83D\uDFE2 Processing range ".concat(i + 1));
             var found = 0,
               cleaned = 0,
