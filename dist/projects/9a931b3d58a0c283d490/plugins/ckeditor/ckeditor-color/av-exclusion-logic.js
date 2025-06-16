@@ -271,36 +271,62 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
             if (!found) {
               var colorSpan = range.startContainer.getAscendant('span', true);
               if (colorSpan && colorSpan.type === CKEDITOR.NODE_ELEMENT && colorSpan.getStyle('color')) {
+                console.log('🎯 Partial span selected. Splitting and preserving other styles.');
+                var bookmark = range.createBookmark();
+
+                // Clone the original span's styles (except color)
                 var styleAttr = colorSpan.getAttribute('style') || '';
-                var newStyle = styleAttr.split(';').map(function (s) {
+                var otherStyle = styleAttr.split(';').map(function (s) {
                   return s.trim();
                 }).filter(function (s) {
                   return s && !s.startsWith('color');
                 }).join('; ');
-                var newSpan = new CKEDITOR.dom.element('span');
-                if (newStyle) {
-                  newSpan.setAttribute('style', newStyle);
-                }
-                var _children = colorSpan.getChildren().toArray();
-                var _iterator2 = _createForOfIteratorHelper(_children),
-                  _step2;
-                try {
-                  for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-                    var _child = _step2.value;
-                    newSpan.append(_child.remove());
+                var parent = colorSpan.getParent();
+                if (!parent) return;
+
+                // Split span into before / selected / after parts
+                var _walker = new CKEDITOR.dom.walker(range);
+                _walker.evaluator = function (node) {
+                  return node.type === CKEDITOR.NODE_TEXT && node.getParent().equals(colorSpan);
+                };
+                var _node;
+                while (_node = _walker.next()) {
+                  var text = _node.getText();
+                  var startOffset = _node.equals(range.startContainer) ? range.startOffset : 0;
+                  var endOffset = _node.equals(range.endContainer) ? range.endOffset : text.length;
+                  var before = text.slice(0, startOffset);
+                  var middle = text.slice(startOffset, endOffset);
+                  var after = text.slice(endOffset);
+                  var frag = [];
+                  if (before) {
+                    frag.push(new CKEDITOR.dom.text(before));
                   }
-                } catch (err) {
-                  _iterator2.e(err);
-                } finally {
-                  _iterator2.f();
+                  if (middle) {
+                    var midText = new CKEDITOR.dom.text(middle);
+                    var span = new CKEDITOR.dom.element('span');
+                    if (otherStyle) {
+                      span.setAttribute('style', otherStyle);
+                    }
+                    span.append(midText);
+                    frag.push(span);
+                  }
+                  if (after) {
+                    frag.push(new CKEDITOR.dom.text(after));
+                  }
+                  for (var _i = 0, _frag = frag; _i < _frag.length; _i++) {
+                    var f = _frag[_i];
+                    _node.insertBeforeMe(f);
+                  }
+                  _node.remove();
                 }
-                try {
-                  colorSpan.insertBeforeMe(newSpan); // ✅ Safe wrapper
+
+                // Remove original span if empty
+                if (colorSpan.getChildCount() === 0) {
                   colorSpan.remove();
-                  console.log('✅ Replaced colored span safely.');
-                } catch (e) {
-                  console.warn('❌ insertBeforeMe failed:', e);
                 }
+                range.moveToBookmark(bookmark);
+                selection.selectRanges([range]);
+                console.log('✅ Color removed from partial span without affecting siblings.');
               }
             }
             console.log("\u2705 Range ".concat(index + 1, " processed."));
