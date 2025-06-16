@@ -273,18 +273,12 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
               if (colorSpan && colorSpan.type === CKEDITOR.NODE_ELEMENT && colorSpan.getStyle('color')) {
                 console.log('🎯 Partial span selected. Splitting and preserving other styles.');
                 var bookmark = range.createBookmark();
-
-                // Clone the original span's styles (except color)
                 var styleAttr = colorSpan.getAttribute('style') || '';
-                var otherStyle = styleAttr.split(';').map(function (s) {
+                var preservedStyle = styleAttr.split(';').map(function (s) {
                   return s.trim();
                 }).filter(function (s) {
                   return s && !s.startsWith('color');
                 }).join('; ');
-                var parent = colorSpan.getParent();
-                if (!parent) return;
-
-                // Split span into before / selected / after parts
                 var _walker = new CKEDITOR.dom.walker(range);
                 _walker.evaluator = function (node) {
                   return node.type === CKEDITOR.NODE_TEXT && node.getParent().equals(colorSpan);
@@ -294,39 +288,41 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
                   var text = _node.getText();
                   var startOffset = _node.equals(range.startContainer) ? range.startOffset : 0;
                   var endOffset = _node.equals(range.endContainer) ? range.endOffset : text.length;
-                  var before = text.slice(0, startOffset);
-                  var middle = text.slice(startOffset, endOffset);
-                  var after = text.slice(endOffset);
-                  var frag = [];
+                  var before = text.substring(0, startOffset);
+                  var middle = text.substring(startOffset, endOffset);
+                  var after = text.substring(endOffset);
+                  var fragments = [];
                   if (before) {
-                    frag.push(new CKEDITOR.dom.text(before));
+                    var beforeNode = new CKEDITOR.dom.text(before);
+                    fragments.push(beforeNode);
                   }
                   if (middle) {
-                    var midText = new CKEDITOR.dom.text(middle);
+                    var midTextNode = new CKEDITOR.dom.text(middle);
                     var span = new CKEDITOR.dom.element('span');
-                    if (otherStyle) {
-                      span.setAttribute('style', otherStyle);
+                    if (preservedStyle) {
+                      span.setAttribute('style', preservedStyle);
                     }
-                    span.append(midText);
-                    frag.push(span);
+                    span.append(midTextNode);
+                    fragments.push(span);
                   }
                   if (after) {
-                    frag.push(new CKEDITOR.dom.text(after));
+                    var afterNode = new CKEDITOR.dom.text(after);
+                    fragments.push(afterNode);
                   }
-                  for (var _i = 0, _frag = frag; _i < _frag.length; _i++) {
-                    var f = _frag[_i];
-                    _node.insertBeforeMe(f);
+                  for (var _i = 0, _fragments = fragments; _i < _fragments.length; _i++) {
+                    var frag = _fragments[_i];
+                    _node.insertBeforeMe(frag);
                   }
                   _node.remove();
                 }
 
-                // Remove original span if empty
+                // Remove the original colored span if it's empty now
                 if (colorSpan.getChildCount() === 0) {
                   colorSpan.remove();
                 }
                 range.moveToBookmark(bookmark);
                 selection.selectRanges([range]);
-                console.log('✅ Color removed from partial span without affecting siblings.');
+                console.log('✅ Removed color while preserving other span styles.');
               }
             }
             console.log("\u2705 Range ".concat(index + 1, " processed."));
