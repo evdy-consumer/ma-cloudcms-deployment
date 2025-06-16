@@ -238,6 +238,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
           editor.fire('lockSnapshot');
           console.log('🟡 Starting color removal…');
           ranges.forEach(function (range, index) {
+            console.log("\uD83D\uDCCC Processing range ".concat(index + 1, "..."));
             if (range.collapsed) return;
             range.enlarge(CKEDITOR.ENLARGE_INLINE);
             var walker = new CKEDITOR.dom.walker(range);
@@ -246,8 +247,10 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
             };
             var node;
             var found = false;
+            var unwrapped = 0;
             while (node = walker.next()) {
               found = true;
+              console.log('🎯 Found colored span (fully selected):', node.getOuterHtml());
               node.removeStyle('color');
               if (!node.hasAttributes()) {
                 var children = node.getChildren().toArray();
@@ -264,24 +267,27 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
                   _iterator.f();
                 }
                 node.remove();
+                unwrapped++;
+                console.log('🧹 Unwrapped empty span.');
               }
             }
 
-            // Fallback if walker didn't find anything
+            // Fallback: Partially selected span
             if (!found) {
               var colorSpan = range.startContainer.getAscendant('span', true);
               if (colorSpan && colorSpan.type === CKEDITOR.NODE_ELEMENT && colorSpan.getStyle('color')) {
-                console.log('🎯 Partial span selected. Splitting and removing color only from selected text.');
+                console.log('⚠️ Partial span selected. Attempting to split and remove color.');
                 var bookmark = range.createBookmark();
-                var _walker = new CKEDITOR.dom.walker(range);
-                _walker.evaluator = function (node) {
+                var fallbackWalker = new CKEDITOR.dom.walker(range);
+                fallbackWalker.evaluator = function (node) {
                   return node.type === CKEDITOR.NODE_TEXT && node.getParent().equals(colorSpan);
                 };
-                var _node;
-                while (_node = _walker.next()) {
-                  var text = _node.getText();
-                  var startOffset = _node.equals(range.startContainer) ? range.startOffset : 0;
-                  var endOffset = _node.equals(range.endContainer) ? range.endOffset : text.length;
+                var textNode;
+                var splitCount = 0;
+                while (textNode = fallbackWalker.next()) {
+                  var text = textNode.getText();
+                  var startOffset = textNode.equals(range.startContainer) ? range.startOffset : 0;
+                  var endOffset = textNode.equals(range.endContainer) ? range.endOffset : text.length;
                   var before = text.substring(0, startOffset);
                   var middle = text.substring(startOffset, endOffset);
                   var after = text.substring(endOffset);
@@ -291,8 +297,6 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
                   }
                   if (middle) {
                     var middleText = new CKEDITOR.dom.text(middle);
-
-                    // 🔥 REMOVE color but preserve other styles
                     var parentStyles = colorSpan.getAttribute('style') || '';
                     var keptStyle = parentStyles.split(';').map(function (s) {
                       return s.trim();
@@ -304,8 +308,10 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
                       span.setAttribute('style', keptStyle);
                       span.append(middleText);
                       fragments.push(span);
+                      console.log("\u2728 Rebuilt span with kept styles: \"".concat(keptStyle, "\""));
                     } else {
-                      fragments.push(middleText); // no style left, insert plain text
+                      fragments.push(middleText);
+                      console.log('🆕 Inserted plain text node (no remaining styles).');
                     }
                   }
                   if (after) {
@@ -313,25 +319,29 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
                   }
                   for (var _i = 0, _fragments = fragments; _i < _fragments.length; _i++) {
                     var frag = _fragments[_i];
-                    _node.insertBeforeMe(frag);
+                    textNode.insertBeforeMe(frag);
                   }
-                  _node.remove();
+                  textNode.remove();
+                  splitCount++;
                 }
-
-                // If the original color span is now empty, remove it
+                if (splitCount > 0) {
+                  console.log("\uD83E\uDE93 Split and rebuilt ".concat(splitCount, " node(s) in fallback mode."));
+                }
                 if (colorSpan.getChildCount() === 0) {
                   colorSpan.remove();
+                  console.log('🧹 Removed empty color span.');
                 }
                 range.moveToBookmark(bookmark);
                 selection.selectRanges([range]);
-                console.log('✅ Removed color from selected text only.');
+              } else {
+                console.log('ℹ️ No colored span found in fallback case.');
               }
             }
-            console.log("\u2705 Range ".concat(index + 1, " processed."));
+            console.log("\u2705 Finished processing range ".concat(index + 1, ". Found: ").concat(found, ", Unwrapped: ").concat(unwrapped));
           });
           selection.selectBookmarks(bookmarks);
           editor.fire('unlockSnapshot');
-          console.log('✅ Color removed from selection.');
+          console.log('🎉 Finished removing color from selection.');
         } else {
           var style = new CKEDITOR.style({
             element: 'span',
