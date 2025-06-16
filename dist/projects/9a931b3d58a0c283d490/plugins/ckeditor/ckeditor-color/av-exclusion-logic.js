@@ -271,14 +271,8 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
             if (!found) {
               var colorSpan = range.startContainer.getAscendant('span', true);
               if (colorSpan && colorSpan.type === CKEDITOR.NODE_ELEMENT && colorSpan.getStyle('color')) {
-                console.log('🎯 Partial span selected. Splitting and preserving other styles.');
+                console.log('🎯 Partial span selected. Splitting and removing color only from selected text.');
                 var bookmark = range.createBookmark();
-                var styleAttr = colorSpan.getAttribute('style') || '';
-                var preservedStyle = styleAttr.split(';').map(function (s) {
-                  return s.trim();
-                }).filter(function (s) {
-                  return s && !s.startsWith('color');
-                }).join('; ');
                 var _walker = new CKEDITOR.dom.walker(range);
                 _walker.evaluator = function (node) {
                   return node.type === CKEDITOR.NODE_TEXT && node.getParent().equals(colorSpan);
@@ -293,21 +287,29 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
                   var after = text.substring(endOffset);
                   var fragments = [];
                   if (before) {
-                    var beforeNode = new CKEDITOR.dom.text(before);
-                    fragments.push(beforeNode);
+                    fragments.push(new CKEDITOR.dom.text(before));
                   }
                   if (middle) {
-                    var midTextNode = new CKEDITOR.dom.text(middle);
-                    var span = new CKEDITOR.dom.element('span');
-                    if (preservedStyle) {
-                      span.setAttribute('style', preservedStyle);
+                    var middleText = new CKEDITOR.dom.text(middle);
+
+                    // 🔥 REMOVE color but preserve other styles
+                    var parentStyles = colorSpan.getAttribute('style') || '';
+                    var keptStyle = parentStyles.split(';').map(function (s) {
+                      return s.trim();
+                    }).filter(function (s) {
+                      return s && !s.startsWith('color');
+                    }).join('; ');
+                    if (keptStyle) {
+                      var span = new CKEDITOR.dom.element('span');
+                      span.setAttribute('style', keptStyle);
+                      span.append(middleText);
+                      fragments.push(span);
+                    } else {
+                      fragments.push(middleText); // no style left, insert plain text
                     }
-                    span.append(midTextNode);
-                    fragments.push(span);
                   }
                   if (after) {
-                    var afterNode = new CKEDITOR.dom.text(after);
-                    fragments.push(afterNode);
+                    fragments.push(new CKEDITOR.dom.text(after));
                   }
                   for (var _i = 0, _fragments = fragments; _i < _fragments.length; _i++) {
                     var frag = _fragments[_i];
@@ -316,13 +318,13 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
                   _node.remove();
                 }
 
-                // Remove the original colored span if it's empty now
+                // If the original color span is now empty, remove it
                 if (colorSpan.getChildCount() === 0) {
                   colorSpan.remove();
                 }
                 range.moveToBookmark(bookmark);
                 selection.selectRanges([range]);
-                console.log('✅ Removed color while preserving other span styles.');
+                console.log('✅ Removed color from selected text only.');
               }
             }
             console.log("\u2705 Range ".concat(index + 1, " processed."));
