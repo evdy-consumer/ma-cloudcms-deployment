@@ -272,40 +272,43 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
               var colorSpan = range.startContainer.getAscendant('span', true);
               if (colorSpan && colorSpan.type === CKEDITOR.NODE_ELEMENT && colorSpan.getStyle('color')) {
                 var parent = colorSpan.getParent();
-                if (!parent) {
-                  console.warn('⚠️ Skipping fallback — colorSpan has no parent.');
-                  return;
-                }
-                var styleAttr = colorSpan.getAttribute('style') || '';
-                var newStyle = styleAttr.split(';').map(function (s) {
-                  return s.trim();
-                }).filter(function (s) {
-                  return s && !s.startsWith('color');
-                }).join('; ');
-                var newSpan = new CKEDITOR.dom.element('span');
-                if (newStyle) {
-                  newSpan.setAttribute('style', newStyle);
-                }
-                var _children = colorSpan.getChildren().toArray();
-                var _iterator2 = _createForOfIteratorHelper(_children),
-                  _step2;
-                try {
-                  for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-                    var _child = _step2.value;
-                    newSpan.append(_child.remove());
-                  }
 
-                  // Insert newSpan only if colorSpan is still in the DOM
-                } catch (err) {
-                  _iterator2.e(err);
-                } finally {
-                  _iterator2.f();
-                }
-                if (colorSpan.getParent()) {
-                  colorSpan.getParent().insertBefore(newSpan, colorSpan);
-                  colorSpan.remove();
+                // ✅ Validate parent and position
+                if (parent && parent.type === CKEDITOR.NODE_ELEMENT && parent.contains(colorSpan)) {
+                  var styleAttr = colorSpan.getAttribute('style') || '';
+                  var newStyle = styleAttr.split(';').map(function (s) {
+                    return s.trim();
+                  }).filter(function (s) {
+                    return s && !s.startsWith('color');
+                  }).join('; ');
+                  var newSpan = new CKEDITOR.dom.element('span');
+                  if (newStyle) {
+                    newSpan.setAttribute('style', newStyle);
+                  }
+                  var _children = colorSpan.getChildren().toArray();
+                  var _iterator2 = _createForOfIteratorHelper(_children),
+                    _step2;
+                  try {
+                    for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+                      var _child = _step2.value;
+                      newSpan.append(_child.remove());
+                    }
+
+                    // ✅ Only insert if colorSpan is still validly inside parent
+                  } catch (err) {
+                    _iterator2.e(err);
+                  } finally {
+                    _iterator2.f();
+                  }
+                  if (parent.contains(colorSpan)) {
+                    parent.insertBefore(newSpan, colorSpan);
+                    colorSpan.remove();
+                    console.log('✅ Replaced colored span with style-preserved span.');
+                  } else {
+                    console.warn('⚠️ colorSpan is no longer inside its parent.');
+                  }
                 } else {
-                  console.warn('⚠️ colorSpan was removed before fallback insert. Skipping.');
+                  console.warn('⚠️ Fallback failed — invalid parent or detached colorSpan.');
                 }
               }
             }
