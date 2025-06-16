@@ -273,7 +273,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
               if (colorSpan && colorSpan.type === CKEDITOR.NODE_ELEMENT && colorSpan.getStyle('color')) {
                 var parent = colorSpan.getParent();
                 if (!parent) {
-                  console.warn('⚠️ colorSpan has no parent. Skipping.');
+                  console.warn('⚠️ Skipping fallback — colorSpan has no parent.');
                   return;
                 }
                 var styleAttr = colorSpan.getAttribute('style') || '';
@@ -292,17 +292,24 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
                 try {
                   for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
                     var _child = _step2.value;
-                    newSpan.append(_child);
+                    newSpan.append(_child.remove());
                   }
+
+                  // Insert newSpan only if colorSpan is still in the DOM
                 } catch (err) {
                   _iterator2.e(err);
                 } finally {
                   _iterator2.f();
                 }
-                parent.insertBefore(newSpan, colorSpan);
-                colorSpan.remove();
+                if (colorSpan.getParent()) {
+                  colorSpan.getParent().insertBefore(newSpan, colorSpan);
+                  colorSpan.remove();
+                } else {
+                  console.warn('⚠️ colorSpan was removed before fallback insert. Skipping.');
+                }
               }
             }
+            console.log("\u2705 Range ".concat(index + 1, " processed."));
           });
           selection.selectBookmarks(bookmarks);
           editor.fire('unlockSnapshot');
