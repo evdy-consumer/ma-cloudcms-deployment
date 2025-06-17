@@ -290,40 +290,23 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         }, true);
         if (span) {
           console.log('⚠️ Partial boundary span detected for smart split:', span.getOuterHtml());
-          var parentStyles = span.getAttribute('style') || '';
-          var keptStyle = parentStyles.split(';').map(function (s) {
-            return s.trim();
-          }).filter(function (s) {
-            return s && !s.startsWith('color');
-          }).join('; ');
-          var bookmark = range.createBookmark();
 
-          // Create a temporary range fully inside that span
-          var tmpRange = range.clone();
-          tmpRange.setStartBefore(span);
-          tmpRange.setEndAfter(span);
-          var frag = tmpRange.extractContents();
-          var walker = new CKEDITOR.dom.walker(new CKEDITOR.dom.range(frag));
+          // Split span at range boundaries
+          var bookmark = range.createBookmark();
+          range.splitElement(span);
+
+          // Now find spans inside selection range and remove only color
+          var newRange = editor.createRange();
+          newRange.moveToBookmark(bookmark);
+          var walker = new CKEDITOR.dom.walker(newRange);
           walker.evaluator = function (node) {
-            return node.type === CKEDITOR.NODE_TEXT;
+            return node.type === CKEDITOR.NODE_ELEMENT && node.getName() === 'span' && node.getStyle('color');
           };
-          var textNode;
-          while (textNode = walker.next()) {
-            var insideRange = range.intersectsNode(textNode);
-            if (insideRange) {
-              var parent = textNode.getParent();
-              if (parent.getName() !== 'span') {
-                var newSpan = new CKEDITOR.dom.element('span');
-                if (keptStyle) newSpan.setAttribute('style', keptStyle);
-                textNode.insertBeforeMe(newSpan);
-                newSpan.append(textNode.remove());
-              } else {
-                parent.setAttribute('style', keptStyle);
-              }
-            }
+          var node;
+          while (node = walker.next()) {
+            node.removeStyle('color');
+            safeUnwrap(node);
           }
-          tmpRange.insertNode(frag);
-          safeUnwrap(span);
           range.moveToBookmark(bookmark);
         }
       });
