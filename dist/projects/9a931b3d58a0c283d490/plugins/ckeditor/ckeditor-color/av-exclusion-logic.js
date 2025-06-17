@@ -281,11 +281,11 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         }, true);
       };
       var textNode;
-      while (textNode = walker.next()) {
+      var _loop = function _loop() {
         var colorSpan = textNode.getAscendant(function (el) {
           return el.getName && el.getName() === 'span' && el.getStyle('color');
         }, true);
-        if (!colorSpan) continue;
+        if (!colorSpan) return 1; // continue
         var fullText = textNode.getText();
         var startOffset = textNode.equals(range.startContainer) ? range.startOffset : 0;
         var endOffset = textNode.equals(range.endContainer) ? range.endOffset : fullText.length;
@@ -315,14 +315,19 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
           }
         }
         if (after) fragments.push(new CKEDITOR.dom.text(after));
+
+        // Insert fragments before the colored span itself to fully escape color context
         fragments.forEach(function (f) {
-          return textNode.insertBeforeMe(f);
+          return colorSpan.insertBeforeMe(f);
         });
         textNode.remove();
         if (colorSpan.getChildCount() === 0) {
           colorSpan.remove();
           console.log('🧹 Removed empty colored span');
         }
+      };
+      while (textNode = walker.next()) {
+        if (_loop()) continue;
       }
     }
   }
