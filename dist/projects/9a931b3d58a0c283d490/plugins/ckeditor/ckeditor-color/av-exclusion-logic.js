@@ -299,12 +299,12 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
   init: function init(editor) {
     var pluginConfig = CKEDITOR.tools.get_plugin_config(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], editor);
     var colors = pluginConfig;
-    function wrapWithAncestorsInside(node, parentChain) {
-      return parentChain.reduceRight(function (inner, outer) {
-        var clone = new CKEDITOR.dom.element(outer.getName());
-        var attrs = outer.getAttributes();
+    function wrapWithAncestorsOutside(node, parentChain) {
+      return parentChain.reduce(function (outer, inner) {
+        var clone = new CKEDITOR.dom.element(inner.getName());
+        var attrs = inner.getAttributes();
         for (var k in attrs) clone.setAttribute(k, attrs[k]);
-        clone.append(inner);
+        clone.append(outer);
         return clone;
       }, node);
     }
@@ -379,14 +379,14 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         var parentChain = [];
         var current = textNode.getParent();
         while (current && !current.equals(colorSpan)) {
-          parentChain.unshift(current);
+          parentChain.push(current);
           current = current.getParent();
         }
         if (beforeFrag) {
           var beforeSpan = new CKEDITOR.dom.element('span');
           beforeSpan.setAttribute('style', colorSpan.getAttribute('style'));
+          var wrapped = wrapWithAncestorsOutside(beforeSpan, parentChain);
           beforeSpan.append(beforeFrag);
-          var wrapped = wrapWithAncestorsInside(beforeSpan, parentChain);
           colorSpan.insertBeforeMe(wrapped);
           console.log('⬅️ Inserted left part with original color and formatting');
         }
@@ -404,15 +404,15 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
             midSpan.append(mid);
             mid = midSpan;
           }
-          var _wrapped = wrapWithAncestorsInside(mid, parentChain);
+          var _wrapped = wrapWithAncestorsOutside(mid, parentChain);
           colorSpan.insertBeforeMe(_wrapped);
           console.log("\u2728 Inserted middle with formatting (no color): \"".concat(keptStyle, "\""));
         }
         if (afterFrag) {
           var afterSpan = new CKEDITOR.dom.element('span');
           afterSpan.setAttribute('style', colorSpan.getAttribute('style'));
+          var _wrapped2 = wrapWithAncestorsOutside(afterSpan, parentChain);
           afterSpan.append(afterFrag);
-          var _wrapped2 = wrapWithAncestorsInside(afterSpan, parentChain);
           colorSpan.insertBeforeMe(_wrapped2);
           console.log('➡️ Inserted right part with original color and formatting');
         }
