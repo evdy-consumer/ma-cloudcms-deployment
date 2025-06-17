@@ -201,7 +201,6 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
       },
       init: function init() {
         this.add('default', 'Remove Color', 'Remove Color');
-        console.log('colors', colors);
         for (var label in colors) {
           var colorValue = colors[label];
           this.add(colorValue, label, label);
@@ -214,33 +213,30 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         editor.focus();
         if (value === 'default') {
           var selection = editor.getSelection();
-          if (!selection) {
-            console.warn('⚠️ No selection found.');
-            return;
-          }
+          if (!selection) return;
           var ranges = selection.getRanges();
           editor.fire('lockSnapshot');
-          console.log('🟡 Starting smart color removal…');
+          console.log('🟡 Starting color removal');
           ranges.forEach(function (range, index) {
-            console.log("\uD83D\uDCCC Processing range ".concat(index + 1, "..."));
+            console.log("\uD83D\uDCCC Processing range ".concat(index + 1));
             range.enlarge(CKEDITOR.ENLARGE_INLINE);
             var walker = new CKEDITOR.dom.walker(range);
             walker.evaluator = function (node) {
               return node.type === CKEDITOR.NODE_ELEMENT && node.getName() === 'span' && node.getStyle('color');
             };
             var node;
-            var processedNodes = new Set();
+            var processed = new Set();
             while (node = walker.next()) {
-              if (processedNodes.has(node)) continue;
-              processedNodes.add(node);
-              console.log('🎯 Found span with color:', node.getOuterHtml());
+              if (processed.has(node)) continue;
+              console.log('🎯 Removing full span color from:', node.getOuterHtml());
               node.removeStyle('color');
               safeUnwrap(node);
+              processed.add(node);
             }
             smartRemoveColorFromPartial(range);
           });
           editor.fire('unlockSnapshot');
-          console.log('🎉 Finished smart color removal.');
+          console.log('✅ Color removal complete');
         } else {
           var style = new CKEDITOR.style({
             element: 'span',
@@ -251,15 +247,15 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
           editor.fire('lockSnapshot');
           editor.applyStyle(style);
           editor.fire('unlockSnapshot');
+          console.log("\uD83C\uDFA8 Applied color: ".concat(value));
         }
       }
     });
     function safeUnwrap(element) {
       if (!element) return;
-      var hasAnyAttributes = element.hasAttributes();
       var styleAttr = element.getAttribute('style');
       var hasStyles = styleAttr && styleAttr.trim() !== '';
-      if (!hasAnyAttributes || !hasStyles && element.getName() === 'span') {
+      if (!element.hasAttributes() || !hasStyles && element.getName() === 'span') {
         var children = element.getChildren().toArray();
         var _iterator = _createForOfIteratorHelper(children),
           _step;
@@ -274,7 +270,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
           _iterator.f();
         }
         element.remove();
-        console.log('🧹 Safely unwrapped empty span.');
+        console.log('🧹 Unwrapped empty or style-less span');
       }
     }
     function smartRemoveColorFromPartial(range) {
@@ -284,37 +280,48 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
           return el.getName && el.getName() === 'span' && el.getStyle('color');
         }, true);
       };
-      var node;
-      while (node = walker.next()) {
-        var colorSpan = node.getAscendant(function (el) {
+      var textNode;
+      while (textNode = walker.next()) {
+        var colorSpan = textNode.getAscendant(function (el) {
           return el.getName && el.getName() === 'span' && el.getStyle('color');
         }, true);
         if (!colorSpan) continue;
-        var parentStyles = colorSpan.getAttribute('style') || '';
-        var keptStyle = parentStyles.split(';').map(function (s) {
-          return s.trim();
-        }).filter(function (s) {
-          return s && !s.startsWith('color');
-        }).join('; ');
-
-        // Create new span without color
-        var cleanSpan = new CKEDITOR.dom.element('span');
-        if (keptStyle) {
-          cleanSpan.setAttribute('style', keptStyle);
+        var fullText = textNode.getText();
+        var startOffset = textNode.equals(range.startContainer) ? range.startOffset : 0;
+        var endOffset = textNode.equals(range.endContainer) ? range.endOffset : fullText.length;
+        var before = fullText.slice(0, startOffset);
+        var selected = fullText.slice(startOffset, endOffset);
+        var after = fullText.slice(endOffset);
+        console.log("\uD83D\uDD0D Splitting text node: \"".concat(fullText, "\""));
+        console.log("    Before: \"".concat(before, "\" | Selected: \"").concat(selected, "\" | After: \"").concat(after, "\""));
+        var fragments = [];
+        if (before) fragments.push(new CKEDITOR.dom.text(before));
+        if (selected) {
+          var selectedText = new CKEDITOR.dom.text(selected);
+          var keptStyle = colorSpan.getAttribute('style').split(';').map(function (s) {
+            return s.trim();
+          }).filter(function (s) {
+            return s && !s.startsWith('color');
+          }).join('; ');
+          if (keptStyle) {
+            var span = new CKEDITOR.dom.element('span');
+            span.setAttribute('style', keptStyle);
+            span.append(selectedText);
+            fragments.push(span);
+            console.log("\u2728 Inserted span with kept style: \"".concat(keptStyle, "\""));
+          } else {
+            fragments.push(selectedText);
+            console.log('🆕 Inserted plain selected text node without styles');
+          }
         }
-
-        // Move text into the clean span
-        var newText = new CKEDITOR.dom.text(node.getText());
-        cleanSpan.append(newText);
-        node.insertBeforeMe(cleanSpan);
-        node.remove();
-
-        // Now unwrap the original colored span if it's empty or no longer needed
-        var parent = colorSpan;
-        if (parent.getChildCount() === 0) {
-          parent.remove();
-        } else if (!parent.hasAttributes() || parent.hasAttribute('style') && !parent.getStyle('color')) {
-          safeUnwrap(parent);
+        if (after) fragments.push(new CKEDITOR.dom.text(after));
+        fragments.forEach(function (f) {
+          return textNode.insertBeforeMe(f);
+        });
+        textNode.remove();
+        if (colorSpan.getChildCount() === 0) {
+          colorSpan.remove();
+          console.log('🧹 Removed empty colored span');
         }
       }
     }
