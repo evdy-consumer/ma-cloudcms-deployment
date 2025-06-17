@@ -294,40 +294,45 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         var after = fullText.slice(endOffset);
         console.log("\uD83D\uDD0D Splitting text node: \"".concat(fullText, "\""));
         console.log("    Before: \"".concat(before, "\" | Selected: \"").concat(selected, "\" | After: \"").concat(after, "\""));
-        var parent = textNode.getParent();
-        var fragments = [];
-        if (before) fragments.push(new CKEDITOR.dom.text(before));
-        if (selected) {
-          var selectedText = new CKEDITOR.dom.text(selected);
-          var keptStyle = colorSpan.getAttribute('style').split(';').map(function (s) {
-            return s.trim();
-          }).filter(function (s) {
-            return s && !s.startsWith('color');
-          }).join('; ');
+        var keptStyle = colorSpan.getAttribute('style').split(';').map(function (s) {
+          return s.trim();
+        }).filter(function (s) {
+          return s && !s.startsWith('color');
+        }).join('; ');
+        var parent = colorSpan.getParent();
+        var beforeFrag = before ? new CKEDITOR.dom.text(before) : null;
+        var selectedFrag = selected ? new CKEDITOR.dom.text(selected) : null;
+        var afterFrag = after ? new CKEDITOR.dom.text(after) : null;
+        if (beforeFrag) {
+          var beforeSpan = new CKEDITOR.dom.element('span');
+          beforeSpan.setAttribute('style', colorSpan.getAttribute('style'));
+          beforeSpan.append(beforeFrag);
+          colorSpan.insertBeforeMe(beforeSpan);
+          console.log('⬅️ Inserted left part with original color');
+        }
+        if (selectedFrag) {
           if (keptStyle) {
             var span = new CKEDITOR.dom.element('span');
             span.setAttribute('style', keptStyle);
-            span.append(selectedText);
-            fragments.push(span);
-            console.log("\u2728 Inserted span with kept style: \"".concat(keptStyle, "\""));
+            span.append(selectedFrag);
+            colorSpan.insertBeforeMe(span);
+            console.log("\u2728 Inserted middle with kept style: \"".concat(keptStyle, "\""));
           } else {
-            fragments.push(selectedText);
-            console.log('🆕 Inserted plain selected text node without styles');
+            colorSpan.insertBeforeMe(selectedFrag);
+            console.log('🆕 Inserted middle as plain text');
           }
         }
-        if (after) fragments.push(new CKEDITOR.dom.text(after));
-
-        // Replace the original text node in-place to preserve surrounding structure
-        fragments.forEach(function (f) {
-          return textNode.insertBeforeMe(f);
-        });
+        if (afterFrag) {
+          var afterSpan = new CKEDITOR.dom.element('span');
+          afterSpan.setAttribute('style', colorSpan.getAttribute('style'));
+          afterSpan.append(afterFrag);
+          colorSpan.insertBeforeMe(afterSpan);
+          console.log('➡️ Inserted right part with original color');
+        }
         textNode.remove();
-
-        // Remove color style from parent span if still present
-        colorSpan.removeStyle('color');
-        if (!colorSpan.hasAttributes()) {
-          safeUnwrap(colorSpan);
-          console.log('🧹 Removed or unwrapped empty colored span');
+        if (colorSpan.getChildCount() === 0) {
+          colorSpan.remove();
+          console.log('🧹 Removed empty original span');
         }
       }
     }
