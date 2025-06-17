@@ -350,13 +350,16 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
           editor.fire('unlockSnapshot');
           console.log('✅ Color removal complete');
         } else {
+          var _selection = editor.getSelection();
+          if (!_selection) return;
+          var _ranges = _selection.getRanges();
+          editor.fire('lockSnapshot');
           var style = new CKEDITOR.style({
             element: 'span',
             styles: {
               color: value
             }
           });
-          editor.fire('lockSnapshot');
           editor.applyStyle(style);
           editor.fire('unlockSnapshot');
           console.log("\uD83C\uDFA8 Applied color: ".concat(value));
@@ -430,22 +433,18 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
             return s && !s.startsWith('color');
           }).join('; ');
           var mid = selectedFrag;
-          if (keptStyle) {
-            var midSpan = new CKEDITOR.dom.element('span');
-            midSpan.setAttribute('style', keptStyle);
-            midSpan.append(mid);
-            mid = midSpan;
-            console.log("\u2728 Inserted middle with kept style: \"".concat(keptStyle, "\""));
-          } else {
-            console.log('🆕 Inserted middle as plain text');
-          }
+          var _span = new CKEDITOR.dom.element('span');
+          if (keptStyle) _span.setAttribute('style', keptStyle);
+          _span.append(mid);
+          mid = _span;
           var _wrapped = wrapWithAncestors(mid, parentChain);
           colorSpan.insertBeforeMe(_wrapped);
+          console.log("\u2728 Inserted middle with formatting: \"".concat(keptStyle, "\""));
         }
         if (afterFrag) {
-          var _span = new CKEDITOR.dom.element('span');
-          _span.setAttribute('style', colorSpan.getAttribute('style'));
-          var _wrapped2 = wrapWithAncestors(_span.append(afterFrag), parentChain);
+          var _span2 = new CKEDITOR.dom.element('span');
+          _span2.setAttribute('style', colorSpan.getAttribute('style'));
+          var _wrapped2 = wrapWithAncestors(_span2.append(afterFrag), parentChain);
           colorSpan.insertBeforeMe(_wrapped2);
           console.log('➡️ Inserted right part with original color and formatting');
         }
