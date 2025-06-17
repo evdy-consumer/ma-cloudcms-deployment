@@ -218,7 +218,6 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
             console.warn('⚠️ No selection found.');
             return;
           }
-          var bookmarks = selection.createBookmarks();
           var ranges = selection.getRanges();
           editor.fire('lockSnapshot');
           console.log('🟡 Starting smart color removal…');
@@ -238,11 +237,8 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
               node.removeStyle('color');
               safeUnwrap(node);
             }
-
-            // Smart partial removal
             smartRemoveColorFromPartial(range);
           });
-          selection.selectBookmarks(bookmarks);
           editor.fire('unlockSnapshot');
           console.log('🎉 Finished smart color removal.');
         } else {
@@ -297,6 +293,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
           };
           var node;
           while (node = walker.next()) {
+            console.log('🎯 Removing color from split span:', node.getOuterHtml());
             node.removeStyle('color');
             safeUnwrap(node);
           }
