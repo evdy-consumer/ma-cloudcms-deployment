@@ -278,27 +278,34 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
       }
     }
     function smartRemoveColorFromPartial(range) {
-      ['startContainer', 'endContainer'].forEach(function (containerKey) {
-        var container = range[containerKey];
-        if (!container) return;
-        var span = container.getAscendant(function (el) {
+      var walker = new CKEDITOR.dom.walker(range);
+      walker.evaluator = function (node) {
+        return node.type === CKEDITOR.NODE_TEXT && node.getAscendant(function (el) {
           return el.getName && el.getName() === 'span' && el.getStyle('color');
         }, true);
-        if (span) {
-          console.log('⚠️ Partial boundary span detected for smart split:', span.getOuterHtml());
-          range.splitElement(span);
-          var walker = new CKEDITOR.dom.walker(range);
-          walker.evaluator = function (node) {
-            return node.type === CKEDITOR.NODE_ELEMENT && node.getName() === 'span' && node.getStyle('color');
-          };
-          var node;
-          while (node = walker.next()) {
-            console.log('🎯 Removing color from split span:', node.getOuterHtml());
-            node.removeStyle('color');
-            safeUnwrap(node);
-          }
+      };
+      var node;
+      while (node = walker.next()) {
+        var colorSpan = node.getAscendant(function (el) {
+          return el.getName && el.getName() === 'span' && el.getStyle('color');
+        }, true);
+        if (!colorSpan) continue;
+        var parentStyles = colorSpan.getAttribute('style') || '';
+        var keptStyle = parentStyles.split(';').map(function (s) {
+          return s.trim();
+        }).filter(function (s) {
+          return s && !s.startsWith('color');
+        }).join('; ');
+
+        // Clone structure above
+        var newSpan = new CKEDITOR.dom.element('span');
+        if (keptStyle) {
+          newSpan.setAttribute('style', keptStyle);
         }
-      });
+        node.insertBeforeMe(newSpan);
+        newSpan.append(node.remove());
+        safeUnwrap(colorSpan);
+      }
     }
   }
 });
