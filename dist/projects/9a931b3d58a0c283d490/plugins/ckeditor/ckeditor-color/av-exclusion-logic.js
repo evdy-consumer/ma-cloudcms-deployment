@@ -123,6 +123,16 @@ CKEDITOR.plugins.add(pluginName, {
     const pluginConfig = CKEDITOR.tools.get_plugin_config(pluginName, editor);
     const colors = pluginConfig;
 
+    function wrapWithAncestors(node, parentChain) {
+      return parentChain.reduce((child, ancestor) => {
+        const clone = new CKEDITOR.dom.element(ancestor.getName());
+        const attrs = ancestor.getAttributes();
+        for (let k in attrs) clone.setAttribute(k, attrs[k]);
+        clone.append(child);
+        return clone;
+      }, node);
+    }
+
     editor.ui.addRichCombo('ApplyColor', {
       label: 'Apply Color',
       toolbar: 'styles',
@@ -155,38 +165,25 @@ CKEDITOR.plugins.add(pluginName, {
           ranges.forEach((range, index) => {
             console.log(`📌 Processing range ${index + 1}`);
             range.enlarge(CKEDITOR.ENLARGE_INLINE);
-
-            const walker = new CKEDITOR.dom.walker(range);
-            walker.evaluator = function (node) {
-              return (
-                node.type === CKEDITOR.NODE_ELEMENT &&
-                node.getName() === 'span' &&
-                node.getStyle('color')
-              );
-            };
-
-            let node;
-            const processed = new Set();
-            while ((node = walker.next())) {
-              if (processed.has(node)) continue;
-              console.log('🎯 Removing full span color from:', node.getOuterHtml());
-              node.removeStyle('color');
-              safeUnwrap(node);
-              processed.add(node);
-            }
-
             smartRemoveColorFromPartial(range);
           });
 
           editor.fire('unlockSnapshot');
           console.log('✅ Color removal complete');
         } else {
+          const selection = editor.getSelection();
+          if (!selection) return;
+
+          const ranges = selection.getRanges();
+          editor.fire('lockSnapshot');
+
           const style = new CKEDITOR.style({
             element: 'span',
             styles: { color: value }
           });
-          editor.fire('lockSnapshot');
+
           editor.applyStyle(style);
+
           editor.fire('unlockSnapshot');
           console.log(`🎨 Applied color: ${value}`);
         }
@@ -237,44 +234,54 @@ CKEDITOR.plugins.add(pluginName, {
         console.log(`🔍 Splitting text node: "${fullText}"`);
         console.log(`    Before: "${before}" | Selected: "${selected}" | After: "${after}"`);
 
-        const keptStyle = colorSpan.getAttribute('style')
-          .split(';')
-          .map(s => s.trim())
-          .filter(s => s && !s.startsWith('color'))
-          .join('; ');
-
-        const parent = colorSpan.getParent();
         const beforeFrag = before ? new CKEDITOR.dom.text(before) : null;
         const selectedFrag = selected ? new CKEDITOR.dom.text(selected) : null;
         const afterFrag = after ? new CKEDITOR.dom.text(after) : null;
 
+        const parentChain = [];
+        let current = textNode.getParent();
+        while (current && !current.equals(colorSpan)) {
+          parentChain.unshift(current);
+          current = current.getParent();
+        }
+
         if (beforeFrag) {
-          const beforeSpan = new CKEDITOR.dom.element('span');
-          beforeSpan.setAttribute('style', colorSpan.getAttribute('style'));
-          beforeSpan.append(beforeFrag);
-          colorSpan.insertBeforeMe(beforeSpan);
-          console.log('⬅️ Inserted left part with original color');
+          const beforeColorSpan = new CKEDITOR.dom.element('span');
+          beforeColorSpan.setAttribute('style', colorSpan.getAttribute('style'));
+          beforeColorSpan.append(beforeFrag);
+          const wrapped = wrapWithAncestors(beforeColorSpan, parentChain);
+          colorSpan.insertBeforeMe(wrapped);
+          console.log('⬅️ Inserted left part with original color and formatting');
         }
 
         if (selectedFrag) {
+          const originalStyle = colorSpan.getAttribute('style') || '';
+          const keptStyle = originalStyle
+            .split(';')
+            .map(s => s.trim())
+            .filter(s => s && !s.startsWith('color'))
+            .join('; ');
+
+          let mid = selectedFrag;
           if (keptStyle) {
-            const span = new CKEDITOR.dom.element('span');
-            span.setAttribute('style', keptStyle);
-            span.append(selectedFrag);
-            colorSpan.insertBeforeMe(span);
-            console.log(`✨ Inserted middle with kept style: "${keptStyle}"`);
-          } else {
-            colorSpan.insertBeforeMe(selectedFrag);
-            console.log('🆕 Inserted middle as plain text');
+            const midSpan = new CKEDITOR.dom.element('span');
+            midSpan.setAttribute('style', keptStyle);
+            midSpan.append(mid);
+            mid = midSpan;
           }
+
+          const wrapped = wrapWithAncestors(mid, parentChain);
+          colorSpan.insertBeforeMe(wrapped);
+          console.log(`✨ Inserted middle with formatting (no color): "${keptStyle}"`);
         }
 
         if (afterFrag) {
-          const afterSpan = new CKEDITOR.dom.element('span');
-          afterSpan.setAttribute('style', colorSpan.getAttribute('style'));
-          afterSpan.append(afterFrag);
-          colorSpan.insertBeforeMe(afterSpan);
-          console.log('➡️ Inserted right part with original color');
+          const afterColorSpan = new CKEDITOR.dom.element('span');
+          afterColorSpan.setAttribute('style', colorSpan.getAttribute('style'));
+          afterColorSpan.append(afterFrag);
+          const wrapped = wrapWithAncestors(afterColorSpan, parentChain);
+          colorSpan.insertBeforeMe(wrapped);
+          console.log('➡️ Inserted right part with original color and formatting');
         }
 
         textNode.remove();
