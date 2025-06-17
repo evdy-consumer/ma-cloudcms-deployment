@@ -221,7 +221,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
           var bookmarks = selection.createBookmarks();
           var ranges = selection.getRanges();
           editor.fire('lockSnapshot');
-          console.log('🟡 Starting bulletproof color removal…');
+          console.log('🟡 Starting smart color removal…');
           ranges.forEach(function (range, index) {
             console.log("\uD83D\uDCCC Processing range ".concat(index + 1, "..."));
             range.enlarge(CKEDITOR.ENLARGE_INLINE);
@@ -238,12 +238,13 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
               node.removeStyle('color');
               safeUnwrap(node);
             }
-            handlePartialBoundary(range.startContainer);
-            handlePartialBoundary(range.endContainer);
+
+            // Smart partial removal
+            smartRemoveColorFromPartial(range);
           });
           selection.selectBookmarks(bookmarks);
           editor.fire('unlockSnapshot');
-          console.log('🎉 Finished bulletproof color removal.');
+          console.log('🎉 Finished smart color removal.');
         } else {
           var style = new CKEDITOR.style({
             element: 'span',
@@ -257,8 +258,6 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         }
       }
     });
-
-    // helpers available inside plugin scope
     function safeUnwrap(element) {
       if (!element) return;
       var hasAnyAttributes = element.hasAttributes();
@@ -282,16 +281,52 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         console.log('🧹 Safely unwrapped empty span.');
       }
     }
-    function handlePartialBoundary(container) {
-      if (!container) return;
-      var span = container.getAscendant(function (el) {
-        return el.getName && el.getName() === 'span' && el.getStyle('color');
-      }, true);
-      if (span) {
-        console.log('⚠️ Partial boundary span detected:', span.getOuterHtml());
-        span.removeStyle('color');
-        safeUnwrap(span);
-      }
+    function smartRemoveColorFromPartial(range) {
+      ['startContainer', 'endContainer'].forEach(function (containerKey) {
+        var container = range[containerKey];
+        if (!container) return;
+        var span = container.getAscendant(function (el) {
+          return el.getName && el.getName() === 'span' && el.getStyle('color');
+        }, true);
+        if (span) {
+          console.log('⚠️ Partial boundary span detected for smart split:', span.getOuterHtml());
+          var parentStyles = span.getAttribute('style') || '';
+          var keptStyle = parentStyles.split(';').map(function (s) {
+            return s.trim();
+          }).filter(function (s) {
+            return s && !s.startsWith('color');
+          }).join('; ');
+          var bookmark = range.createBookmark();
+
+          // Create a temporary range fully inside that span
+          var tmpRange = range.clone();
+          tmpRange.setStartBefore(span);
+          tmpRange.setEndAfter(span);
+          var frag = tmpRange.extractContents();
+          var walker = new CKEDITOR.dom.walker(new CKEDITOR.dom.range(frag));
+          walker.evaluator = function (node) {
+            return node.type === CKEDITOR.NODE_TEXT;
+          };
+          var textNode;
+          while (textNode = walker.next()) {
+            var insideRange = range.intersectsNode(textNode);
+            if (insideRange) {
+              var parent = textNode.getParent();
+              if (parent.getName() !== 'span') {
+                var newSpan = new CKEDITOR.dom.element('span');
+                if (keptStyle) newSpan.setAttribute('style', keptStyle);
+                textNode.insertBeforeMe(newSpan);
+                newSpan.append(textNode.remove());
+              } else {
+                parent.setAttribute('style', keptStyle);
+              }
+            }
+          }
+          tmpRange.insertNode(frag);
+          safeUnwrap(span);
+          range.moveToBookmark(bookmark);
+        }
+      });
     }
   }
 });
