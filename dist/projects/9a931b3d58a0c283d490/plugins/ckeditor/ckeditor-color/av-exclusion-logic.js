@@ -284,13 +284,10 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
     }
     function handlePartialBoundary(container) {
       if (!container) return;
-      var span = null;
-      if (container.type === CKEDITOR.NODE_TEXT) {
-        span = container.getAscendant('span', true);
-      } else if (container.type === CKEDITOR.NODE_ELEMENT && container.getName() === 'span') {
-        span = container;
-      }
-      if (span && span.getStyle('color')) {
+      var span = container.getAscendant(function (el) {
+        return el.getName && el.getName() === 'span' && el.getStyle('color');
+      }, true);
+      if (span) {
         console.log('⚠️ Partial boundary span detected:', span.getOuterHtml());
         span.removeStyle('color');
         safeUnwrap(span);
