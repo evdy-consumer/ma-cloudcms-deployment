@@ -110,9 +110,6 @@ var pluginName = 'ckeditor-color';
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./constants */ "./src/constants.js");
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 /* import { pluginName } from './constants';
 
 const CKEDITOR = window.CKEDITOR;
@@ -302,12 +299,12 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
   init: function init(editor) {
     var pluginConfig = CKEDITOR.tools.get_plugin_config(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], editor);
     var colors = pluginConfig;
-    function wrapWithAncestors(node, parentChain) {
-      return parentChain.reduce(function (child, ancestor) {
-        var clone = new CKEDITOR.dom.element(ancestor.getName());
-        var attrs = ancestor.getAttributes();
+    function wrapWithAncestorsInside(node, parentChain) {
+      return parentChain.reduceRight(function (inner, outer) {
+        var clone = new CKEDITOR.dom.element(outer.getName());
+        var attrs = outer.getAttributes();
         for (var k in attrs) clone.setAttribute(k, attrs[k]);
-        clone.append(child);
+        clone.append(inner);
         return clone;
       }, node);
     }
@@ -330,24 +327,19 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
       },
       onClick: function onClick(value) {
         editor.focus();
+        var selection = editor.getSelection();
+        if (!selection) return;
+        var ranges = selection.getRanges();
+        editor.fire('lockSnapshot');
         if (value === 'default') {
-          var selection = editor.getSelection();
-          if (!selection) return;
-          var ranges = selection.getRanges();
-          editor.fire('lockSnapshot');
           console.log('🟡 Starting color removal');
           ranges.forEach(function (range, index) {
             console.log("\uD83D\uDCCC Processing range ".concat(index + 1));
             range.enlarge(CKEDITOR.ENLARGE_INLINE);
             smartRemoveColorFromPartial(range);
           });
-          editor.fire('unlockSnapshot');
           console.log('✅ Color removal complete');
         } else {
-          var _selection = editor.getSelection();
-          if (!_selection) return;
-          var _ranges = _selection.getRanges();
-          editor.fire('lockSnapshot');
           var style = new CKEDITOR.style({
             element: 'span',
             styles: {
@@ -355,33 +347,11 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
             }
           });
           editor.applyStyle(style);
-          editor.fire('unlockSnapshot');
           console.log("\uD83C\uDFA8 Applied color: ".concat(value));
         }
+        editor.fire('unlockSnapshot');
       }
     });
-    function safeUnwrap(element) {
-      if (!element) return;
-      var styleAttr = element.getAttribute('style');
-      var hasStyles = styleAttr && styleAttr.trim() !== '';
-      if (!element.hasAttributes() || !hasStyles && element.getName() === 'span') {
-        var children = element.getChildren().toArray();
-        var _iterator = _createForOfIteratorHelper(children),
-          _step;
-        try {
-          for (_iterator.s(); !(_step = _iterator.n()).done;) {
-            var child = _step.value;
-            element.insertBeforeMe(child.remove());
-          }
-        } catch (err) {
-          _iterator.e(err);
-        } finally {
-          _iterator.f();
-        }
-        element.remove();
-        console.log('🧹 Unwrapped empty or style-less span');
-      }
-    }
     function smartRemoveColorFromPartial(range) {
       var walker = new CKEDITOR.dom.walker(range);
       walker.evaluator = function (node) {
@@ -413,10 +383,10 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
           current = current.getParent();
         }
         if (beforeFrag) {
-          var beforeColorSpan = new CKEDITOR.dom.element('span');
-          beforeColorSpan.setAttribute('style', colorSpan.getAttribute('style'));
-          beforeColorSpan.append(beforeFrag);
-          var wrapped = wrapWithAncestors(beforeColorSpan, parentChain);
+          var beforeSpan = new CKEDITOR.dom.element('span');
+          beforeSpan.setAttribute('style', colorSpan.getAttribute('style'));
+          beforeSpan.append(beforeFrag);
+          var wrapped = wrapWithAncestorsInside(beforeSpan, parentChain);
           colorSpan.insertBeforeMe(wrapped);
           console.log('⬅️ Inserted left part with original color and formatting');
         }
@@ -434,15 +404,15 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
             midSpan.append(mid);
             mid = midSpan;
           }
-          var _wrapped = wrapWithAncestors(mid, parentChain);
+          var _wrapped = wrapWithAncestorsInside(mid, parentChain);
           colorSpan.insertBeforeMe(_wrapped);
           console.log("\u2728 Inserted middle with formatting (no color): \"".concat(keptStyle, "\""));
         }
         if (afterFrag) {
-          var afterColorSpan = new CKEDITOR.dom.element('span');
-          afterColorSpan.setAttribute('style', colorSpan.getAttribute('style'));
-          afterColorSpan.append(afterFrag);
-          var _wrapped2 = wrapWithAncestors(afterColorSpan, parentChain);
+          var afterSpan = new CKEDITOR.dom.element('span');
+          afterSpan.setAttribute('style', colorSpan.getAttribute('style'));
+          afterSpan.append(afterFrag);
+          var _wrapped2 = wrapWithAncestorsInside(afterSpan, parentChain);
           colorSpan.insertBeforeMe(_wrapped2);
           console.log('➡️ Inserted right part with original color and formatting');
         }
