@@ -297,14 +297,25 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
           return s && !s.startsWith('color');
         }).join('; ');
 
-        // Clone structure above
-        var newSpan = new CKEDITOR.dom.element('span');
+        // Create new span without color
+        var cleanSpan = new CKEDITOR.dom.element('span');
         if (keptStyle) {
-          newSpan.setAttribute('style', keptStyle);
+          cleanSpan.setAttribute('style', keptStyle);
         }
-        node.insertBeforeMe(newSpan);
-        newSpan.append(node.remove());
-        safeUnwrap(colorSpan);
+
+        // Move text into the clean span
+        var newText = new CKEDITOR.dom.text(node.getText());
+        cleanSpan.append(newText);
+        node.insertBeforeMe(cleanSpan);
+        node.remove();
+
+        // Now unwrap the original colored span if it's empty or no longer needed
+        var parent = colorSpan;
+        if (parent.getChildCount() === 0) {
+          parent.remove();
+        } else if (!parent.hasAttributes() || parent.hasAttribute('style') && !parent.getStyle('color')) {
+          safeUnwrap(parent);
+        }
       }
     }
   }
