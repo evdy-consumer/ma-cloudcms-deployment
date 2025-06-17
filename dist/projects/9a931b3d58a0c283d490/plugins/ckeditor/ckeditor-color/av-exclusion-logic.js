@@ -290,15 +290,8 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         }, true);
         if (span) {
           console.log('⚠️ Partial boundary span detected for smart split:', span.getOuterHtml());
-
-          // Split span at range boundaries
-          var bookmark = range.createBookmark();
           range.splitElement(span);
-
-          // Now find spans inside selection range and remove only color
-          var newRange = editor.createRange();
-          newRange.moveToBookmark(bookmark);
-          var walker = new CKEDITOR.dom.walker(newRange);
+          var walker = new CKEDITOR.dom.walker(range);
           walker.evaluator = function (node) {
             return node.type === CKEDITOR.NODE_ELEMENT && node.getName() === 'span' && node.getStyle('color');
           };
@@ -307,7 +300,6 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
             node.removeStyle('color');
             safeUnwrap(node);
           }
-          range.moveToBookmark(bookmark);
         }
       });
     }
