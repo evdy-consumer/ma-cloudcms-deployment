@@ -281,11 +281,11 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         }, true);
       };
       var textNode;
-      var _loop = function _loop() {
+      while (textNode = walker.next()) {
         var colorSpan = textNode.getAscendant(function (el) {
           return el.getName && el.getName() === 'span' && el.getStyle('color');
         }, true);
-        if (!colorSpan) return 1; // continue
+        if (!colorSpan) continue;
         var fullText = textNode.getText();
         var startOffset = textNode.equals(range.startContainer) ? range.startOffset : 0;
         var endOffset = textNode.equals(range.endContainer) ? range.endOffset : fullText.length;
@@ -294,6 +294,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         var after = fullText.slice(endOffset);
         console.log("\uD83D\uDD0D Splitting text node: \"".concat(fullText, "\""));
         console.log("    Before: \"".concat(before, "\" | Selected: \"").concat(selected, "\" | After: \"").concat(after, "\""));
+        var parent = textNode.getParent();
         var fragments = [];
         if (before) fragments.push(new CKEDITOR.dom.text(before));
         if (selected) {
@@ -316,18 +317,18 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         }
         if (after) fragments.push(new CKEDITOR.dom.text(after));
 
-        // Insert fragments before the colored span itself to fully escape color context
+        // Replace the original text node in-place to preserve surrounding structure
         fragments.forEach(function (f) {
-          return colorSpan.insertBeforeMe(f);
+          return textNode.insertBeforeMe(f);
         });
         textNode.remove();
-        if (colorSpan.getChildCount() === 0) {
-          colorSpan.remove();
-          console.log('🧹 Removed empty colored span');
+
+        // Remove color style from parent span if still present
+        colorSpan.removeStyle('color');
+        if (!colorSpan.hasAttributes()) {
+          safeUnwrap(colorSpan);
+          console.log('🧹 Removed or unwrapped empty colored span');
         }
-      };
-      while (textNode = walker.next()) {
-        if (_loop()) continue;
       }
     }
   }
