@@ -192,6 +192,15 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
   init: function init(editor) {
     var pluginConfig = CKEDITOR.tools.get_plugin_config(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], editor);
     var colors = pluginConfig;
+    function wrapWithAncestors(node, parentChain) {
+      return parentChain.reduce(function (child, ancestor) {
+        var clone = new CKEDITOR.dom.element(ancestor.getName());
+        var attrs = ancestor.getAttributes();
+        for (var k in attrs) clone.setAttribute(k, attrs[k]);
+        clone.append(child);
+        return clone;
+      }, node);
+    }
     editor.ui.addRichCombo('ApplyColor', {
       label: 'Apply Color',
       toolbar: 'styles',
@@ -273,6 +282,24 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         console.log('🧹 Unwrapped empty or style-less span');
       }
     }
+    function cloneWithChildrenPreserved(sourceElement, textNode) {
+      var newWrapper = new CKEDITOR.dom.element(sourceElement.getName());
+      var attributes = sourceElement.getAttributes();
+      for (var key in attributes) {
+        if (key === 'style' && attributes[key].includes('color')) {
+          var filtered = attributes[key].split(';').map(function (s) {
+            return s.trim();
+          }).filter(function (s) {
+            return s && !s.startsWith('color');
+          }).join('; ');
+          if (filtered) newWrapper.setAttribute('style', filtered);
+        } else {
+          newWrapper.setAttribute(key, attributes[key]);
+        }
+      }
+      newWrapper.append(textNode);
+      return newWrapper;
+    }
     function smartRemoveColorFromPartial(range) {
       var walker = new CKEDITOR.dom.walker(range);
       walker.evaluator = function (node) {
@@ -294,40 +321,31 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         var after = fullText.slice(endOffset);
         console.log("\uD83D\uDD0D Splitting text node: \"".concat(fullText, "\""));
         console.log("    Before: \"".concat(before, "\" | Selected: \"").concat(selected, "\" | After: \"").concat(after, "\""));
-        var keptStyle = colorSpan.getAttribute('style').split(';').map(function (s) {
-          return s.trim();
-        }).filter(function (s) {
-          return s && !s.startsWith('color');
-        }).join('; ');
-        var parent = colorSpan.getParent();
         var beforeFrag = before ? new CKEDITOR.dom.text(before) : null;
         var selectedFrag = selected ? new CKEDITOR.dom.text(selected) : null;
         var afterFrag = after ? new CKEDITOR.dom.text(after) : null;
+        var parentChain = [];
+        var node = textNode.getParent();
+        while (node && !node.equals(colorSpan)) {
+          parentChain.unshift(node);
+          node = node.getParent();
+        }
         if (beforeFrag) {
-          var beforeSpan = new CKEDITOR.dom.element('span');
-          beforeSpan.setAttribute('style', colorSpan.getAttribute('style'));
-          beforeSpan.append(beforeFrag);
-          colorSpan.insertBeforeMe(beforeSpan);
-          console.log('⬅️ Inserted left part with original color');
+          var span = new CKEDITOR.dom.element('span');
+          span.setAttribute('style', colorSpan.getAttribute('style'));
+          colorSpan.insertBeforeMe(wrapWithAncestors(span.append(beforeFrag) || span, parentChain));
+          console.log('⬅️ Inserted left part with original color and structure');
         }
         if (selectedFrag) {
-          if (keptStyle) {
-            var span = new CKEDITOR.dom.element('span');
-            span.setAttribute('style', keptStyle);
-            span.append(selectedFrag);
-            colorSpan.insertBeforeMe(span);
-            console.log("\u2728 Inserted middle with kept style: \"".concat(keptStyle, "\""));
-          } else {
-            colorSpan.insertBeforeMe(selectedFrag);
-            console.log('🆕 Inserted middle as plain text');
-          }
+          var stripped = cloneWithChildrenPreserved(colorSpan, selectedFrag);
+          colorSpan.insertBeforeMe(wrapWithAncestors(stripped, parentChain));
+          console.log('🆕 Inserted middle with color removed, styles preserved');
         }
         if (afterFrag) {
-          var afterSpan = new CKEDITOR.dom.element('span');
-          afterSpan.setAttribute('style', colorSpan.getAttribute('style'));
-          afterSpan.append(afterFrag);
-          colorSpan.insertBeforeMe(afterSpan);
-          console.log('➡️ Inserted right part with original color');
+          var _span = new CKEDITOR.dom.element('span');
+          _span.setAttribute('style', colorSpan.getAttribute('style'));
+          colorSpan.insertBeforeMe(wrapWithAncestors(_span.append(afterFrag) || _span, parentChain));
+          console.log('➡️ Inserted right part with original color and structure');
         }
         textNode.remove();
         if (colorSpan.getChildCount() === 0) {
