@@ -182,6 +182,9 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
 
     /* Remove only the colour while keeping other inline styles */
     function removeColor(range) {
+      // Enlarge so partially‑selected inline spans are fully included on first try
+      var enlarged = range.clone();
+      enlarged.enlarge(CKEDITOR.ENLARGE_INLINE);
       var textWalker = new CKEDITOR.dom.walker(range.clone());
       textWalker.evaluator = function (node) {
         var _node$getAscendant;
