@@ -303,6 +303,10 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
     /* ------------------------------------------------- */
     /* Lift colour spans so span wraps <strong>/<em>/…   */
     /* ------------------------------------------------- */
+    /* ------------------------------------------------- */
+    /* Lift colour spans **in‑place** so inside parent   */
+    /* <strong><span>txt</span></strong>  →  <strong><span><strong>txt</strong></span></strong> */
+    /* ------------------------------------------------- */
     function liftColorSpans(range) {
       var r = range.clone();
       r.enlarge(CKEDITOR.ENLARGE_INLINE);
@@ -314,13 +318,13 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
       var _loop = function _loop() {
           var parent = span.getParent();
           if (!parent || parent.getName() === 'span') return 0; // continue
-          // already correct order
+          // nothing to fix
           if (span.getFirst() && span.getFirst().getName() === parent.getName()) return 0; // continue
-          // clone exists
+          // already fixed
 
-          console.log('🚀 Lifting span', span.getOuterHtml(), 'parent', parent.getName());
+          console.log('🚀 In‑place lift', span.getOuterHtml(), 'inside', parent.getName());
 
-          // Clone the inline parent (keeps all its attributes)
+          // 1️⃣ Clone the inline parent (<strong>/<em>/…>) without children
           var clone = new CKEDITOR.dom.element(parent.getName());
           Object.entries(parent.getAttributes()).forEach(function (_ref3) {
             var _ref4 = _slicedToArray(_ref3, 2),
@@ -329,15 +333,12 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
             return clone.setAttribute(k, v);
           });
 
-          // Move span's children into the clone
+          // 2️⃣ Move ALL current children of <span> into the clone
           while (span.getFirst()) clone.append(span.getFirst().remove());
 
-          // Move span outside the inline parent and place clone inside
-          span.remove(); // detach span
-          parent.insertBeforeMe(span); // put span before the inline tag
-          span.append(clone); // colour span now wraps cloned inline tag
-
-          console.log('✅ After lift', span.getOuterHtml());
+          // 3️⃣ Append the clone back into the <span>
+          span.append(clone);
+          console.log('✅ After in‑place lift →', parent.getOuterHtml());
         },
         _ret;
       while (span = walker.next()) {
@@ -362,8 +363,6 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         var start = text.equals(range.startContainer) ? range.startOffset : 0;
         var end = text.equals(range.endContainer) ? range.endOffset : text.getLength();
         var parts = [text.substring(0, start), text.substring(start, end), text.substring(end)];
-
-        // gather ancestor chain (excluding colour span)
         var chain = [];
         var n = text.getParent();
         while (n && !n.equals(colourSpan)) {
