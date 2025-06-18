@@ -210,8 +210,8 @@ CKEDITOR.plugins.add(pluginName, {
         const selected = fullText.slice(startOffset, endOffset);
         const after = fullText.slice(endOffset);
 
-        console.log(`🔍 Splitting text node: "${fullText}"`);
-        console.log(`    Before: "${before}" | Selected: "${selected}" | After: "${after}"`);
+        console.log(`🔍 Splitting text node: '${fullText}'`);
+        console.log(`    Before: '${before}' | Selected: '${selected}' | After: '${after}'`);
 
         const beforeFrag = before ? new CKEDITOR.dom.text(before) : null;
         const selectedFrag = selected ? new CKEDITOR.dom.text(selected) : null;
@@ -251,7 +251,7 @@ CKEDITOR.plugins.add(pluginName, {
           }
 
           colorSpan.insertBeforeMe(wrapped);
-          console.log(`✨ Inserted middle with formatting (no color): "${keptStyle}"`);
+          console.log(`✨ Inserted middle with formatting (no color): '${keptStyle}'`);
         }
 
         if (afterFrag) {
@@ -281,53 +281,78 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
   init: function init(editor) {
     var colors = CKEDITOR.tools.get_plugin_config(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], editor);
 
-    /**
-     * Wrap NODE with every element in parentChain so that
-     * <strong><em>text</em></strong>  +  <span>  ⇒  <span><strong><em>text</em></strong></span>
-     */
+    /*************************************************
+     * Helper –  clone the whole parentChain **inside** the
+     * colour <span> so     <strong>txt</strong>  becomes
+     * <span style='color'><strong>txt</strong></span>
+     *************************************************/
     function wrapInside(node, parentChain) {
       return parentChain.reduceRight(function (inner, outer) {
-        var clone = new CKEDITOR.dom.element(outer.getName());
+        var wrapper = new CKEDITOR.dom.element(outer.getName());
         Object.entries(outer.getAttributes()).forEach(function (_ref) {
           var _ref2 = _slicedToArray(_ref, 2),
             k = _ref2[0],
             v = _ref2[1];
-          return clone.setAttribute(k, v);
+          return wrapper.setAttribute(k, v);
         });
-        clone.append(inner);
-        return clone;
+        wrapper.append(inner);
+        return wrapper;
       }, node);
     }
 
+    /*************************************************
+     * After applyStyle, CKEditor often inserts
+     * <strong><span style='color'>…</span></strong>
+     * This lifts such inner spans so they wrap the inline tag.
+     *************************************************/
     /**
-     * CKEditor applies colour by inserting <span style="color"> **inside** inline tags.
-     * Move such inner spans so they wrap the tag instead.
-     */
-    /**
-     * Move any colour <span> that CKEditor inserts **inside** inline tags so the
-     * span wraps the tag instead – regardless of the exact colour value.
+     * CKEditor inserts   <strong>foo <span style='color'>bar</span></strong>
+     * We want            <strong>foo <span style='color'><strong>bar</strong></span></strong>
+     *
+     * For every colour <span> that sits inside a non‑span inline tag,
+     * clone that inline tag INSIDE the span (instead of pulling the span out).
      */
     function liftColorSpans(range) {
       var r = range.clone();
       r.enlarge(CKEDITOR.ENLARGE_INLINE);
       var walker = new CKEDITOR.dom.walker(r);
-      walker.evaluator = function (node) {
-        return (node === null || node === void 0 ? void 0 : node.type) === CKEDITOR.NODE_ELEMENT && node.getName() === 'span' && node.getStyle('color');
-      }; // any colour span
-
+      walker.evaluator = function (n) {
+        return (n === null || n === void 0 ? void 0 : n.type) === CKEDITOR.NODE_ELEMENT && n.getName() === 'span' && n.getStyle('color');
+      };
       var span;
+      var _loop = function _loop() {
+          var _span$getFirst;
+          var parent = span.getParent();
+          if (!parent || parent.getName() === 'span') return 0; // continue
+          // span already outer‑most or at root
+          if ((_span$getFirst = span.getFirst()) !== null && _span$getFirst !== void 0 && _span$getFirst.getName && span.getFirst().getName() === parent.getName()) return 0; // continue
+          // already cloned
+
+          // 1. Clone the inline parent (e.g. <strong>)
+          var clone = new CKEDITOR.dom.element(parent.getName());
+          Object.entries(parent.getAttributes()).forEach(function (_ref3) {
+            var _ref4 = _slicedToArray(_ref3, 2),
+              k = _ref4[0],
+              v = _ref4[1];
+            return clone.setAttribute(k, v);
+          });
+
+          // 2. Move span's children into the clone
+          while (span.getFirst()) clone.append(span.getFirst().remove());
+
+          // 3. Append the clone back into the span
+          span.append(clone);
+        },
+        _ret;
       while (span = walker.next()) {
-        var parent = span.getParent();
-        if (!parent || parent.getName() === 'span') continue; // already outer‑most
-        span.remove();
-        parent.insertBeforeMe(span); // move span before <strong>/<em>/…
-        span.append(parent); // span now wraps the formatting tag
+        _ret = _loop();
+        if (_ret === 0) continue;
       }
     }
 
-    /**
-     * Remove only colour from selection, preserve other inline styles.
-     */
+    /*************************************************
+     * Remove only colour from selection, keep other inline styles
+     *************************************************/
     function removeColor(range) {
       var w = new CKEDITOR.dom.walker(range.clone());
       w.evaluator = function (n) {
@@ -335,7 +360,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         return n.type === CKEDITOR.NODE_TEXT && ((_n$getAscendant = n.getAscendant('span', true)) === null || _n$getAscendant === void 0 ? void 0 : _n$getAscendant.getStyle('color'));
       };
       var text;
-      var _loop = function _loop() {
+      var _loop2 = function _loop2() {
         var span = text.getAscendant('span', true);
         if (!span) return 1; // continue
         var start = text.equals(range.startContainer) ? range.startOffset : 0;
@@ -349,27 +374,27 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
           chain.unshift(p);
           p = p.getParent();
         }
-        var makeFrag = function makeFrag(content, keepColor) {
+        var build = function build(content, keepColor) {
           if (!content) return null;
-          var base = wrapInside(new CKEDITOR.dom.text(content), chain);
-          if (!keepColor) return base;
-          var col = new CKEDITOR.dom.element('span');
-          col.setAttribute('style', span.getAttribute('style'));
-          col.append(base);
-          return col;
+          var inside = wrapInside(new CKEDITOR.dom.text(content), chain);
+          if (!keepColor) return inside;
+          var coloured = new CKEDITOR.dom.element('span');
+          coloured.setAttribute('style', span.getAttribute('style'));
+          coloured.append(inside);
+          return coloured;
         };
-        [makeFrag(before, true), wrapInside(new CKEDITOR.dom.text(mid), chain), makeFrag(after, true)].filter(Boolean).forEach(function (frag) {
-          return span.insertBeforeMe(frag);
+        [build(before, true), wrapInside(new CKEDITOR.dom.text(mid), chain), build(after, true)].filter(Boolean).forEach(function (f) {
+          return span.insertBeforeMe(f);
         });
         text.remove();
         if (!span.getChildCount()) span.remove();
       };
       while (text = w.next()) {
-        if (_loop()) continue;
+        if (_loop2()) continue;
       }
     }
 
-    /* ---------- UI combo ---------- */
+    /******************* RichCombo UI ************************/
     editor.ui.addRichCombo('ApplyColor', {
       label: 'Apply Color',
       toolbar: 'styles',
@@ -380,10 +405,10 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
       init: function init() {
         var _this = this;
         this.add('default', 'Remove Color', 'Remove Color');
-        Object.entries(colors).forEach(function (_ref3) {
-          var _ref4 = _slicedToArray(_ref3, 2),
-            label = _ref4[0],
-            val = _ref4[1];
+        Object.entries(colors).forEach(function (_ref5) {
+          var _ref6 = _slicedToArray(_ref5, 2),
+            label = _ref6[0],
+            val = _ref6[1];
           return _this.add(val, label, label);
         });
       },
@@ -397,9 +422,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         var ranges = sel.getRanges();
         editor.fire('lockSnapshot');
         if (value === 'default') {
-          ranges.forEach(function (r) {
-            return removeColor(r);
-          });
+          ranges.forEach(removeColor);
         } else {
           var style = new CKEDITOR.style({
             element: 'span',
@@ -408,9 +431,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
             }
           });
           editor.applyStyle(style);
-          ranges.forEach(function (r) {
-            return liftColorSpans(r, value);
-          });
+          ranges.forEach(liftColorSpans);
         }
         editor.fire('unlockSnapshot');
       }
