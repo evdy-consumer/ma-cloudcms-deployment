@@ -285,7 +285,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
     /* Helper – replicate ancestor chain INSIDE a node   */
     /* ------------------------------------------------- */
     function wrapInside(node, chain) {
-      return chain.reduceRight(function (inner, outer) {
+      var wrapped = chain.reduceRight(function (inner, outer) {
         var clone = new CKEDITOR.dom.element(outer.getName());
         Object.entries(outer.getAttributes()).forEach(function (_ref) {
           var _ref2 = _slicedToArray(_ref, 2),
@@ -296,6 +296,8 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         clone.append(inner);
         return clone;
       }, node);
+      console.log('🔧 wrapInside →', wrapped.getOuterHtml());
+      return wrapped;
     }
 
     /* ------------------------------------------------- */
@@ -306,18 +308,19 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
       r.enlarge(CKEDITOR.ENLARGE_INLINE);
       var walker = new CKEDITOR.dom.walker(r);
       walker.evaluator = function (n) {
-        return (n === null || n === void 0 ? void 0 : n.type) === CKEDITOR.NODE_ELEMENT && n.getName() === 'span' && n.getStyle('color');
+        return n && n.type === CKEDITOR.NODE_ELEMENT && n.getName() === 'span' && n.getStyle('color');
       };
       var span;
       var _loop = function _loop() {
-          var _span$getFirst;
           var parent = span.getParent();
           if (!parent || parent.getName() === 'span') return 0; // continue
-          // already correct
-          if ((_span$getFirst = span.getFirst()) !== null && _span$getFirst !== void 0 && _span$getFirst.getName && span.getFirst().getName() === parent.getName()) return 0; // continue
+          // already correct order
+          if (span.getFirst() && span.getFirst().getName() === parent.getName()) return 0; // continue
           // clone exists
 
-          // clone parent inline tag
+          console.log('🚀 Lifting span', span.getOuterHtml(), 'parent', parent.getName());
+
+          // Clone the inline parent (keeps all its attributes)
           var clone = new CKEDITOR.dom.element(parent.getName());
           Object.entries(parent.getAttributes()).forEach(function (_ref3) {
             var _ref4 = _slicedToArray(_ref3, 2),
@@ -326,9 +329,15 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
             return clone.setAttribute(k, v);
           });
 
-          // move span's children into clone
+          // Move span's children into the clone
           while (span.getFirst()) clone.append(span.getFirst().remove());
-          span.append(clone); // span wraps clone
+
+          // Move span outside the inline parent and place clone inside
+          span.remove(); // detach span
+          parent.insertBeforeMe(span); // put span before the inline tag
+          span.append(clone); // colour span now wraps cloned inline tag
+
+          console.log('✅ After lift', span.getOuterHtml());
         },
         _ret;
       while (span = walker.next()) {
@@ -411,8 +420,10 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         var ranges = sel.getRanges();
         editor.fire('lockSnapshot');
         if (value === 'default') {
+          console.log('🗑 Removing colour from', ranges.length, 'range(s)');
           ranges.forEach(removeColor);
         } else {
+          console.log('🎨 Applying colour', value, 'to', ranges.length, 'range(s)');
           var style = new CKEDITOR.style({
             element: 'span',
             styles: {
