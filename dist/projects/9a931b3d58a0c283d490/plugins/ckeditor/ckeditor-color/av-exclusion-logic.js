@@ -181,7 +181,11 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
     /* ------------------------------------------------------------------ */
     /* Remove only the colour while keeping other inline styles            */
     /* ------------------------------------------------------------------ */
+    /* ------------------------------------------------------------------ */
+    /* Remove only colour spans – collect nodes first, then mutate DOM    */
+    /* ------------------------------------------------------------------ */
     function removeColor(range) {
+      // Walk an enlarged clone so we capture partially‑selected spans
       var enlarged = range.clone();
       enlarged.enlarge(CKEDITOR.ENLARGE_INLINE);
       var walker = new CKEDITOR.dom.walker(enlarged);
@@ -189,36 +193,45 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         var _n$getAscendant;
         return n.type === CKEDITOR.NODE_TEXT && ((_n$getAscendant = n.getAscendant('span', true)) === null || _n$getAscendant === void 0 ? void 0 : _n$getAscendant.getStyle('color'));
       };
-      var textNode;
+
+      // Collect targets first to avoid walker skipping nodes after DOM changes
+      var targets = [];
+      var node;
+      while (node = walker.next()) targets.push(node);
       var _loop = function _loop() {
+        var textNode = _targets[_i];
         var colorSpan = textNode.getAscendant('span', true);
         if (!colorSpan) return 1; // continue
+
+        // Use ORIGINAL range for offsets so left/right fragments are detected
         var _utils$splitTextByRan = utils.splitTextByRange(textNode, range),
           _utils$splitTextByRan2 = _slicedToArray(_utils$splitTextByRan, 3),
           before = _utils$splitTextByRan2[0],
           middle = _utils$splitTextByRan2[1],
           after = _utils$splitTextByRan2[2];
-        var ancestors = [];
-        var a = textNode.getParent();
-        while (a && !a.equals(colorSpan)) {
-          ancestors.unshift(a);
-          a = a.getParent();
+
+        // Build chain of ancestors between textNode and colour span
+        var chain = [];
+        var ancestor = textNode.getParent();
+        while (ancestor && !ancestor.equals(colorSpan)) {
+          chain.unshift(ancestor);
+          ancestor = ancestor.getParent();
         }
-        var makeFragment = function makeFragment(content, keepColor) {
+        var buildFragment = function buildFragment(content, keepColor) {
           if (!content) return null;
-          var wrapped = utils.wrapWithAncestors(new CKEDITOR.dom.text(content), ancestors);
+          var wrapped = utils.wrapWithAncestors(new CKEDITOR.dom.text(content), chain);
           if (!keepColor) return wrapped;
-          var s = utils.cloneElement(colorSpan);
-          s.append(wrapped);
-          return s;
+          var spanCopy = utils.cloneElement(colorSpan);
+          spanCopy.append(wrapped);
+          return spanCopy;
         };
-        [makeFragment(before, true), utils.wrapWithAncestors(new CKEDITOR.dom.text(middle), ancestors), makeFragment(after, true)].filter(Boolean).forEach(function (f) {
-          return colorSpan.insertBeforeMe(f);
+        [buildFragment(before, true), utils.wrapWithAncestors(new CKEDITOR.dom.text(middle), chain), buildFragment(after, true)].filter(Boolean).forEach(function (fragment) {
+          return colorSpan.insertBeforeMe(fragment);
         });
         textNode.remove();
         if (!colorSpan.getChildCount()) colorSpan.remove();
       };
-      while (textNode = walker.next()) {
+      for (var _i = 0, _targets = targets; _i < _targets.length; _i++) {
         if (_loop()) continue;
       }
     }
@@ -235,8 +248,8 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
       },
       init: function init() {
         this.add('default', 'Remove Color', 'Remove Color');
-        for (var _i = 0, _Object$entries = Object.entries(colorMap); _i < _Object$entries.length; _i++) {
-          var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+        for (var _i2 = 0, _Object$entries = Object.entries(colorMap); _i2 < _Object$entries.length; _i2++) {
+          var _Object$entries$_i = _slicedToArray(_Object$entries[_i2], 2),
             label = _Object$entries$_i[0],
             value = _Object$entries$_i[1];
           this.add(value, label, label);
