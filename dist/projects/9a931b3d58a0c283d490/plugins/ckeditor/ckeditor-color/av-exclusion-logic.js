@@ -303,20 +303,25 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
      * CKEditor applies colour by inserting <span style="color"> **inside** inline tags.
      * Move such inner spans so they wrap the tag instead.
      */
-    function liftColorSpans(range, colorValue) {
+    /**
+     * Move any colour <span> that CKEditor inserts **inside** inline tags so the
+     * span wraps the tag instead – regardless of the exact colour value.
+     */
+    function liftColorSpans(range) {
       var r = range.clone();
       r.enlarge(CKEDITOR.ENLARGE_INLINE);
       var walker = new CKEDITOR.dom.walker(r);
       walker.evaluator = function (node) {
-        return (node === null || node === void 0 ? void 0 : node.type) === CKEDITOR.NODE_ELEMENT && node.getName() === 'span' && node.getStyle('color') === colorValue;
-      };
+        return (node === null || node === void 0 ? void 0 : node.type) === CKEDITOR.NODE_ELEMENT && node.getName() === 'span' && node.getStyle('color');
+      }; // any colour span
+
       var span;
       while (span = walker.next()) {
         var parent = span.getParent();
         if (!parent || parent.getName() === 'span') continue; // already outer‑most
         span.remove();
-        parent.insertBeforeMe(span); // move span before <strong>
-        span.append(parent); // span now wraps the tag
+        parent.insertBeforeMe(span); // move span before <strong>/<em>/…
+        span.append(parent); // span now wraps the formatting tag
       }
     }
 
