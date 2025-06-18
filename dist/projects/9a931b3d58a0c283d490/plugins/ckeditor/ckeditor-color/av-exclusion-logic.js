@@ -315,7 +315,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
           var parent = span.getParent();
           if (!parent || parent.getName() === 'span') return 0; // continue
           // already outer‑most
-          if (span.getFirst() && span.getFirst().getName() === parent.getName()) return 0; // continue
+          if (span.getFirst() && span.getFirst().type === CKEDITOR.NODE_ELEMENT && span.getFirst().getName() === parent.getName()) return 0; // continue
           // clone exists
 
           console.log('🚀 Lift', span.getOuterHtml(), 'inside', parent.getName());
