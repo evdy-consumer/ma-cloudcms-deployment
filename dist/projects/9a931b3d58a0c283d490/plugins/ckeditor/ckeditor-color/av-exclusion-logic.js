@@ -312,6 +312,13 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
      * For every colour <span> that sits inside a non‑span inline tag,
      * clone that inline tag INSIDE the span (instead of pulling the span out).
      */
+    /**
+     * Turn
+     *   <strong>foo <span style='color'>bar</span> baz</strong>
+     * into
+     *   <strong>foo <span style='color'><strong>bar</strong></span> baz</strong>
+     * Works for any inline parent (em/u/a/etc.).
+     */
     function liftColorSpans(range) {
       var r = range.clone();
       r.enlarge(CKEDITOR.ENLARGE_INLINE);
@@ -321,14 +328,12 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
       };
       var span;
       var _loop = function _loop() {
-          var _span$getFirst;
           var parent = span.getParent();
           if (!parent || parent.getName() === 'span') return 0; // continue
-          // span already outer‑most or at root
-          if ((_span$getFirst = span.getFirst()) !== null && _span$getFirst !== void 0 && _span$getFirst.getName && span.getFirst().getName() === parent.getName()) return 0; // continue
-          // already cloned
+          // already fine
+          if (span.getParent().getName() === 'span' && span.getParent().getStyle('color')) return 0; // continue
 
-          // 1. Clone the inline parent (e.g. <strong>)
+          // Clone the inline parent (keeps attrs)
           var clone = new CKEDITOR.dom.element(parent.getName());
           Object.entries(parent.getAttributes()).forEach(function (_ref3) {
             var _ref4 = _slicedToArray(_ref3, 2),
@@ -337,10 +342,9 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
             return clone.setAttribute(k, v);
           });
 
-          // 2. Move span's children into the clone
+          // Move span's kids into the clone
           while (span.getFirst()) clone.append(span.getFirst().remove());
-
-          // 3. Append the clone back into the span
+          // Append clone into span (span wraps clone)
           span.append(clone);
         },
         _ret;
