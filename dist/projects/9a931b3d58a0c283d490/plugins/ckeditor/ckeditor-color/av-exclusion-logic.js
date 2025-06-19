@@ -126,11 +126,6 @@ var _window = window,
 
 /*
  * CKEditor 4 colour‑apply / remove plugin
- * --------------------------------------
- * • Apply colour: wrap selection in <span style='color:…'>, then lift the span so
- *   it wraps any inline tags (<strong>, <em>, …).
- * • Remove colour: single‑pass removal that handles fully‑ or partially‑selected
- *   colour spans while preserving every other inline style.
  */
 CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
   requires: 'richcombo',
@@ -155,17 +150,11 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
           wrapper.append(inner);
           return wrapper;
         }, node);
-      },
-      splitText: function splitText(node, range) {
-        var s = node.equals(range.startContainer) ? range.startOffset : 0;
-        var e = node.equals(range.endContainer) ? range.endOffset : node.getLength();
-        return [node.substring(0, s), node.substring(s, e), node.substring(e)];
       }
     };
 
-    /* -------------------- span‑lifter (apply) -------------------- */
+    /* ---------------- span‑lifter (apply) ---------------- */
     function liftColorSpans(range) {
-      // clone first, then enlarge – avoids undefined walker range / collapsed error
       var walkRange = range.clone();
       walkRange.enlarge(CKEDITOR.ENLARGE_INLINE);
       var walker = new CKEDITOR.dom.walker(walkRange);
@@ -175,41 +164,37 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
       var span;
       while (span = walker.next()) {
         var inlineParent = span.getParent();
-        if (!inlineParent || inlineParent.getName() === 'span') continue; // span already outer‑most
-
+        if (!inlineParent || inlineParent.getName() === 'span') continue;
         var firstChild = span.getFirst();
-        if ((firstChild === null || firstChild === void 0 ? void 0 : firstChild.type) === CKEDITOR.NODE_ELEMENT && firstChild.getName() === inlineParent.getName()) continue; // clone already present
-
-        var inlineClone = utils.clone(inlineParent);
-        while (span.getFirst()) inlineClone.append(span.getFirst().remove());
-        span.append(inlineClone); // <span><strong>…</strong></span>
+        if ((firstChild === null || firstChild === void 0 ? void 0 : firstChild.type) === CKEDITOR.NODE_ELEMENT && firstChild.getName() === inlineParent.getName()) continue;
+        var clone = utils.clone(inlineParent);
+        while (span.getFirst()) clone.append(span.getFirst().remove());
+        span.append(clone);
       }
     }
 
-    /* -------------------- colour remover ------------------------ */
+    /* -------------- colour remover (single pass) -------------- */
     function smartRemoveColorFromPartial(range) {
-      /* quick full-span removal */
+      /* Pass 1 – remove colour from spans fully inside the selection */
       var fullRange = range.clone();
       fullRange.enlarge(CKEDITOR.ENLARGE_INLINE);
       var spanWalker = new CKEDITOR.dom.walker(fullRange);
       spanWalker.evaluator = function (node) {
         return (node === null || node === void 0 ? void 0 : node.type) === CKEDITOR.NODE_ELEMENT && node.getName() === 'span' && node.getStyle('color');
       };
-      var spanNode;
-      while (spanNode = spanWalker.next()) {
-        if (!spanNode) continue;
-        // strip colour only if the span is completely inside the (enlarged) range
-        if (fullRange.containsNode(spanNode, true)) {
-          spanNode.removeStyle('color');
-          if (!spanNode.hasAttributes()) {
-            while (spanNode.getFirst()) spanNode.insertBeforeMe(spanNode.getFirst().remove());
-            spanNode.remove();
+      for (var span; span = spanWalker.next();) {
+        if (fullRange.containsNode(span, true)) {
+          var _span$getAttribute;
+          span.removeStyle('color');
+          if (!((_span$getAttribute = span.getAttribute('style')) !== null && _span$getAttribute !== void 0 && _span$getAttribute.trim())) span.removeAttribute('style');
+          if (!span.hasAttributes()) {
+            while (span.getFirst()) span.insertBeforeMe(span.getFirst().remove());
+            span.remove();
           }
         }
       }
 
-      /* original partial‑span logic */
-      // 1️⃣ Collect all text nodes inside coloured spans BEFORE mutating DOM
+      /* Pass 2 – handle partially‑selected spans */
       var collector = new CKEDITOR.dom.walker(range);
       collector.evaluator = function (node) {
         return node.type === CKEDITOR.NODE_TEXT && node.getAscendant(function (el) {
@@ -217,64 +202,51 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         }, true);
       };
       var targets = [];
-      for (var tn; tn = collector.next();) targets.push(tn);
-
-      // 2️⃣ Process each text node (original splitting logic)
+      var node;
+      while (node = collector.next()) targets.push(node);
+      var processedSpans = new Set();
       var _loop = function _loop() {
-          var textNode = _targets[_i];
-          var colorSpan = textNode.getAscendant(function (el) {
-            return el.getName && el.getName() === 'span' && el.getStyle('color');
-          }, true);
-          if (!colorSpan) return 0; // continue
+        var textNode = _targets[_i];
+        var colorSpan = textNode.getAscendant(function (el) {
+          return el.getName && el.getName() === 'span' && el.getStyle('color');
+        }, true);
+        if (!colorSpan || processedSpans.has(colorSpan)) return 1; // continue
+        var fullText = textNode.getText();
+        var startOffset = textNode.equals(range.startContainer) ? range.startOffset : 0;
+        var endOffset = textNode.equals(range.endContainer) ? range.endOffset : fullText.length;
+        var before = fullText.slice(0, startOffset);
+        var selected = fullText.slice(startOffset, endOffset);
+        var after = fullText.slice(endOffset);
+        var beforeFrag = before ? new CKEDITOR.dom.text(before) : null;
+        var selectedFrag = selected ? new CKEDITOR.dom.text(selected) : null;
+        var afterFrag = after ? new CKEDITOR.dom.text(after) : null;
 
-          /* If the selection fully covers this colour span, simply strip the
-             colour style once and skip further processing for its children. */
-          if (colorSpan.contains(range.startContainer) && colorSpan.contains(range.endContainer)) {
-            colorSpan.removeStyle('color');
-            if (!colorSpan.hasAttributes()) {
-              while (colorSpan.getFirst()) colorSpan.insertBeforeMe(colorSpan.getFirst().remove());
-              colorSpan.remove();
-            }
-            return 0; // continue
-            // nothing more to do for any text nodes inside this span
-          }
-          var fullText = textNode.getText();
-          var startOffset = textNode.equals(range.startContainer) ? range.startOffset : 0;
-          var endOffset = textNode.equals(range.endContainer) ? range.endOffset : fullText.length;
-          var before = fullText.slice(0, startOffset);
-          var selected = fullText.slice(startOffset, endOffset);
-          var after = fullText.slice(endOffset);
-          var beforeFrag = before ? new CKEDITOR.dom.text(before) : null;
-          var selectedFrag = selected ? new CKEDITOR.dom.text(selected) : null;
-          var afterFrag = after ? new CKEDITOR.dom.text(after) : null;
-          var parentChain = [];
-          var cur = textNode.getParent();
-          while (cur && !cur.equals(colorSpan)) {
-            parentChain.unshift(cur);
-            cur = cur.getParent();
-          }
-          var build = function build(frag, keepColor) {
-            if (!frag) return null;
-            var wrapped = utils.wrapInside(frag, parentChain);
-            if (!keepColor) return wrapped;
-            var spanCopy = utils.clone(colorSpan);
-            spanCopy.append(wrapped);
-            return spanCopy;
-          };
-          [build(beforeFrag, true), utils.wrapInside(selectedFrag || new CKEDITOR.dom.text(''), parentChain), build(afterFrag, true)].filter(Boolean).forEach(function (frag) {
-            return colorSpan.insertBeforeMe(frag);
-          });
-          textNode.remove();
-          if (!colorSpan.getChildCount()) colorSpan.remove();
-        },
-        _ret;
+        /* Build ancestor chain */
+        var chain = [];
+        var current = textNode.getParent();
+        while (current && !current.equals(colorSpan)) {
+          chain.unshift(current);
+          current = current.getParent();
+        }
+        var build = function build(frag, keepColor) {
+          if (!frag) return null;
+          var wrapped = utils.wrapInside(frag, chain);
+          if (!keepColor) return wrapped;
+          var spanCopy = utils.clone(colorSpan);
+          spanCopy.append(wrapped);
+          return spanCopy;
+        };
+        [build(beforeFrag, true), utils.wrapInside(selectedFrag || new CKEDITOR.dom.text(''), chain), build(afterFrag, true)].filter(Boolean).forEach(function (frag) {
+          return colorSpan.insertBeforeMe(frag);
+        });
+        textNode.remove();
+        if (!colorSpan.getChildCount()) colorSpan.remove();
+        processedSpans.add(colorSpan);
+      };
       for (var _i = 0, _targets = targets; _i < _targets.length; _i++) {
-        _ret = _loop();
-        if (_ret === 0) continue;
+        if (_loop()) continue;
       }
     }
-
-    /* ---------------------- UI combo */
 
     /* ---------------------- UI combo ----------------------------- */
     editor.ui.addRichCombo('ApplyColor', {
@@ -303,7 +275,6 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         editor.fire('lockSnapshot');
         if (choice === 'default') {
           var _selection;
-          // 1️⃣ ensure structure is normalised, then 2️⃣ remove colour
           selection.getRanges().forEach(liftColorSpans);
           selection = editor.getSelection();
           (_selection = selection) === null || _selection === void 0 || _selection.getRanges().forEach(smartRemoveColorFromPartial);
