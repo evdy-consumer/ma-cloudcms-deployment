@@ -188,24 +188,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
 
     /* -------------------- colour remover ------------------------ */
     function smartRemoveColorFromPartial(range) {
-      /* ---------- quick pass: colour spans entirely inside the range ---------- */
-      var spanRange = range.clone();
-      spanRange.enlarge(CKEDITOR.ENLARGE_INLINE);
-      var spanWalker = new CKEDITOR.dom.walker(spanRange);
-      spanWalker.evaluator = function (node) {
-        return (node === null || node === void 0 ? void 0 : node.type) === CKEDITOR.NODE_ELEMENT && node.getName() === 'span' && node.getStyle('color');
-      };
-      for (var span; span = spanWalker.next();) {
-        if (spanRange.containsNode(span, true)) {
-          span.removeStyle('color');
-          if (!span.hasAttributes()) {
-            while (span.getFirst()) span.insertBeforeMe(span.getFirst().remove());
-            span.remove();
-          }
-        }
-      }
-
-      /* ---------- detailed pass for partially‑selected content --------------- */
+      // 1️⃣ Collect all text nodes inside coloured spans BEFORE mutating DOM
       var collector = new CKEDITOR.dom.walker(range);
       collector.evaluator = function (node) {
         return node.type === CKEDITOR.NODE_TEXT && node.getAscendant(function (el) {
@@ -214,14 +197,14 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
       };
       var targets = [];
       for (var tn; tn = collector.next();) targets.push(tn);
+
+      // 2️⃣ Process each text node (original splitting logic)
       var _loop = function _loop() {
         var textNode = _targets[_i];
         var colorSpan = textNode.getAscendant(function (el) {
           return el.getName && el.getName() === 'span' && el.getStyle('color');
         }, true);
         if (!colorSpan) return 1; // continue
-        // span might have been cleared above
-
         var fullText = textNode.getText();
         var startOffset = textNode.equals(range.startContainer) ? range.startOffset : 0;
         var endOffset = textNode.equals(range.endContainer) ? range.endOffset : fullText.length;
@@ -231,22 +214,22 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         var beforeFrag = before ? new CKEDITOR.dom.text(before) : null;
         var selectedFrag = selected ? new CKEDITOR.dom.text(selected) : null;
         var afterFrag = after ? new CKEDITOR.dom.text(after) : null;
-        var chain = [];
+        var parentChain = [];
         var cur = textNode.getParent();
         while (cur && !cur.equals(colorSpan)) {
-          chain.unshift(cur);
+          parentChain.unshift(cur);
           cur = cur.getParent();
         }
         var build = function build(frag, keepColor) {
           if (!frag) return null;
-          var wrapped = utils.wrapInside(frag, chain);
+          var wrapped = utils.wrapInside(frag, parentChain);
           if (!keepColor) return wrapped;
-          var copy = utils.clone(colorSpan);
-          copy.append(wrapped);
-          return copy;
+          var spanCopy = utils.clone(colorSpan);
+          spanCopy.append(wrapped);
+          return spanCopy;
         };
-        [build(beforeFrag, true), utils.wrapInside(selectedFrag || new CKEDITOR.dom.text(''), chain), build(afterFrag, true)].filter(Boolean).forEach(function (f) {
-          return colorSpan.insertBeforeMe(f);
+        [build(beforeFrag, true), utils.wrapInside(selectedFrag || new CKEDITOR.dom.text(''), parentChain), build(afterFrag, true)].filter(Boolean).forEach(function (frag) {
+          return colorSpan.insertBeforeMe(frag);
         });
         textNode.remove();
         if (!colorSpan.getChildCount()) colorSpan.remove();
