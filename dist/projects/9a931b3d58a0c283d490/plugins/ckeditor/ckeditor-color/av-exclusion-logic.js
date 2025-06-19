@@ -189,12 +189,14 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
     /* -------------------- colour remover ------------------------ */
     function smartRemoveColorFromPartial(range) {
       /* ---------- quick pass: colour spans entirely inside the range ---------- */
-      var spanWalker = new CKEDITOR.dom.walker(range.clone().enlarge(CKEDITOR.ENLARGE_INLINE));
+      var spanRange = range.clone();
+      spanRange.enlarge(CKEDITOR.ENLARGE_INLINE);
+      var spanWalker = new CKEDITOR.dom.walker(spanRange);
       spanWalker.evaluator = function (node) {
         return (node === null || node === void 0 ? void 0 : node.type) === CKEDITOR.NODE_ELEMENT && node.getName() === 'span' && node.getStyle('color');
       };
       for (var span; span = spanWalker.next();) {
-        if (range.containsNode(span, true)) {
+        if (spanRange.containsNode(span, true)) {
           span.removeStyle('color');
           if (!span.hasAttributes()) {
             while (span.getFirst()) span.insertBeforeMe(span.getFirst().remove());
