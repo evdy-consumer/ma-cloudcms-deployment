@@ -175,7 +175,9 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
 
     /* -------------------- span‑lifter (apply) -------------------- */
     function liftColorSpans(range) {
-      var walker = new CKEDITOR.dom.walker(range.clone().enlarge(CKEDITOR.ENLARGE_INLINE));
+      var walkRange = range.clone();
+      walkRange.enlarge(CKEDITOR.ENLARGE_INLINE);
+      var walker = new CKEDITOR.dom.walker(walkRange);
       walker.evaluator = function (n) {
         return (n === null || n === void 0 ? void 0 : n.type) === CKEDITOR.NODE_ELEMENT && n.getName() === 'span' && n.getStyle('color');
       };
@@ -192,74 +194,139 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
     }
 
     /* -------------------- colour remover ------------------------ */
-    function smartRemoveColorFromPartial(range) {
-      var walker = new CKEDITOR.dom.walker(range);
+    /*     function smartRemoveColorFromPartial(range) {
+      const walker = new CKEDITOR.dom.walker(range);
       walker.evaluator = function (node) {
-        return node.type === CKEDITOR.NODE_TEXT && node.getAscendant(function (el) {
-          return el.getName && el.getName() === 'span' && el.getStyle('color');
-        }, true);
+        return (
+          node.type === CKEDITOR.NODE_TEXT &&
+          node.getAscendant(function (el) {
+            return el.getName && el.getName() === 'span' && el.getStyle('color');
+          }, true)
+        );
       };
-      var textNode;
-      while (textNode = walker.next()) {
-        var colorSpan = textNode.getAscendant(function (el) {
+       let textNode;
+      while ((textNode = walker.next())) {
+        const colorSpan = textNode.getAscendant(function (el) {
           return el.getName && el.getName() === 'span' && el.getStyle('color');
         }, true);
-        if (!colorSpan) continue;
-        var fullText = textNode.getText();
-        var startOffset = textNode.equals(range.startContainer) ? range.startOffset : 0;
-        var endOffset = textNode.equals(range.endContainer) ? range.endOffset : fullText.length;
-        var before = fullText.slice(0, startOffset);
-        var selected = fullText.slice(startOffset, endOffset);
-        var after = fullText.slice(endOffset);
-        console.log("\uD83D\uDD0D Splitting text node: \"".concat(fullText, "\""));
-        console.log("    Before: \"".concat(before, "\" | Selected: \"").concat(selected, "\" | After: \"").concat(after, "\""));
-        var beforeFrag = before ? new CKEDITOR.dom.text(before) : null;
-        var selectedFrag = selected ? new CKEDITOR.dom.text(selected) : null;
-        var afterFrag = after ? new CKEDITOR.dom.text(after) : null;
-        var parentChain = [];
-        var current = textNode.getParent();
+         if (!colorSpan) continue;
+         const fullText = textNode.getText();
+        const startOffset = textNode.equals(range.startContainer) ? range.startOffset : 0;
+        const endOffset = textNode.equals(range.endContainer) ? range.endOffset : fullText.length;
+         const before = fullText.slice(0, startOffset);
+        const selected = fullText.slice(startOffset, endOffset);
+        const after = fullText.slice(endOffset);
+         console.log(`🔍 Splitting text node: "${fullText}"`);
+        console.log(`    Before: "${before}" | Selected: "${selected}" | After: "${after}"`);
+         const beforeFrag = before ? new CKEDITOR.dom.text(before) : null;
+        const selectedFrag = selected ? new CKEDITOR.dom.text(selected) : null;
+        const afterFrag = after ? new CKEDITOR.dom.text(after) : null;
+         const parentChain = [];
+        let current = textNode.getParent();
         while (current && !current.equals(colorSpan)) {
           parentChain.unshift(current);
           current = current.getParent();
         }
-        if (beforeFrag) {
-          var span = new CKEDITOR.dom.element('span');
+         if (beforeFrag) {
+          const span = new CKEDITOR.dom.element('span');
           span.setAttribute('style', colorSpan.getAttribute('style'));
-          var wrapped = utils.wrapWithAncestorsInside(beforeFrag, parentChain);
+          const wrapped = utils.wrapWithAncestorsInside(beforeFrag, parentChain);
           span.append(wrapped);
           colorSpan.insertBeforeMe(span);
           console.log('⬅️ Inserted left part with original color and formatting');
         }
-        if (selectedFrag) {
-          var originalStyle = colorSpan.getAttribute('style') || '';
-          var keptStyle = originalStyle.split(';').map(function (s) {
-            return s.trim();
-          }).filter(function (s) {
-            return s && !s.startsWith('color');
-          }).join('; ');
-          var _wrapped = utils.wrapWithAncestorsInside(selectedFrag, parentChain);
-          if (keptStyle) {
-            var midSpan = new CKEDITOR.dom.element('span');
+         if (selectedFrag) {
+          const originalStyle = colorSpan.getAttribute('style') || '';
+          const keptStyle = originalStyle
+            .split(';')
+            .map(s => s.trim())
+            .filter(s => s && !s.startsWith('color'))
+            .join('; ');
+           let wrapped = utils.wrapWithAncestorsInside(selectedFrag, parentChain);
+           if (keptStyle) {
+            const midSpan = new CKEDITOR.dom.element('span');
             midSpan.setAttribute('style', keptStyle);
-            midSpan.append(_wrapped);
-            _wrapped = midSpan;
+            midSpan.append(wrapped);
+            wrapped = midSpan;
           }
-          colorSpan.insertBeforeMe(_wrapped);
-          console.log("\u2728 Inserted middle with formatting (no color): \"".concat(keptStyle, "\""));
+           colorSpan.insertBeforeMe(wrapped);
+          console.log(`✨ Inserted middle with formatting (no color): "${keptStyle}"`);
         }
-        if (afterFrag) {
-          var _span = new CKEDITOR.dom.element('span');
-          _span.setAttribute('style', colorSpan.getAttribute('style'));
-          var _wrapped2 = utils.wrapWithAncestorsInside(afterFrag, parentChain);
-          _span.append(_wrapped2);
-          colorSpan.insertBeforeMe(_span);
+         if (afterFrag) {
+          const span = new CKEDITOR.dom.element('span');
+          span.setAttribute('style', colorSpan.getAttribute('style'));
+          const wrapped = utils.wrapWithAncestorsInside(afterFrag, parentChain);
+          span.append(wrapped);
+          colorSpan.insertBeforeMe(span);
           console.log('➡️ Inserted right part with original color and formatting');
         }
-        textNode.remove();
-        if (colorSpan.getChildCount() === 0) {
+         textNode.remove();
+         if (colorSpan.getChildCount() === 0) {
           colorSpan.remove();
           console.log('🧹 Removed empty original span');
         }
+      }
+    } */
+
+    function smartRemoveColorFromPartial(range) {
+      /* Pass1 — fully‑selected colour spans */
+      var enlarged = range.clone();
+      enlarged.enlarge(CKEDITOR.ENLARGE_INLINE);
+      var spanWalker = new CKEDITOR.dom.walker(enlarged);
+      spanWalker.evaluator = function (n) {
+        return (n === null || n === void 0 ? void 0 : n.type) === CKEDITOR.NODE_ELEMENT && n.getName() === 'span' && n.getStyle('color');
+      };
+      for (var span; span = spanWalker.next();) {
+        if (enlarged.containsNode(span)) {
+          span.removeStyle('color');
+          if (!span.hasAttributes()) {
+            while (span.getFirst()) span.insertBeforeMe(span.getFirst().remove());
+            span.remove();
+          }
+        }
+      }
+
+      /* Pass2 — partially‑selected colour spans */
+      var textWalker = new CKEDITOR.dom.walker(enlarged);
+      textWalker.evaluator = function (n) {
+        var _n$getAscendant;
+        return n.type === CKEDITOR.NODE_TEXT && ((_n$getAscendant = n.getAscendant('span', true)) === null || _n$getAscendant === void 0 ? void 0 : _n$getAscendant.getStyle('color'));
+      };
+      var targets = [];
+      for (var tn; tn = textWalker.next();) targets.push(tn);
+      var _loop = function _loop() {
+        var textNode = _targets[_i];
+        var span = textNode.getAscendant('span', true);
+        if (!span || !span.getStyle('color')) return 1; // continue
+        // may have been cleared in pass1
+
+        var _utils$splitText = utils.splitText(textNode, range),
+          _utils$splitText2 = _slicedToArray(_utils$splitText, 3),
+          left = _utils$splitText2[0],
+          mid = _utils$splitText2[1],
+          right = _utils$splitText2[2];
+        var chain = [];
+        var p = textNode.getParent();
+        while (p && !p.equals(span)) {
+          chain.unshift(p);
+          p = p.getParent();
+        }
+        var build = function build(txt, keepColor) {
+          if (!txt) return null;
+          var wrapped = utils.wrapInside(new CKEDITOR.dom.text(txt), chain);
+          if (!keepColor) return wrapped;
+          var copy = utils.clone(span);
+          copy.append(wrapped);
+          return copy;
+        };
+        [build(left, true), utils.wrapInside(new CKEDITOR.dom.text(mid), chain), build(right, true)].filter(Boolean).forEach(function (frag) {
+          return span.insertBeforeMe(frag);
+        });
+        textNode.remove();
+        if (!span.getChildCount()) span.remove();
+      };
+      for (var _i = 0, _targets = targets; _i < _targets.length; _i++) {
+        if (_loop()) continue;
       }
     }
 
@@ -273,8 +340,8 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
       },
       init: function init() {
         this.add('default', 'Remove Color', 'Remove Color');
-        for (var _i = 0, _Object$entries = Object.entries(colorMap); _i < _Object$entries.length; _i++) {
-          var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+        for (var _i2 = 0, _Object$entries = Object.entries(colorMap); _i2 < _Object$entries.length; _i2++) {
+          var _Object$entries$_i = _slicedToArray(_Object$entries[_i2], 2),
             label = _Object$entries$_i[0],
             val = _Object$entries$_i[1];
           this.add(val, label, label);
