@@ -184,8 +184,30 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
     /* ------------------------------------------------------------------ */
     /* Remove only colour spans – collect nodes first, then mutate DOM    */
     /* ------------------------------------------------------------------ */
+    /**
+     * Remove colour while keeping other inline styles.
+     * 1.  Remove colour style from spans fully enclosed by the range.
+     * 2.  For partially‑selected spans, split text into left / middle / right fragments.
+     */
     function removeColor(range) {
-      // Walk an enlarged clone so we capture partially‑selected spans
+      /* ---------------- Pass 1 ‑ fully‑selected colour spans --------------- */
+      var spanWalker = new CKEDITOR.dom.walker(range.clone().enlarge(CKEDITOR.ENLARGE_INLINE));
+      spanWalker.evaluator = function (n) {
+        return (n === null || n === void 0 ? void 0 : n.type) === CKEDITOR.NODE_ELEMENT && n.getName() === 'span' && n.getStyle('color');
+      };
+      var spanNode;
+      while (spanNode = spanWalker.next()) {
+        if (range.containsNode(spanNode)) {
+          spanNode.removeStyle('color');
+          if (!spanNode.hasAttributes()) {
+            // unwrap span
+            while (spanNode.getFirst()) spanNode.insertBeforeMe(spanNode.getFirst().remove());
+            spanNode.remove();
+          }
+        }
+      }
+
+      /* ---------------- Pass 2 ‑ partially‑selected spans ------------------ */
       var enlarged = range.clone();
       enlarged.enlarge(CKEDITOR.ENLARGE_INLINE);
       var walker = new CKEDITOR.dom.walker(enlarged);
@@ -193,42 +215,40 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         var _n$getAscendant;
         return n.type === CKEDITOR.NODE_TEXT && ((_n$getAscendant = n.getAscendant('span', true)) === null || _n$getAscendant === void 0 ? void 0 : _n$getAscendant.getStyle('color'));
       };
-
-      // Collect targets first to avoid walker skipping nodes after DOM changes
       var targets = [];
-      var node;
-      while (node = walker.next()) targets.push(node);
+      var textNode;
+      while (textNode = walker.next()) targets.push(textNode);
       var _loop = function _loop() {
-        var textNode = _targets[_i];
-        var colorSpan = textNode.getAscendant('span', true);
-        if (!colorSpan) return 1; // continue
+        var txt = _targets[_i];
+        var colorSpan = txt.getAscendant('span', true);
+        if (!colorSpan || !colorSpan.getStyle('color')) return 1; // continue
+        // may have been cleared in pass 1
 
-        // Use ORIGINAL range for offsets so left/right fragments are detected
-        var _utils$splitTextByRan = utils.splitTextByRange(textNode, range),
+        var _utils$splitTextByRan = utils.splitTextByRange(txt, range),
           _utils$splitTextByRan2 = _slicedToArray(_utils$splitTextByRan, 3),
           before = _utils$splitTextByRan2[0],
           middle = _utils$splitTextByRan2[1],
           after = _utils$splitTextByRan2[2];
 
-        // Build chain of ancestors between textNode and colour span
+        // Build ancestors chain (excluding colour span)
         var chain = [];
-        var ancestor = textNode.getParent();
-        while (ancestor && !ancestor.equals(colorSpan)) {
-          chain.unshift(ancestor);
-          ancestor = ancestor.getParent();
+        var anc = txt.getParent();
+        while (anc && !anc.equals(colorSpan)) {
+          chain.unshift(anc);
+          anc = anc.getParent();
         }
-        var buildFragment = function buildFragment(content, keepColor) {
+        var makeFrag = function makeFrag(content, keepColor) {
           if (!content) return null;
           var wrapped = utils.wrapWithAncestors(new CKEDITOR.dom.text(content), chain);
           if (!keepColor) return wrapped;
-          var spanCopy = utils.cloneElement(colorSpan);
-          spanCopy.append(wrapped);
-          return spanCopy;
+          var copy = utils.cloneElement(colorSpan);
+          copy.append(wrapped);
+          return copy;
         };
-        [buildFragment(before, true), utils.wrapWithAncestors(new CKEDITOR.dom.text(middle), chain), buildFragment(after, true)].filter(Boolean).forEach(function (fragment) {
-          return colorSpan.insertBeforeMe(fragment);
+        [makeFrag(before, true), utils.wrapWithAncestors(new CKEDITOR.dom.text(middle), chain), makeFrag(after, true)].filter(Boolean).forEach(function (f) {
+          return colorSpan.insertBeforeMe(f);
         });
-        textNode.remove();
+        txt.remove();
         if (!colorSpan.getChildCount()) colorSpan.remove();
       };
       for (var _i = 0, _targets = targets; _i < _targets.length; _i++) {
