@@ -198,45 +198,61 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
       var targets = [];
       var txt;
       while (txt = collector.next()) targets.push(txt);
+      var processedFullSpans = new Set();
       var _loop = function _loop() {
-        var textNode = _targets[_i];
-        var colorSpan = textNode.getAscendant(function (el) {
-          return el.getName && el.getName() === 'span' && el.getStyle('color');
-        }, true);
-        if (!colorSpan) return 1; // continue
-        var fullText = textNode.getText();
-        var startOffset = textNode.equals(range.startContainer) ? range.startOffset : 0;
-        var endOffset = textNode.equals(range.endContainer) ? range.endOffset : fullText.length;
-        var before = fullText.slice(0, startOffset);
-        var selected = fullText.slice(startOffset, endOffset);
-        var after = fullText.slice(endOffset);
-        var beforeFrag = before ? new CKEDITOR.dom.text(before) : null;
-        var selectedFrag = selected ? new CKEDITOR.dom.text(selected) : null;
-        var afterFrag = after ? new CKEDITOR.dom.text(after) : null;
+          var textNode = _targets[_i];
+          var colorSpan = textNode.getAscendant(function (el) {
+            return el.getName && el.getName() === 'span' && el.getStyle('color');
+          }, true);
+          if (!colorSpan) return 0; // continue
 
-        // Build ancestor chain up to, but excluding, the colour span
-        var chain = [];
-        var cur = textNode.getParent();
-        while (cur && !cur.equals(colorSpan)) {
-          chain.unshift(cur);
-          cur = cur.getParent();
-        }
-        var build = function build(frag, keepColor) {
-          if (!frag) return null;
-          var wrapped = utils.wrapInside(frag, chain);
-          if (!keepColor) return wrapped;
-          var spanCopy = utils.clone(colorSpan);
-          spanCopy.append(wrapped);
-          return spanCopy;
-        };
-        [build(beforeFrag, true), utils.wrapInside(selectedFrag || new CKEDITOR.dom.text(''), chain), build(afterFrag, true)].filter(Boolean).forEach(function (f) {
-          return colorSpan.insertBeforeMe(f);
-        });
-        textNode.remove();
-        if (!colorSpan.getChildCount()) colorSpan.remove();
-      };
+          /* If the current selection fully contains the colour span, strip the
+             colour in one go and skip further processing for its children. */
+          if (range.containsNode(colorSpan) && !processedFullSpans.has(colorSpan)) {
+            colorSpan.removeStyle('color');
+            if (!colorSpan.hasAttributes()) {
+              while (colorSpan.getFirst()) colorSpan.insertBeforeMe(colorSpan.getFirst().remove());
+              colorSpan.remove();
+            }
+            processedFullSpans.add(colorSpan);
+            return 0; // continue
+            // nothing more to do for descendants of this span
+          }
+
+          // ----- partial‑span logic (unchanged) -----
+          var fullText = textNode.getText();
+          var startOffset = textNode.equals(range.startContainer) ? range.startOffset : 0;
+          var endOffset = textNode.equals(range.endContainer) ? range.endOffset : fullText.length;
+          var before = fullText.slice(0, startOffset);
+          var selected = fullText.slice(startOffset, endOffset);
+          var after = fullText.slice(endOffset);
+          var beforeFrag = before ? new CKEDITOR.dom.text(before) : null;
+          var selectedFrag = selected ? new CKEDITOR.dom.text(selected) : null;
+          var afterFrag = after ? new CKEDITOR.dom.text(after) : null;
+          var chain = [];
+          var cur = textNode.getParent();
+          while (cur && !cur.equals(colorSpan)) {
+            chain.unshift(cur);
+            cur = cur.getParent();
+          }
+          var build = function build(frag, keepColor) {
+            if (!frag) return null;
+            var wrapped = utils.wrapInside(frag, chain);
+            if (!keepColor) return wrapped;
+            var spanCopy = utils.clone(colorSpan);
+            spanCopy.append(wrapped);
+            return spanCopy;
+          };
+          [build(beforeFrag, true), utils.wrapInside(selectedFrag || new CKEDITOR.dom.text(''), chain), build(afterFrag, true)].filter(Boolean).forEach(function (f) {
+            return colorSpan.insertBeforeMe(f);
+          });
+          textNode.remove();
+          if (!colorSpan.getChildCount()) colorSpan.remove();
+        },
+        _ret;
       for (var _i = 0, _targets = targets; _i < _targets.length; _i++) {
-        if (_loop()) continue;
+        _ret = _loop();
+        if (_ret === 0) continue;
       }
     }
 
