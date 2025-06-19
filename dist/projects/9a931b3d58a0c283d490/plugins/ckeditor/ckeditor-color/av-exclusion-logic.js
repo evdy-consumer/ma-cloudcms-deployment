@@ -183,7 +183,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         return (node === null || node === void 0 ? void 0 : node.type) === CKEDITOR.NODE_ELEMENT && node.getName() === 'span' && node.getStyle('color');
       };
       for (var span; span = spanWalker.next();) {
-        if (fullRange.containsNode(span, true)) {
+        if (fullRange.checkBoundaryOfElement(span, CKEDITOR.START) && fullRange.checkBoundaryOfElement(span, CKEDITOR.END)) {
           var _span$getAttribute;
           span.removeStyle('color');
           if (!((_span$getAttribute = span.getAttribute('style')) !== null && _span$getAttribute !== void 0 && _span$getAttribute.trim())) span.removeAttribute('style');
