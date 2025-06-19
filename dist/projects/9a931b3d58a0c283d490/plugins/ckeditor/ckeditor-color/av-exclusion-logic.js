@@ -188,6 +188,27 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
 
     /* -------------------- colour remover ------------------------ */
     function smartRemoveColorFromPartial(range) {
+      /* quick full-span removal */
+      var fullRange = range.clone();
+      fullRange.enlarge(CKEDITOR.ENLARGE_INLINE);
+      var spanWalker = new CKEDITOR.dom.walker(fullRange);
+      spanWalker.evaluator = function (node) {
+        return (node === null || node === void 0 ? void 0 : node.type) === CKEDITOR.NODE_ELEMENT && node.getName() === 'span' && node.getStyle('color');
+      };
+      var spanNode;
+      while (spanNode = spanWalker.next()) {
+        if (!spanNode) continue;
+        // strip colour only if the span is completely inside the (enlarged) range
+        if (fullRange.containsNode(spanNode, true)) {
+          spanNode.removeStyle('color');
+          if (!spanNode.hasAttributes()) {
+            while (spanNode.getFirst()) spanNode.insertBeforeMe(spanNode.getFirst().remove());
+            spanNode.remove();
+          }
+        }
+      }
+
+      /* original partial‑span logic */
       // 1️⃣ Collect all text nodes inside coloured spans BEFORE mutating DOM
       var collector = new CKEDITOR.dom.walker(range);
       collector.evaluator = function (node) {
