@@ -177,29 +177,29 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
     function smartRemoveColorFromPartial(range) {
       console.log('🟢 smartRemoveColorFromPartial – start');
 
-      /* Pass 1 – remove colour from any <span style="color"> whose **entire text** is selected */
-      var spanWalker = new CKEDITOR.dom.walker(range.clone());
-      spanWalker.range.enlarge(CKEDITOR.ENLARGE_ELEMENT);
-      spanWalker.evaluator = function (n) {
-        return (n === null || n === void 0 ? void 0 : n.type) === CKEDITOR.NODE_ELEMENT && n.getName() === 'span' && n.getStyle('color');
-      }; // ensure internal range is valid
-      spanWalker.evaluator = function (n) {
-        return (n === null || n === void 0 ? void 0 : n.type) === CKEDITOR.NODE_ELEMENT && n.getName() === 'span' && n.getStyle('color');
-      };
-      for (var span; span = spanWalker.next();) {
-        var coversStart = span.contains(range.startContainer);
-        var coversEnd = span.contains(range.endContainer);
-        if (coversStart && coversEnd) {
-          var _span$getAttribute;
-          console.log('⚡ Pass1: stripping full-span colour');
-          span.removeStyle('color');
-          if (!((_span$getAttribute = span.getAttribute('style')) !== null && _span$getAttribute !== void 0 && _span$getAttribute.trim())) span.removeAttribute('style');
-          if (!span.hasAttributes()) {
-            while (span.getFirst()) span.insertBeforeMe(span.getFirst().remove());
-            span.remove();
-            console.log('⚡ Pass1: span unwrapped');
-          }
+      /* ---------- Pass 1 : full-span selection ----------------- */
+      /* Detect if the selection boundaries sit inside ONE colour span. */
+      var spanAncestor = range.startContainer.getAscendant('span', true);
+      if (spanAncestor &&
+      // there is a span
+      spanAncestor.getStyle('color') &&
+      // it has colour
+      spanAncestor.contains(range.endContainer) &&
+      // end is also inside it
+      spanAncestor.equals(
+      // selection covers WHOLE span
+      range.clone().enlarge(CKEDITOR.ENLARGE_INLINE).getEnclosedNode())) {
+        var _spanAncestor$getAttr;
+        // strip colour
+        spanAncestor.removeStyle('color');
+        if (!((_spanAncestor$getAttr = spanAncestor.getAttribute('style')) !== null && _spanAncestor$getAttr !== void 0 && _spanAncestor$getAttr.trim())) spanAncestor.removeAttribute('style');
+
+        // unwrap if empty
+        if (!spanAncestor.hasAttributes()) {
+          while (spanAncestor.getFirst()) spanAncestor.insertBeforeMe(spanAncestor.getFirst().remove());
+          spanAncestor.remove();
         }
+        return; // full-span handled, skip Pass 2
       }
 
       /* Pass 2 – handle partially‑selected spans */
