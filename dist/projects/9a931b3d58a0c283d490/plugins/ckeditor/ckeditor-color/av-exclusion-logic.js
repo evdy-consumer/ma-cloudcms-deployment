@@ -177,16 +177,17 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
     function smartRemoveColorFromPartial(range) {
       console.log('🟢 smartRemoveColorFromPartial – start');
 
-      /* Pass 0 – if the range exactly encloses a colour span element */
-      var enclosed = range.getEnclosedNode();
-      if (enclosed && enclosed.getName() === 'span' && enclosed.getStyle('color')) {
-        var _enclosed$getAttribut;
-        console.log('⚡ Pass0: range encloses <span style="color"> – stripping colour');
-        enclosed.removeStyle('color');
-        if (!((_enclosed$getAttribut = enclosed.getAttribute('style')) !== null && _enclosed$getAttribut !== void 0 && _enclosed$getAttribut.trim())) enclosed.removeAttribute('style');
-        if (!enclosed.hasAttributes()) {
-          while (enclosed.getFirst()) enclosed.insertBeforeMe(enclosed.getFirst().remove());
-          enclosed.remove();
+      /* Pass 0 – selection covers the entire contents of a colour span (even if
+         it doesn’t include the span element itself). Detect via boundary checks. */
+      var spanAncestor = range.startContainer.getAscendant('span', true);
+      if (spanAncestor && spanAncestor.getStyle('color') && range.checkBoundaryOfElement(spanAncestor, CKEDITOR.START) && range.checkBoundaryOfElement(spanAncestor, CKEDITOR.END)) {
+        var _spanAncestor$getAttr;
+        console.log('⚡ Pass0: range covers full coloured span contents – stripping colour');
+        spanAncestor.removeStyle('color');
+        if (!((_spanAncestor$getAttr = spanAncestor.getAttribute('style')) !== null && _spanAncestor$getAttr !== void 0 && _spanAncestor$getAttr.trim())) spanAncestor.removeAttribute('style');
+        if (!spanAncestor.hasAttributes()) {
+          while (spanAncestor.getFirst()) spanAncestor.insertBeforeMe(spanAncestor.getFirst().remove());
+          spanAncestor.remove();
           console.log('⚡ Pass0: span unwrapped');
         }
         return; // early exit; nothing else to do
