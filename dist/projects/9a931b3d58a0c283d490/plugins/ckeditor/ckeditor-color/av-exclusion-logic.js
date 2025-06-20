@@ -178,10 +178,11 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
       console.log('🟢 smartRemoveColorFromPartial – start');
 
       /* Pass 1 – remove colour from any <span style="color"> whose **entire text** is selected */
-      var spanRange = range.clone();
-      spanRange.enlarge(CKEDITOR.ENLARGE_ELEMENT);
-      var spanWalker = new CKEDITOR.dom.walker(spanRange);
-      spanWalker.range = spanRange; // ensure internal range is valid
+      var spanWalker = new CKEDITOR.dom.walker(range.clone());
+      spanWalker.range.enlarge(CKEDITOR.ENLARGE_ELEMENT);
+      spanWalker.evaluator = function (n) {
+        return (n === null || n === void 0 ? void 0 : n.type) === CKEDITOR.NODE_ELEMENT && n.getName() === 'span' && n.getStyle('color');
+      }; // ensure internal range is valid
       spanWalker.evaluator = function (n) {
         return (n === null || n === void 0 ? void 0 : n.type) === CKEDITOR.NODE_ELEMENT && n.getName() === 'span' && n.getStyle('color');
       };
