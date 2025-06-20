@@ -177,46 +177,23 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
     function smartRemoveColorFromPartial(range) {
       console.log('🟢 smartRemoveColorFromPartial – start');
 
-      /* Pass 0 – if selection fully covers the *content* of a coloured span */
-      var spanAncestor = range.startContainer.getAscendant('span', true);
-      if (spanAncestor && spanAncestor.getStyle('color')) {
-        var coversStart = range.checkBoundaryOfElement(spanAncestor, CKEDITOR.START);
-        var coversEnd = range.checkBoundaryOfElement(spanAncestor, CKEDITOR.END) || range.endContainer.equals(spanAncestor) && range.endOffset === spanAncestor.getChildCount();
-        if (coversStart && coversEnd) {
-          var _spanAncestor$getAttr;
-          console.log('⚡ Pass0: full span content selected – stripping colour');
-          spanAncestor.removeStyle('color');
-          if (!((_spanAncestor$getAttr = spanAncestor.getAttribute('style')) !== null && _spanAncestor$getAttr !== void 0 && _spanAncestor$getAttr.trim())) spanAncestor.removeAttribute('style');
-          if (!spanAncestor.hasAttributes()) {
-            while (spanAncestor.getFirst()) spanAncestor.insertBeforeMe(spanAncestor.getFirst().remove());
-            spanAncestor.remove();
-            console.log('⚡ Pass0: span unwrapped');
-          }
-          console.log('🟢 smartRemoveColorFromPartial – done (early exit)');
-          return;
-        }
-      }
-
-      /* Pass 1 – remove colour from spans fully inside the selection */
-      var fullRange = range.clone();
-      // Enlarge to element boundaries so getEnclosedNode() can pick up the span element
-      fullRange.enlarge(CKEDITOR.ENLARGE_ELEMENT);
-      var spanWalker = new CKEDITOR.dom.walker(fullRange);
-      spanWalker.evaluator = function (node) {
-        return (node === null || node === void 0 ? void 0 : node.type) === CKEDITOR.NODE_ELEMENT && node.getName() === 'span' && node.getStyle('color');
+      /* Pass 1 – remove colour from any <span style="color"> whose **entire text** is selected */
+      var spanWalker = new CKEDITOR.dom.walker(range.clone().enlarge(CKEDITOR.ENLARGE_ELEMENT));
+      spanWalker.evaluator = function (n) {
+        return (n === null || n === void 0 ? void 0 : n.type) === CKEDITOR.NODE_ELEMENT && n.getName() === 'span' && n.getStyle('color');
       };
-      console.log('🔍 Pass1: scanning full spans');
       for (var span; span = spanWalker.next();) {
-        console.log('  → Candidate span:', span.getOuterHtml().slice(0, 80));
-        if (fullRange.getEnclosedNode() && fullRange.getEnclosedNode().equals(span)) {
+        var coversStart = range.checkBoundaryOfElement(span, CKEDITOR.START);
+        var coversEnd = range.checkBoundaryOfElement(span, CKEDITOR.END);
+        if (coversStart && coversEnd) {
           var _span$getAttribute;
-          console.log('    ✔ Full span covered – stripping colour');
+          console.log('⚡ Pass1: stripping full-span colour');
           span.removeStyle('color');
           if (!((_span$getAttribute = span.getAttribute('style')) !== null && _span$getAttribute !== void 0 && _span$getAttribute.trim())) span.removeAttribute('style');
           if (!span.hasAttributes()) {
             while (span.getFirst()) span.insertBeforeMe(span.getFirst().remove());
             span.remove();
-            console.log('    🧹 Span unwrapped');
+            console.log('⚡ Pass1: span unwrapped');
           }
         }
       }
@@ -232,7 +209,6 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
       var targets = [];
       var node;
       while (node = collector.next()) targets.push(node);
-      console.log('🔍 Pass2: text nodes in colour spans ->', targets.length);
       var processedSpans = new Set();
       var _loop = function _loop() {
         var textNode = _targets[_i];
@@ -243,7 +219,6 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         var fullText = textNode.getText();
         var startOffset = textNode.equals(range.startContainer) ? range.startOffset : 0;
         var endOffset = textNode.equals(range.endContainer) ? range.endOffset : fullText.length;
-        console.log('  → Splitting text node:', fullText);
         var before = fullText.slice(0, startOffset);
         var selected = fullText.slice(startOffset, endOffset);
         var after = fullText.slice(endOffset);
