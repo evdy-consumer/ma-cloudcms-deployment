@@ -178,7 +178,9 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
       console.log('🟢 smartRemoveColorFromPartial – start');
 
       /* Pass 1 – remove colour from any <span style="color"> whose **entire text** is selected */
-      var spanWalker = new CKEDITOR.dom.walker(range.clone().enlarge(CKEDITOR.ENLARGE_ELEMENT));
+      var spanRange = range.clone();
+      spanRange.enlarge(CKEDITOR.ENLARGE_ELEMENT);
+      var spanWalker = new CKEDITOR.dom.walker(spanRange);
       spanWalker.evaluator = function (n) {
         return (n === null || n === void 0 ? void 0 : n.type) === CKEDITOR.NODE_ELEMENT && n.getName() === 'span' && n.getStyle('color');
       };
@@ -197,7 +199,6 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
           }
         }
       }
-      console.log('🔚 Pass1 done');
 
       /* Pass 2 – handle partially‑selected spans */
       var collector = new CKEDITOR.dom.walker(range);
