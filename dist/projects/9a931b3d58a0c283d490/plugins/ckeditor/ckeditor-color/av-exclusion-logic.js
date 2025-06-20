@@ -177,6 +177,20 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
     function smartRemoveColorFromPartial(range) {
       console.log('🟢 smartRemoveColorFromPartial – start');
 
+      /*  ───── DEBUG BLOCK ─────  */
+      (function debugBoundaries(_range$startContainer, _range$startContainer2, _range$endContainer$g, _range$endContainer) {
+        var spanAncestor = range.startContainer.getAscendant('span', true);
+        if (!spanAncestor || !spanAncestor.getStyle('color')) {
+          console.log('🟢 DEBUG-1  nothing to test: startContainer not inside coloured <span>');
+          return; // keep the original flow
+        }
+        console.log('🟢 DEBUG-2  spanAncestor HTML:', spanAncestor.getOuterHtml().replace(/\n|\s+/g, ' '));
+        console.log('🟢 DEBUG-3  startContainer type/name/offset:', range.startContainer.type, ((_range$startContainer = (_range$startContainer2 = range.startContainer).getName) === null || _range$startContainer === void 0 ? void 0 : _range$startContainer.call(_range$startContainer2)) || '(text)', range.startOffset);
+        console.log('🟢 DEBUG-4  endContainer   type/name/offset:', range.endContainer.type, ((_range$endContainer$g = (_range$endContainer = range.endContainer).getName) === null || _range$endContainer$g === void 0 ? void 0 : _range$endContainer$g.call(_range$endContainer)) || '(text)', range.endOffset);
+        console.log('🟢 DEBUG-5  checkBoundary START:', range.checkBoundaryOfElement(spanAncestor, CKEDITOR.START));
+        console.log('🟢 DEBUG-6  checkBoundary END  :', range.checkBoundaryOfElement(spanAncestor, CKEDITOR.END));
+      })();
+
       /* ---------- Pass 1 – full-span selection ----------------- */
       // Find the nearest coloured <span> that contains BOTH boundaries.
       var spanAncestor = range.startContainer.getAscendant('span', true);
