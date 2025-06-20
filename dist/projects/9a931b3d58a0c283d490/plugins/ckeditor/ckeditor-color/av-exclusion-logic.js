@@ -195,7 +195,8 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
 
       /* Pass 1 – remove colour from spans fully inside the selection */
       var fullRange = range.clone();
-      fullRange.enlarge(CKEDITOR.ENLARGE_INLINE);
+      // Enlarge to element boundaries so getEnclosedNode() can pick up the span element
+      fullRange.enlarge(CKEDITOR.ENLARGE_ELEMENT);
       var spanWalker = new CKEDITOR.dom.walker(fullRange);
       spanWalker.evaluator = function (node) {
         return (node === null || node === void 0 ? void 0 : node.type) === CKEDITOR.NODE_ELEMENT && node.getName() === 'span' && node.getStyle('color');
