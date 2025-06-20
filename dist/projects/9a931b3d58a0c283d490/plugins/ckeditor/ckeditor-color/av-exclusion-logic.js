@@ -177,24 +177,20 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
     function smartRemoveColorFromPartial(range) {
       console.log('🟢 smartRemoveColorFromPartial – start');
 
-      /* Pass 0 – if entire selection lies inside ONE coloured span (even if
-         the range doesn’t include the span element itself) strip it first. */
-      var spanAncestorStart = range.startContainer.getAscendant('span', true);
-      if (spanAncestorStart && spanAncestorStart.getStyle('color') && (spanAncestorStart.contains(range.endContainer) || spanAncestorStart.equals(range.endContainer))) {
-        var _spanAncestorStart$ge;
-        console.log('⚡ Pass0: selection fully inside colour span – stripping colour immediately');
-        spanAncestorStart.removeStyle('color');
-        if (!((_spanAncestorStart$ge = spanAncestorStart.getAttribute('style')) !== null && _spanAncestorStart$ge !== void 0 && _spanAncestorStart$ge.trim())) spanAncestorStart.removeAttribute('style');
-        if (!spanAncestorStart.hasAttributes()) {
-          while (spanAncestorStart.getFirst()) spanAncestorStart.insertBeforeMe(spanAncestorStart.getFirst().remove());
-          spanAncestorStart.remove();
+      /* Pass 0 – if the range exactly encloses a colour span element */
+      var enclosed = range.getEnclosedNode();
+      if (enclosed && enclosed.getName() === 'span' && enclosed.getStyle('color')) {
+        var _enclosed$getAttribut;
+        console.log('⚡ Pass0: range encloses <span style="color"> – stripping colour');
+        enclosed.removeStyle('color');
+        if (!((_enclosed$getAttribut = enclosed.getAttribute('style')) !== null && _enclosed$getAttribut !== void 0 && _enclosed$getAttribut.trim())) enclosed.removeAttribute('style');
+        if (!enclosed.hasAttributes()) {
+          while (enclosed.getFirst()) enclosed.insertBeforeMe(enclosed.getFirst().remove());
+          enclosed.remove();
           console.log('⚡ Pass0: span unwrapped');
         }
-        // Update the range to reflect DOM changes
-        return; // early exit – nothing more to do
+        return; // early exit; nothing else to do
       }
-
-      /* Pass 1 – remove colour from spans fully inside the selection */
 
       /* Pass 1 – remove colour from spans fully inside the selection */
       var fullRange = range.clone();
