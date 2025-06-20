@@ -180,7 +180,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
       /* Pass 0 – if entire selection lies inside ONE coloured span (even if
          the range doesn’t include the span element itself) strip it first. */
       var spanAncestorStart = range.startContainer.getAscendant('span', true);
-      if (spanAncestorStart && spanAncestorStart.getStyle('color') && spanAncestorStart.contains(range.endContainer)) {
+      if (spanAncestorStart && spanAncestorStart.getStyle('color') && (spanAncestorStart.contains(range.endContainer) || spanAncestorStart.equals(range.endContainer))) {
         var _spanAncestorStart$ge;
         console.log('⚡ Pass0: selection fully inside colour span – stripping colour immediately');
         spanAncestorStart.removeStyle('color');
