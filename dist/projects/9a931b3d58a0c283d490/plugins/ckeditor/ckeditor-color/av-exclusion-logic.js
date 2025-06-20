@@ -177,6 +177,25 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
     function smartRemoveColorFromPartial(range) {
       console.log('🟢 smartRemoveColorFromPartial – start');
 
+      /* Pass 0 – if entire selection lies inside ONE coloured span (even if
+         the range doesn’t include the span element itself) strip it first. */
+      var spanAncestorStart = range.startContainer.getAscendant('span', true);
+      if (spanAncestorStart && spanAncestorStart.getStyle('color') && spanAncestorStart.contains(range.endContainer)) {
+        var _spanAncestorStart$ge;
+        console.log('⚡ Pass0: selection fully inside colour span – stripping colour immediately');
+        spanAncestorStart.removeStyle('color');
+        if (!((_spanAncestorStart$ge = spanAncestorStart.getAttribute('style')) !== null && _spanAncestorStart$ge !== void 0 && _spanAncestorStart$ge.trim())) spanAncestorStart.removeAttribute('style');
+        if (!spanAncestorStart.hasAttributes()) {
+          while (spanAncestorStart.getFirst()) spanAncestorStart.insertBeforeMe(spanAncestorStart.getFirst().remove());
+          spanAncestorStart.remove();
+          console.log('⚡ Pass0: span unwrapped');
+        }
+        // Update the range to reflect DOM changes
+        return; // early exit – nothing more to do
+      }
+
+      /* Pass 1 – remove colour from spans fully inside the selection */
+
       /* Pass 1 – remove colour from spans fully inside the selection */
       var fullRange = range.clone();
       fullRange.enlarge(CKEDITOR.ENLARGE_INLINE);
