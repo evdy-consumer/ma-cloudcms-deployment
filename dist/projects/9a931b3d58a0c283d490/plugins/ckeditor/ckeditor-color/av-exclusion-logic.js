@@ -177,29 +177,28 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
     function smartRemoveColorFromPartial(range) {
       console.log('🟢 smartRemoveColorFromPartial – start');
 
-      /* ---------- Pass 1 : full-span selection ----------------- */
-      /* Detect if the selection boundaries sit inside ONE colour span. */
+      /* ---------- Pass 1 – full-span selection ----------------- */
+      // Find the nearest coloured <span> that contains BOTH boundaries.
       var spanAncestor = range.startContainer.getAscendant('span', true);
-      if (spanAncestor &&
-      // there is a span
-      spanAncestor.getStyle('color') &&
-      // it has colour
-      spanAncestor.contains(range.endContainer) &&
-      // end is also inside it
-      spanAncestor.equals(
-      // selection covers WHOLE span
-      range.clone().enlarge(CKEDITOR.ENLARGE_INLINE).getEnclosedNode())) {
+      if (spanAncestor && spanAncestor.getStyle('color') &&
+      // start & end must be inside the same span
+      spanAncestor.contains(range.startContainer) && spanAncestor.contains(range.endContainer) &&
+      // and the selection must cover *all* content inside that span
+      range.startOffset === 0 && range.endOffset === spanAncestor.getChildCount()) {
         var _spanAncestor$getAttr;
-        // strip colour
+        // 1) remove just the colour style
         spanAncestor.removeStyle('color');
         if (!((_spanAncestor$getAttr = spanAncestor.getAttribute('style')) !== null && _spanAncestor$getAttr !== void 0 && _spanAncestor$getAttr.trim())) spanAncestor.removeAttribute('style');
 
-        // unwrap if empty
+        // 2) unwrap if span now has no attributes left
         if (!spanAncestor.hasAttributes()) {
-          while (spanAncestor.getFirst()) spanAncestor.insertBeforeMe(spanAncestor.getFirst().remove());
+          while (spanAncestor.getFirst()) {
+            spanAncestor.insertBeforeMe(spanAncestor.getFirst().remove());
+          }
           spanAncestor.remove();
         }
-        return; // full-span handled, skip Pass 2
+        console.log('⚡ Pass1: full span stripped in one click');
+        return; // full-span handled → skip Pass 2
       }
 
       /* Pass 2 – handle partially‑selected spans */
