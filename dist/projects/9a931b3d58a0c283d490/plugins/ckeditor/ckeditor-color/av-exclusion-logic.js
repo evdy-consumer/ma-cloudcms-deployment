@@ -194,11 +194,10 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
       /* ---------- Pass 1 – full-span selection ----------------- */
       // Find the nearest coloured <span> that contains BOTH boundaries.
       var spanAncestor = range.startContainer.getAscendant('span', true);
-      if (spanAncestor && spanAncestor.getStyle('color') &&
-      // start & end must be inside the same span
-      spanAncestor.contains(range.startContainer) && spanAncestor.contains(range.endContainer) &&
-      // and the selection must cover *all* content inside that span
-      range.startOffset === 0 && range.endOffset === spanAncestor.getChildCount()) {
+      var spanIsFullyCovered = spanAncestor && spanAncestor.getStyle('color') && range.checkBoundaryOfElement(spanAncestor, CKEDITOR.START) && ( /* normal case: caret ends after the span’s last child */
+      range.checkBoundaryOfElement(spanAncestor, CKEDITOR.END) || ( /* edge-case: CKEditor puts endContainer === span, endOffset === 0 */
+      range.endContainer.equals(spanAncestor) && range.endOffset === 0));
+      if (spanIsFullyCovered) {
         var _spanAncestor$getAttr;
         // 1) remove just the colour style
         spanAncestor.removeStyle('color');
