@@ -181,12 +181,13 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
       var spanRange = range.clone();
       spanRange.enlarge(CKEDITOR.ENLARGE_ELEMENT);
       var spanWalker = new CKEDITOR.dom.walker(spanRange);
+      spanWalker.range = spanRange; // ensure internal range is valid
       spanWalker.evaluator = function (n) {
         return (n === null || n === void 0 ? void 0 : n.type) === CKEDITOR.NODE_ELEMENT && n.getName() === 'span' && n.getStyle('color');
       };
       for (var span; span = spanWalker.next();) {
-        var coversStart = range.checkBoundaryOfElement(span, CKEDITOR.START);
-        var coversEnd = range.checkBoundaryOfElement(span, CKEDITOR.END);
+        var coversStart = span.contains(range.startContainer);
+        var coversEnd = span.contains(range.endContainer);
         if (coversStart && coversEnd) {
           var _span$getAttribute;
           console.log('⚡ Pass1: stripping full-span colour');
