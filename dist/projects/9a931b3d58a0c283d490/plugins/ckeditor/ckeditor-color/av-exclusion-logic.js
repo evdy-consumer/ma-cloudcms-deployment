@@ -153,7 +153,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
       }
     };
 
-    /* ---------------- span‑lifter (apply) ---------------- */
+    /* ---------------- span‑lifter ---------------- */
     function liftColorSpans(range) {
       var walkRange = range.clone();
       walkRange.enlarge(CKEDITOR.ENLARGE_INLINE);
@@ -168,50 +168,37 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         var firstChild = span.getFirst();
         if ((firstChild === null || firstChild === void 0 ? void 0 : firstChild.type) === CKEDITOR.NODE_ELEMENT && firstChild.getName() === inlineParent.getName()) continue;
         var clone = utils.clone(inlineParent);
-        while (span.getFirst()) clone.append(span.getFirst().remove());
+        while (span.getFirst()) {
+          clone.append(span.getFirst().remove());
+        }
         span.append(clone);
       }
     }
 
-    /* -------------- colour remover (single pass) -------------- */
+    /* -------------- colour remover  -------------- */
     function smartRemoveColorFromPartial(range) {
-      console.log('🟢 smartRemoveColorFromPartial – start');
-
-      /*  ───── DEBUG BLOCK ─────  */
-      (function debugBoundaries(_range$startContainer, _range$startContainer2, _range$endContainer$g, _range$endContainer) {
-        var spanAncestor = range.startContainer.getAscendant('span', true);
-        if (!spanAncestor || !spanAncestor.getStyle('color')) {
-          console.log('🟢 DEBUG-1  nothing to test: startContainer not inside coloured <span>');
-          return; // keep the original flow
-        }
-        console.log('🟢 DEBUG-2  spanAncestor HTML:', spanAncestor.getOuterHtml().replace(/\n|\s+/g, ' '));
-        console.log('🟢 DEBUG-3  startContainer type/name/offset:', range.startContainer.type, ((_range$startContainer = (_range$startContainer2 = range.startContainer).getName) === null || _range$startContainer === void 0 ? void 0 : _range$startContainer.call(_range$startContainer2)) || '(text)', range.startOffset);
-        console.log('🟢 DEBUG-4  endContainer   type/name/offset:', range.endContainer.type, ((_range$endContainer$g = (_range$endContainer = range.endContainer).getName) === null || _range$endContainer$g === void 0 ? void 0 : _range$endContainer$g.call(_range$endContainer)) || '(text)', range.endOffset);
-        console.log('🟢 DEBUG-5  checkBoundary START:', range.checkBoundaryOfElement(spanAncestor, CKEDITOR.START));
-        console.log('🟢 DEBUG-6  checkBoundary END  :', range.checkBoundaryOfElement(spanAncestor, CKEDITOR.END));
-      })();
-
       /* ---------- Pass 1 – full-span selection ----------------- */
       // Find the nearest coloured <span> that contains BOTH boundaries.
       var spanAncestor = range.startContainer.getAscendant('span', true);
-      var spanIsFullyCovered = spanAncestor && spanAncestor.getStyle('color') && range.checkBoundaryOfElement(spanAncestor, CKEDITOR.START) && ( /* normal case: caret ends after the span’s last child */
+      var isSpan = spanAncestor && spanAncestor.getStyle('color');
+      var containsStart = range.checkBoundaryOfElement(spanAncestor, CKEDITOR.START);
+      var containsEnd = /* normal case: caret ends after the span’s last child */
       range.checkBoundaryOfElement(spanAncestor, CKEDITOR.END) || ( /* edge-case: CKEditor puts endContainer === span, endOffset === 0 */
-      range.endContainer.equals(spanAncestor) && range.endOffset === 0));
+      range.endContainer.equals(spanAncestor) && range.endOffset === 0);
+      var spanIsFullyCovered = isSpan && containsStart && containsEnd;
       if (spanIsFullyCovered) {
         var _spanAncestor$getAttr;
-        // 1) remove just the colour style
         spanAncestor.removeStyle('color');
-        if (!((_spanAncestor$getAttr = spanAncestor.getAttribute('style')) !== null && _spanAncestor$getAttr !== void 0 && _spanAncestor$getAttr.trim())) spanAncestor.removeAttribute('style');
-
-        // 2) unwrap if span now has no attributes left
+        if (!((_spanAncestor$getAttr = spanAncestor.getAttribute('style')) !== null && _spanAncestor$getAttr !== void 0 && _spanAncestor$getAttr.trim())) {
+          spanAncestor.removeAttribute('style');
+        }
         if (!spanAncestor.hasAttributes()) {
           while (spanAncestor.getFirst()) {
             spanAncestor.insertBeforeMe(spanAncestor.getFirst().remove());
           }
           spanAncestor.remove();
         }
-        console.log('⚡ Pass1: full span stripped in one click');
-        return; // full-span handled → skip Pass 2
+        return;
       }
 
       /* Pass 2 – handle partially‑selected spans */
@@ -223,7 +210,9 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
       };
       var targets = [];
       var node;
-      while (node = collector.next()) targets.push(node);
+      while (node = collector.next()) {
+        targets.push(node);
+      }
       var processedSpans = new Set();
       var _loop = function _loop() {
         var textNode = _targets[_i];
@@ -251,7 +240,9 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         var build = function build(frag, keepColor) {
           if (!frag) return null;
           var wrapped = utils.wrapInside(frag, chain);
-          if (!keepColor) return wrapped;
+          if (!keepColor) {
+            return wrapped;
+          }
           var spanCopy = utils.clone(colorSpan);
           spanCopy.append(wrapped);
           return spanCopy;
@@ -260,13 +251,14 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
           return colorSpan.insertBeforeMe(frag);
         });
         textNode.remove();
-        if (!colorSpan.getChildCount()) colorSpan.remove();
+        if (!colorSpan.getChildCount()) {
+          colorSpan.remove();
+        }
         processedSpans.add(colorSpan);
       };
       for (var _i = 0, _targets = targets; _i < _targets.length; _i++) {
         if (_loop()) continue;
       }
-      console.log('🟢 smartRemoveColorFromPartial – end');
     }
 
     /* ---------------------- UI combo ----------------------------- */
