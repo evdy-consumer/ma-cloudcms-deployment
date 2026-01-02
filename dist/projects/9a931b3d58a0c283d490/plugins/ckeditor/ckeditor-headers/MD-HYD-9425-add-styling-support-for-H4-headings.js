@@ -119,7 +119,7 @@ var _window = window,
  */
 
 CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
-  init: function init(editor) {
+  afterInit: function afterInit(editor) {
     editor.config.format_tags = 'p;h1;h2;h3;h4;pre';
   }
 });
