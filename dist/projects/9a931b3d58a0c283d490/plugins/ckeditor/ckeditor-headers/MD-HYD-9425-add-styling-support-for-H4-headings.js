@@ -122,6 +122,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
   requires: 'format',
   init: function init(editor) {
     editor.config.format_tags = 'p;h1;h2;h3;h4;pre';
+    editor.filter.allow('h4', 'format_h4');
   }
 });
 
