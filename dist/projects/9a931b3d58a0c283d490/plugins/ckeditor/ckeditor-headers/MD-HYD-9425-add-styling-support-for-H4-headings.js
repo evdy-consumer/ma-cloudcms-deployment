@@ -120,8 +120,10 @@ var _window = window,
 
 CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
   requires: 'format',
-  init: function init(editor) {
+  beforeInit: function beforeInit(editor) {
     editor.config.format_tags = 'p;h1;h2;h3;h4;pre';
+  },
+  init: function init(editor) {
     editor.filter.allow('h4', 'format_h4');
   }
 });
