@@ -155,6 +155,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
 
     /* ---------------- span‑lifter ---------------- */
     function liftColorSpans(range) {
+      console.log('click liftcolor');
       var walkRange = range.clone();
       walkRange.enlarge(CKEDITOR.ENLARGE_INLINE);
       var walker = new CKEDITOR.dom.walker(walkRange);
@@ -288,6 +289,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         var selection = editor.getSelection();
         if (!selection) return;
         editor.fire('lockSnapshot');
+        console.log('clicked');
         if (choice === 'default') {
           var _selection;
           selection.getRanges().forEach(liftColorSpans);
