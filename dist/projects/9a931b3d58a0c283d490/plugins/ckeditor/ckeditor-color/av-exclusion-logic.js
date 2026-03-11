@@ -178,7 +178,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
 
     /* -------------- colour remover  -------------- */
     function smartRemoveColorFromPartial(range) {
-      liftColorSpans(range);
+      // liftColorSpans(range);
 
       /* ---------- Pass 1 – full-span selection ----------------- */
       // Find the nearest coloured <span> that contains BOTH boundaries.
@@ -292,11 +292,13 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         console.log('clicked');
         if (choice === 'default') {
           var _selection;
+          console.log('remove color');
           selection.getRanges().forEach(liftColorSpans);
           selection = editor.getSelection();
           (_selection = selection) === null || _selection === void 0 || _selection.getRanges().forEach(smartRemoveColorFromPartial);
         } else {
           var _selection2;
+          console.log('apply color', choice);
           editor.applyStyle(new CKEDITOR.style({
             element: 'span',
             styles: {
