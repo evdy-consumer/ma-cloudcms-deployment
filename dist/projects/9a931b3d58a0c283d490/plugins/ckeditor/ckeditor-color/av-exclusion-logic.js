@@ -131,7 +131,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
   requires: 'richcombo',
   init: function init(editor) {
     var colorMap = CKEDITOR.tools.get_plugin_config(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], editor);
-
+    console.log(colorMap, 'color map');
     /* ------------------------------ utils ------------------------------ */
     var utils = {
       clone: function clone(el) {
@@ -292,7 +292,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         console.log('clicked');
         if (choice === 'default') {
           var _selection;
-          console.log('remove color');
+          console.log('remove color', CKEDITOR.tools.get_plugin_config(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], editor));
           editor.applyStyle(new CKEDITOR.style({
             element: 'span',
             styles: {
