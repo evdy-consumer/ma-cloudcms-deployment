@@ -291,6 +291,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         editor.fire('lockSnapshot');
         console.log('clicked');
         if (choice === 'default') {
+          var _selection;
           console.log('remove color');
           editor.applyStyle(new CKEDITOR.style({
             element: 'span',
@@ -300,9 +301,9 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
           }));
           selection = editor.getSelection();
           selection.getRanges().forEach(liftColorSpans);
-          // selection?.getRanges().forEach(smartRemoveColorFromPartial);
+          (_selection = selection) === null || _selection === void 0 || _selection.getRanges().forEach(smartRemoveColorFromPartial);
         } else {
-          var _selection;
+          var _selection2;
           console.log('apply color', choice);
           editor.applyStyle(new CKEDITOR.style({
             element: 'span',
@@ -311,7 +312,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
             }
           }));
           selection = editor.getSelection();
-          (_selection = selection) === null || _selection === void 0 || _selection.getRanges().forEach(liftColorSpans);
+          (_selection2 = selection) === null || _selection2 === void 0 || _selection2.getRanges().forEach(liftColorSpans);
         }
         editor.fire('unlockSnapshot');
       }
