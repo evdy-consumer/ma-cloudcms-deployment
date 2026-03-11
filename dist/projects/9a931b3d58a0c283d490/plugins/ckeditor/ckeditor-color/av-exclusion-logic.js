@@ -292,6 +292,12 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         console.log('clicked');
         if (choice === 'default') {
           console.log('remove color');
+          editor.applyStyle(new CKEDITOR.style({
+            element: 'span',
+            styles: {
+              color: '#E96D3C'
+            }
+          }));
           selection = editor.getSelection();
           selection.getRanges().forEach(liftColorSpans);
           // selection?.getRanges().forEach(smartRemoveColorFromPartial);
