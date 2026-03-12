@@ -131,7 +131,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
   requires: 'richcombo',
   init: function init(editor) {
     var colorMap = CKEDITOR.tools.get_plugin_config(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], editor);
-    console.log(colorMap, 'color map');
+
     /* ------------------------------ utils ------------------------------ */
     var utils = {
       clone: function clone(el) {
@@ -155,7 +155,6 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
 
     /* ---------------- span‑lifter ---------------- */
     function liftColorSpans(range) {
-      console.log('click liftcolor');
       var walkRange = range.clone();
       walkRange.enlarge(CKEDITOR.ENLARGE_INLINE);
       var walker = new CKEDITOR.dom.walker(walkRange);
@@ -178,8 +177,6 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
 
     /* -------------- colour remover  -------------- */
     function smartRemoveColorFromPartial(range) {
-      // liftColorSpans(range);
-
       /* ---------- Pass 1 – full-span selection ----------------- */
       // Find the nearest coloured <span> that contains BOTH boundaries.
       var spanAncestor = range.startContainer.getAscendant('span', true);
@@ -289,23 +286,21 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         var selection = editor.getSelection();
         if (!selection) return;
         editor.fire('lockSnapshot');
-        console.log('clicked');
         if (choice === 'default') {
           var _selection;
-          console.log('remove color', CKEDITOR.tools.get_plugin_config(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], editor));
+          // apply color to create spans if they don't exist, so that liftColorSpans can find them
           editor.applyStyle(new CKEDITOR.style({
             element: 'span',
             styles: {
-              color: '#E96D3C'
+              color: '#fff'
             }
           }));
           selection = editor.getSelection();
-          console.log(selection, 'selection');
           selection.getRanges().forEach(liftColorSpans);
+          // remove color from fully selected spans
           (_selection = selection) === null || _selection === void 0 || _selection.getRanges().forEach(smartRemoveColorFromPartial);
         } else {
           var _selection2;
-          console.log('apply color', choice);
           editor.applyStyle(new CKEDITOR.style({
             element: 'span',
             styles: {

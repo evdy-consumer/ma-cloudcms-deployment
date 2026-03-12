@@ -30949,6 +30949,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof2(o) { "@babel/helpers - typeo
         "./page-recipe/index.js": "./src/widgets/page-recipe/index.js",
         "./poll/index.js": "./src/widgets/poll/index.js",
         "./price/index.js": "./src/widgets/price/index.js",
+        "./product-box/index.js": "./src/widgets/product-box/index.js",
         "./quiz/index.js": "./src/widgets/quiz/index.js",
         "./recipe-guide/index.js": "./src/widgets/recipe-guide/index.js",
         "./recipe/index.js": "./src/widgets/recipe/index.js",
@@ -32649,6 +32650,44 @@ var __WEBPACK_AMD_DEFINE_RESULT__;function _typeof2(o) { "@babel/helpers - typeo
         return _placeholder__WEBPACK_IMPORTED_MODULE_0__["allowedContent"];
       });
       var qname = 'ehwidgets:price';
+      function mapData() {
+        return {
+          type: qname
+        };
+      }
+
+      /***/
+    }),
+    /***/"./src/widgets/product-box/index.js": (
+    /*!******************************************!*\
+      !*** ./src/widgets/product-box/index.js ***!
+      \******************************************/
+    /*! exports provided: qname, template, allowedContent, mapData */
+    /***/
+    function srcWidgetsProductBoxIndexJs(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+      __webpack_require__.d(__webpack_exports__, "qname", function () {
+        return qname;
+      });
+      /* harmony export (binding) */
+      __webpack_require__.d(__webpack_exports__, "mapData", function () {
+        return mapData;
+      });
+      /* harmony import */
+      var _placeholder__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__( /*! ../../placeholder */"./src/placeholder/index.js");
+      /* harmony reexport (safe) */
+      __webpack_require__.d(__webpack_exports__, "template", function () {
+        return _placeholder__WEBPACK_IMPORTED_MODULE_0__["template"];
+      });
+
+      /* harmony reexport (safe) */
+      __webpack_require__.d(__webpack_exports__, "allowedContent", function () {
+        return _placeholder__WEBPACK_IMPORTED_MODULE_0__["allowedContent"];
+      });
+      var qname = 'ehwidgets:productBox';
       function mapData() {
         return {
           type: qname
