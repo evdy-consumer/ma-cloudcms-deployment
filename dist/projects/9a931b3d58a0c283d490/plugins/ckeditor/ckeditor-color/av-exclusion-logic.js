@@ -300,6 +300,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
             }
           }));
           selection = editor.getSelection();
+          console.log(selection, 'selection');
           selection.getRanges().forEach(liftColorSpans);
           (_selection = selection) === null || _selection === void 0 || _selection.getRanges().forEach(smartRemoveColorFromPartial);
         } else {
