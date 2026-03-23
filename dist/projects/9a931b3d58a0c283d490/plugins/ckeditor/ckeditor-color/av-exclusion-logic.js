@@ -161,6 +161,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
       walker.evaluator = function (n) {
         return (n === null || n === void 0 ? void 0 : n.type) === CKEDITOR.NODE_ELEMENT && n.getName() === 'span' && n.getStyle('color');
       };
+      console.log('lifting spans in range');
       var span;
       while (span = walker.next()) {
         var inlineParent = span.getParent();
@@ -295,6 +296,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
               color: '#fff'
             }
           }));
+          console.log('selection ranges before lifting', choice);
           selection = editor.getSelection();
           selection.getRanges().forEach(liftColorSpans);
           // remove color from fully selected spans
