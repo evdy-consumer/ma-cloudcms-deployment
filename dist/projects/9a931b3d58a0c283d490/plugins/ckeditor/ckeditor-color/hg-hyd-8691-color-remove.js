@@ -289,6 +289,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         if (choice === 'default') {
           var _selection;
           // apply color to create spans if they don't exist, so that liftColorSpans can find them
+          console.log('apply color', choice);
           editor.applyStyle(new CKEDITOR.style({
             element: 'span',
             styles: {
