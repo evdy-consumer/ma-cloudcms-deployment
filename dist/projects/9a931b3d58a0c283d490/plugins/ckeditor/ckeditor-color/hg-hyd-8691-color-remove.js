@@ -169,7 +169,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         if ((firstChild === null || firstChild === void 0 ? void 0 : firstChild.type) === CKEDITOR.NODE_ELEMENT && firstChild.getName() === inlineParent.getName()) continue;
         var clone = utils.clone(inlineParent);
         while (span.getFirst()) {
-          clone.append(span.getFirst().remove());
+          clone.append(span.getFirst());
         }
         // span.append(clone);
       }
