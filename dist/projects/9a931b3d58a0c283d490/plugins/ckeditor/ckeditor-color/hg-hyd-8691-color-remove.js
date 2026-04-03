@@ -159,20 +159,30 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
       walkRange.enlarge(CKEDITOR.ENLARGE_INLINE);
       var walker = new CKEDITOR.dom.walker(walkRange);
       walker.evaluator = function (n) {
-        return (n === null || n === void 0 ? void 0 : n.type) === CKEDITOR.NODE_ELEMENT && n.getName() === 'span' && n.getStyle('color');
+        return n && n.type === CKEDITOR.NODE_ELEMENT && n.getName() === 'span' && n.getStyle('color');
       };
       var span;
       while (span = walker.next()) {
-        var inlineParent = span.getParent();
-        if (!inlineParent || inlineParent.getName() === 'span') continue;
-        var firstChild = span.getFirst();
-        if ((firstChild === null || firstChild === void 0 ? void 0 : firstChild.type) === CKEDITOR.NODE_ELEMENT && firstChild.getName() === inlineParent.getName()) continue;
-        var clone = utils.clone(inlineParent);
-        while (span.getFirst()) {
-          clone.append(span.getFirst());
+        var parent = span.getParent();
+        if (!parent) continue;
+        var parentName = parent.getName();
+
+        // Only lift through inline elements.
+        // Never wrap block elements like <p>, <div>, <li>, etc inside <span>.
+        if (!CKEDITOR.dtd.$inline[parentName] || parentName === 'span') {
+          continue;
         }
-        // span.append(clone);
+        var firstChild = span.getFirst();
+        if (firstChild && firstChild.type === CKEDITOR.NODE_ELEMENT && firstChild.getName() === parentName) {
+          continue;
+        }
+        var clone = utils.clone(parent);
+        while (span.getFirst()) {
+          clone.append(span.getFirst().remove());
+        }
+        span.append(clone);
       }
+      console.log(11);
     }
 
     /* -------------- colour remover  -------------- */
