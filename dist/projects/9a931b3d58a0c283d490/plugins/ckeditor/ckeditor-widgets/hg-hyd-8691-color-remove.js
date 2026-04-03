@@ -22717,7 +22717,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
       }
       function getEnvFromBranch(branch) {
         var title = branch.title;
-        console.log('api ', title);
         if (title.startsWith('DEV: ') || title.startsWith('Pre-Production - ')) {
           return 'preproduction';
         }
@@ -28771,17 +28770,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
       }
       function getEnvFromBranch(branch) {
         var title = branch.title;
-        if (title.startsWith('DEV: ')) {
-          console.log('browser ', title, title.replace('DEV: ', '').split('-')[0].trim());
-          return title.replace('DEV: ', '').split('-')[0].trim();
-        }
-        if (title.startsWith('Pre-Production - ')) {
+        if (title.startsWith('DEV: ') || title.startsWith('Pre-Production - ')) {
           return 'preproduction';
         }
         if (title.startsWith('PR: ')) {
           return 'prs';
         }
-        if (title.startsWith('STAGING: ') || title.startsWith('STAGING - ')) {
+        if (title.startsWith('STAGING: ')) {
           return 'staging';
         }
         return 'production';

@@ -171,7 +171,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         while (span.getFirst()) {
           clone.append(span.getFirst().remove());
         }
-        span.append(clone);
+        // span.append(clone);
       }
     }
 
@@ -288,17 +288,8 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         editor.fire('lockSnapshot');
         if (choice === 'default') {
           var _selection;
-          // apply color to create spans if they don't exist, so that liftColorSpans can find them
-          console.log('apply color', choice);
-          editor.applyStyle(new CKEDITOR.style({
-            element: 'span',
-            styles: {
-              color: '#fff'
-            }
-          }));
-          selection = editor.getSelection();
           selection.getRanges().forEach(liftColorSpans);
-          // remove color from fully selected spans
+          selection = editor.getSelection();
           (_selection = selection) === null || _selection === void 0 || _selection.getRanges().forEach(smartRemoveColorFromPartial);
         } else {
           var _selection2;
