@@ -165,6 +165,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
       while (span = walker.next()) {
         var parent = span.getParent();
         if (!parent) continue;
+        console.log('Lifting span from parent hasmik', parent.getName());
         var parentName = parent.getName();
 
         // Only lift through inline elements.
@@ -182,19 +183,73 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         }
         span.append(clone);
       }
-      console.log(11);
+    }
+    function splitMixedBoundarySelection(range) {
+      var startSpan = range.startContainer.getAscendant('span', true);
+      var endSpan = range.endContainer.getAscendant('span', true);
+      console.log('split hasmik');
+      var startColorSpan = startSpan && startSpan.getStyle('color') ? startSpan : null;
+      var endColorSpan = endSpan && endSpan.getStyle('color') ? endSpan : null;
+
+      /* Case 1:
+         selection starts OUTSIDE color span and ends INSIDE color span
+         => remove color from beginning of that span up to endOffset
+      */
+      if (!startColorSpan && endColorSpan && range.endContainer.type === CKEDITOR.NODE_TEXT) {
+        var textNode = range.endContainer;
+        var colorSpan = endColorSpan;
+        var fullText = textNode.getText();
+        var selected = fullText.slice(0, range.endOffset);
+        var after = fullText.slice(range.endOffset);
+        if (selected) {
+          colorSpan.insertBeforeMe(new CKEDITOR.dom.text(selected));
+        }
+        if (after) {
+          var spanCopy = utils.clone(colorSpan);
+          spanCopy.append(new CKEDITOR.dom.text(after));
+          colorSpan.insertBeforeMe(spanCopy);
+        }
+        textNode.remove();
+        if (!colorSpan.getChildCount()) {
+          colorSpan.remove();
+        }
+        return true;
+      }
+
+      /* Case 2:
+         selection starts INSIDE color span and ends OUTSIDE color span
+         => remove color from startOffset to end of that span
+      */
+      if (startColorSpan && !endColorSpan && range.startContainer.type === CKEDITOR.NODE_TEXT) {
+        var _textNode = range.startContainer;
+        var _colorSpan = startColorSpan;
+        var _fullText = _textNode.getText();
+        var before = _fullText.slice(0, range.startOffset);
+        var _selected = _fullText.slice(range.startOffset);
+        if (before) {
+          var _spanCopy = utils.clone(_colorSpan);
+          _spanCopy.append(new CKEDITOR.dom.text(before));
+          _colorSpan.insertBeforeMe(_spanCopy);
+        }
+        if (_selected) {
+          _colorSpan.insertBeforeMe(new CKEDITOR.dom.text(_selected));
+        }
+        _textNode.remove();
+        if (!_colorSpan.getChildCount()) {
+          _colorSpan.remove();
+        }
+        return true;
+      }
+      return false;
     }
 
     /* -------------- colour remover  -------------- */
     function smartRemoveColorFromPartial(range) {
       /* ---------- Pass 1 – full-span selection ----------------- */
-      // Find the nearest coloured <span> that contains BOTH boundaries.
       var spanAncestor = range.startContainer.getAscendant('span', true);
       var isSpan = spanAncestor && spanAncestor.getStyle('color');
-      var containsStart = range.checkBoundaryOfElement(spanAncestor, CKEDITOR.START);
-      var containsEnd = /* normal case: caret ends after the span’s last child */
-      range.checkBoundaryOfElement(spanAncestor, CKEDITOR.END) || ( /* edge-case: CKEditor puts endContainer === span, endOffset === 0 */
-      range.endContainer.equals(spanAncestor) && range.endOffset === 0);
+      var containsStart = spanAncestor && range.checkBoundaryOfElement(spanAncestor, CKEDITOR.START);
+      var containsEnd = spanAncestor && (range.checkBoundaryOfElement(spanAncestor, CKEDITOR.END) || range.endContainer.equals(spanAncestor) && range.endOffset === 0);
       var spanIsFullyCovered = isSpan && containsStart && containsEnd;
       if (spanIsFullyCovered) {
         var _spanAncestor$getAttr;
@@ -211,7 +266,12 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         return;
       }
 
-      /* Pass 2 – handle partially‑selected spans */
+      /* NEW: mixed-boundary support */
+      if (splitMixedBoundarySelection(range)) {
+        return;
+      }
+
+      /* Pass 2 – handle partially-selected spans */
       var collector = new CKEDITOR.dom.walker(range);
       collector.evaluator = function (node) {
         return node.type === CKEDITOR.NODE_TEXT && node.getAscendant(function (el) {
@@ -239,8 +299,6 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         var beforeFrag = before ? new CKEDITOR.dom.text(before) : null;
         var selectedFrag = selected ? new CKEDITOR.dom.text(selected) : null;
         var afterFrag = after ? new CKEDITOR.dom.text(after) : null;
-
-        /* Build ancestor chain */
         var chain = [];
         var current = textNode.getParent();
         while (current && !current.equals(colorSpan)) {
@@ -298,11 +356,21 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         editor.fire('lockSnapshot');
         if (choice === 'default') {
           var _selection;
-          selection.getRanges().forEach(liftColorSpans);
+          console.log('Removing color from selection hasmik');
+          // apply color to create spans if they don't exist, so that liftColorSpans can find them
+          editor.applyStyle(new CKEDITOR.style({
+            element: 'span',
+            styles: {
+              color: '#fff'
+            }
+          }));
           selection = editor.getSelection();
+          selection.getRanges().forEach(liftColorSpans);
+          // remove color from fully selected spans
           (_selection = selection) === null || _selection === void 0 || _selection.getRanges().forEach(smartRemoveColorFromPartial);
         } else {
           var _selection2;
+          console.log('Applying color to selection hasmik', choice);
           editor.applyStyle(new CKEDITOR.style({
             element: 'span',
             styles: {
