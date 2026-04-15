@@ -297,7 +297,6 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
         if (!selection) return;
         editor.fire('lockSnapshot');
         if (choice === 'default') {
-          var _selection;
           console.log('Removing color from selection hasmik');
           // apply color to create spans if they don't exist, so that liftColorSpans can find them
           editor.applyStyle(new CKEDITOR.style({
@@ -309,9 +308,9 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
           selection = editor.getSelection();
           selection.getRanges().forEach(liftColorSpans);
           // remove color from fully selected spans
-          (_selection = selection) === null || _selection === void 0 || _selection.getRanges().forEach(smartRemoveColorFromPartial);
+          // selection?.getRanges().forEach(smartRemoveColorFromPartial);
         } else {
-          var _selection2;
+          var _selection;
           console.log('Applying color to selection hasmik', choice);
           editor.applyStyle(new CKEDITOR.style({
             element: 'span',
@@ -320,7 +319,7 @@ CKEDITOR.plugins.add(_constants__WEBPACK_IMPORTED_MODULE_0__["pluginName"], {
             }
           }));
           selection = editor.getSelection();
-          (_selection2 = selection) === null || _selection2 === void 0 || _selection2.getRanges().forEach(liftColorSpans);
+          (_selection = selection) === null || _selection === void 0 || _selection.getRanges().forEach(liftColorSpans);
         }
         editor.fire('unlockSnapshot');
       }
